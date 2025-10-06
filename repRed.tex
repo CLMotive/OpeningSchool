@@ -13,7 +13,7 @@
 \def\Ind{\operatorname{Ind}}
 
 \title{Representations of Reductive Algebraic Groups}
-\author{Lecturer: Simon Riche, Typesetter: Micha{\l} Mruga{\l}a}
+\author{Lecturer: Simon Riche,\quad Typesetter: Micha{\l} Mruga{\l}a}
 \begin{document}
 \maketitle
 \tableofcontents
@@ -154,7 +154,7 @@ with $H$ acting diagonally via the right-regular representation on $\OO(G)$ and 
 .\] 
 The canonical isomorphism
 \[
-\Hom_{\Rep(G)}(V,\Ind_{H}^{G}(V')) \simeq \Hom_{\Rep(H)}(V,V')
+\Hom_{\Rep(G)}(V,\Ind_{H}^{G}(V')) \isoto \Hom_{\Rep(H)}(V,V')
 \] 
 is called \defn{Frobenius reciprocity}.
 
@@ -162,11 +162,11 @@ is called \defn{Frobenius reciprocity}.
 \begin{itemize}
 	\item \emph{Transitivity:} Given subgroups $H_1\subset H_2\subset G$ we have
 		\[
-		\Ind_{H_1}^{G} \simeq \Ind_{H_2}^{G}\circ \Ind_{H_1}^{H_2}.
+		\Ind_{H_1}^{G} \isoto \Ind_{H_2}^{G}\circ \Ind_{H_1}^{H_2}.
 		\] 
 	\item \emph{Tensor identity:} For $V_1\in \Rep(H),V_2\in \Rep(G)$ 
 		\[
-		\Ind_{H}^{G}(V_1\otimes\Res_{H}^{G}(V_2)) \simeq \Ind_{H}^{G}(V_1) \otimes V_2.
+		\Ind_{H}^{G}(V_1\otimes\Res_{H}^{G}(V_2)) \isoto \Ind_{H}^{G}(V_1) \otimes V_2.
 		\] 
 	\item $\Ind_H^{G}$ sends injective objects of $\Rep(H)$ to injective objects of $\Rep(G)$. In particular, 
 		\[
@@ -200,7 +200,7 @@ The functor $\CL_{G /H}:\Rep(H)\to \cat{QCoh}(G /H)$ is exact, hence we have
 \]
 One can check that
 \[
-\RD\Ind_H^{G}(V) \simeq R\Gamma(G /H, \CL_{G /H}(V)).
+\RD\Ind_H^{G}(V) \isoto R\Gamma(G /H, \CL_{G /H}(V)).
 \] 
 (??)
 
@@ -221,7 +221,7 @@ A $k$-algebraic group $G$ is called \defn{unipotent} if every non-zero represent
 \begin{example}
 	$\Ga$ is unipotent as
 	\[
-		\Ga \simeq \begin{pmatrix} 1 & * \\ 0 & 1 \end{pmatrix} .
+		\Ga \isoto \begin{pmatrix} 1 & * \\ 0 & 1 \end{pmatrix} .
 	\] 
 \end{example}
 If $G$ is a smooth, connected algebraic group, the smooth, connected, unipotent, normal subgroups of $G$ there is a largest element called the \defn{unipotent radical} of $G$, denoted $R_u(G)$. An algebraic group $G$ is called \defn{reductive} if it is smooth, connected and $R_u(G)$ is trivial. 

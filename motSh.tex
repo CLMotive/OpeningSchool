@@ -1,61 +1,15 @@
 \input{preamble.tex}
 
-\usepackage{stmaryrd}
-\usepackage[nameinlink]{cleveref}
-
-\newcommand{\SC}{\mathcal{C}}
-\newcommand{\OO}{\mathcal{O}}
-\def\coker{\operatorname{coker}}
-\def\bL{\mathbf{L}}
-\def\CT{\mathcal{T}}
-\def\Aut{\operatorname{Aut}}
-\def\wt{\widetilde}
-\def\ko{\mathfrak{o}}
-\def\kt{\mathfrak{t}}
-\newcommand{\CX}{\mathcal{X}}
-\def\coker{\operatorname{coker}}
-\def\bL{\mathbf{L}}
-\def\wh{\widehat}
-\def\CI{\mathcal{I}}
-\def\et{^\text{\'et}}
-\def\sep{^\text{sep}}
-\def\pr{\operatorname{pr}}
-\def\img{\operatorname{im}}
-\def\Sym{\operatorname{Sym}}
-\def\CG{\mathcal{G}}
-\def\N{\mathbb{N}}
-\def\th{^{\mathrm{th}}}
-\def\CN{\mathcal{N}}
-\def\Inf{\operatorname{Inf}}
-\def\rank{\operatorname{rank}}
-\def\Pic{\operatorname{Pic}}
-\def\i{\operatorname{inv}}
-\def\Diag{\operatorname{Diag}}
-\def\G{\mathbb{G}}
-\def\End{\operatorname{End}}
-\def\det{\operatorname{det}}
-\def\SL{\bb{SL}}
-\def\Rep{\operatorname{Rep}}
-\def\Repf{\operatorname{Rep}^{\text{fd}}}
-\def\Res{\operatorname{Res}}
-\def\Ind{\operatorname{Ind}}
-\def\CL{\mathcal{L}}
-\def\Zc{\underline{\mathbb{Z}}}
-\def\DAet{\operatorname{DA}^{\text{\'et}}}
-\def\SH{\operatorname{SH}}
-\def\Sh{\operatorname{Sh}}
-\def\PSh{\operatorname{PSh}}
+\def\DAet{\cat{DA}^{\text{\'et}}}
+\def\SH{\cat{SH}}
+\def\Sh{\cat{Sh}}
+\def\PSh{\cat{PSh}}
 \def\Cone{\operatorname{Cone}}
-\def\A{\cat{A}}
-\def\Ch{\operatorname{Ch}}
-\def\EssIm{\operatorname{EssIm}}
-\def\colim{\operatorname{colim}}
+\def\Ch{\cat{Ch}}
 \def\ft{^{\text{(f.t)}}}
-\def\an{^{\text{an}}}
-\def\P{\mathbb{P}}
 
 \title{Motivic Sheaves}
-\author{Micha{\l} Mruga{\l}a}
+\author{Lecturer: Simon Pepin Lehalleur,\quad Typesetter: Micha{\l} Mruga{\l}a}
 
 \begin{document}
 \maketitle
@@ -67,7 +21,8 @@
 	\item $\infty$-categorical methods.
 \end{enumerate}
 \section{Motivation from GRT and cohomology}
-\subsection{Cohomology and sheaves for representation theory}
+\subsection{Cohomology and sheaves for representation theory} \leavevmode
+
 \emph{Question:} How do you construct interesting representations?
 
 \emph{Answer:}
@@ -79,29 +34,29 @@
 \begin{example}
 	Let $K$ be a compact Lie group. The action of $K$ on itself gives us an action of $K$ on $L^2(K)$ with respect to a Haar measure. The Peter-Weyl theorem says that
 	\[
-	L^2(K) \simeq \bigoplus_{\pi\text{ unitary}}\pi^{\oplus dim(\pi)}.
+	L^2(K) \isoto \cbigoplus_{\pi\text{ unitary}}\pi^{\oplus dim(\pi)}.
 	\]
 	``Lie theory $\subset $ algebraic geometry''. Reductive groups are algebraic groups with many associated varieties with group actions: flag varieties\dots
 \end{example}
-The linearization we consider in this course are the many types of cohomology theories.
+The linearizations we consider in this course are the many types of cohomology theories.
 
 \begin{example}[Borel-Weil-Bott]
 	Let $T\subset B\subset G$ be a reductive group over $\bb{C}$. Let $\lambda\in X^{\vee}(T)$ such that there exists $w\in W$ with $w*\lambda = w(\lambda+\rho)-\rho>0$ (where $\rho = (1 /2)\sum_{\alpha\in \Phi^{+}}\alpha$). Then
 	\[
-		R\Gamma(G /B,L_\lambda) \simeq \pi_{w*\lambda}[-\ell(w)]
+		\RD\Gamma(G /B,L_\lambda) \isoto \pi_{w*\lambda}[-\ell(w)]
 	\] 
 	where $\ell(w)$ is the length of $w$.
 \end{example}
 Cohomology fits in the wider context of sheaf theory. If $T$ is a locally contractible topological space, then
 \[
-	H^{n}_{\text{sing}}(T,\Z) \simeq H^{n}(T,\Zc_T) \simeq R^{n}(\pi_T)_*(\Zc_T)	
+	\CH^{n}_{\text{sing}}(T,\Z) \isoto \CH^{n}(T,\Zc_T) \isoto \RD^{n}(\pi_T)_*(\Zc_T)	
 \]
 where $\pi_T$ is the morphism $\pi_T:T\to \text{pt}$ with
 \[
-R\pi_{T*}:D(T,\Z) \to D(\Z) \simeq D(*,\Z)
+\RD\pi_{T*}:D(T,\Z) \to D(\Z) \isoto D(*,\Z)
 .\] 
 
-\emph{Facts:} Cohomology (singular with $\Q$-coefficients) of algebraic varieties over $\bb{C}$ is \emph{\textbf{very}} special.
+Cohomology (singular with $\Q$-coefficients) of algebraic varieties over $\bb{C}$ is \emph{\textbf{very}} special.
 \begin{itemize}
 	\item There is a weight filtration.
 	\item There is a mixed hodge structure.
@@ -112,7 +67,6 @@ Sheaves on complex algebraic varieties are also very special:
 	\item Decomposition theorem;
 	\item Mixed Hodge modules.
 \end{itemize}
-
 This leads to great success stories in GRT:
 \begin{itemize}
 	\item Springer theory;
@@ -142,10 +96,10 @@ Motivic sheaves will give us a unified perspective.
 	\item they ``explain'' the realization of algebraic cycles and algebraic $K$-theory.
 \end{enumerate}
 
-\section{Construction of $\DAet$ and $\SH$ (Morel-Voevodsky)}
+\section{Construction of \texorpdfstring{$\DAet$}{DA\'et} and \texorpdfstring{$\SH$}{SH} (Morel-Voevodsky)}
 \subsection{Triangulated categories and localization}
 \begin{definition}
-	A triangulated category is the data:
+	A \defn{triangulated category} is the data:
 	\begin{itemize}
 		\item an additive category $\C$,
 		\item an automorphism $\Sigma=(-)[1]:\C\simto \C$,
@@ -154,7 +108,7 @@ Motivic sheaves will give us a unified perspective.
 				A \to B \to C \to A[1]
 			.\] 
 	\end{itemize}
-	Satisfying
+	The data satisfies the following conditions:
 	\begin{itemize}
 		\item shifted distinguished triangles are distinguished up to isomorphism,
 		\item for all $f:A\to B$ there exists
@@ -180,40 +134,40 @@ Motivic sheaves will give us a unified perspective.
 	.\] 
 \end{example}
 \begin{definition}
-	$f:A_\bullet\to B_\bullet$ is a \emph{quasi-isomorphism} if for all $n\in \Z$, the map $H_n(A_\bullet)\simeq H_n(B_\bullet)$ is an isomorphism.
+	$f:A_\bullet\to B_\bullet$ is a \defn{quasi-isomorphism} if for all $n\in \Z$, the map $H_n(A_\bullet)\simeq H_n(B_\bullet)$ is an isomorphism.
 \end{definition}
 \begin{definition}
 	$D(\A)$ is defined as the localization of $\Ch(\A)$ by quasi-isomorphisms.
 \end{definition}
 
-Now we consider reflexive localizaitons (1-categorical ones lead to triangulated and $\infty$-categorical ones).
+Now we consider reflexive localizations (1-categorical ones lead to triangulated and $\infty$-categorical ones).
 \begin{definition}
 	Let $\C$ be a 1-category.
 	\begin{enumerate}[1)]
-		\item $\C'\subset \C$ is reflexive if $\iota:\C'\to \C$ has a left adjoint.
-		\item $L_W:\C\to \C[W^{-1}]$ is reflexive if $L_W$ has a right adjoint.
+		\item $\C'\subset \C$ is \defn{reflexive} if $\iota:\C'\to \C$ has a left adjoint.
+		\item $L_W:\C\to \C[W^{-1}]$ is \defn{reflexive} if $L_W$ has a right adjoint.
 	\end{enumerate}
 \end{definition}
 
-\begin{lemma}[Reflexive subcategories are the same thing as reflexive localizations]
+\begin{lemma}[Reflexive subcategories are the same thing as reflexive localizations] \leavevmode
 	\begin{enumerate}[a)]
 		\item Let $\C'\subset \C$ be reflexive, $L:\C\to \C'$ be the left adjoint to $\iota$. Define 
 			\[
 				W_L=\{f:L(f)\text{ is an isomorphism}\}.
 			\]
-			Then $\C'\simeq \C[W_L^{-1}]$ and $L\simeq L_{(W_L)}$.
-		\item If $L$ is a reflexive localization, then $\iota$ is fully faithful and $\iota:\C[W^{-1}] \simto \EssIm(\iota)\subset \C$.
+			Then $\C'\simeq \C[W_L^{-1}]$ and $L\simeq L_{W_L}$.
+		\item If $L$ is a reflexive localization, then its right adjoint $\iota$ is fully faithful and $\iota:\C[W^{-1}] \simto \EssIm(\iota)\subset \C$.
 	\end{enumerate}
 \end{lemma}
 
 \begin{definition}
 	Let $S\subset \C$ be a collection of morphisms.
 	\begin{enumerate}[a)]
-		\item $A\in \C$ is \emph{$S$-local} if for all $f:B\to C$ in $S$ 
+		\item $A\in \C$ is \defn{$S$-local} if for all $f:B\to C$ in $S$ 
 			\[
 			\Hom_\C(C,A) \simto \Hom_\C(B,A).
 			\] 
-		\item $f:B\to C$ is an \emph{$S$-equivalence} if for all $S$-local $A$ 
+		\item $f:B\to C$ is an \defn{$S$-equivalence} if for all $S$-local $A$ 
 			\[
 			\Hom_{\C}(C,A) \simto \Hom_\C(B,A).
 			\] 
@@ -229,24 +183,24 @@ Now we consider reflexive localizaitons (1-categorical ones lead to triangulated
 \begin{definition}
 	Let $\cat{D}$ be a triangulated category with all small products.
 	\begin{itemize}
-		\item Let $\kappa$ be a regular  cardinal (for example $\kappa=\aleph_0$). Then $A\in \cat{D}$ is \emph{$\kappa$-small}/\emph{$\kappa$-compact} if and only if
+		\item Let $\kappa$ be a regular cardinal (for example $\kappa=\aleph_0$). Then $A\in \cat{D}$ is \defn{$\kappa$-small}/\defn{$\kappa$-compact} if and only if
 			\[
-			\colim_{I' \subset I, |I'|<\kappa} \Hom\left( A,\bigoplus_{I'}B_i \right) \simto \Hom\left( A, \bigoplus_I B_i \right) 
+				\colim_{\substack{I' \subset I \\ |I'|<\kappa}} \Hom\left( A,\bigoplus_{I'}B_i \right) \simto \Hom\left( A, \bigoplus_I B_i \right) 
 			.\] 
-		\item \emph{Compact} means $\aleph_0$-small. $A$ is compact if and only if
+		\item \defn{Compact} means $\aleph_0$-small. $A$ is compact if and only if
 			\[
 			\bigoplus_I \Hom(A,B_i) \simto \Hom \left( A,\bigoplus_{I}B_i \right) 
 			.\] 
-		\item $\cat{D}$ is \emph{presentable}/\emph{well-generated} if and only if there exist $\kappa$ and a set $S\subset \cat{D}$ of $\kappa$-small objects which generate $\cat{D}$:
+		\item $\cat{D}$ is \defn{presentable}/\defn{well-generated} if and only if there exist $\kappa$ and a set $S\subset \cat{D}$ of $\kappa$-small objects which generate $\cat{D}$:
 			\[
 				\forall B\in \cat{D},\left( \forall A\in S, \Hom(A,B)=0 \right) \implies B = 0
 			.\] 
-		\item $\cat{D}$ is \emph{compactly generated} if it is $\aleph_0$-presentable.
+		\item $\cat{D}$ is \defn{compactly generated} if it is $\aleph_0$-presentable.
 	\end{itemize}
 \end{definition}
 
 \begin{definition}
-	$\cat{E}\subset \cat{D}$ is \emph{localizing} if it is
+	$\cat{E}\subset \cat{D}$ is \defn{localizing} if it is
 	\begin{itemize}
 		\item triangulated,
 		\item stable under coproducts,
@@ -264,7 +218,7 @@ Now we consider reflexive localizaitons (1-categorical ones lead to triangulated
 	.\] 
 	Then $\cat{D} \to \cat{D} /\cat{E}$ is a reflexive localization.
 \end{corollary}
-Let $S\subset \cat{D}$ be a subset of objects, then $\ll S \gg$ is the smallest subcategory containing $S$ such that $\cat{D} /\ll S\gg$ is a reflexive localization.
+Let $S\subset \cat{D}$ be a subset of objects, then $\gen{S}$ is the smallest subcategory containing $S$ such that $\cat{D} /\gen{S}$ is a reflexive localization.
 
 Let's get some inspiration from Betti homology, i.e. singular homology on complex algebraic varieties. Let $X\in \cat{Var}_{\bb{C}}\ft$, then we get
 \[
@@ -320,7 +274,7 @@ There is an associated sheaf theory:
 			\Z[-]: \cat{Sm}_S \to D_{\PSh}(S)
 		\end{cases}
 		.\] 
-	\item Impose $\Aff^{1}$-invariane, \'etale descent, and $\P^{1}$-stability. This will give us $\DAet(S,\Z)$ and $M_S(-):\cat{Sm}_S\to \DAet(S,\Z)$.
+	\item Impose $\Aff^{1}$-invariance, \'etale descent, and $\P^{1}$-stability. This will give us $\DAet(S,\Z)$ and $M_S(-):\cat{Sm}_S\to \DAet(S,\Z)$.
 \end{itemize}
 The surprise is that the result satisfies many \emph{other} properties of singular (co)homology and derived categories of sheaves on complex varieties which can largely be packaged into the six-functor formalism. The result is closely related to algebraic cycles/higher Chow groups and algebraic $K$-theory.
 

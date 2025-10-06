@@ -12,7 +12,7 @@
 
 %% Cohomology
 
-\def\HH{\mathrm{H}}                 % cohomology H
+\def\CH{\mathrm{H}}                 % cohomology H
 \def\CHH{\check{\HH}}               % Čech cohomology H
 \def\RD{\mathrm{R}}                 % right derived R
 \def\LD{\mathrm{L}}                 % left derived L
@@ -20,9 +20,11 @@
 \def\Tor{\operatorname{Tor}}        % Tor
 \def\Ext{\operatorname{Ext}}        % Ext
 \def\HdR{\mathrm{H}_{\mathrm{dR}}}  % de Rham cohomology
+\def\Zc{\underline{\mathbb{Z}}}     % constant sheaf with integer coeffs
 
 %% Categories
 
+\def\A{\cat{A}}                     % category A, usually abelian
 \def\C{\cat{C}}                     % category C
 \def\op{^\cat{op}}                  % opposite category
 \def\Set{\cat{Sets}}                % category of sets
@@ -37,6 +39,9 @@
 \def\img{\operatorname{im}}         % image
 \def\coker{\operatorname{coker}}    % cokernel
 \def\pr{\operatorname{pr}}          % projection
+\def\EssIm{\operatorname{EssIm}}    % essential image
+\DeclareMathOperator*{\colim}{colim}   % colimit
+
 
 %% Schemes
 
@@ -45,6 +50,7 @@
 \def\Spec{\operatorname{Spec}}      % Spec
 \def\Spf{\operatorname{Spf}}        % formal Spec
 \def\Aff{\mathbb A}                 % affine space
+\def\P{\mathbb{P}}                  % projective space
 \def\Pic{\operatorname{Pic}}        % Picard group
 
 %% Standard Operators
@@ -64,8 +70,8 @@
 
 %% Under/Over Accents
 
-\renewcommand{\hat}[1]{\widehat{#1}}   % hat
-\renewcommand{\tilde}[1]{\widetilde{#1}}    % tilde
+\newcommand{\wh}[1]{\widehat{#1}}   % hat
+\newcommand{\wt}[1]{\widetilde{#1}}    % tilde
 \def\ul{\underline}                % underline
 
 %% Spaces
@@ -83,9 +89,12 @@
 %% Sub/Superscripts
 
 \def\et{^\text{\'et}}              % \'etale
+\def\an{^{\text{an}}}              % analytic
 
 %% Misc
 
 \newcommand{\defn}[1]{\textbf{#1}}  % definition highlighting
 \def\defeq{:=}                     % definition equation
 \def\eps{\varepsilon}              % correct epsilon
+\newcommand{\gen}[1]{\left\langle\!\left\langle #1 \right\rangle\!\right\rangle}
+

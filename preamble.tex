@@ -80,3 +80,8 @@
 \def\shHomcont{\sh{H}\textup{\kern-2.2pt{\Fontauri\slshape om.\,cont}}}   % sheaf Hom.cont
 \def\shAut{\sh{A}\textup{\kern-2.2pt{\Fontauri\slshape ut}}}   % sheaf Aut
 \def\shSym{\sh{S}\textup{\kern-2.2pt{\Fontauri\slshape ym}}}   % sheaf Sym
+
+\makeatletter
+\newcommand{\cbigoplus}{\DOTSB\cbigoplus@\slimits@}
+\newcommand{\cbigoplus@}{\mathop{\widehat{\bigoplus}}}
+\makeatother
