@@ -9,10 +9,12 @@
 \usepackage{xcolor}
 \definecolor{brightmaroon}{rgb}{0.76, 0.13, 0.28}
 \usepackage[linktocpage=true,colorlinks=true,hyperindex,citecolor=blue,linkcolor=brightmaroon]{hyperref}
+\usepackage[nameinlink]{cleveref}
 \usepackage[left=1.25in,right=1.25in,top=0.75in,bottom=0.75in]{geometry}
 %\usepackage[charter,greekfamily=didot]{mathdesign}
 %\usepackage{Baskervaldx}
 \usepackage{amssymb}
+\usepackage{stmaryrd}
 \usepackage{mathrsfs}
 \usepackage{mathpazo}
 \linespread{1.05}
@@ -52,6 +54,9 @@
 \newtheorem*{remark}{Remark}
 \newtheorem*{remarks}{Remarks}
 \newtheorem*{notation}{Notation}
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{properties}{Properties}
+\newtheorem*{consequences}{Consequences}
 
 \makeatletter
 \def\l@subsection{\@tocline{2}{0pt}{2.5pc}{2.2pc}{}}
@@ -74,4 +79,4 @@
 \def\shDiff{\sh{D}\,\textup{\kern-2.2pt{\Fontauri\slshape if{}f}}\,} % sheaf Diff
 \def\shHomcont{\sh{H}\textup{\kern-2.2pt{\Fontauri\slshape om.\,cont}}}   % sheaf Hom.cont
 \def\shAut{\sh{A}\textup{\kern-2.2pt{\Fontauri\slshape ut}}}   % sheaf Aut
-\def\shSym{\sh{S}\textup{\kern-2.2pt{\Fontauri\slshape ym}}}
+\def\shSym{\sh{S}\textup{\kern-2.2pt{\Fontauri\slshape ym}}}   % sheaf Sym

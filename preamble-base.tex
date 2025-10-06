@@ -1,67 +1,91 @@
+%% Fonts
+
 \def\sh{\mathcal}                   % sheaf font
 \def\bb{\mathbf}                    % bold font
 \def\cat{\mathsf}                   % category font
-\def\leq{\leqslant}                 % <=
-\def\geq{\geqslant}                 % >=
-\def\setmin{-}                      % set minus
-\def\rad{\mathfrak{r}}              % radical
-\def\nilrad{\mathfrak{N}}           % nilradical
-\def\emp{\varnothing}               % empty set
-\def\vphi{\phi}                     % for switching \phi and \varphi, change if needed
+
+%% Font Letters
+
+\def\CL{\mathcal{L}}
+\def\OO{\mathcal{O}}
+\def\CX{\mathcal{X}}
+
+%% Cohomology
+
 \def\HH{\mathrm{H}}                 % cohomology H
 \def\CHH{\check{\HH}}               % Čech cohomology H
-\def\RR{\mathrm{R}}                 % right derived R
-\def\LL{\mathrm{L}}                 % left derived L
+\def\RD{\mathrm{R}}                 % right derived R
+\def\LD{\mathrm{L}}                 % left derived L
 \def\dual#1{{#1}^\vee}              % dual
-\def\kres{k}                        % residue field k
+\def\Tor{\operatorname{Tor}}        % Tor
+\def\Ext{\operatorname{Ext}}        % Ext
+\def\HdR{\mathrm{H}_{\mathrm{dR}}}  % de Rham cohomology
+
+%% Categories
+
 \def\C{\cat{C}}                     % category C
 \def\op{^\cat{op}}                  % opposite category
-\def\Set{\cat{Set}}                 % category of sets
-\def\CHom{\cat{Hom}}                % functor category
+\def\Set{\cat{Sets}}                % category of sets
+\def\Grp{\cat{Gps}}                 % category of groups
+\def\Alg{\cat{Alg}}                 % category of algebras
+\def\QCoh{\cat{QCoh}}               % category of quasicoherent sheaves
 \def\supertilde{{\,\widetilde{\,}\,}}   % use \supertilde instead of ^\sim
-\def\GL{\bb{GL}}
-\def\bbGamma{\boldsymbol\Gamma}
-\def\red{\mathrm{red}}
-\def\rg{\operatorname{rg}}
-\def\gr{\operatorname{gr}}
-\def\Gr{\operatorname{Gr}}
-\def\Hom{\operatorname{Hom}}
-\def\Proj{\operatorname{Proj}}
-\def\Tor{\operatorname{Tor}}
-\def\Ext{\operatorname{Ext}}
-\def\Supp{\operatorname{Supp}}
-\def\Ker{\operatorname{Ker}}
-\def\Im{\operatorname{Im}}
-\def\Coker{\operatorname{Coker}}
-\def\Spec{\operatorname{Spec}}
-\def\Spf{\operatorname{Spf}}
-\def\grad{\operatorname{grad}}
-\def\dimc{\operatorname{dimc}}
-\def\codim{\operatorname{codim}}
-\def\id{\operatorname{id}}
-\def\Der{\operatorname{Der}}
-\def\Diff{\operatorname{Diff}}
-\def\Hyp{\operatorname{Hyp}}
-\def\km{\mathfrak{m}}
-\def\CM{\mathcal{M}}
-\def\HDR{\mathrm{H}_{\mathrm{DR}}}
-\def\gp{\mathrm{-gp}}
+\def\Hom{\operatorname{Hom}}        % morphisms
+\def\End{\operatorname{End}}        % endomorphisms
+\def\Aut{\operatorname{Aut}}        % automorphisms
+\def\ker{\operatorname{ker}}        % kernel
+\def\img{\operatorname{im}}         % image
+\def\coker{\operatorname{coker}}    % cokernel
+\def\pr{\operatorname{pr}}          % projection
 
+%% Schemes
+
+\def\Proj{\operatorname{Proj}}      % Proj
+\def\Supp{\operatorname{Supp}}      % support
+\def\Spec{\operatorname{Spec}}      % Spec
+\def\Spf{\operatorname{Spf}}        % formal Spec
+\def\Aff{\mathbb A}                 % affine space
+\def\Pic{\operatorname{Pic}}        % Picard group
+
+%% Standard Operators
+
+\def\codim{\operatorname{codim}}    % codimension
+\def\id{\operatorname{id}}          % identity
+
+%% Arrows
 \renewcommand{\to}{\mathchoice{\longrightarrow}{\rightarrow}{\rightarrow}{\rightarrow}}
 \newcommand{\from}{\mathchoice{\longleftarrow}{\leftarrow}{\leftarrow}{\leftarrow}}
 \let\mapstoo\mapsto
 \renewcommand{\mapsto}{\mathchoice{\longmapsto}{\mapstoo}{\mapstoo}{\mapstoo}}
-\def\isoto{\simeq} % isomorphism
-\def\simto{\xrightarrow{\sim}}
-\def\surjto{\twoheadrightarrow}
-\def\injto{\hookrightarrow}
+\def\isoto{\simeq}                  % isomorphism
+\def\simto{\xrightarrow{\sim}}      % isomorphism arrow
+\def\surjto{\twoheadrightarrow}     % surjetion
+\def\injto{\hookrightarrow}         % injection
 
-\renewcommand{\hat}[1]{\widehat{#1}}
-\renewcommand{\tilde}[1]{\widetilde{#1}}
+%% Under/Over Accents
 
-\def\eps{\varepsilon}
-\def\ul{\underline}
-\def\Z{\mathbb Z}
-\def\Aff{\mathbb A}
-\def\Q{\mathbb Q}
-\def\defeq{:=}
+\renewcommand{\hat}[1]{\widehat{#1}}   % hat
+\renewcommand{\tilde}[1]{\widetilde{#1}}    % tilde
+\def\ul{\underline}                % underline
+
+%% Spaces
+
+\def\Z{\mathbb Z}                  % integers
+\def\Q{\mathbb Q}                  % rationals
+\def\N{\mathbb{N}}                 % naturals
+
+%% Groups
+
+\def\GL{\bb{GL}}                   % general linear group
+\def\SL{\bb{SL}}                   % special linear group
+\def\det{\operatorname{det}}       % determinant
+
+%% Sub/Superscripts
+
+\def\et{^\text{\'et}}              % \'etale
+
+%% Misc
+
+\newcommand{\defn}[1]{\textbf{#1}}  % definition highlighting
+\def\defeq{:=}                     % definition equation
+\def\eps{\varepsilon}              % correct epsilon
