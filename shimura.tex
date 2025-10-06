@@ -1,67 +1,9 @@
 \input{preamble.tex}
-
-\usepackage{stmaryrd}
-\usepackage[nameinlink]{cleveref}
-
-\newcommand{\SC}{\mathcal{C}}
-\newcommand{\OO}{\mathcal{O}}
-\def\coker{\operatorname{coker}}
-\def\bL{\mathbf{L}}
-\def\CT{\mathcal{T}}
-\def\Aut{\operatorname{Aut}}
-\def\wt{\widetilde}
-\def\ko{\mathfrak{o}}
-\def\kt{\mathfrak{t}}
-\newcommand{\CX}{\mathcal{X}}
-\def\coker{\operatorname{coker}}
-\def\bL{\mathbf{L}}
-\def\wh{\widehat}
-\def\CI{\mathcal{I}}
-\def\et{^\text{\'et}}
-\def\sep{^\text{sep}}
-\def\pr{\operatorname{pr}}
-\def\img{\operatorname{im}}
-\def\Sym{\operatorname{Sym}}
-\def\CG{\mathcal{G}}
-\def\N{\mathbb{N}}
-\def\th{^{\mathrm{th}}}
-\def\CN{\mathcal{N}}
-\def\Inf{\operatorname{Inf}}
-\def\rank{\operatorname{rank}}
-\def\Pic{\operatorname{Pic}}
-\def\i{\operatorname{inv}}
-\def\Diag{\operatorname{Diag}}
-\def\G{\mathbb{G}}
-\def\End{\operatorname{End}}
-\def\det{\operatorname{det}}
-\def\SL{\bb{SL}}
-\def\Rep{\operatorname{Rep}}
-\def\Repf{\operatorname{Rep}^{\text{fd}}}
-\def\Res{\operatorname{Res}}
-\def\Ind{\operatorname{Ind}}
-\def\CL{\mathcal{L}}
-\def\Zc{\underline{\mathbb{Z}}}
-\def\DAet{\operatorname{DA}^{\text{\'et}}}
-\def\SH{\operatorname{SH}}
-\def\Sh{\operatorname{Sh}}
-\def\PSh{\operatorname{PSh}}
-\def\Cone{\operatorname{Cone}}
-\def\A{\cat{A}}
-\def\Ch{\operatorname{Ch}}
-\def\EssIm{\operatorname{EssIm}}
-\def\colim{\operatorname{colim}}
-\def\ft{^{\text{(f.t)}}}
-\def\an{^{\text{an}}}
-\def\P{\mathbb{P}}
-\def\CA{\mathcal{A}}
 \def\Mat{\operatorname{Mat}}
-\def\H{\mathcal{H}}
-\def\Sp{\bb{Sp}}
 \def\Stab{\operatorname{Stab}}
-\def\CE{\mathcal{E}}
 
 \title{Introduction to Shimura Varieties and Their Cohomology}
-\author{Micha{\l} Mruga{\l}a}
+\author{Lecturer: Olivier Taibi,\quad Typesetter: Micha{\l} Mruga{\l}a}
 
 \begin{document}
 \maketitle
@@ -82,7 +24,7 @@ Analytically: we want to parametrize complex tori. This is fairly simple. Let $V
 	A morphism $f:X=V /\Lambda \to X' = V' /\Lambda'$ of complex Lie groups is given by a $\bb{C}$-linear map $V\to V'$ mapping $\Lambda$ to $\Lambda'$.
 \end{exercise}
 
-\emph{Question:} Which complex tori are algebraizable, i.e. $X\injto \P^{n}(\bb{C})$ (equivalent to $X\simeq \underline{X}\an$ for some projective $\underline{X}$ by Chow). Can we find a parametrization?
+\emph{Question:} Which complex tori are algebraizable, i.e. $X\injto \P^{n}(\bb{C})$ (equivalent to $X\isoto \ul{X}\an$ for some projective $\ul{X}$ by Chow). Can we find a parametrization?
 
 \begin{example}
 	Let $n=1$ complex tori are always algebraic. There is the Weierstrass $\wp$-function
@@ -94,7 +36,7 @@ Analytically: we want to parametrize complex tori. This is fairly simple. Let $V
 
 	For $n>1$, $X$ is ``almost never'' algebraic.
 \end{example}
-Recall that $X$ is algebraizable if and only if there exists $\CL\in \Pic(X)$ which is ample (see Mumford's Abelian Varieties). Recall that $\Pic(X)\simeq H^{1}(X,\OO_X^{\times})$. There is a short exact sequence
+Recall that $X$ is algebraizable if and only if there exists $\CL\in \Pic(X)$ which is ample (see Mumford's Abelian Varieties). Recall that $\Pic(X)\isoto H^{1}(X,\OO_X^{\times})$. There is a short exact sequence
 \begin{equation}
 \begin{tikzcd}
 	0 \ar[r] & \Zc_X \ar[r] & \OO_X \ar[r,"\exp(2\pi i-)"] & \OO_X^{\times} \ar[r] & 0
@@ -102,24 +44,24 @@ Recall that $X$ is algebraizable if and only if there exists $\CL\in \Pic(X)$ wh
 \end{equation}
 so we get a long exact sequence. The map
 \[
-	H^{0}(X,\OO_X) \simeq \bb{C} \to \bb{C}^{\times}\simeq H^{0}(X,\OO_X^{\times})
+	H^{0}(X,\OO_X) \isoto \bb{C} \to \bb{C}^{\times}\isoto H^{0}(X,\OO_X^{\times})
 \]
 is surjective so we get
 \begin{equation}
 \begin{tikzcd}
-	H^{1}(X,\Z) \ar[r,hook] \ar[d,"\simeq"] & H^{1}(X,\OO_X) \ar[d,"\simeq"',"Dolbeaut"] \ar[r] & H^{1}(X,\OO_X) \ar[d,"\simeq"] \ar[r,"\delta"] & \ker (H^2(X,\Z)\to H^2(X,\OO_X)) \ar[d,"\simeq"] \\
+	H^{1}(X,\Z) \ar[r,hook] \ar[d,"\isoto"] & H^{1}(X,\OO_X) \ar[d,"\isoto"',"Dolbeaut"] \ar[r] & H^{1}(X,\OO_X) \ar[d,"\isoto"] \ar[r,"\delta"] & \ker (H^2(X,\Z)\to H^2(X,\OO_X)) \ar[d,"\isoto"] \\
 	H^{1}(\Lambda,\Z) \ar[d,equal] & \overline{T} & H^{1}(\Lambda,\OO(X)^{\times}) & \Hom\left( \bigwedge^2\Lambda,\Z \right)  \\
 	\Hom(\Lambda,\Z) \ar[dr,hook] & T \oplus \overline{T} \ar[u,"\pr_2"] \\
-				      & \Hom_{\bb{R}}(V,\bb{C}) \ar[u,"\simeq"]
+				      & \Hom_{\bb{R}}(V,\bb{C}) \ar[u,"\isoto"]
 \end{tikzcd}
 \end{equation}
 We have $H^{i}(V,\Z)=0$ for all $i>0$ and $H^{i}(V,\OO_V)=0$ for all $i>0$ so $\Pic(V)=0$. $\overline{T}$ are the antilinear maps $V\to \bb{C}$ and $T=\Hom_{\bb{C}}(V,\bb{C})$. Observe that
 \[
-\Pic^{0}(X) = \ker\delta \simeq \frac{\overline{T}}{\pr_2(\Hom(\Lambda,\Z))}
+\Pic^{0}(X) = \ker\delta \isoto \frac{\overline{T}}{\pr_2(\Hom(\Lambda,\Z))}
 \]
 is also a complex torus. The last term is the Neron-Severi group
 \begin{align*}
-	NS(X) &\simeq \{E:\Lambda\times \Lambda\to \Z\text{ alt.}: E(iv_1,iv_2)=E(v_1,v_2), \forall v_1,v_2\in V\} \\
+	NS(X) &\isoto \{E:\Lambda\times \Lambda\to \Z\text{ alt.}: E(iv_1,iv_2)=E(v_1,v_2), \forall v_1,v_2\in V\} \\
 	      &= \left\{ \Im H:\, H:V\times V\to \bb{C}\text{ Hermitian such that }(\Im H)(\Lambda\times \Lambda)\subset \Z \right\} 
 .\end{align*}
 The Appel-Humbert theorem completely describes $\Pic(X)$ as $\{L(H,\alpha)\} $ with $H$ as above and $\alpha$ an extra datum.
@@ -147,15 +89,15 @@ is a morphism of Lie groups (here $T_x$ is translation by $x$).
 	\end{itemize}
 \end{theorem}
 \begin{exercise}
-	Check that $phi_L$ is an isomorphism if and only if $E(\cdot ,\cdot )$ is perfect ($\Lambda\simeq \Hom(\Lambda,\Z)$).
+	Check that $phi_L$ is an isomorphism if and only if $E(\cdot ,\cdot )$ is perfect ($\Lambda\isoto \Hom(\Lambda,\Z)$).
 \end{exercise}
 \begin{definition}
-	Say that such $\phi_L$ is a \emph{polarization}. If $\phi_L$ is an isomorphism, then it is called a \emph{principal polarization}.
+	Say that such $\phi_L$ is a \defn{polarization}. If $\phi_L$ is an isomorphism, then it is called a \defn{principal polarization}.
 \end{definition}
 \begin{remark}
 	Not every algebraic $X$ admits a principal polarization, but is isogenous to one that does.
 \end{remark}
-We can define the moduli problem
+We can define the moduli space
 \[
 	\CA_n(\bb{C}) = \left\{ (X,\phi):X = V /\Lambda\text{ of dimension }n,  \phi:X\to \wh{X}\text{ a principal polarization} \right\} 
 .\] 
@@ -173,7 +115,7 @@ Let $(V,\Lambda,H)$ be a principally polarized complex torus. Choose a symplecti
 \begin{definition}
 	$\H_n^{+}$ is the set of such $\tau\in M_n(\bb{C})$. There is an algebraic group
 	\[
-	\Sp_{2n,\Z}:R \mapsto \left\{ g\in M_{2n}(R) : ^{t}gJ_ng = K_n \right\} 
+	\Sp_{2n,\Z}:R \mapsto \left\{ g\in M_{2n}(R) : ^{t}gJ_ng = J_n \right\} 
 	.\] 
 \end{definition}
 There is an action of $\Sp_{2n}(\Z)$ on $\H_n^{+}$ such that given
@@ -184,7 +126,7 @@ we have
 \[
 \tau \gamma = (\tau b + d)^{-1}(\tau a + c)
 \]
-(this corresponds to replacing $\underline{e}=(e_1,\dots,e_{2n})$ by $\underline{e}\gamma$).
+(this corresponds to replacing $\ul{e}=(e_1,\dots,e_{2n})$ by $\ul{e}\gamma$).
 
 We prefer left actions: let $^{t}\gamma$ act so that $\gamma\tau = \tau*^{t}\gamma$, i.e.
 \[
@@ -197,7 +139,7 @@ This extends to an action of $\Sp_{2n}(\bb{R})$ on $\H_n^{+}$. This action is tr
 \end{align*}
 is an isomorphism (this is a maximal compact subgroup).
 
-So $\CA_n(\bb{C})\simeq \Gamma_n\setminus \H_n^{+}$ wher $\Gamma_n\simeq \Sp_{2n}(\Z)$.
+So $\CA_n(\bb{C})\isoto \Gamma_n\setminus \H_n^{+}$ where $\Gamma_n\isoto \Sp_{2n}(\Z)$.
 \begin{remark}
 	There exists $\gamma\in \Gamma_n\setminus \{\pm 1\} $and $\tau\in \H_n^{+}$ such that $\gamma\tau=\tau$.
 \end{remark}
@@ -216,9 +158,9 @@ and
 \]
 for $\lambda_i\in \Z^{n}$.
 
-There is a morphism $\pi:\CX(\bb{C})\to \CA_n(\bb{C})$ which admits a section $e$. The fiber of $\tau$ is $[\tau]\simeq\bb{C}^{n} /\Lambda_\tau$ where $\Lambda_\tau = \Z^{n}\oplus\tau \Z^{n}$. We get the \emph{Hodge bundle}: take $\Omega^{1}(V /\Lambda)$ which are translaton invariant 1-forms, which is isomorphic to $V^{*}$ via $e^{*}$, then the Hodge bundle is
+There is a morphism $\pi:\CX(\bb{C})\to \CA_n(\bb{C})$ which admits a section $e$. The fiber of $\tau$ is $[\tau]\isoto\bb{C}^{n} /\Lambda_\tau$ where $\Lambda_\tau = \Z^{n}\oplus\tau \Z^{n}$. We get the \defn{Hodge bundle}: take $\Omega^{1}(V /\Lambda)$ which are translaton invariant 1-forms, which is isomorphic to $V^{*}$ via $e^{*}$, then the Hodge bundle is
 \[
-	\CE_n = e^{*}\Omega^{1}_{\CX(\bb{C}) / \CA_n(\bb{C})} \simeq \Gamma_n\setminus\b{C}^{n}\times \H_n^{+}
+	\CE_n = e^{*}\Omega^{1}_{\CX(\bb{C}) / \CA_n(\bb{C})} \isoto \Gamma_n\setminus\bb{C}^{n}\times \H_n^{+}
 \]
 for action (??).
 
@@ -233,15 +175,15 @@ Sections of such vector bundles on $\CA_k(\bb{C})$ are (level $\Gamma_n$, weight
 \[
 S_\rho(\Gamma_n) = \{f:\text{vanish at }\infty\} \subset M_\rho(\Gamma_n)
 \]
-for the set of \emph{cusp forms}.
+for the set of \defn{cusp forms}.
 
 We want a group theoretic description of the complex structure on $\CA_n(\bb{C})$ and these vector bundles on $\CA_m(\bb{C})$.
 
-We have $Z(U(n))\simeq U(1)$ and its centralizer in $\Sp_{2n}(\bb{R})$ is $U(n)=K(\R)$ where $K\injto \Sp_{2n,\bb{R}}$ is an algebraic subgroup.
+We have $Z(U(n))\isoto U(1)$ and its centralizer in $\Sp_{2n}(\bb{R})$ is $U(n)=K(\bb{R})$ where $K\injto \Sp_{2n,\bb{R}}$ is an algebraic subgroup.
 
 Over $\bb{C}$ we have
 \[
-	Z(K_{\bb{C}}) \simeq \GL_{1,\bb{C}} \injtpo \Sp_{2n,\bb{C}}.
+	Z(K_{\bb{C}}) \isoto \GL_{1,\bb{C}} \injto \Sp_{2n,\bb{C}}.
 \] 
 This determines two opposite parabolic subgroups $Q_+=K_{\bb{C}}N_+$, $Q_{-}K_{\bb{C}}N_-$
 

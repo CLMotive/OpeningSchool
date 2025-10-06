@@ -1,74 +1,17 @@
 \input{preamble.tex}
-
-\usepackage{stmaryrd}
-\usepackage[nameinlink]{cleveref}
-
-\newcommand{\SC}{\mathcal{C}}
-\newcommand{\OO}{\mathcal{O}}
-\def\coker{\operatorname{coker}}
-\def\bL{\mathbf{L}}
-\def\CT{\mathcal{T}}
-\def\Aut{\operatorname{Aut}}
-\def\wt{\widetilde}
-\def\ko{\mathfrak{o}}
-\def\kt{\mathfrak{t}}
-\newcommand{\CX}{\mathcal{X}}
-\def\coker{\operatorname{coker}}
-\def\bL{\mathbf{L}}
-\def\wh{\widehat}
-\def\CI{\mathcal{I}}
-\def\et{^\text{\'et}}
-\def\sep{^\text{sep}}
-\def\pr{\operatorname{pr}}
-\def\img{\operatorname{im}}
-\def\Sym{\operatorname{Sym}}
-\def\CG{\mathcal{G}}
-\def\N{\mathbb{N}}
-\def\th{^{\mathrm{th}}}
-\def\CN{\mathcal{N}}
-\def\Inf{\operatorname{Inf}}
-\def\rank{\operatorname{rank}}
-\def\Pic{\operatorname{Pic}}
-\def\i{\operatorname{inv}}
-\def\Diag{\operatorname{Diag}}
-\def\G{\mathbb{G}}
-\def\End{\operatorname{End}}
-\def\det{\operatorname{det}}
-\def\SL{\bb{SL}}
-\def\Rep{\operatorname{Rep}}
-\def\Repf{\operatorname{Rep}^{\text{fd}}}
-\def\Res{\operatorname{Res}}
-\def\Ind{\operatorname{Ind}}
-\def\CL{\mathcal{L}}
-\def\Zc{\underline{\mathbb{Z}}}
-\def\DAet{\operatorname{DA}^{\text{\'et}}}
-\def\SH{\operatorname{SH}}
-\def\Sh{\operatorname{Sh}}
-\def\PSh{\operatorname{PSh}}
-\def\Cone{\operatorname{Cone}}
-\def\A{\cat{A}}
-\def\Ch{\operatorname{Ch}}
-\def\EssIm{\operatorname{EssIm}}
-\def\colim{\operatorname{colim}}
-\def\ft{^{\text{(f.t)}}}
-\def\an{^{\text{an}}}
-\def\P{\mathbb{P}}
-\def\b1{\mathbb{1}}
 \def\coev{\operatorname{coev}}
 \def\ev{\operatorname{ev}}
-\def\iHom{\underline{\Hom}}
-\def\CF{\mathcal{F}}
-\def\Map{\operatorname{Map}}
 \def\PrL{\cat{Pr}^L}
 
 \title{Dualizability}
-\author{Micha{\l} Mruga{\l}a}
+\author{Lecturer: Jakob Scholbach,\quad Typesetter: Micha{\l} Mruga{\l}a}
 
 \begin{document}
 \maketitle
 
+\section{Dualizable objects}
 \begin{definition}
-	Let $(\C, \otimes, \b1)$ be a symmetric monoidal category. An object $c\in \C$ is \emph{dualizable} if there exists $c^{\vee}\in C$ and maps
+	Let $(\C, \otimes, \b1)$ be a symmetric monoidal category. An object $c\in \C$ is \defn{dualizable} if there exists $c^{\vee}\in C$ and maps
 	\begin{align*}
 		\coev &: \b1 \to c\otimes c^{\vee} \\
 		\ev &: c^{\vee}\otimes c \to \b1
@@ -112,13 +55,13 @@ Recall that $\iHom(c,c')$ satisfies
 	Dualizable objects are closed under retracts. If $M$ is a finite projective module, it is a retract of a finite free module, so it is dualizable.
 
 	Conversely, if $M$ is dualizable there exists
-	\begin{equation}
-	\begin{tikzcd}
+	\[
+	\begin{tikzcd}[row sep=tiny]
 		M \ar[r] & R^{?} \ar[r] & M \\
 		m \ar[r,mapsto] & (f_i(m))_i \\
 				& (r_i) \ar[r, mapsto] & \sum r_im_i 
 	\end{tikzcd}
-	\end{equation}
+	\]
 	We define
 	\begin{align*}
 		R &\longrightarrow M\otimes_R \Hom(M,R) \\
@@ -166,12 +109,16 @@ Let $X$ be a smooth, affine variety over $k$ we can associate to it the de Rham 
 \end{theorem}
 \begin{proof}
 	We have a commutative diagram
-	\begin{equation}
+	\[
 	\begin{tikzcd}
-		\cat{Sm}_k\op \ar[r,shift left, "X\mapsto \Omega_{X /k}\otimes\bb{C}"] \ar[r,shift right, "X\mapsto \Omega_{X\an}\an"'] \ar[d,"X\mapsto M(X)"'] & D(\cat{Vec}_{\bb{C}}) \\
+		\cat{Sm}_k\op \ar[r, bend left=20, "X\mapsto \Omega_{X /k}\otimes\bb{C}", name=F]
+		\ar[r, bend right=20, "X\mapsto \Omega_{X\an}\an"', name=G] 
+		\ar[d,"X\mapsto M(X)"'] 
+		& D(\cat{Vec}_{\bb{C}}) 
+		\\
 		\DAet(k)\op\text{ or }\SH(k)\op
 	\end{tikzcd}
-	\end{equation}
+	\]
 	(there is a natural transformation from top arrow to bottom, add this). The functors at the top are symmetric monoidal.
 
 	\begin{lemma}

@@ -6,9 +6,14 @@
 
 %% Font Letters
 
+\def\CA{\mathcal{A}}
+\def\CE{\mathcal{E}}
+\def\CF{\mathcal{F}}
+\def\CG{\mathcal{G}}
 \def\CL{\mathcal{L}}
 \def\OO{\mathcal{O}}
 \def\CX{\mathcal{X}}
+\def\b1{\mathbb{1}}
 
 %% Cohomology
 
@@ -32,7 +37,9 @@
 \def\Alg{\cat{Alg}}                 % category of algebras
 \def\QCoh{\cat{QCoh}}               % category of quasicoherent sheaves
 \def\supertilde{{\,\widetilde{\,}\,}}   % use \supertilde instead of ^\sim
-\def\Hom{\operatorname{Hom}}        % morphisms
+\def\Map{\operatorname{Map}}        % morphisms (any category)
+\def\Hom{\operatorname{Hom}}        % morphisms (additive category)
+\def\iHom{\underline{\Hom}}         % interal hom
 \def\End{\operatorname{End}}        % endomorphisms
 \def\Aut{\operatorname{Aut}}        % automorphisms
 \def\ker{\operatorname{ker}}        % kernel
@@ -42,6 +49,10 @@
 \def\EssIm{\operatorname{EssIm}}    % essential image
 \DeclareMathOperator*{\colim}{colim}   % colimit
 
+\def\DAet{\cat{DA}\et}              
+\def\SH{\cat{SH}}                   
+\def\Sh{\cat{Sh}}                   % category of sheaves
+\def\PSh{\cat{PSh}}                 % category of presheaves
 
 %% Schemes
 
@@ -78,12 +89,14 @@
 
 \def\Z{\mathbb Z}                  % integers
 \def\Q{\mathbb Q}                  % rationals
-\def\N{\mathbb{N}}                 % naturals
+\def\N{\mathbb N}                 % naturals
+\def\H{\mathcal H}
 
 %% Groups
 
 \def\GL{\bb{GL}}                   % general linear group
 \def\SL{\bb{SL}}                   % special linear group
+\def\Sp{\bb{Sp}}
 \def\det{\operatorname{det}}       % determinant
 
 %% Sub/Superscripts
