@@ -1,0 +1,257 @@
+\input{preamble.tex}
+
+\usepackage{stmaryrd}
+\usepackage[nameinlink]{cleveref}
+
+\newcommand{\SC}{\mathcal{C}}
+\newcommand{\OO}{\mathcal{O}}
+\def\coker{\operatorname{coker}}
+\def\bL{\mathbf{L}}
+\def\CT{\mathcal{T}}
+\def\Aut{\operatorname{Aut}}
+\def\wt{\widetilde}
+\def\ko{\mathfrak{o}}
+\def\kt{\mathfrak{t}}
+\newcommand{\CX}{\mathcal{X}}
+\def\coker{\operatorname{coker}}
+\def\bL{\mathbf{L}}
+\def\wh{\widehat}
+\def\CI{\mathcal{I}}
+\def\et{^\text{\'et}}
+\def\sep{^\text{sep}}
+\def\pr{\operatorname{pr}}
+\def\img{\operatorname{im}}
+\def\Sym{\operatorname{Sym}}
+\def\CG{\mathcal{G}}
+\def\N{\mathbb{N}}
+\def\th{^{\mathrm{th}}}
+\def\CN{\mathcal{N}}
+\def\Inf{\operatorname{Inf}}
+\def\rank{\operatorname{rank}}
+\def\Pic{\operatorname{Pic}}
+\def\i{\operatorname{inv}}
+\def\Diag{\operatorname{Diag}}
+\def\G{\mathbb{G}}
+\def\End{\operatorname{End}}
+\def\det{\operatorname{det}}
+\def\SL{\bb{SL}}
+\def\Rep{\operatorname{Rep}}
+\def\Repf{\operatorname{Rep}^{\text{fd}}}
+\def\Res{\operatorname{Res}}
+\def\Ind{\operatorname{Ind}}
+\def\CL{\mathcal{L}}
+
+\title{Representations of Reductive Algebraic Groups}
+\author{Micha{\l} Mruga{\l}a}
+\begin{document}
+\maketitle
+
+\section{Generalities on affine group schemes and smooth representations}
+\subsection{Affine group schemes}
+Fix $k$ a base field.
+
+Recall that an \emph{affine $k$-group scheme} is one of the following data:
+\begin{enumerate}[(1)]
+	\item An affine scheme $G$ over $k$ endowed with morphisms of $k$-schemes
+		\begin{itemize}
+			\item $m:G\times G\to G$; 
+			\item $e:\Spec(k)\to G$ ;
+			\item $\i:G\to G$;
+		\end{itemize}
+		which satisfy the usual axioms of groups (with $m$ multiplication, $e$ the unit, $\i$ the inverse).
+	\item A functor $\cat{Alg}_k = \{k\text{-algebras}\} \xrightarrow{F} \cat{Gps}$ such that the composition $\cat{Alg}_k \xrightarrow{F}\cat{Gps}\to \cat{Sets}$ is representable.
+	\item A commutative Hopf algebra over $k$, i.e. a commutative algebra $A$ with morphisms of $k$-algebras
+		\begin{itemize}
+			\item $\Delta:A \to A\otimes A$ ;
+			\item $\eps:A\to k$ ;
+			\item $S:A\to A$ ;
+		\end{itemize}
+		such that
+		\begin{align*}
+			(\id \otimes\Delta) \circ \Delta = (\Delta \otimes \id) &: A \to A\otimes A \otimes A \\
+			(\id\otimes \eps) \circ \Delta = \id = (\eps\otimes\id)\circ\Delta &: A \to A \\
+			(\id,S)\circ \Delta = \Delta \circ \eps = (S,\id)\circ\Delta &:A \to A
+		\end{align*}
+\end{enumerate}
+We introduce some notation
+\begin{align*}
+	A &\to \Spec(A) \\
+	G &\to \OO(G), \Delta_G.
+\end{align*}
+\begin{example}
+	\begin{enumerate}[(1)]
+		\item \emph{Diagonalizable groups:} If $\Lambda$ is an abstract commutative group we have the affine $k$-group scheme $\Diag(\Lambda)=\Spec(k[\Lambda])$ with
+			\[
+			\Delta(\lambda) = \lambda \otimes \lambda,\quad \eps(\lambda)=1,\quad S(\lambda)=\lambda^{-1}\quad (\forall \lambda\in \Lambda).
+			\] 
+			In particular for $\Lambda=\Z$, $k[\Lambda]=k[x,x^{-1}]$ and $\Diag(\Lambda)=\G_m$ (multiplicative group).
+
+			A (split) torus is a group scheme of the form $\Diag(\Lambda)$ with $\Lambda$ a finitely generated free abelian group.
+		\item \emph{Additive group:} $\G_a=\Spec(k[x])$ with
+			\[
+			\Delta(x) = x\otimes 1 + 1\otimes x,\quad \eps(x)=0,\quad S(x)=-x.
+			\]
+			More generally for all $V$ a $k$-vector space we have the functor $V_{a}:R\mapsto (R\otimes V,-)$ which is an affine $k$-group scheme if $V$ is finite dimensional.
+		\item If $V$ is a $k$-vector space, $\GL(V)$ is the functor $R\mapsto (\End_R(R\otimes V))^{\times}$. If $V$ is finite dimensional this is an affine $k$-group scheme.
+
+			In particular, if $V=k^{n}$ we get 
+			\[
+				\GL_n = \Spec(k[x_{ij},1\le i,j\le n][\det^{-1}])
+			\] 
+			with
+			\[
+			\Delta(x_{ij}) = \sum_l x_{il}\otimes x_{lj},\quad \eps(x_{ij}) = \delta_{ij}
+			.\] 
+			Similarly we have $\SL(V), \SL_n$.
+		\item For any abstract group $\Gamma$ we have the functor (??)
+	\end{enumerate}
+\end{example}
+
+\subsection{Representations}
+
+If $G$ is an affine $k$-group scheme, a \emph{representation} of $G$ is the datum of a $k$-vector space $V$ and a morphism of group valued functors $G\to \GL(V)$. [Equivalently, an action of $G$ on $V_{a}$ such that $G(R)$ acts $R$-linearly on $R\otimes V$.]
+
+This datum is equivalent ot that of a \emph{comodule} for $\OO(G)$, i.e. a $k$-vector space $V$ and a $k$-linear map $\Delta_V:V\to V\otimes \OO(G)$ such that
+\begin{align*}
+	(\Delta_V\otimes\id_{\OO(G)}\circ \Delta_V = (\id_V\otimes \Delta_G)\circ \Delta_V &:V\to V\otimes\OO(G)\otimes\OO(G) \\
+	(\id_V\otimes \eps)\otimes \Delta_V = \id_V &:V\to V.
+\end{align*}
+[$\Delta_V$ corresponds to the image of $\id_{\OO(G)}\in G(\OO(G))=\End_{k\text{-alg}}(\OO(G))$ in $\End_{\OO(G)}(\OO(G)\otimes V)$.]
+\begin{example}
+	\begin{enumerate}[(1)]
+		\item \emph{(Right) Regular representation} $V=\OO(G)$ with $\Delta_V=\Delta_G$. More generally, given an action of $G$ on an affine scheme $X$ we get a representation with underlying vector space $\OO(X)$.
+		\item If $V$ is a finite dimensional vector space, $V$ is a representation of $\GL(V)$.
+		\item For any $G$ we have the trivial representation $k$.
+	\end{enumerate}
+\end{example}
+More notation: $\Rep(G)$ is the abelian category of representations of $G$, $\Repf(G)$ is the full subcategory of finite dimensional representations.
+
+If $V\in \Rep(G)$ then $V$ is the union of its finite dimensional subrepresentations.
+
+\begin{example}[Representations of diagonalizable group schemes]
+	Let $\Lambda$ be a commutative group, $G=\Diag(\Lambda)$. If $V\in \Rep(G)$ we have
+	\[
+	\Lambda_V:V\to V\otimes\OO(G) = \bigoplus_{\lambda\in \Lambda}V\otimes\lambda
+	.\] 
+	Hence there are morphisms ($\rho_\lambda:\lambda\in \Lambda$) in $\End(V)$ such that
+	\[
+	\Delta_V(v) = \sum_{\lambda\in \Lambda} \rho_\lambda(v)\otimes\lambda,\qquad \forall v\in V.
+	\] 
+	(Here $\rho_\lambda(v)=0$ for all but finitely many $\lambda$s.)
+
+	It is easy to see that
+	\[
+	\rho_\lambda\circ\rho_\mu = \begin{cases}
+		\rho_\lambda & \text{if }\lambda=\mu \\
+		0 & \text{otherwise}
+	\end{cases}
+	\]
+	and $\id = \sum_{\lambda_\Lambda}\rho_\lambda$.
+
+	Hence $V=\bigoplus_{\lambda\in \Lambda}\rho_\lambda(V)$ with
+	\[
+	\rho_\lambda(V) = \{v\in V : \Delta_V(v) = v\otimes \lambda\} = V_\lambda
+	.\] 
+	Hence $\Rep(G)$ is isomorphic to the category of $\Lambda$-graded vector spaces.
+\end{example}
+\subsection{Induction} Let $G$ be an affine $k$-group scheme.
+
+A \emph{subgroup} of $G$ is a closed subscheme $H\subset G$ such that $e,\i|_{H},m|_{H\times H}$ factor through $H$. Then $H$ is an affine $k$-group scheme. In this setting we have the restriction functor $\Res_{H}^{G}:\Rep(G)\to \Rep(H)$.
+
+\begin{proposition}
+	The functor $\Res_{H}^{G}$ has a right adjoint $\Ind_{H}^{G}:\Rep(H)\to \Rep(G)$.
+\end{proposition}
+Explicitly, we have
+\[
+\Ind_{H}^{G}(V) = (V\otimes\OO(G))^H
+\] 
+with $H$ acting diagonally via the right-regular representation on $\OO(G)$ and $G$ acting on the fixed points via the left regular representation
+\[
+	\Ind_{H}^{G}(V) = \left\{ \text{morphisms of functors}:G\to V_{a}:f(gh)=h^{-1}f(g)\text{ for all }g\in G(R), h\in H(R), R\in \cat{Alg}_k \right\} 
+.\] 
+The canonical isomorphism
+\[
+\Hom_{\Rep(G)}(V,\Ind_{H}^{G}(V')) \simeq \Hom_{\Rep(H)}(V,V')
+\] 
+is called \emph{Frobenius reciprocity}.
+
+These functors have some expected properties:
+\begin{itemize}
+	\item \emph{Transitivity:} Given subgroups $H_1\subset H_2\subset G$ we have
+		\[
+		\Ind_{H_1}^{G} \simeq \Ind_{H_1}^{G}\circ \Ind_{H_1}^{H_2}.
+		\] 
+	\item \emph{Tensor identity:} For $V_1\in \Rep(H),\V_2\in \Rep(G)$ 
+		\[
+		\Ind_{H}^{G}(V_1\otimes\Res_{H}^{G}(V_2)) \simeq \Ind_{H}^{G}(V_1) \otimes V_2.
+		\] 
+	\item $\Ind_H^{G}$ sends injective objects of $\Rep(H)$ to injective objects of $\Rep(G)$. In particular, $\Ind_H^{G}(k) = \OO(G)$ is injective.
+	\item $\Rep(G)$ has enough injectives.
+\end{itemize}
+
+\emph{Geometric interpretation:} We assume $G$ is an algebraic group (over $k$), i.e. an affine $k$-group scheme such that $\OO(G)$ is a finitely generated $k$-algebra. In this setting, for $H\subset G$ a subgroup we have a quotient scheme $G /H$ of finite type over $k$ with a faithfully flat quotient map $q:G\to G /H$. For $V\in \Rep(H)$, we have a quasicoherent sheaf $\CL_{G /H}(V)\in \cat{QCoh}(G /H)$ with
+\[
+\Gamma(V,\CL_{G /H}(V)) = \left\{ \text{morphisms} f:\pi^{-1}(V)\to V : f(x,h)=h^{-1}f(x)\text{ for all }(?)  \right\} 
+.\] 
+We have $\Ind_{H}^{G}(V) = \Gamma(G /H,\CL_{G /H}(V))$. If $V$ is finite dimensional, then $\CL_{G /H}(V)$ is coherent.
+
+\emph{Consequences:}
+\begin{itemize}
+	\item If $G /H$ is affine then $\Ind_{H}^{G}$ is exact.
+	\item If $G /H$ is projective then $\Ind_{H}^{G}$ preserves finite dimensionality.
+\end{itemize}
+
+Since $\Rep(H)$ has enough injectives we can consider the derived functor $R\Ind_H^{G}:D^{b}\Rep(H)\to D^{b}\Rep(G)$. The functor $\CL_{G /H}:\Rep(H)\to \cat{QCoh}(G /H)$ is exact, hence we have $\CL_{G /H}:D^{b}\Rep(H)\to D^{b}\cat{QCoh}(G /H)$. One can check that
+\[
+R\Ind_H^{G}(V) \simeq R\Gamma(G /H, \CL_{G /H}(V)).
+\] 
+(??)
+
+\emph{Consequences:}
+\begin{itemize}
+	\item We have $R^{n}\Ind_H^{G}(V)=0$ for all $V\in \Rep(H)$ if $n>\dim(G /H)$.
+	\item If $G /H$ is projective, then $R^{n}\Ind_H^{G}(V)$ is finite-dimensional for all $V\in \Repf(H), n\in \Z$.
+\end{itemize}
+
+\section{Reductive algebraic groups}
+From now on $k$ is algebraically closed.
+
+\subsection{Definition}
+A $k$-algebraic group $G$ is called \emph{unipotent} if every non-zero representation admits a non-zero fixed vector. [Equivalent condition: $G$ is unipotent if and only if it is isomorphic to a subgroup of unipotent upper-triangular matrices in $\GL_n$ for some $n$.]
+\begin{example}
+	$\G_a$ is unipotent as
+	\[
+		\G_a \simeq \begin{pmatrix} 1 & * \\ 0 & 1 \end{pmatrix} .
+	\] 
+\end{example}
+If $G$ is a smooth, connected algebraic group, the smooth, connected, unipotent, normal subgroups of $G$ there is a largest element called the \emph{unipotent radical} of $G$, denoted $R_u(G)$. An algebraic group $G$ is called \emph{reductive} if it is smooth, connected and $R_u(G)$ is trivial. 
+
+One possible motivation for studying representations of reductive algebraic groups is that any simple representation of a smooth connected algebraic group $G$ factors through a simple representation of $G /R_u(G)$, which is a reductive algebraic group.
+
+\begin{example}
+	\begin{enumerate}[(1)]
+		\item \emph{Tori:} If $\Lambda$ is a finitely generated, free abelian group, then $\Diag(\Lambda)$ is a reductive algebraic group.
+		\item For any finite-dimensional $k$-vector space $V$, $\GL(V)$ and $\SL(V)$ are reductive algebraic groups.
+		\item Symplectic groups, special orthogonal groups.
+	\end{enumerate}
+\end{example}
+\subsection{Structure} From now on $G$ is a redutive algebraic group.
+
+We denote by $B$ a \emph{Borel subgroup} (a maximal, connected, smooth, solvable subgroup). Note:
+\begin{itemize}
+	\item a Borel subgroup is unique up to conjugation;
+	\item the quotient $G /B$ is a smooth, projective variety.
+\end{itemize}
+\begin{example}
+	 For $G=\GL_{n,k}$ one can take
+	 \[
+		 B = \left\{ \begin{pmatrix} * & & 0 \\ & \ddots & \\ * & & *\end{pmatrix}  \right\} .
+	 \] 
+	 In this case $G /B$ parametrizes flags in $k^{n}$, i.e. data
+	 \[
+	  \{0\} \subset V_1\subset \dots\subset V_{n-1}\subset k^{n}
+	 \]
+	 with $V_i$ subspaces of dimension $i$.
+\end{example}
+
+\end{document}

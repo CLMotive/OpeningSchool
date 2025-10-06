@@ -1,0 +1,226 @@
+\input{preamble.tex}
+
+\usepackage{stmaryrd}
+\usepackage[nameinlink]{cleveref}
+
+\newcommand{\SC}{\mathcal{C}}
+\newcommand{\OO}{\mathcal{O}}
+\def\coker{\operatorname{coker}}
+\def\bL{\mathbf{L}}
+\def\CT{\mathcal{T}}
+\def\Aut{\operatorname{Aut}}
+\def\wt{\widetilde}
+\def\ko{\mathfrak{o}}
+\def\kt{\mathfrak{t}}
+\newcommand{\CX}{\mathcal{X}}
+\def\coker{\operatorname{coker}}
+\def\bL{\mathbf{L}}
+\def\wh{\widehat}
+\def\CI{\mathcal{I}}
+\def\et{^\text{\'et}}
+\def\sep{^\text{sep}}
+\def\pr{\operatorname{pr}}
+\def\img{\operatorname{im}}
+\def\Sym{\operatorname{Sym}}
+\def\CG{\mathcal{G}}
+\def\N{\mathbb{N}}
+\def\th{^{\mathrm{th}}}
+\def\CN{\mathcal{N}}
+\def\Inf{\operatorname{Inf}}
+\def\rank{\operatorname{rank}}
+\def\Pic{\operatorname{Pic}}
+\def\i{\operatorname{inv}}
+\def\Diag{\operatorname{Diag}}
+\def\G{\mathbb{G}}
+\def\End{\operatorname{End}}
+\def\det{\operatorname{det}}
+\def\SL{\bb{SL}}
+\def\Rep{\operatorname{Rep}}
+\def\Repf{\operatorname{Rep}^{\text{fd}}}
+\def\Res{\operatorname{Res}}
+\def\Ind{\operatorname{Ind}}
+\def\CL{\mathcal{L}}
+\def\Zc{\underline{\mathbb{Z}}}
+\def\DAet{\operatorname{DA}^{\text{\'et}}}
+\def\SH{\operatorname{SH}}
+\def\Sh{\operatorname{Sh}}
+\def\PSh{\operatorname{PSh}}
+\def\Cone{\operatorname{Cone}}
+\def\A{\cat{A}}
+\def\Ch{\operatorname{Ch}}
+\def\EssIm{\operatorname{EssIm}}
+\def\colim{\operatorname{colim}}
+\def\ft{^{\text{(f.t)}}}
+\def\an{^{\text{an}}}
+\def\P{\mathbb{P}}
+\def\b1{\mathbb{1}}
+\def\coev{\operatorname{coev}}
+\def\ev{\operatorname{ev}}
+\def\iHom{\underline{\Hom}}
+\def\CF{\mathcal{F}}
+\def\Map{\operatorname{Map}}
+\def\PrL{\cat{Pr}^L}
+
+\title{Dualizability}
+\author{Micha{\l} Mruga{\l}a}
+
+\begin{document}
+\maketitle
+
+\begin{definition}
+	Let $(\C, \otimes, \b1)$ be a symmetric monoidal category. An object $c\in \C$ is \emph{dualizable} if there exists $c^{\vee}\in C$ and maps
+	\begin{align*}
+		\coev &: \b1 \to c\otimes c^{\vee} \\
+		\ev &: c^{\vee}\otimes c \to \b1
+	\end{align*}
+	such that
+	\begin{align*}
+		\left[ c \xrightarrow{\coev \otimes \id} c \otimes c^{\vee}\otimes c \xrightarrow{\id\otimes \ev} c \right] &= \id_{c} \\
+		\left[ c^{\vee}\to c^{\vee}\otimes c\otimes c^{\vee}\to c^{\vee} \right] &= \id_{c^{\vee}}
+	.\end{align*}
+\end{definition}
+\begin{example}
+	Let $C=\cat{Vect}_k\ni V$. $V$ is dualizable if and only if $\dim V<\infty$.
+
+	If $V$ is finite-dimensional define $V^{\vee} = \Hom(V,k)$, pick a basis $v_1,\dots,v_n$ and a dual basis $v^{1},\dots,v^{n}\in V^{\vee}$. We can define
+	\begin{align*}
+		\coev: k &\longrightarrow V\otimes V^{\vee} \\
+		1 &\longmapsto \sum v_i\otimes v^{i}
+	\end{align*}
+	and $\ev$ to be the usual evaluation map.
+
+	For the inverse direction we get that $\coev(1)$ is a finite sum. One shows that the $v_i$ that show up form a basis.
+\end{example}
+\begin{example}
+	In $(\cat{Set},\times ), (\cat{Top}, \times )$ and any $(\C,\times )$ the only dualizable object is $\{*\} $.
+\end{example}
+Recall that $\iHom(c,c')$ satisfies
+\[
+	\Hom_C(t,\iHom(c,c')) = \Hom_C(t\otimes c,c')
+.\] 
+\begin{corollary}
+	An object $c\in C$ is dualizable if and only if
+	\begin{enumerate}[a)]
+		\item $\iHom(c,\b1)$ and  $\iHom(c,c)$ exist,
+		\item $c\otimes \iHom(c,\b1)\to \iHom(c,c)$ is an iso.
+	\end{enumerate}
+	(Hence $c^{\vee} = \iHom(c,\b1)$.
+\end{corollary}
+\begin{example}
+	Take $\cat{Mod}_R$ for a commutative ring $R$. Then $M\in \cat{Mod}_R$ is dualizable if and only if $M$ is projective.
+
+	Dualizable objects are closed under retracts. If $M$ is a finite projective module, it is a retract of a finite free module, so it is dualizable.
+
+	Conversely, if $M$ is dualizable there exists
+	\begin{equation}
+	\begin{tikzcd}
+		M \ar[r] & R^{?} \ar[r] & M \\
+		m \ar[r,mapsto] & (f_i(m))_i \\
+				& (r_i) \ar[r, mapsto] & \sum r_im_i 
+	\end{tikzcd}
+	\end{equation}
+	We define
+	\begin{align*}
+		R &\longrightarrow M\otimes_R \Hom(M,R) \\
+		1 &\longmapsto \sum m_i\otimes f_i
+	.\end{align*}
+\end{example}
+\begin{example}
+	Consider $D(R),\otimes_R^{\mathbb{L}}$. An object is dualizable if and only if it is a perfect complex, i.e. quasi-isomorphic to a finite complex of finite projective modules.
+\end{example}
+\begin{example}
+	Let $X$ be a qcqs scheme, then $\CF\in D(\cat{QCoh}(X))$ is dualizable if and only if $\CF$ is perfect, i.e. $\CF|_{\Spec R}$ is as above.
+\end{example}
+\section{Dualizability as a finiteness condition}
+\begin{definition}
+	If $\C$ is a symmetric monoidal $\infty$-category, $c\in \C$ is dualizable if and only if $c\in H_0(\C)$ is dualizable.
+\end{definition}
+\begin{lemma}
+	Suppose $\C$ is a symmetric monoidal $\infty$-category which has filtered colimits, which are preserved under $\otimes$. If $\b1\in \C$ is compact (i.e. $\Map_{\C}(\b1,-)$ preserves filtered colimits), then any dualizable object is compact.
+\end{lemma}
+\begin{proof}
+	$\Map_{\C}(c,-)=\Map_{\C}(\b1, c^{\vee}\otimes -)$.
+\end{proof}
+\begin{lemma}
+	Suppose $\C$ is presentable and colimits are preserved under $\otimes$ (presentably symmetric monoidal). Then $c\in \C$ is dualizable if and only if $c\otimes -$ preserves limits.
+\end{lemma}
+\begin{proof}
+	First suppose $\varphi=c\otimes -$ preserves limits. By the adjoint functor theorem $\varphi$ admits a left adjoint $\varphi^{L}$, then $\varphi^{L}(\b1)$ is a dual for $c$. 
+\end{proof}
+\begin{lemma}
+	Let $X$ be a topological space, $\CF\in D(\Sh(X,\cat{Ab}))$ is dualizable if and only if locally on $X$, $\CF$ is constant and associated to a perfect complex of abelian groups.
+\end{lemma}
+\begin{proof}
+	Given an open subset $U$ of $X$ write $u:U\injto X$ for the open embedding. We claim that
+	\[
+	\colim_{x\in U}\Hom(u^{*}\CF,u^{*}\CG)\to \Hom(\CF_x, \CG_x)
+	\] 
+	is an isomorphism. (For a proof look at Cisinski, D\'eglise \'Etale motives.)
+\end{proof}
+Let $X$ be a smooth, affine variety over $k$ we can associate to it the de Rham complex $\Omega_{X /k}^{*}$ and de Rham cohomology $H_{\text{dR}}^{n}(X)=H^{n}(X,\Omega_{X /k}^{*})$. If $X\an$ is compact, then $\Omega_{X\an}^{*}$ are holomorphic differential forms and we define $H_{\text{dR}\an}^{n}(X) = H^{n}(X\an,\Omega^{*}_{X\an})$.
+\begin{theorem}[Grothendieck, C-D ``Weil\dots'']
+	Fix $k\subset \bb{C}$, then there is an isomorphism
+	\[
+		H_{\text{dR}}^{n}(X)\otimes_k \bb{C} \simto H_{\text{dR}\an}^{n}(X)
+	.\] 	
+\end{theorem}
+\begin{proof}
+	We have a commutative diagram
+	\begin{equation}
+	\begin{tikzcd}
+		\cat{Sm}_k\op \ar[r,shift left, "X\mapsto \Omega_{X /k}\otimes\bb{C}"] \ar[r,shift right, "X\mapsto \Omega_{X\an}\an"'] \ar[d,"X\mapsto M(X)"'] & D(\cat{Vec}_{\bb{C}}) \\
+		\DAet(k)\op\text{ or }\SH(k)\op
+	\end{tikzcd}
+	\end{equation}
+	(there is a natural transformation from top arrow to bottom, add this). The functors at the top are symmetric monoidal.
+
+	\begin{lemma}
+		Suppose we have
+		\begin{equation}
+		\begin{tikzcd}
+			(\C,\otimes) \ar[r,shift left,"F"] \ar[r,shift right,"G"'] & (\cat{D},\otimes)
+		\end{tikzcd}
+		\end{equation}
+		where $F,G$ are monoidal funcgtor and $\alpha:F\to G$ compatible with $\otimes$. There exists $c\in \C$ dualizable. Then
+		\[
+		\alpha(c): F(c) \simto G(c)
+		\]
+		is an isomorphism.
+	\end{lemma}
+	\textbf{Fact:} $\DAet(k)$ or $\SH(k)$ is generated by $M(X)(?)$ for $X /k$ smooth and proper. (6 functor formalism and resolution of singularities)
+
+	$M(X)$ is dualizable for $X$ smooth and proper (by the 6 functor formalism).
+
+	Look at Robalo's thesis to get a $F,G$ factoring through $\SH(k)\op$ as symmetric monoidal functors. (??)
+\end{proof}
+Recall (or wait until Friday) $(\PrL,\otimes)$ the category of presentable $\infty$-categories and a colimit preserving functors
+\begin{itemize}
+	\item $P(C_0)\otimes P(C_1) = P(C_0\times C_1)$ 
+	\item If $X,Y$ are (qcqs) schemes over $k$
+		\[
+			D(\cat{QCoh}(X)) \otimes_{D(k)}D(\cat{QCoh}(Y)) = D(\cat{QCoh}(X\times_k Y)).
+		\] 
+\end{itemize}
+\begin{example}
+	In $\PrL$, $P(C_0)$ is dualizable with dual $P(C_0\op)$.
+\end{example}
+
+Now consider $\PrL_{\omega}$ the category of presentable, compactly generated categories and functors that preserve compact objects. Define $\PrL_{\omega,k} = \cat{Mod}_{D(k)}\PrL_\omega$. Any $\C=\cat{Ind}(C_0)$ is dual in $\PrL$ with dual $\C^{\vee}=\cat{Ind}(C_0\op)$.
+
+\begin{theorem}[Kontsevich]
+	Let $X /k$ be an algebraic variety. Define $\C = D(\cat{QCoh}(X))\in \PrL_{\omega,k}$.
+	\begin{enumerate}[1)]
+		\item $X$ is smooth if and only if (in $\PrL_k$)
+			\begin{align*}
+				\coev: D(k) &\longrightarrow \C\otimes\C^{\vee} = D(\cat{QCoh}(X\times X)) \\
+				k &\longmapsto \Delta_*\OO_X
+			\end{align*}
+			preserves compact objects.
+		\item $X$ is proper if and only if $p_*\Delta^{*}=\ev:D(\cat{QCoh}(X\times X))\to D(k)$ preserves compact objects.
+	\end{enumerate}
+	Hence $X$ is smooth and proper if and only if $D(\cat{QCoh}(X))$ is dual in $\PrL_{\omega,k}$.
+\end{theorem}
+(Kadyrev, Prikodko proved Atiyah-Bott which implies Borel-Weil-Bott)
+
+\end{document}
+

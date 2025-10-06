@@ -1,0 +1,248 @@
+\input{preamble.tex}
+
+\usepackage{stmaryrd}
+\usepackage[nameinlink]{cleveref}
+
+\newcommand{\SC}{\mathcal{C}}
+\newcommand{\OO}{\mathcal{O}}
+\def\coker{\operatorname{coker}}
+\def\bL{\mathbf{L}}
+\def\CT{\mathcal{T}}
+\def\Aut{\operatorname{Aut}}
+\def\wt{\widetilde}
+\def\ko{\mathfrak{o}}
+\def\kt{\mathfrak{t}}
+\newcommand{\CX}{\mathcal{X}}
+\def\coker{\operatorname{coker}}
+\def\bL{\mathbf{L}}
+\def\wh{\widehat}
+\def\CI{\mathcal{I}}
+\def\et{^\text{\'et}}
+\def\sep{^\text{sep}}
+\def\pr{\operatorname{pr}}
+\def\img{\operatorname{im}}
+\def\Sym{\operatorname{Sym}}
+\def\CG{\mathcal{G}}
+\def\N{\mathbb{N}}
+\def\th{^{\mathrm{th}}}
+\def\CN{\mathcal{N}}
+\def\Inf{\operatorname{Inf}}
+\def\rank{\operatorname{rank}}
+\def\Pic{\operatorname{Pic}}
+\def\i{\operatorname{inv}}
+\def\Diag{\operatorname{Diag}}
+\def\G{\mathbb{G}}
+\def\End{\operatorname{End}}
+\def\det{\operatorname{det}}
+\def\SL{\bb{SL}}
+\def\Rep{\operatorname{Rep}}
+\def\Repf{\operatorname{Rep}^{\text{fd}}}
+\def\Res{\operatorname{Res}}
+\def\Ind{\operatorname{Ind}}
+\def\CL{\mathcal{L}}
+\def\Zc{\underline{\mathbb{Z}}}
+\def\DAet{\operatorname{DA}^{\text{\'et}}}
+\def\SH{\operatorname{SH}}
+\def\Sh{\operatorname{Sh}}
+\def\PSh{\operatorname{PSh}}
+\def\Cone{\operatorname{Cone}}
+\def\A{\cat{A}}
+\def\Ch{\operatorname{Ch}}
+\def\EssIm{\operatorname{EssIm}}
+\def\colim{\operatorname{colim}}
+\def\ft{^{\text{(f.t)}}}
+\def\an{^{\text{an}}}
+\def\P{\mathbb{P}}
+\def\CA{\mathcal{A}}
+\def\Mat{\operatorname{Mat}}
+\def\H{\mathcal{H}}
+\def\Sp{\bb{Sp}}
+\def\Stab{\operatorname{Stab}}
+\def\CE{\mathcal{E}}
+
+\title{Introduction to Shimura Varieties and Their Cohomology}
+\author{Micha{\l} Mruga{\l}a}
+
+\begin{document}
+\maketitle
+\emph{Plan:}
+\begin{enumerate}[I)]
+	\item Siegel modular varieties
+	\item General Shimura varieties
+	\item (\'Etale) Cohomology: Kottwitz conjecture
+\end{enumerate}
+(The cohomology gives a realization of the global Langlands correspondence for certain number fields.)
+
+The main reference are Sophie Morel's notes from the IHES '22 summer school.
+
+\section{Siegel Modular Varieties}
+Analytically: we want to parametrize complex tori. This is fairly simple. Let $V$ be a $\bb{C}$-vector space of dimension $m\ge 1$, $\Lambda\subset V$ a lattice (a discrete subgroup such that $V /\Lambda$ is compact), then $X=V /\Lambda$ is a complex Lie group, which is a complex torus. 
+
+\begin{exercise}
+	A morphism $f:X=V /\Lambda \to X' = V' /\Lambda'$ of complex Lie groups is given by a $\bb{C}$-linear map $V\to V'$ mapping $\Lambda$ to $\Lambda'$.
+\end{exercise}
+
+\emph{Question:} Which complex tori are algebraizable, i.e. $X\injto \P^{n}(\bb{C})$ (equivalent to $X\simeq \underline{X}\an$ for some projective $\underline{X}$ by Chow). Can we find a parametrization?
+
+\begin{example}
+	Let $n=1$ complex tori are always algebraic. There is the Weierstrass $\wp$-function
+	\begin{align*}
+		\wp: V /\Lambda &\longrightarrow \P^{1}(\bb{C}) \\
+		v &\longmapsto \wp(v) = \frac{1}{v^2} + \sum_{\lambda\in \Lambda-0}\frac{1}{(\lambda+v)^2}-\frac{1}{\lambda^2}
+	.\end{align*}
+	It embeds $V /\Lambda$ in $\P^2(\mathbb{C})$ via $[\wp:\wp':1]$ with image $y^2=P_\Lambda(x)$ where $P_\Lambda\in \bb{C}[X]$ has degree 3. The coefficients of $P_\Lambda$ are Eisenstein series (modular forms).
+
+	For $n>1$, $X$ is ``almost never'' algebraic.
+\end{example}
+Recall that $X$ is algebraizable if and only if there exists $\CL\in \Pic(X)$ which is ample (see Mumford's Abelian Varieties). Recall that $\Pic(X)\simeq H^{1}(X,\OO_X^{\times})$. There is a short exact sequence
+\begin{equation}
+\begin{tikzcd}
+	0 \ar[r] & \Zc_X \ar[r] & \OO_X \ar[r,"\exp(2\pi i-)"] & \OO_X^{\times} \ar[r] & 0
+\end{tikzcd}
+\end{equation}
+so we get a long exact sequence. The map
+\[
+	H^{0}(X,\OO_X) \simeq \bb{C} \to \bb{C}^{\times}\simeq H^{0}(X,\OO_X^{\times})
+\]
+is surjective so we get
+\begin{equation}
+\begin{tikzcd}
+	H^{1}(X,\Z) \ar[r,hook] \ar[d,"\simeq"] & H^{1}(X,\OO_X) \ar[d,"\simeq"',"Dolbeaut"] \ar[r] & H^{1}(X,\OO_X) \ar[d,"\simeq"] \ar[r,"\delta"] & \ker (H^2(X,\Z)\to H^2(X,\OO_X)) \ar[d,"\simeq"] \\
+	H^{1}(\Lambda,\Z) \ar[d,equal] & \overline{T} & H^{1}(\Lambda,\OO(X)^{\times}) & \Hom\left( \bigwedge^2\Lambda,\Z \right)  \\
+	\Hom(\Lambda,\Z) \ar[dr,hook] & T \oplus \overline{T} \ar[u,"\pr_2"] \\
+				      & \Hom_{\bb{R}}(V,\bb{C}) \ar[u,"\simeq"]
+\end{tikzcd}
+\end{equation}
+We have $H^{i}(V,\Z)=0$ for all $i>0$ and $H^{i}(V,\OO_V)=0$ for all $i>0$ so $\Pic(V)=0$. $\overline{T}$ are the antilinear maps $V\to \bb{C}$ and $T=\Hom_{\bb{C}}(V,\bb{C})$. Observe that
+\[
+\Pic^{0}(X) = \ker\delta \simeq \frac{\overline{T}}{\pr_2(\Hom(\Lambda,\Z))}
+\]
+is also a complex torus. The last term is the Neron-Severi group
+\begin{align*}
+	NS(X) &\simeq \{E:\Lambda\times \Lambda\to \Z\text{ alt.}: E(iv_1,iv_2)=E(v_1,v_2), \forall v_1,v_2\in V\} \\
+	      &= \left\{ \Im H:\, H:V\times V\to \bb{C}\text{ Hermitian such that }(\Im H)(\Lambda\times \Lambda)\subset \Z \right\} 
+.\end{align*}
+The Appel-Humbert theorem completely describes $\Pic(X)$ as $\{L(H,\alpha)\} $ with $H$ as above and $\alpha$ an extra datum.
+
+\begin{theorem}[Lefschetz]
+	The following are equivalent:
+	\begin{enumerate}[1)]
+		\item $H$ is positive definite.
+		\item $L(H,\alpha)$ is ample (in fact, $L(H,\alpha)^{\otimes 3}$ is enough to embed $X$).
+	\end{enumerate}
+\end{theorem}
+Let $L\in \Pic(X)$ then
+\begin{align*}
+	\phi_L: X &\longrightarrow \Pic^{0}(X) = \wh{X} \\
+	x &\longmapsto T_x^{*}L\otimes L^{-1}
+\end{align*}
+is a morphism of Lie groups (here $T_x$ is translation by $x$).
+
+\begin{theorem}
+	The following are equivalent:
+	\begin{itemize}
+		\item $L$ is ample.
+		\item $\ker\phi_L$ is finite.
+		\item $\phi_L$ is surjective (i.e. an isogeny).
+	\end{itemize}
+\end{theorem}
+\begin{exercise}
+	Check that $phi_L$ is an isomorphism if and only if $E(\cdot ,\cdot )$ is perfect ($\Lambda\simeq \Hom(\Lambda,\Z)$).
+\end{exercise}
+\begin{definition}
+	Say that such $\phi_L$ is a \emph{polarization}. If $\phi_L$ is an isomorphism, then it is called a \emph{principal polarization}.
+\end{definition}
+\begin{remark}
+	Not every algebraic $X$ admits a principal polarization, but is isogenous to one that does.
+\end{remark}
+We can define the moduli problem
+\[
+	\CA_n(\bb{C}) = \left\{ (X,\phi):X = V /\Lambda\text{ of dimension }n,  \phi:X\to \wh{X}\text{ a principal polarization} \right\} 
+.\] 
+Let $(V,\Lambda,H)$ be a principally polarized complex torus. Choose a symplectic basis $(e_1,\dots,e_{2n})$ of $\Lambda$, i.e.
+\[
+	(E(e_i,e_j))_{i,j} = J_n = \begin{pmatrix} 0 & I_n \\ -I_n & 0 \end{pmatrix} 
+.\] 
+\begin{exercise}
+	$L=L(H,\alpha)$ is ample if and only if $e_{n+1},\dots,e_{2n}$ is a basis of $V$ over $\bb{C}$ such that
+	\[
+	\tau = \Mat_{e_{n+1},\dots,e_{2n}}(e_1,\dots,e_n)
+	\] 
+	satisfies $\tau = ^{t}\tau$ and $\Im(\tau)$ is positive definite.
+\end{exercise}
+\begin{definition}
+	$\H_n^{+}$ is the set of such $\tau\in M_n(\bb{C})$. There is an algebraic group
+	\[
+	\Sp_{2n,\Z}:R \mapsto \left\{ g\in M_{2n}(R) : ^{t}gJ_ng = K_n \right\} 
+	.\] 
+\end{definition}
+There is an action of $\Sp_{2n}(\Z)$ on $\H_n^{+}$ such that given
+\[
+	\gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix} 
+\] 
+we have
+\[
+\tau \gamma = (\tau b + d)^{-1}(\tau a + c)
+\]
+(this corresponds to replacing $\underline{e}=(e_1,\dots,e_{2n})$ by $\underline{e}\gamma$).
+
+We prefer left actions: let $^{t}\gamma$ act so that $\gamma\tau = \tau*^{t}\gamma$, i.e.
+\[
+	(\tau^{t}c + d)^{-1}(\tau^{t}a+^{t}b) = (a\tau + b)(c\tau + d)
+.\] 
+This extends to an action of $\Sp_{2n}(\bb{R})$ on $\H_n^{+}$. This action is transitive and
+\begin{align*}
+	\Stab_{\Sp_{2n}(\bb{R})}(iI_n) &\longrightarrow U(n) \\
+	\begin{pmatrix} a & b \\ -b & a \end{pmatrix}  &\longmapsto a + ib
+\end{align*}
+is an isomorphism (this is a maximal compact subgroup).
+
+So $\CA_n(\bb{C})\simeq \Gamma_n\setminus \H_n^{+}$ wher $\Gamma_n\simeq \Sp_{2n}(\Z)$.
+\begin{remark}
+	There exists $\gamma\in \Gamma_n\setminus \{\pm 1\} $and $\tau\in \H_n^{+}$ such that $\gamma\tau=\tau$.
+\end{remark}
+
+There is a universal object
+\[
+	\CX_n(\bb{C}) = \Z^{2n}\rtimes \Gamma_n\setminus\bb{C}^{n}\times \H_n^{+}
+\] 
+where
+\[
+	\gamma(v,\tau) = \begin{pmatrix} a & b \\ c & d \end{pmatrix} (v,\tau) = ((\tau^{t}c+^{t}d)^{-1}v, \gamma\tau)
+\] 
+and
+\[
+	(\lambda_1,\lambda_2)(v,\tau) = (v+\lambda_1+\tau\lambda_2,\tau)
+\]
+for $\lambda_i\in \Z^{n}$.
+
+There is a morphism $\pi:\CX(\bb{C})\to \CA_n(\bb{C})$ which admits a section $e$. The fiber of $\tau$ is $[\tau]\simeq\bb{C}^{n} /\Lambda_\tau$ where $\Lambda_\tau = \Z^{n}\oplus\tau \Z^{n}$. We get the \emph{Hodge bundle}: take $\Omega^{1}(V /\Lambda)$ which are translaton invariant 1-forms, which is isomorphic to $V^{*}$ via $e^{*}$, then the Hodge bundle is
+\[
+	\CE_n = e^{*}\Omega^{1}_{\CX(\bb{C}) / \CA_n(\bb{C})} \simeq \Gamma_n\setminus\b{C}^{n}\times \H_n^{+}
+\]
+for action (??).
+
+We can apply Schur functors (use the action of $\mathfrak{S}_k$ on on $\CE_n^{\otimes k}$ to act on subbundles, e.g. $\bigwedge^{k}\CE_n$ for $0\le k\le n$ ). (Equivalently see $\CE_n$ as a $\GL_n(\bb{C})$-bundle on $\CA_n(\bb{C})$ and apply a holomorphic representation $\rho:(\GL_n(\bb{C})\to \GL(W)$.)
+Sections of such vector bundles on $\CA_k(\bb{C})$ are (level $\Gamma_n$, weight $\rho$) Siegel modular forms on $\CA_n(\bb{C})$.
+
+\emph{Notation:} Write
+\[
+	M_\rho(\Gamma_n) = \left\{ f\in \Gamma(A_n(\bb{C}),\rho(\CE_n):f\text{ is holomorphic at }\infty \right\} 
+\]
+(the last condition is automatic if $n>1$). We write
+\[
+S_\rho(\Gamma_n) = \{f:\text{vanish at }\infty\} \subset M_\rho(\Gamma_n)
+\]
+for the set of \emph{cusp forms}.
+
+We want a group theoretic description of the complex structure on $\CA_n(\bb{C})$ and these vector bundles on $\CA_m(\bb{C})$.
+
+We have $Z(U(n))\simeq U(1)$ and its centralizer in $\Sp_{2n}(\bb{R})$ is $U(n)=K(\R)$ where $K\injto \Sp_{2n,\bb{R}}$ is an algebraic subgroup.
+
+Over $\bb{C}$ we have
+\[
+	Z(K_{\bb{C}}) \simeq \GL_{1,\bb{C}} \injtpo \Sp_{2n,\bb{C}}.
+\] 
+This determines two opposite parabolic subgroups $Q_+=K_{\bb{C}}N_+$, $Q_{-}K_{\bb{C}}N_-$
+
+\end{document}

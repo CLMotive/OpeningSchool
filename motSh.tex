@@ -1,0 +1,328 @@
+\input{preamble.tex}
+
+\usepackage{stmaryrd}
+\usepackage[nameinlink]{cleveref}
+
+\newcommand{\SC}{\mathcal{C}}
+\newcommand{\OO}{\mathcal{O}}
+\def\coker{\operatorname{coker}}
+\def\bL{\mathbf{L}}
+\def\CT{\mathcal{T}}
+\def\Aut{\operatorname{Aut}}
+\def\wt{\widetilde}
+\def\ko{\mathfrak{o}}
+\def\kt{\mathfrak{t}}
+\newcommand{\CX}{\mathcal{X}}
+\def\coker{\operatorname{coker}}
+\def\bL{\mathbf{L}}
+\def\wh{\widehat}
+\def\CI{\mathcal{I}}
+\def\et{^\text{\'et}}
+\def\sep{^\text{sep}}
+\def\pr{\operatorname{pr}}
+\def\img{\operatorname{im}}
+\def\Sym{\operatorname{Sym}}
+\def\CG{\mathcal{G}}
+\def\N{\mathbb{N}}
+\def\th{^{\mathrm{th}}}
+\def\CN{\mathcal{N}}
+\def\Inf{\operatorname{Inf}}
+\def\rank{\operatorname{rank}}
+\def\Pic{\operatorname{Pic}}
+\def\i{\operatorname{inv}}
+\def\Diag{\operatorname{Diag}}
+\def\G{\mathbb{G}}
+\def\End{\operatorname{End}}
+\def\det{\operatorname{det}}
+\def\SL{\bb{SL}}
+\def\Rep{\operatorname{Rep}}
+\def\Repf{\operatorname{Rep}^{\text{fd}}}
+\def\Res{\operatorname{Res}}
+\def\Ind{\operatorname{Ind}}
+\def\CL{\mathcal{L}}
+\def\Zc{\underline{\mathbb{Z}}}
+\def\DAet{\operatorname{DA}^{\text{\'et}}}
+\def\SH{\operatorname{SH}}
+\def\Sh{\operatorname{Sh}}
+\def\PSh{\operatorname{PSh}}
+\def\Cone{\operatorname{Cone}}
+\def\A{\cat{A}}
+\def\Ch{\operatorname{Ch}}
+\def\EssIm{\operatorname{EssIm}}
+\def\colim{\operatorname{colim}}
+\def\ft{^{\text{(f.t)}}}
+\def\an{^{\text{an}}}
+\def\P{\mathbb{P}}
+
+\title{Motivic Sheaves}
+\author{Micha{\l} Mruga{\l}a}
+
+\begin{document}
+\maketitle
+\textbf{Plan:}
+\begin{enumerate}[L1:]
+	\item Motivation, construction, examples.
+	\item Six-functor formalism.
+	\item Motivic $t$-structures and weight structures.
+	\item $\infty$-categorical methods.
+\end{enumerate}
+\section{Motivation from GRT and cohomology}
+\subsection{Cohomology and sheaves for representation theory}
+\emph{Question:} How do you construct interesting representations?
+
+\emph{Answer:}
+\begin{enumerate}[1)]
+	\item Find interesting actions.
+	\item Linearlize them.
+\end{enumerate}
+
+\begin{example}
+	Let $K$ be a compact Lie group. The action of $K$ on itself gives us an action of $K$ on $L^2(K)$ with respect to a Haar measure. The Peter-Weyl theorem says that
+	\[
+	L^2(K) \simeq \bigoplus_{\pi\text{ unitary}}\pi^{\oplus dim(\pi)}.
+	\]
+	``Lie theory $\subset $ algebraic geometry''. Reductive groups are algebraic groups with many associated varieties with group actions: flag varieties\dots
+\end{example}
+The linearization we consider in this course are the many types of cohomology theories.
+
+\begin{example}[Borel-Weil-Bott]
+	Let $T\subset B\subset G$ be a reductive group over $\bb{C}$. Let $\lambda\in X^{\vee}(T)$ such that there exists $w\in W$ with $w*\lambda = w(\lambda+\rho)-\rho>0$ (where $\rho = (1 /2)\sum_{\alpha\in \Phi^{+}}\alpha$). Then
+	\[
+		R\Gamma(G /B,L_\lambda) \simeq \pi_{w*\lambda}[-\ell(w)]
+	\] 
+	where $\ell(w)$ is the length of $w$.
+\end{example}
+Cohomology fits in the wider context of sheaf theory. If $T$ is a locally contractible topological space, then
+\[
+	H^{n}_{\text{sing}}(T,\Z) \simeq H^{n}(T,\Zc_T) \simeq R^{n}(\pi_T)_*(\Zc_T)	
+\]
+where $\pi_T$ is the morphism $\pi_T:T\to \text{pt}$ with
+\[
+R\pi_{T*}:D(T,\Z) \to D(\Z) \simeq D(*,\Z)
+.\] 
+
+\emph{Facts:} Cohomology (singular with $\Q$-coefficients) of algebraic varieties over $\bb{C}$ is \emph{\textbf{very}} special.
+\begin{itemize}
+	\item There is a weight filtration.
+	\item There is a mixed hodge structure.
+\end{itemize}
+Sheaves on complex algebraic varieties are also very special:
+\begin{itemize}
+	\item Perverse sheaves;
+	\item Decomposition theorem;
+	\item Mixed Hodge modules.
+\end{itemize}
+
+This leads to great success stories in GRT:
+\begin{itemize}
+	\item Springer theory;
+	\item Kazdhan-Lustig theory;
+	\item geometric Satake\dots
+\end{itemize}
+
+\subsection{From sheaves to motivic sheaves}
+There are situations which can't be directly studied using these tools:
+\begin{itemize}
+	\item Representation theory of reductive groups over other fields/rings/schemes.
+	\item Modular/integral representation theory.
+	\item $q$-deformations, quantum groups, canonical bases.
+\end{itemize}
+These can be attacked using:
+\begin{itemize}
+	\item $l$-adic sheaves,
+	\item sheaves cohomology with $\Z$-coefficients,
+	\item $K$-theory.
+\end{itemize}
+Motivic sheaves will give us a unified perspective.
+
+\emph{Motivic dream:} There should exist universal cohomology/sheaf theories such that
+\begin{enumerate}[1)]
+	\item they unify and ``explain'' the special stracture in cohomology/sheaves;
+	\item they are of algebro-geometric nature;
+	\item they ``explain'' the realization of algebraic cycles and algebraic $K$-theory.
+\end{enumerate}
+
+\section{Construction of $\DAet$ and $\SH$ (Morel-Voevodsky)}
+\subsection{Triangulated categories and localization}
+\begin{definition}
+	A triangulated category is the data:
+	\begin{itemize}
+		\item an additive category $\C$,
+		\item an automorphism $\Sigma=(-)[1]:\C\simto \C$,
+		\item a collection of distinguished triangles
+			\[
+				A \to B \to C \to A[1]
+			.\] 
+	\end{itemize}
+	Satisfying
+	\begin{itemize}
+		\item shifted distinguished triangles are distinguished up to isomorphism,
+		\item for all $f:A\to B$ there exists
+			\[
+				A \xrightarrow{f} B \to \Cone(f) \xrightarrow{+}
+			\] 
+			unique up to isomorphism and functorial,
+		\item 
+			\begin{equation*}
+			\begin{tikzcd}
+				A \ar[r] \ar[d,"f","\simeq"'] & B \ar[r] \ar[d,"g","\simeq"'] & C \ar[d,dashed] \ar[r] & A[1] \ar[d,"{f[1]}","\simeq"'] \\
+				A' \ar[r] & B' \ar[r] & C' \ar[r] & A'[1]
+			\end{tikzcd}
+			\end{equation*}	
+		\item (??)
+	\end{itemize}
+\end{definition}
+
+\begin{example}
+	Let $\A$ be an abelian category, $\Ch(\A)$ be the abelian category of chain complexes in $\A$. We define $(A[1])_n = A_{n-1}$. Given $f:A_\bullet\to B_\bullet$ the maping cone is given by
+	\[
+		\Cone(f)_n = A_{n-1} \oplus B_n,\qquad d_n = \begin{pmatrix} -d_{n-1}^{A} & 0 \\ f & d_n^{B} \end{pmatrix} 
+	.\] 
+\end{example}
+\begin{definition}
+	$f:A_\bullet\to B_\bullet$ is a \emph{quasi-isomorphism} if for all $n\in \Z$, the map $H_n(A_\bullet)\simeq H_n(B_\bullet)$ is an isomorphism.
+\end{definition}
+\begin{definition}
+	$D(\A)$ is defined as the localization of $\Ch(\A)$ by quasi-isomorphisms.
+\end{definition}
+
+Now we consider reflexive localizaitons (1-categorical ones lead to triangulated and $\infty$-categorical ones).
+\begin{definition}
+	Let $\C$ be a 1-category.
+	\begin{enumerate}[1)]
+		\item $\C'\subset \C$ is reflexive if $\iota:\C'\to \C$ has a left adjoint.
+		\item $L_W:\C\to \C[W^{-1}]$ is reflexive if $L_W$ has a right adjoint.
+	\end{enumerate}
+\end{definition}
+
+\begin{lemma}[Reflexive subcategories are the same thing as reflexive localizations]
+	\begin{enumerate}[a)]
+		\item Let $\C'\subset \C$ be reflexive, $L:\C\to \C'$ be the left adjoint to $\iota$. Define 
+			\[
+				W_L=\{f:L(f)\text{ is an isomorphism}\}.
+			\]
+			Then $\C'\simeq \C[W_L^{-1}]$ and $L\simeq L_{(W_L)}$.
+		\item If $L$ is a reflexive localization, then $\iota$ is fully faithful and $\iota:\C[W^{-1}] \simto \EssIm(\iota)\subset \C$.
+	\end{enumerate}
+\end{lemma}
+
+\begin{definition}
+	Let $S\subset \C$ be a collection of morphisms.
+	\begin{enumerate}[a)]
+		\item $A\in \C$ is \emph{$S$-local} if for all $f:B\to C$ in $S$ 
+			\[
+			\Hom_\C(C,A) \simto \Hom_\C(B,A).
+			\] 
+		\item $f:B\to C$ is an \emph{$S$-equivalence} if for all $S$-local $A$ 
+			\[
+			\Hom_{\C}(C,A) \simto \Hom_\C(B,A).
+			\] 
+	\end{enumerate}
+\end{definition}
+\begin{lemma}
+	If $L:\C \rightleftarrows \C':\iota$ is a reflexive localizaton, $W_L$ as before, then
+	\begin{itemize}
+		\item $\iota$ gives an isomorphism between $\C'$ and $W_L$-local objects.
+		\item $W_L$ are the $W_L$-equivalences.
+	\end{itemize}
+\end{lemma}
+\begin{definition}
+	Let $\cat{D}$ be a triangulated category with all small products.
+	\begin{itemize}
+		\item Let $\kappa$ be a regular  cardinal (for example $\kappa=\aleph_0$). Then $A\in \cat{D}$ is \emph{$\kappa$-small}/\emph{$\kappa$-compact} if and only if
+			\[
+			\colim_{I' \subset I, |I'|<\kappa} \Hom\left( A,\bigoplus_{I'}B_i \right) \simto \Hom\left( A, \bigoplus_I B_i \right) 
+			.\] 
+		\item \emph{Compact} means $\aleph_0$-small. $A$ is compact if and only if
+			\[
+			\bigoplus_I \Hom(A,B_i) \simto \Hom \left( A,\bigoplus_{I}B_i \right) 
+			.\] 
+		\item $\cat{D}$ is \emph{presentable}/\emph{well-generated} if and only if there exist $\kappa$ and a set $S\subset \cat{D}$ of $\kappa$-small objects which generate $\cat{D}$:
+			\[
+				\forall B\in \cat{D},\left( \forall A\in S, \Hom(A,B)=0 \right) \implies B = 0
+			.\] 
+		\item $\cat{D}$ is \emph{compactly generated} if it is $\aleph_0$-presentable.
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	$\cat{E}\subset \cat{D}$ is \emph{localizing} if it is
+	\begin{itemize}
+		\item triangulated,
+		\item stable under coproducts,
+		\item thick (stable under subobjects and subquotients).
+	\end{itemize}
+\end{definition}
+
+\begin{theorem}[Adjoint Functor Theorem]
+	Let $\cat{D},\cat{D}'$ be triangulated categories with all coproducts, $F:\cat{D}\to \cat{D}'$ be a triangulated functor and $\cat{D}$ be presentable. Then $F$ admits a right adjoint if and only if $F$ preserves all coproducts.
+\end{theorem}
+\begin{corollary}[Verdier Localization]
+	Let $\cat{D}$ be a presentable category and $\cat{E}$ be a localizing subcategory. Define
+	\[
+		\cat{D} / \cat{E} = D[W_{\cat{E}}^{-1}],\quad W_{\cat{E}} = \{f:\Cone(f)\in \cat{E}\} 
+	.\] 
+	Then $\cat{D} \to \cat{D} /\cat{E}$ is a reflexive localization.
+\end{corollary}
+Let $S\subset \cat{D}$ be a subset of objects, then $\ll S \gg$ is the smallest subcategory containing $S$ such that $\cat{D} /\ll S\gg$ is a reflexive localization.
+
+Let's get some inspiration from Betti homology, i.e. singular homology on complex algebraic varieties. Let $X\in \cat{Var}_{\bb{C}}\ft$, then we get
+\[
+	C_*^{\text{sing}}(X(\bb{C}),\Z)\in D(\Z)
+.\]
+This comes with some data:
+\begin{enumerate}[(a)]
+	\item 
+		\begin{itemize}
+			\item $D(\Z)$ has a symmetric monoidal structure: $\otimes^{\Z}$,
+			\item (K\"unneth) $C_*(X\times Y) \simeq C_*(X)\otimes^{\Z}C_*(Y)$.
+		\end{itemize}
+\end{enumerate}
+which satisfies sproperties:
+\begin{enumerate}[(a)]
+	\setcounter{enumi}{1}
+	\item ($\Aff^{1}$-homotopy invariance) $C_*(X\times \Aff^{1})\simto C_*(X)$ ($(\Aff^{1})\an=\bb{C}$ is contractible).
+	\item (Mayer-Vietoris sequence) Let $X=U \cup V$ be a Zariski cover, then
+		\[
+			C_*(U\cap V) \to C_*(U) \oplus C_*(V) \to C_*(X) \xrightarrow{\partial} C_*(U \cap  V)[1]
+		.\] 
+	\item (\'Etale descent) Let $U\to X$ be \'etale surjective. Define
+		\[
+			\check{C}_n(U /X) = U^{n+1}
+		.\] 
+		Then $\check{C}_\bullet(U /X)$ is a simplicial scheme, so $C_*(\check{C}_\bullet(U /X))$ is a simplicial complex of abelian groups and $C(C_*(\check{C}_\bullet(U /X)))$ is a double complex. (??)
+
+		Concretely we have a descent spectral sequence which gives us ($U=U \cup V$) Mayer Vietoris.
+	\item ($\P^{1}$-stabilization)
+		\begin{align*}
+			C_*(\P_{\bb{C}}^{1}) &\simeq C_*(\text{pt}) \oplus \wt{C}_*(\P_{\bb{C}}^{1}) \\
+					     &\simeq \Z[0] \oplus \Z(1)[2]
+		.\end{align*}
+		$\Z(1)$ is $\oplus$-invertible.
+\end{enumerate}
+Smooth varieties play a special role:
+\begin{itemize}
+	\item Poincar\'e duality
+	\item Gysin sequences
+	\item $C_*(-)$ also satisfies ``$h$-descent'', so $C_*(-)$ is ``determined'' by $C_*(-)_{|(?)}$.
+\end{itemize}
+There is an associated sheaf theory:
+\[
+	D_B(-):\cat{Var}_{\bb{C}}\to \cat{TriCat}^{\otimes},\quad X\mapsto D_B(X) = D(\Sh(X\an,\Z))
+.\] 
+
+\emph{Sketch of $\DAet$:} Let $S$ be a base scheme.
+\begin{itemize}
+	\item Start with
+		\[
+		\begin{cases}
+			D(\PSh(\cat{Sm}_S, \Z)) = D_{\PSh}(S) \\
+			\Z[-]: \cat{Sm}_S \to D_{\PSh}(S)
+		\end{cases}
+		.\] 
+	\item Impose $\Aff^{1}$-invariane, \'etale descent, and $\P^{1}$-stability. This will give us $\DAet(S,\Z)$ and $M_S(-):\cat{Sm}_S\to \DAet(S,\Z)$.
+\end{itemize}
+The surprise is that the result satisfies many \emph{other} properties of singular (co)homology and derived categories of sheaves on complex varieties which can largely be packaged into the six-functor formalism. The result is closely related to algebraic cycles/higher Chow groups and algebraic $K$-theory.
+
+\end{document}
+
