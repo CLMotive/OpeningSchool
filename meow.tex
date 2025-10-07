@@ -1,0 +1,265 @@
+\input{preamble.tex}
+
+\def\CC{\mathcal C}
+\def\CS{\mathcal S}
+\def\CT{\mathcal T}
+\def\Sing{\operatorname{Sing}}
+
+\title{Infinity Categories}
+\author{Lecturer: Pramod Achar,\quad Typesetter: Micha{\l} Mruga{\l}a}
+
+\begin{document}
+\maketitle
+
+\section{Simplicial sets}
+
+\begin{definition}
+	The \defn{simplex category} $\bb{\Delta}$ is the category of
+	\begin{itemize}
+		\item finite non-empty totally ordered sets
+		\item order-preserving maps.
+	\end{itemize}
+\end{definition}
+\begin{notation}
+	$[n]=\{0<1<2<\dots<n\} $ for $n\in \Z_{\ge 0}$.
+\end{notation}
+Every object in $\bb{\Delta}$ is (uniquely) isomorphic to some $[n]$.
+\begin{definition}
+	A \defn{simplicial set} is a functor
+	\[
+		\CS:\bb{\Delta}\op \to \Set
+	\] 
+\end{definition}
+\begin{notation}
+	$\CS_n \defeq \CS([n])$, call this the \defn{set of $n$-simplices} of $\CS$. 0-simplices are called \defn{vertices}, 1-simplices are called \defn{edges}.
+\end{notation}
+\begin{example}
+	Let $C$ be a set. Let $\ul{C}:\bb{\Delta}\op\to \Set$ be the constant functor:
+	\begin{gather*}
+		\ul{C}_n = C\quad \forall n, \\
+		\ul{C}(\alpha) = \id \quad \forall \alpha:[m]\to [n] \text{ in }\bb{\Delta}.
+	\end{gather*}
+	This is called a \defn{discrete simplicial set}.
+\end{example}
+\begin{definition}
+	Let $\CS$ be a simplicial set. Given $\alpha:[n]\to [n-1]$ we get $\CS(\alpha):\CS_{n-1}\to \CS_n$. The $n$-simplices in the eimage are called \defn{degenerate} simplices, i.e. $\sigma$ is degenerate if there is an $\alpha$ such that $\sigma\in \img(\CS(\alpha))$.
+\end{definition}
+\begin{lemma}
+	A simplicial set is discrete if and only if for all $n\ge 1$ all $n$-simplices are degenerate.
+\end{lemma}
+\begin{exercise}
+	Prove it.
+\end{exercise}
+\begin{example}
+	Let $(P,\ge )$ be a poset. Define a simplicial set $N(P,\le )$ called the \defn{nerve} of $(P,\le )$ by
+	\[
+		N(P,\le )_k = \{\text{chains }p_0\le p_1\le \dots\le p_k: p_i\in P\} 
+	\]
+	where a chain is a totally ordered subset.
+\end{example}
+\begin{exercise}
+	Finish the definition. Which simplices are degenerate?
+\end{exercise}
+\begin{example}[``Standard $n$-simplex'']
+	The \defn{standard $n$-simplex} is
+	\[
+		\Delta^{n} \defeq N([n]).
+	\] 
+	(Pictures)
+\end{example}
+\begin{note}
+	For $j\in [n]$, we get a subsimplicial set
+	\[
+		N([n]\setminus \{j\} ) \subset \Delta^{n}
+	\] 
+	isomorphic to $\Delta^{n-1}$ called the $j\th$ \defn{face} of $\Delta^{n}$. (Picture)
+\end{note}
+\begin{example}[Horns]
+	Let $n\ge 0$ and $0\le j\le n$, define the \defn{horn}
+	\[
+		\Lambda^{n}_j \defeq \begin{array}{c}
+			\text{subsimplicial set of }\Delta^{n} = N([n]) \\
+			\text{consisting of chains }p_0\le p_1\le \dots\le p_k \\
+			\text{such that } \{p_0,\dots,p_k\} \not\supset [n] \setminus \{j\} . 
+		\end{array}
+		(Pictures)
+	\] 
+\end{example}
+\begin{example}[$(n-1)$-sphere $\partial\Delta^{n}$]
+	We define the \defn{$(n-1)$-sphere}
+	\[
+		\partial \Delta^{n} \defeq \begin{array}{c}
+			\text{subsimplicial set of }\Delta^{n} \\
+			\text{chains }p_0\le \dots \le p_k\text{ such that }\{p_0\le \dots\le p_k\} \neq [n]
+		\end{array}
+	\] 
+\end{example}
+\begin{example}[Products]
+	Let $\CS,\CT$ be simplicial sets. We define their \defn{product} $\CS\times \CT$ as
+	\[
+		(\CS\times \CT)_k = \CS_k \times \CT_k.
+	\] 
+	(Picture)
+\end{example}
+\begin{example}
+	Let $\C$ be an ordinary category. We define its \defn{nerve} $N(\C)$ as
+	\[
+		N(\C)_k \defeq \left\{ \begin{array}{c}
+			\text{composable sequences of morphisms} \\
+			X_0 \xrightarrow{f_1} X_1\xrightarrow{f_2}X_2\to \dots\xrightarrow{f_k} X_k
+		\end{array}\right\} . 
+	\] 
+\end{example}
+\begin{example}
+	Let $X$ be a topological space. The \defn{singular simplicial set} of $X$ is defined as
+	\[
+	\Sing(X)_k = \{\text{continuous maps }|\Delta^{k}|\to X\} ,
+	\] 
+	where $|\Delta^{k}|$ is the standard $k$-simplex
+	\[
+		|\Delta^{k}| = \left\{ (x_0,\dots,x_k)\in \bb{R}^{k+1} \middle| x_i\ge 0, \sum x_i=1 \right\} .
+	\] 
+\end{example}
+\begin{exercise}
+	What does this do to the morphisms in $\bb{\Delta}$?
+\end{exercise}
+\begin{definition}
+	A \defn{Kan complex} is a simplicial set $X$ such that for every diagram
+	\[
+	\begin{tikzcd}
+		\Lambda^{n}_j \ar[r,"\text{any map}"] \ar[d,hook] & X \\
+		\Delta^{n} \ar[ur,dashed]
+	\end{tikzcd}
+	\] 
+	we can fill the dashed arrow. This is called an \defn{extension problem}. If the arrow exists we say that the extension problem \defn{admits a solution}.
+\end{definition}
+Daniel Kan discovered Kan complexes in 1958. The \emph{key fact} is that $\Sing(X)$ \emph{is} a Kan complex. The theme from 1958 to today is that Kan complexes are a ``combinatorial model'' for algebraic topology which allows us to do homotopy theory.
+
+\begin{definition}
+	Let $X$ be a Kan complex and $\CS$ be any simplicial set. Two maps $f,g:\CS\to X$ are said to be \defn{homotopic} if there exists a map $H:\CS\times \Delta^{1}\to X$ such that
+	\[
+	H|_{\CS\times \{0\} } = f,\quad H|_{\CS\times \{1\} } = g.
+	\] 
+\end{definition}
+\begin{lemma}
+	This is an equivalence relation.
+\end{lemma}
+\begin{proof}
+	Omitted, tricky for an exercise. This requires $X$ to be a Kan complex.
+\end{proof}
+\begin{definition}
+	Let $X$ be a Kan complex and $x_0$ be a vertex of $X$. Let 
+	\[
+	\text{Loops}_{x_0} = \{\text{maps }\gamma:\Delta^{n}\to X\text{ such that }\gamma|_{\partial\Delta^{n}}\text{ is the constant map to }x_0\}. 
+	\] 
+	We say $\gamma,\gamma'\in \text{Loops}_{x_0}$ are \defn{relatively homotopic} (\defn{rel. homotopic}) if there exists $H:\Delta^{n}\times \Delta^{1}\to X$ such that
+	\[
+	H|_{\Delta^{n}\times \{0\} } = \gamma,\quad H|_{\Delta^{n}\times \{1\} } = \gamma',\quad H|_{\partial \Delta^{n}\times \Delta^{1}} = \text{const. map to }x_0.
+	\] 
+	Define
+	\[
+		\pi_n(X,x_0) \defeq \frac{\text{Loops}_{x_0}}{\text{rel. homotopy}}.
+	\] 
+\end{definition}
+\begin{fact}
+	For $n\ge 1$, $\pi_n(X,x_0)$ is a group. For $n\ge 2$, $\pi_n(X,x_0)$ is abelian.
+\end{fact}
+\begin{definition}
+	An \defn{$\infty$-category} (or \defn{quasi-category}) is a simplicial set $\CC$ such that any extension problem
+	\[
+	\begin{tikzcd}
+		\Lambda_{j}^{n} \ar[r] \ar[d,hook] & \CC \\
+		\Delta^{n} \ar[ur, dashed]
+	\end{tikzcd}
+	\] 
+	with $0<j<n$ (\defn{inner horns}) admits a solution. (Picture) An $\infty$-category is also called a \defn{weak Kan complex}.
+\end{definition}
+\begin{lemma}
+	Let $\C$ be an ordinary category, then $N(\C)$ is an $\infty$-category.
+\end{lemma}
+\emph{Digression:} Let $I^{n}$ be the simplicial set consisting of $n$ consecutive 1-simplices (\defn{$n$-spine}) (Picture). A naive alternative definition is: $\CC$ is an infinity category if every
+\[
+\begin{tikzcd}
+	I^{n} \ar[r] \ar[d,hook] & \CC \\
+	\Delta^{n} \ar[ur]
+\end{tikzcd}
+\] 
+has a solution. This is WRONG (but its wrongness is subtle), even though $N(\text{ord. cat.})$ satisfy this. There is a book by Markus Land ``Introduction to $\infty$-categories'' which explores this. The definition of $\infty$-categories was introduced by Boardman-Vogt in 1972. Joyal started generalizing results from ordinary category theory to $\infty$-categories in 2006. Lurie is largely responsible for how well this notion is developed in modern literature.
+
+\begin{remark}
+	Having a unique solution to the lifting problem characterizes nerves of ordinary categories.
+\end{remark}
+\begin{definition}
+	Let $\CC$ be an $\infty$-category. An \defn{object} is a vertex. A \defn{morphism} is an edge. An \defn{identity morphism} is a degenerate edge. Say that $h$ is \emph{a} \defn{composition} of $g$ and $f$ if there exists a 2-simplex such that (Picture).
+\end{definition}
+\begin{remark}
+	Compositions are NOT unique in $\infty$-categories.
+\end{remark}
+\begin{example}[$\infty$-categories] \leavevmode
+	\begin{enumerate}[1)]
+		\item Topological spaces $\cat{Top}$.
+			\begin{itemize}
+				\item Objects are topological spaces.
+				\item Morphisms are continuous maps.
+				\item A 2-simplex is a (not necessarily commutative) diagram
+					\[
+					\begin{tikzcd}
+						& X_1 \ar[dr,"g"] \\
+						X_0 \ar[ur,"f"] \ar[rr,"h"] & & X_2
+					\end{tikzcd}
+					\] 
+					\emph{and} a homotopy $H:X_0\times [0,1]\to X_2$ from $gf$ to $h$.
+				\item A 3-simplex is a diagram
+					\[
+					\begin{tikzcd}
+						& X_0 \ar[dl] \ar[dr] \ar[dd] \\
+						X_1 \ar[rr] \ar[dr] & & X_3 \\
+								    & X_2 \ar[ur]
+					\end{tikzcd}
+					\]
+					with continuous maps $f_{ij}:X_i\to X_j$ for $i<j$, homotopies $T_{ijk}X_i\times [0,1]\to X_k$ from $f_{jk}\circ f_{ij}$ to $f_{ik}$, and $H:X_0\times [0,1]^2\to X_3$ (\defn{higher homotopy}) such that $H|_{\text{bdry}}$ is
+					\[
+					\begin{tikzcd}
+						(0,0) \ar[r,"T_{123}f_{01}"] \ar[d,"f_{23}T_{012}"'] & (0,1) \ar[d,"T_{013}"] \\
+						(1,0) \ar[r,"T_{023}"'] & (1,0)
+					\end{tikzcd}
+					\] 
+			\end{itemize}
+		\item The $\infty$-category of ordinary categories $\cat{Cat}_1$.
+			\begin{itemize}
+				\item Objects are ordinary categories.
+				\item Morphisms are functors. 
+				\item A 2-simplex is a (not necessarily commutative) diagram
+					\[
+					\begin{tikzcd}
+						& X_1 \ar[dr,"g"] \\
+						X_0 \ar[ur,"f"] \ar[rr,"h"] & & X_2
+					\end{tikzcd}
+					\] 
+					\emph{and} a natural isomorphism $T:g\circ f \simto h$.
+				\item A 3-simplex is a diagram
+					\[
+					\begin{tikzcd}
+						& X_0 \ar[dl] \ar[dr] \ar[dd] \\
+						X_1 \ar[rr] \ar[dr] & & X_3 \\
+								    & X_2 \ar[ur]
+					\end{tikzcd}
+					\]
+					where $f_{ij}$ are functors and $T_{ijk}$ are natural isomorphism such that
+					\[
+					\begin{tikzcd}
+						\bullet \ar[r,"T_{123}f_{01}"] \ar[d,"f_{23}T_{012}"'] & \bullet \ar[d,"T_{013}"] \\
+						\bullet \ar[r,"T_{023}"'] & \bullet
+					\end{tikzcd}
+					\] 
+					commutes
+			\end{itemize}
+	\end{enumerate}
+\end{example}
+A source of $\infty$-categories are
+\begin{itemize}
+	\item ordinary categories with an equivalence relation on morphisms,
+	\item ordinary categories with inverting some morphisms.
+\end{itemize}
+
+\end{document}
