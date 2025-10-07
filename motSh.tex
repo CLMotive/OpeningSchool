@@ -3,6 +3,20 @@
 \def\Cone{\operatorname{Cone}}
 \def\Ch{\cat{Ch}}
 \def\ft{^{\text{(f.t)}}}
+\def\Sm{\cat{Sm}}
+\DeclareMathOperator{\hocolim}{hocolim}
+\def\Sing{\operatorname{Sing}}
+\def\F{\bb{F}}
+\def\Ga{\mathbb{G}_a}
+\def\Fr{\operatorname{Fr}}
+\def\PSp{\operatorname{PSp}}
+\def\Sp{\operatorname{Sp}}
+\def\Ev{\operatorname{Ev}}
+\def\Sus{\operatorname{Sus}}
+\def\Et{\cat{Et}}
+\def\Ind{\operatorname{Ind}}
+\def\rank{\operatorname{rank}}
+\def\Bl{\operatorname{Bl}}
 
 \title{Motivic Sheaves}
 \author{Lecturer: Simon Pepin Lehalleur,\quad Typesetter: Micha{\l} Mruga{\l}a}
@@ -18,6 +32,8 @@
 \end{enumerate}
 \section{Motivation from GRT and cohomology}
 \subsection{Cohomology and sheaves for representation theory} \leavevmode
+
+\marginpar{Lecture 1}
 
 \emph{Question:} How do you construct interesting representations?
 
@@ -232,7 +248,7 @@ which satisfies sproperties:
 \begin{enumerate}[(a)]
 	\setcounter{enumi}{1}
 	\item ($\Aff^{1}$-homotopy invariance) $C_*(X\times \Aff^{1})\simto C_*(X)$ ($(\Aff^{1})\an=\bb{C}$ is contractible).
-	\item (Mayer-Vietoris sequence) Let $X=U \cup V$ be a Zariski cover, then
+	\item[(c')] (Mayer-Vietoris sequence) Let $X=U \cup V$ be a Zariski cover, then
 		\[
 			C_*(U\cap V) \to C_*(U) \oplus C_*(V) \to C_*(X) \xrightarrow{\partial} C_*(U \cap  V)[1]
 		.\] 
@@ -266,13 +282,308 @@ There is an associated sheaf theory:
 	\item Start with
 		\[
 		\begin{cases}
-			D(\PSh(\cat{Sm}_S, \Z)) = D_{\PSh}(S) \\
-			\Z[-]: \cat{Sm}_S \to D_{\PSh}(S)
+			D(\PSh(\Sm_S, \Z)) = D_{\PSh}(S) \\
+			\Z[-]: \Sm_S \to D_{\PSh}(S)
 		\end{cases}
 		.\] 
-	\item Impose $\Aff^{1}$-invariance, \'etale descent, and $\P^{1}$-stability. This will give us $\DAet(S,\Z)$ and $M_S(-):\cat{Sm}_S\to \DAet(S,\Z)$.
+	\item Impose $\Aff^{1}$-invariance, \'etale descent, and $\P^{1}$-stability. This will give us $\DAet(S,\Z)$ and $M_S(-):\Sm_S\to \DAet(S,\Z)$.
 \end{itemize}
 The surprise is that the result satisfies many \emph{other} properties of singular (co)homology and derived categories of sheaves on complex varieties which can largely be packaged into the six-functor formalism. The result is closely related to algebraic cycles/higher Chow groups and algebraic $K$-theory.
+
+\marginpar{Lecture 2}
+(Fill in $H_*$ frmo the recall part)
+
+Let $S$ be a qcqs scheme, $\Lambda$ be a coefficient ring. Define
+\[
+	\begin{cases}
+		D_{\PSh}(S) \defeq D(\PSh(\Sm_S,\Lambda)) \text{a presentable, symmetric monoidal, triangulated category}\\
+		\Lambda[\cdot ]:\Sm_S \to D_{\PSh}(S)
+	\end{cases}
+\] 
+\emph{\'Etale descent:}
+\begin{align*}
+	D_{\text{\'et}}(S) &\defeq D(\Sh_{\text{\'et}}(\Sm_S,\Lambda)) \\
+			   &= D_{\PSh}(S)[W_{\text{\'et}}^{-1}]
+\end{align*}
+where $W_{\text{\'et}}$ are \'etale-local weak equivalences, i.e. $(f:K_\bullet\to L_\bullet)\in W_{\text{\'et}}$ if for all $n$ we have
+\[
+	(?)_{\text{\'et}}\CH_n(K_\bullet) \simto (?)_{\text{\'et}}\CH_n(L_\bullet).
+\] 
+
+\emph{$\Aff^{1}$-invariance}
+Let
+\[
+	I_{\Aff^{1},(\text{\'et})} = \{\dots\to 0\to \Lambda_{(\text{\'et})}[X\times \Aff^{1}]\to \Lambda_{(\text{\'et})}[X]\to 0\to \dots | X\in \Sm_S\} .
+\] 
+Define
+\[
+	D_{\Aff^{1}}(S) \defeq D_{\PSh}(S) / \gen{I_{\Aff^{1}}} = D_{\PSh}(S)[W_{\Aff^{1}}^{-1}].
+\] 
+We have
+\[
+L_{\Aff^{1}}: D_{\PSh}(S) \to D_{\PSh}(S)^{\Aff^{1}-\text{loc}} \injto D_{\PSh}(S).?
+\] 
+with the middle term isomorphic to $D_{\Aff^{1}}(S)$.
+
+\begin{definition}
+	Define
+	\[
+		\bb{\Delta}^{n}_{\text{alg},S} \defeq \Spec_S\left( \OO_S[X_0,\dots,X_n] / \left( \sum x_i-1 \right)  \right) \simeq \Aff_S^{n}
+	\] 
+	then $\bb{\Delta}_{\text{alg},S}^{\bullet}$ is a cosimplicial scheme over $S$.
+\end{definition}
+\begin{definition}[Suslin-Voevodsky]
+	Define
+	\[
+		\Sing^{\Aff^{1}}(K_\bullet) = \hocolim_{\bb{\Delta}\op} K_\bullet(\bb{\Delta}_{\text{alg},S}^{\bullet}\times_S X)
+	\] 
+\end{definition}
+\begin{example}
+	Let $F\in \PSh$ then
+	\[
+		\Sing^{\Aff^{1}}(F)(U) = \left[ \dots \to  F(\bb{\Delta}^2\times U)\to F(\Aff^{(?)}\times U) \xrightarrow{i_0^{*}-i_1^{*}}  F(U) \to 0 \right] .
+	\] 	
+\end{example}
+\begin{proposition}
+	$L_{\Aff^{1}}\simeq \Sing^{\Aff^{1}}$.
+\end{proposition}
+\begin{proof}
+	The idea is to use
+	\begin{align*}
+		m: \Aff^{1}\times \Aff^{1} &\longrightarrow \Aff^{1} \\
+		(x,y) &\longmapsto xy
+	\end{align*}
+	to prove
+	\begin{enumerate}[a)]
+		\item $\Sing^{\Aff^{1}}(K_\bullet)$ is $\Aff^{1}$-local.
+		\item $\Sing^{\Aff^{1}}(K_\bullet)\to K_\bullet$ is $\Aff^{1}$-weak equivalence.
+	\end{enumerate}
+\end{proof}
+\begin{definition}
+	The category of \defn{effective \'etale motivic sheaves} on $S$ is
+	\[
+		\cat{DA}^{\text{\'et},\text{eff}}(S,\Lambda) \defeq D_{\text{\'et}}(S) / \gen{I_{\Aff^{1},\text{\'et}}}.
+	\] 
+	Write $L_{\text{mot}}^{\text{eff}}$ for the associated localization functor.
+\end{definition}
+\begin{lemma}
+	We have
+	\[
+		L_{\text{mot}}^{\text{eff}} = \underbrace{\dots \Sing^{\Aff^{1}}L_{\text{\'et}}\Sing^{\Aff^{1}}}_{\text{transfinie composition\dots}}
+	\] 
+\end{lemma}
+\begin{definition}
+	Let $X\in \Sm_S$. Define
+	\[
+		M_S^{\text{\'et},\text{eff}}(X) \defeq L_{\text{mot}}^{\text{eff}}\Lambda_{\text{\'et}}[X]\in \cat{DA}^{\text{eff},\text{\'et}}(S,\Lambda)
+	\] 
+	(effecive \'etale (? homological) motive/motivic sheaf of ?).
+\end{definition}
+We have
+\[
+M_S^{\text{\'et},\text{eff}}(X\times_S Y) \isoto M_S^{\text{\'et},\text{eff}}(X) \otimes M_S^{\text{\'et},\text{eff}}(Y).
+\] 
+\begin{proposition}[Artin-Shreier ${+\Lambda\left[ \frac{1}{p} \right] }$]
+	Let $S$ be a $\F_p$-scheme, then
+	\[
+		\cat{DA}^{\text{\'et},\text{eff}}(S,\Lambda) \simto \cat{DA}^{\text{\'et},\text{eff}}\left( S,\Lambda\left[ \tfrac{1}{p} \right]  \right) .
+	\] 
+\end{proposition}
+\begin{proof}
+	We have the short-exact sequence
+	\[
+	\begin{tikzcd}
+		0 \ar[r] & \Lambda / p\Lambda \ar[r] & \Ga \otimes \Lambda \ar[r,"\Fr-\id"] & \Ga \ar[r] & 0
+	\end{tikzcd}
+	\] 
+	and hence an exact sequence
+	\[
+	\begin{tikzcd}
+		\Lambda_{\text{\'et}}[\Ga] \otimes(\Ga\otimes \Lambda) \ar[r,"a_{\Ga}\otimes \id"] & \Ga\otimes \Ga\otimes \Lambda \ar[r,"m"] & \Ga\otimes \Lambda.
+	\end{tikzcd}
+	\] 
+	(Some remark??) Thus
+	\[
+	L_{\Aff^{1}}(\Ga\otimes\Lambda) \isoto \Lambda(0)
+	\] 
+	and so
+	\[
+	L_{\text{mot}}^{\text{eff}}(\Gamma /p\Gamma) = 0.
+	\]
+\end{proof}
+
+\emph{$\P^{1}$-stabilization:} Let $x\in X(S)$, we have
+\[
+M_S^{\text{eff}}(X) = \Lambda_S(0) \oplus M_{S}^{\text{eff}}(X,x).
+\] 
+\begin{definition}
+	We define
+	\[
+		T \defeq M_S^{\text{eff}}(\P^{1},1)[-2]
+	\] 
+	which is equal to $\Lambda(?).$
+\end{definition}
+\begin{exercise}
+	Any $x\in \P^{1}_S(S)$ gives the same decomposition.
+\end{exercise}
+We have a problem: $T$ is not $\oplus$-invertible.
+
+\begin{definition}
+	The category of \'etale motivic sheaves over $S$ is
+	\[
+		\DAet(S,\Lambda) \defeq \cat{DA}^{\text{\'et},\text{eff}}(S,\Lambda)[T^{\otimes -1}].
+	\] 
+\end{definition}
+This is not a proper definition since we have not explained the construction. It's not clear what this means!
+
+\emph{Spectra:}
+\begin{definition}
+	Let $\C$ be a closed, symmetric monoidal 1-category and $T$ be an object of $\C$. A \defn{$T$-prespectrum} is
+	\[
+	A = \left\{ (A_n,\sigma_n)_{n\in \N} | A_n\in \C, \sigma_n:T\otimes A_n\to A_{n+1} \right\} .
+	\] 
+	$A$ is a \defn{$T$-spectrum} if for all $n\in N$ 
+	\[
+	A_n \simto \iHom(T,A_{n+1}).
+	\] 
+	We write $\PSp_T(\C)$ and $\Sp_T(\C)$ for the $T$-prespectrum and $T$-spectrum respectively.
+\end{definition}
+The evaluation map
+\[
+\Ev_n(A) = A_n
+\] 
+has a left adjoint. We define
+\[
+\Sus^{n}(A)_m = \begin{cases}
+	\emptyset & \text{if }m<n \\
+	T^{\otimes (m-n)}\otimes A & \text{if }m>n
+\end{cases}
+\] 
+and $\Sigma_T^{\infty}\defeq \Sus^{0}$ is the $\infty$-suspension functor.
+
+\begin{proposition}
+	Assume $\C$ is presentably, symmetrical monoidal. Then $\Sp_T(\C)\subset \PSp_T(\C)$ is a reflexive subcategory. $W_{\text{st}}$ is generated by
+	\[
+	\left\{ \Sus^{n+1}(T\otimes A) \to \Sus^{n}(A):n\in \N,A\in \C \right\} .
+	\] 
+\end{proposition}
+\begin{definition}
+	We define
+	\[
+		\DAet(S,\Lambda) \defeq \Sp_T\cat{DA}^{\text{eff},\text{\'et}}(S,\Lambda).
+	\] 	
+\end{definition}
+(This definition is correct ``with $\infty$-categories''.)
+We have
+\begin{align*}
+	M_S: \Sm_S &\longrightarrow \DAet(S,\Lambda) \\
+	X &\longmapsto L_{(\Aff^{1},\text{\'et},?}\Sigma_T^{\infty}M_S^{\text{\'et},\text{eff}}(X)
+.\end{align*}
+\begin{remark}
+	$M\in \DAet(S,\Lambda)$ is isomotphic to a stable $(\Aff^{1},\text{\'et})$-local (??)
+	\[
+		K_n\in \Ch(\Sh_{\text{\'et}}(\Sm_S,\Lambda)) + \sigma_n = \Lambda_{\text{\'et}}[\P^{1},1]\otimes K_n\to K_{n+1}
+	\] 
+	such that for all $X\in \Sm_S,i \in \Z$
+	\begin{itemize}
+		\item $\CH_{\text{\'et}}^{i}(X,K_n)\simto \CH_{\text{\'et}}^{i}(X\times_S\Aff^{1},K_n)$ 
+		\item $\CH_{\text{\'et}}^{i}(X,K_n) \simto \CH_{\text{\'et}}^{i+2}(X\times_S(\P^{1},1),K_{n+1})$.
+	\end{itemize}
+\end{remark}
+
+\subsection{Constructible motivic sheaves}
+\begin{definition}
+	We define \defn{constructible motivic sheaves}
+	\begin{align*}
+		\DAet_{\text{ct}} &= \left<M_S(X)(-n)|X\in \Sm_S,n\in \N \right>^{\text{d.f.}} \\
+				  &\subset \DAet(S,\Lambda).
+	\end{align*}
+	and \defn{locally constructible motivic sheaves}
+	\[
+		\DAet_{\text{lct}}(S,\Lambda) \defeq \{M|\exists e:U\surjto S, e^{*}M\in \cat{DA}_{\text{ct}}\} .
+	\] 
+\end{definition}
+There is a Betti realization for $S$ finite type over $\bb{C}$ 
+\[
+R_B: \DAet(S,\Lambda) \to D(S\an,\Lambda)
+\] 
+by the existence of relative homology and the universal property. If $X\in \Sm_S$ 
+\[
+R_B(M_S(X)) \isoto \CH_*^{\text{sing}}(X /S)
+\] 
+and
+\[
+R_B(\DAet_{\text{lct}}(S,\Lambda) \subset D^{b}_{\text{ct}}(S\an,\Lambda).
+\] 
+
+Another deep property is the \emph{rigidity theorem}. Define
+\[
+D_{\text{\'et}}(S,\Lambda) = D(\Sh_{\text{\'et}}(S,\Lambda))
+\] 
+and write
+\[
+\iota : (\Et_S, \text{\'et})\injto (\Sm_S,\text{\'et})
+\] 
+for the inclusion, then we get
+\[
+\iota_S^{*}:D_{\text{\'et}}(S,\Lambda) \to \DAet(S,\Lambda).
+\] 
+\begin{theorem}[Ayoub]
+	Let $S$ be an excellent, Noetherian, finite dimensional, $\Lambda$-finite, with any prime invertible in $\Lambda$ or $\OO_S$. Then $\iota_S^{*}$ is an equivalence.
+\end{theorem}
+
+This procedure is very flexible and admits many \emph{variants}.
+\begin{itemize}
+	\item We can change the input. Instead of complexes we can work with presheaves of simplicial sets or $\infty$-groupoids.
+	\item We can change the topology. Instead of \'etale use Nisnevich or use presheaves with transfers.
+	\item Change the geometric context. For example, to rigid analytic motivic sheaves.
+\end{itemize}
+
+\begin{definition}
+	The \defn{stable motivic homotopy category} over $S$ is
+	\[
+		\SH(S) \defeq \PSp_T(\PSh(\Sm_S,\cat{sSet}))[W^{-1}_{(\Aff^{1},\text{Nis},\P^{1})}].
+	\] 
+\end{definition}
+Recall that the Nisnevich topology is between the Zariski and \'etale topologies. $\DAet(S)$ is the motivic version of $D(S\an,\Z)$ and $\SH(S)$ is the motivic version of sheaves of $S^{?}$-spectra on $S\an$. There is also $\cat{DM}(S,\Lambda)$ which are the Nisnevich-local motivic sheaves. Many important invariants of varieties only satisfy Nisnevich descent, but not \'etale descent; for example, $K$-theory or higher chow groups.
+
+\subsection{Motives over a field}
+Let $S=\Spec(k)$ and $\Lambda=\Q$. Define
+\[
+	\cat{DM}(k,\Q) \defeq \DAet(k,\Q).
+\] 
+The analogies you should have in mind are
+\begin{itemize}
+	\item $D(\Ind \cat{MHS}_{\Q})$,
+	\item $D(\Ind \cat{Rep}_{\Q_l}^{\text{f.d.}}G_k)$.
+\end{itemize}
+Even though the construction was very formal there are some surprises. Define
+\[
+	\Q\left<i \right> \defeq \Q(i)[2i]
+\] 
+be pure Tate twists and $M\left<i \right>\defeq M\otimes \Q\left<i \right>$.
+\begin{itemize}
+	\item \emph{Projective bundle formula:} Let $E\to X$ be a vector bundle, then
+		\begin{gather*}
+			M(\P(E)) \isoto \bigoplus_{i=0}^{\rank E-1}M(X)\left<i \right> \\
+			M(\P^{n}_l) = \Lambda(0)\oplus \Lambda\left<1 \right>\oplus \dots\oplus \Lambda\left<n \right>.
+		\end{gather*}
+	\item \emph{Gysin triangle:} Let $(c:Z\not\injto X)\in \Sm_k$, then we have
+		\[
+		\begin{tikzcd}
+			M(X\setminus Z) \ar[r] & M(X) \ar[r] & M(Z)\left<c \right> \ar[r,"+"] & { }
+		\end{tikzcd}
+		\] 
+	\item \emph{Smooth blow-up formula:}
+		\[
+		M(\Bl_Z(X)) \isoto M(X)\oplus \bigoplus_{i=1}^{c-1}M(Z)\left<i \right>.
+		\] 
+	\item \emph{Poincar\'e duality 1}: Let $X$ be smooth and projective over $k$, then $M(X)$ is \emph{dualizable} with
+		\[
+		M(X)^{\vee}\isoto M(X)\left<-\dim(X) \right>.
+		\] 
+\end{itemize}
+We have $\cat{DM}(k,\Q)\isoto \Ind\cat{DM}_{\text{ct}}$.
 
 \end{document}
 

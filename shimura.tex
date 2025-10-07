@@ -1,6 +1,11 @@
 \input{preamble.tex}
 \def\Mat{\operatorname{Mat}}
 \def\Stab{\operatorname{Stab}}
+\def\Lie{\operatorname{Lie}}
+\def\kg{\mathfrak{g}}
+\def\A{\mathbb{A}}
+\def\R{\bb{R}}
+\def\GSp{\bb{GSp}}
 
 \title{Introduction to Shimura Varieties and Their Cohomology}
 \author{Lecturer: Olivier Taibi,\quad Typesetter: Micha{\l} Mruga{\l}a}
@@ -52,7 +57,7 @@ is surjective so we get
 	H^{1}(X,\Z) \ar[r,hook] \ar[d,"\isoto"] & H^{1}(X,\OO_X) \ar[d,"\isoto"',"Dolbeaut"] \ar[r] & H^{1}(X,\OO_X) \ar[d,"\isoto"] \ar[r,"\delta"] & \ker (H^2(X,\Z)\to H^2(X,\OO_X)) \ar[d,"\isoto"] \\
 	H^{1}(\Lambda,\Z) \ar[d,equal] & \overline{T} & H^{1}(\Lambda,\OO(X)^{\times}) & \Hom\left( \bigwedge^2\Lambda,\Z \right)  \\
 	\Hom(\Lambda,\Z) \ar[dr,hook] & T \oplus \overline{T} \ar[u,"\pr_2"] \\
-				      & \Hom_{\bb{R}}(V,\bb{C}) \ar[u,"\isoto"]
+				      & \Hom_{\R}(V,\bb{C}) \ar[u,"\isoto"]
 \end{tikzcd}
 \end{equation}
 We have $H^{i}(V,\Z)=0$ for all $i>0$ and $H^{i}(V,\OO_V)=0$ for all $i>0$ so $\Pic(V)=0$. $\overline{T}$ are the antilinear maps $V\to \bb{C}$ and $T=\Hom_{\bb{C}}(V,\bb{C})$. Observe that
@@ -132,9 +137,9 @@ We prefer left actions: let $^{t}\gamma$ act so that $\gamma\tau = \tau*^{t}\gam
 \[
 	(\tau^{t}c + d)^{-1}(\tau^{t}a+^{t}b) = (a\tau + b)(c\tau + d)
 .\] 
-This extends to an action of $\Sp_{2n}(\bb{R})$ on $\H_n^{+}$. This action is transitive and
+This extends to an action of $\Sp_{2n}(\R)$ on $\H_n^{+}$. This action is transitive and
 \begin{align*}
-	\Stab_{\Sp_{2n}(\bb{R})}(iI_n) &\longrightarrow U(n) \\
+	\Stab_{\Sp_{2n}(\R)}(iI_n) &\longrightarrow U(n) \\
 	\begin{pmatrix} a & b \\ -b & a \end{pmatrix}  &\longmapsto a + ib
 \end{align*}
 is an isomorphism (this is a maximal compact subgroup).
@@ -179,12 +184,222 @@ for the set of \defn{cusp forms}.
 
 We want a group theoretic description of the complex structure on $\CA_n(\bb{C})$ and these vector bundles on $\CA_m(\bb{C})$.
 
-We have $Z(U(n))\isoto U(1)$ and its centralizer in $\Sp_{2n}(\bb{R})$ is $U(n)=K(\bb{R})$ where $K\injto \Sp_{2n,\bb{R}}$ is an algebraic subgroup.
+We have $Z(U(n))\isoto U(1)$ and its centralizer in $\Sp_{2n}(\R)$ is $U(n)=K(\R)$ where $K\injto \Sp_{2n,\R}$ is an algebraic subgroup.
 
 Over $\bb{C}$ we have
 \[
 	Z(K_{\bb{C}}) \isoto \GL_{1,\bb{C}} \injto \Sp_{2n,\bb{C}}.
 \] 
-This determines two opposite parabolic subgroups $Q_+=K_{\bb{C}}N_+$, $Q_{-}K_{\bb{C}}N_-$
+This determines two opposite parabolic subgroups $Q_+=K_{\bb{C}}N_+$, $Q_{-}K_{\bb{C}}N_-$.
+
+\subsection{Siegel modular forms as automorphic forms}
+Let $\rho:\GL_n(\bb{C})\to \GL(W)$ be a holomorphic (equivalently algebraic) representation. \defn{Siegel modular forms} are
+\begin{align*}
+	M_\rho(\Gamma_n) &= \left\{ \begin{array}{c} f:\H_n^{+}\to W \\ \text{holomorphic} \end{array} \middle| \begin{array}{c}
+		\forall \gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \Gamma_n,\forall \tau\in \H_n^{+}, f(\gamma \tau) = \rho(c\tau+d)f(\tau)\\
+		\text{and }f\text{ holomorphic at }\infty
+	\end{array} \right\} \\
+			 &\subset H^{0}(\CA_n(\bb{C}),^{\rho}\CE_n).
+\end{align*}
+$^{\rho}\CE_m$ comes from a $\Sp_{2n}(\R)$-equivariant vector bundle on 
+\[
+\begin{tikzcd}
+	& \H_n^{+} \ar[r,hook] & \Sp_{2n}(\bb{C}) /Q_-(\bb{C}) \\
+	\Sp_{2n}(\R) \ar[r] & \Sp_{2n}(\R) /U(n) \ar[u,"\isoto"]
+\end{tikzcd}
+\] 
+Define
+\begin{align*}
+	j: \Sp_{2n}(\R)\times \H_n^{+} &\longrightarrow \GL_n(\bb{C}) \\
+	\begin{pmatrix} a & b \\ c & d \end{pmatrix} , \tau &\longmapsto c\tau + d
+.\end{align*}
+This is a cocycle
+\[
+	j(gg',\tau) = j(g,g'\tau)j(g',\tau)
+\] 
+(so $j(-,i)|_{U(n)}:U(n)\to \GL_n(\bb{C})$ is a morphism). To $f\in M_\rho(\Gamma_n)$ associate
+\begin{align*}
+	\phi_f: \Gamma_n \setminus \Sp_{2n}(\R) &\longrightarrow W \\
+	g &\longmapsto \phi_f(g) = \rho(j(g,i))^{-1}f(gi)
+\end{align*}
+a smooth function. Let $g\in \Sp_2n(\R)$ and $k\in U(n)$, then
+\[
+\phi_f(gk) = \rho(j(k,i))^{-1}f(gi).
+\]
+Assume $W=\bb{C}$ for simplicity, e.g. $^{\rho}\CE_n = \left( \bigwedge^{n}\CE_n \right) ^{\otimes k}$. Then 
+\[
+	\phi_f\in \CA(\Gamma_n\setminus \Sp_{2n}(\R)) \subset C^{\infty}(\Gamma_n\setminus \Sp_{2n}(\R, \bb{C})	
+\]
+(? details). This space has actions by $\kg$ and $U(n)$. By the Cauchy-Riemann equations $f$ is holomorphic if and only if $\phi_f$ is killed by $\Lie N_-\subset \kg=\bb{C}\otimes_{\R}\Lie \Sp_{2n}(\R)$. Note that $\Lie(\Sp_{2n}(\R))$ acts on $C^{\infty}(\Gamma_n\setminus \Sp_{2n}(\R))$ by
+\[
+\left( X\cdot \phi \right) (g) = \left.\frac{d}{dt}\right|_{t=0}\phi(ge^{tX}).
+\] 
+$\phi_f$ lies in some generalized Verma module in $\CA(\Gamma_n\setminus \Sp_{2n}(\R))$.
+
+If $f\in S_\rho(\Gamma_m)$ (vanishes at $\infty$) then
+\[
+	\phi_f\in \CA_{\text{cusp}}(\Gamma_n\setminus\Sp_{2n}(\R)) \subset \CA^2(-) \subset \CA(-)
+\] 
+and $\CA^2(-)$ decomposes inside $L^2(\Gamma_n\setminus\Sp_{2n}(\R))$ with the action of $\Sp_{2n}(\R)$. This means that cusp forms have fast decay at cusps.
+
+As a $(\kg,U(n))$-module,
+\[
+	\CA_{cusp}\subset \CA^2(\Gamma_n\setminus\Sp_{2n}(\R)) \isoto \bigoplus_{\substack{\pi\text{ irr} \\ (\kg,U(n))\text{-mod}}}\pi^{\oplus m(\pi)}.
+\] 
+Siegel cusp forms correpond to special vectors in some of these $\pi$s ($U(n)$-equivariant and killed by $\Lie N$).
+
+\subsection{Level structures}
+Let $X = V /\Lambda$ be a complex torus with a principal polarization $phi:X\simto \wh{X}$. For $M\ge 1$ 
+\[
+	X[M] \defeq \ker\left( X\xrightarrow{\times M}X \right) = \frac{1}{M}\Lambda /\Lambda \isoto (\Z /M)^{2n}.
+\] 
+The map $[M]_X:X\to X$ is an isogeny (i.e. surjective with finite kernel). For all isogenenies $f:X\to Y$ inducing $\wh{f}=f^{*}:\wh{Y}\to \wh{X}$, also an isogeny. We get the Weil pairing
+\begin{align*}
+	\ker f\times \ker\wh{f} &\longrightarrow \bb{C}^{\times} \\
+	(x,[L]) &\longmapsto \left<x,[L] \right>
+.\end{align*}
+Choose $t:f^{*}L\simto \OO_X$ we have
+\[
+\begin{tikzcd}
+	T_x^{*}f^{*}L \ar[r,"{T_x^{*}(t)}"] \ar[d,"\isoto"] & T_x^{*}\OO_X \ar[d,"\isoto"] \\
+	f^{*}L \ar[r,"{t\times \left<x,[L] \right>}"] & \OO_X.
+\end{tikzcd}
+\] 
+$f=[M]_X$ is a special case, then we get $X[M]\times \wh{X}[M]\to \mu_M(\bb{C})$ and usaing a polarization we get
+\[
+	\left<\cdot ,\cdot  \right>_\phi:X[M]\times X[M]\to \mu_M(\bb{C}).
+\] 
+\begin{proposition}
+	$\left<\cdot ,\cdot  \right>_\phi$ is alternating and non-degenerate.
+\end{proposition}
+\begin{proof}
+	Recall that $\phi$ is $\phi_L$ for some $L=L(H,\alpha)$, let $E=\Im H:\Lambda\times \Lambda\to \Z$. Then
+	\[
+	\begin{tikzcd}
+		X[M] \times X[M] \ar[r,"{\left<\cdot ,\cdot  \right>_\phi}"] \ar[d,"\isoto"] & \mu_M(\bb{C}) \\
+		\left( \frac{1}{M}\Lambda /\Lambda \right) ^2 \ar[r,"{ME(\cdot ,\cdot )}"] & \frac{1}{M}\Z /\Z \ar[u,"{\exp(2\pi i -)}"']
+	\end{tikzcd}
+	\] 
+\end{proof}
+\begin{definition}
+	Temporarily we define a level structure on $(X,\phi)$ to be
+	\[
+		(\Z /M)^{2n} \xrightarrow[\eta]{\sim} X[M]
+	\] 
+	such that $\eta^{*}\left<\cdot ,\cdot  \right>_\phi$ is the standard pairing for metric $J_n$.
+\end{definition}
+\begin{fact}
+	By strong approximation $\Sp_{2n}(\Z)\surjto \Sp_{2n}(\Z /M\Z)$. Define $\Gamma_m(M)$ to be the kernel.
+\end{fact}
+\begin{corollary}
+	There is a bijection
+	\[
+		\left\{ (X,\phi,\eta) \middle| \text{PPAV with a level }M\text{ structure} \right\} / \sim \isoto \Gamma_n(M) \setminus \H_n^{+} = \CA_n'(M)(\bb{C}).
+	\] 
+\end{corollary}
+\begin{exercise}
+	For $M\ge 3$, for all $\tau\in \H_n^{+}$ show that $\Stab_{\Gamma_n(M)}(\tau) = \{1\}$. (?)
+\end{exercise}
+We get a tower $(\CA'_n(M)(\bb{C}))_{M\ge 1}$ ordered by divisibility. For $M \mid |M'$ we get $\CA_n'(M')(\bb{C})\to \CA_n'(M)(\bb{C})$.
+
+Given $(X,\phi)$ 
+\[
+\left\{ \text{level }M\text{ structures on }(X,\phi) \right\} 
+\] 
+is a right $\Sp_{2n}(\Z /M\Z)$-torsor which gives us an action of
+\[
+	\Sp_{2n}(\wh{\Z}) = \varprojlim_M \Sp_{2n}(\Z /M)
+\] 
+on this tower.
+
+Also
+\[
+	\CA_n'(M)(\bb{C}) \isoto \CA'_n(M')(\bb{C}) /\left( K(M) /K(M') \right) 
+\] 
+where 
+\[
+	K(M) = \ker\left( \Sp_{2n}(\wh{Z}) \to \Sp_{2n}(\Z /M) \right) .
+\] 
+The quotient $K(M) /K(M')$ is a finite group.
+
+\subsection{Hecke operators (adelically)}
+The goal is to define more natural maps between $\CA_n'(M)(\bb{C})$. The basic idea is that given $(X,\phi,\eta)$, we should also consider isogeneus complex tori (i.e. quotients of $X$ by finite subgroups). But there are some problems: this is not strictly compatible with principal polarizations. Let $f:X\to Y$be an isogeny, $\phi$ be a principal polarization for $Y$, then $f^{*}\phi\defeq \wh{f}\circ \phi \circ f$ has degree $(\deg f)^2$, so it is not principal unless $f$ is an isomorphism.
+
+There are two solutions:
+\begin{enumerate}[1)]
+	\item Rescale polarizations.
+	\item Consider quasi-isogenies 
+		\[
+			f\in \Q\otimes\Hom(X,Y) \text{ such that }\exists M\ge 1 \text{ with } Mf\in \Hom(X,Y) \text{ an isogeny}.
+		\]
+\end{enumerate}
+Let's do both.
+
+Recall the ring of adeles $\A = \R\times \A_f$ where
+\[
+	\A_f = \prod_p'(\Q_p,\Z_p) = \left\{ (x_p)_{p\text{ prime}} \middle| \begin{array}{c}
+		x_p\in \Q_p \\
+		\exists \text{ finite }S\text{ such that}\forall p\not\in S,x_p\in \Z_p
+	\end{array}\right\} .
+\] 
+Recall that
+\begin{align*}
+	\text{lattices in }\Q\Lambda &\leftrightarrow \left\{ (\Lambda'_p)_p \middle| \begin{array}{c}
+		\Lambda'_p\subset \Q_p\otimes_\Z\Lambda\text{ is a }\Z_p\text{-lattice} \\
+		\exists \text{ finite }S\text{ such that }\forall p\not\in S, \Lambda'_p = \Z_p\Lambda  
+	\end{array}\right\} \\
+				     &\leftrightarrow \GL(\A_f\otimes\Lambda) /\GL(\wh{Z}\otimes \Lambda).
+\end{align*}
+\begin{proof}
+	Reduce to the case where
+	\[
+	M\Lambda \subset \Lambda' \subset \frac{1}{M}\Lambda
+	\] 
+	and use the chinese remainder theorem.
+\end{proof}
+\begin{proposition}
+	Let $(X,\phi)$ be a principally polarized abelian variety.
+	\begin{enumerate}[(a)]
+		\item Let $L$ be the set of principally polarized abelian varieties $(X',\phi')$ quasi-isogeneous to $(X, /\phi)$, i.e. there exists a quasi-isogeny $f:X'\dashrightarrow X$ such that $f^{*}\phi = c\phi'$, where $c\in \Q_{>0}$.
+		\item Let $R$ be the set of $(\Lambda'_p)_p$ such that 
+			\[
+			\Lambda'_p \subset V_pX \defeq \Q_p \otimes_{\Z_p}T_pX
+			\] 
+			is a $\Z_p$-lattice such that there exists $k_p$ making $p^{k_p}\left<\cdot ,\cdot  \right>|_{\Lambda_p'\times \Lambda_p'}$ take values in $\Z_p(1)\defeq = \varprojlim_k \mu_{p^{k}}(?)$ and is perfect, as well as there is a finite $S$ such that for all $p\not\in S$
+			\[
+				\Lambda_p' = T_pX \defeq \varprojlim_k X[p^{k}].
+			\] 
+	\end{enumerate}
+	Then
+	\[
+	L /\sim \isoto R.
+	\] 
+	This is also isomorphic to the set of $\GSp_{2n}(\wh{\Z})$-orbits of symplectic trivializations
+	\[
+		(\A_f^{2n},\text{standard }\left<\cdot ,\cdot  \right>) \simto \left( \Q\otimes \prod_p T_p X, \left<\cdot ,\cdot  \right>_\phi \right) .
+	\] 
+\end{proposition}
+Here $\GSp_{2n}$ is the $\Z$-group scheme
+\[
+\GSp_{2n}(R) = \left\{ (g,c) | g\in M_{2n}(R),c\in R^{\times }, ^{t}gJ_ng = cJ_n \right\} .
+\] 
+
+\begin{definition}
+	A \defn{level structure} for $(X,\phi)$ is an isomorphism $(\Z /M)^{2n}\simto X[M]$. $\Z /M\simto \mu_M(\bb{C})$ such that the obvious diagram commutes.
+\end{definition}
+We have
+\begin{align*}
+	\CA_n(M)(\bb{C}) &\isoto \left\{ (X,\phi,\eta) \middle| \text{PPAV with level }M\text{ structure} \right\} / \sim \\
+			 &\isoto \left\{ (X',\phi') \middle| K(M)\text{-orbit of trivalization of }\Q\otimes \prod_p T_pX' \right\} / \text{quasi-isogeny} \\
+			 &\isoto \GSp_{2n}(\Q) \setminus \left( \H_n^{\pm}\times \GSp_{2n}(\A_f) /K(M) \right) 
+\end{align*}
+where
+\[
+	\H_n^{\pm} = \H_n^{+} \coprod \H_n^{-}
+\] 
+has an action of $\GSp_{2n}(\R)$ and
+\[
+	K(M) \defeq \ker \left( \GSp_{2n}(\wh{\Z}) \to \GSp_{2n}(\Z /M) \right) .
+\] 
 
 \end{document}

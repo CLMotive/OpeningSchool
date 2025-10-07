@@ -1,8 +1,5 @@
 \input{preamble.tex}
 
-\usepackage{stmaryrd}
-\usepackage[nameinlink]{cleveref}
-
 \def\i{\operatorname{inv}}
 \def\Gm{\mathbb{G}_m}
 \def\Ga{\mathbb{G}_a}
@@ -11,6 +8,12 @@
 \def\Repf{\operatorname{Rep}^{\text{fd}}}
 \def\Res{\operatorname{Res}}
 \def\Ind{\operatorname{Ind}}
+\def\XX{\mathbb{X}}
+\def\mg{\mathfrak g}
+\def\Lie{\operatorname{Lie}}
+\def\S{\mathfrak{S}}
+\def\car{\operatorname{char}}
+\def\ch{\operatorname{ch}}
 
 \title{Representations of Reductive Algebraic Groups}
 \author{Lecturer: Simon Riche,\quad Typesetter: Micha{\l} Mruga{\l}a}
@@ -242,7 +245,7 @@ We denote by $B$ a \defn{Borel subgroup} (a maximal, connected, smooth, solvable
 	\item a Borel subgroup is unique up to conjugation;
 	\item the quotient $G /B$ is a smooth, projective variety.
 \end{itemize}
-\begin{example}
+\begin{example}[Main Example]
 	 For $G=\GL_{n,k}$ one can take
 	 \[
 		 B = \left\{ \begin{pmatrix} * & & 0 \\ & \ddots & \\ * & & *\end{pmatrix}  \right\} .
@@ -253,5 +256,208 @@ We denote by $B$ a \defn{Borel subgroup} (a maximal, connected, smooth, solvable
 	 \]
 	 with $V_i$ a subspace of dimension $i$.
 \end{example}
+Let $T$ be a maximal torus contained in $B$. 
+\begin{example}[Main Example Continued]
+	We take
+	\[
+		T = \left\{ \begin{pmatrix} t_1 & & 0 \\ & \ddots \\ 0 & & t_n \end{pmatrix}  \right\} .
+	\] 
+\end{example}
+Note that
+\[
+T\isoto \Diag(\XX),\quad \XX = \{\text{morphisms }T\to \Gm\} 
+\] 
+we call elements of $\XX$ \defn{weights}. 
+\begin{example}[Main Example Continued]
+	For example, $X\isoto \Z^{n}$ via
+	\[
+		(\lambda_1,\dots,\lambda_n) \leftrightarrow \begin{pmatrix} t_1 & & 0 \\ & \ddots \\ 0 & & t_n \end{pmatrix} \mapsto \prod_{i=1}^{n} t_i^{\lambda_i} .
+	\] 
+\end{example}
+The \defn{roots} $R\subset \XX$ are the non-zero weights appearing in the action of $T$ on $\mg=\Lie(G)$. For example,
+\[
+R = \{\eps_i - \eps_j: 1\le i\neq j \le n\} .
+\] 
+We have $R_+\subset R$ the positive roots: the weights appearing in the action of $T$ on $\mg /\Lie(B)$. We have the simple roots $R_s\subset R_+$: positive roots that cannot be written as a sum of two positive roots.
+\begin{note}
+	$R=R_+ \coprod -R_{+}$. Any element of $R_+$ can be uniquely written as a sum of simple roots.
+\end{note}
+For example,
+\begin{align*}
+	R_+ &= \{\eps_i - \eps_j:1\le i<j<n\} \\
+	R_s &= \{\eps_i - \eps_{i+1}\} .
+\end{align*}
+
+We also set
+\begin{align*}
+	\XX^{\vee} &= \Hom_\Z(\XX,\Z) \\
+		   &= \{\text{morphisms }\Gm\to T\} .
+\end{align*}
+We have the coroots $R^{\vee}\subset \XX^{\vee}$ and a bijection
+\begin{align*}
+	R &\longrightarrow R^{\vee} \\
+	\alpha &\longmapsto \alpha ^{\vee}.
+\end{align*}
+Then $(\XX,R,\XX^{\vee},R^{\vee})$ together with the identification $\XX^{\vee}=\Hom(\XX,\Z)$ and the bijection $R\to R^{\vee}$ is the \defn{root datum} of $G$. It determines $G$ up to isomorphism.
+
+We have the opposite Borel subgroup $B^{+}\subset G$ containing $T$ such that the non-zero weights of $T$ acting on $\Lie(B^{+})$ are $R_+$.
+
+$W=N_G(T) / T$ is the \defn{Weyl group}. This is a contant group scheme, associated with a finite group also denoted $W$. We have a faithful action of $W$ on $\XX$. For $\alpha\in R$ there is an element $s_\alpha\in W$ which acts on $\XX$ via
+\[
+\lambda \mapsto \lambda - \left<\lambda,\alpha ^{\vee} \right>\alpha.
+\] 
+Set
+\[
+S = \{s_\alpha : \alpha\in R_s\} \subset W.
+\] 
+Then $(W,S)$ is a Coxeter system.
+
+In particular, we have the length function
+\begin{align*}
+	\ell: W &\longrightarrow \Z_{\ge 0} \\
+	w &\longmapsto \min \{r\ge 0 | \text{there exist }s_1,\dots,s_r\in S\text{ such that }w=s_1\cdots s_r\} .	
+\end{align*}
+For example, $W=\S_n$ is the symmetric group via permutation matrices. The action on $\XX=\Z^{n}$ is by permuting entries
+\[
+S = \{(i,i+1):1\le i<n\} .
+\] 
+The length function counts inversions of permutations.
+
+\begin{example}
+	Let $G=\SL_2$,
+	\begin{align*}
+		B &= \left\{ \begin{pmatrix} * & 0 \\ * & * \end{pmatrix}  \right\} \subset \SL_{2,k} \\
+		T &= T = \left\{ \begin{pmatrix} t & 0 \\ 0 & t^{-1} \end{pmatrix} \middle| t\in k^{\times } \right\} \isoto \Gm.
+	\end{align*}
+	We have $\XX\isoto \Z$ via
+	\[
+		\lambda \leftrightarrow \left[ \begin{pmatrix} t & 0 \\ 0 & t^{-1} \end{pmatrix} \mapsto t ^{\lambda} \right] .
+	\] 
+	We have $R=\{2,-2\} $, $R_+=\{2\} =R_s$ and $W=\S_2=\Z /2\Z$.
+\end{example}
+
+\subsection{Classification of simple representations}
+We have $B=T\ltimes U$ with $U=R_u(B)$ and $B^{+}=T\ltimes U^{+}$ with $U^{+}=R_u(B^{+})$. In particular, $T\simto B /U$, so any $\lambda\in \XX$ provides a morphism $B\to \Gm$. We have a one-dimensional representation $k_B(\lambda)$. We set
+\[
+\nabla(\lambda) = \Ind_B^{G}(k_B(\lambda)).
+\] 
+It's easy to see that:
+\begin{itemize}
+	\item $\dim(\nabla(\lambda))<\infty$ for all $\lambda\in \XX$ (because $G /B$ is projective).
+	\item The action of $T$ on $\nabla(\lambda)$ determines an $\XX$-grading
+		\[
+		\nabla(\lambda) = \bigoplus_{\mu\in \XX}\nabla(\lambda)_\mu.
+		\] 
+		Here if $\nabla(\lambda)\neq 0$, we have
+		\begin{itemize}
+			\item $\nabla(\lambda)_\lambda = \nabla(\lambda)^{U^{+}}$ and this is one-dimensional,
+			\item if $\nabla(\lambda)_\mu \neq 0$ then $\lambda-\mu\in \Z_{\ge 0}R_s$.
+		\end{itemize}
+		This follows from the open embedding
+		\[
+		U^{+}\times B\injto G
+		\] 
+		induced by multiplication.
+\end{itemize}
+\begin{corollary}
+	We have a bijection 
+	\begin{align*}
+		\left\{ \lambda\in \XX \middle| \nabla(\lambda)\neq 0 \right\} &\simto \left\{ \text{simple objects in }\Rep(G) \right\} /\isoto \\
+		\lambda &\mapsto L(\lambda) = \text{ unique simple subrepresentation in }\nabla(\lambda).
+	\end{align*}
+\end{corollary}
+It's less easy to show:
+\begin{proposition}
+	For $\lambda\in \XX$, we have
+	\[
+	\nabla(\lambda) \neq 0 \quad \iff\quad \forall \alpha\in R_s, \left<\lambda,\alpha ^{\vee} \right> \ge 0.
+	\] 
+\end{proposition}
+\begin{proof}[Idea of the proof]
+	The forward direction is easy using the fact that $W$ permutes
+	\[
+	\left\{ \mu\in \XX \middle| \nabla(\lambda)_\mu \neq 0 \right\} .
+	\] 
+
+	Conversely, one can construct a function
+	\[
+	\bigcup_{\alpha\in R_s} s_\alpha U^{+}B\to k
+	\] 
+	and then use the fact that the LHS has complement of codimension 2 in $G$, cf. Bruhat decomposition.
+\end{proof}
+We set
+\[
+\XX_+ = \left\{ \lambda\in \XX \middle| \forall \alpha\in R_s, \left<\lambda,\alpha ^{\vee} \right> \ge 0 \right\} 
+\] 
+the \defn{dominant weights}.
+\begin{example}
+	\begin{enumerate}[(1)]
+		\item $\nabla(0)=k$ is the trivial representation (because $G /B$ is connected and projective).
+		\item Let $G=\GL_{n,k}$
+			\[
+			\XX_+ = \left\{ (\lambda_1,\dots,\lambda_n) \middle| \lambda_1\ge \lambda_2\ge \dots\ge \lambda_n \right\} .
+			\] 
+			For $r\ge 0$ 
+			\begin{align*}
+				\nabla(r,0,\dots,0) \simeq S^{r}(V)
+			\end{align*}
+			with $V=k^{n}$ the natural representation, and
+			\[
+			\nabla(0,\dots,0,-r) \simeq S^{r}(V^{*})
+			\] 
+			(cf. sections of line bundles on $\P^{n}$).
+
+			For $s \in \left\{ 1,\dots,n \right\} $,
+			\begin{align*}
+				\nabla(\underbrace{1,\dots,1}_{s},0,\dots,0) &= \bigwedge^{s}(V) \\
+									     &= L(\underbrace{1,\dots,1}_s,0,\dots,0).
+			\end{align*}
+			For $r\in \Z$ 
+			\[
+			\nabla(r,\dots,r) = k_{\det ^{r}} = L(r,\dots,r).
+			\]
+		\item Let $G=\SL_2$, then $\XX_+ = \Z_{\ge 0}$. For $r\ge 0$ 
+			\[
+			\nabla(r) = S^{r}(k^2)
+			\] 
+			(cf. sections of line bundles on $G /B=\P^{1}$). If $\car(k)=0$ then $\nabla(r)$ is simple for all $r\ge 0$. If $\car(k)=p>0$ this is not always true:
+			\[
+			\nabla(p) = kx^{p} \oplus kx^{p-1}y \oplus \dots \oplus kxy^{p-1} \oplus ky^{p}
+			\] 
+			with $x,y$ a canonical basis of $k^2$. Then $kx^{p}\oplus ky^{p}$ is a non-trivial $G$-stable subspace. In fact, $L(p) = kx^{p}\oplus ky^{p}$.
+
+			More generally, $\nabla(r)$ is simple if and only if $r\le p-1$.
+		\item For all $\lambda\in \XX_+$, $L(\lambda)^{*}\simeq L(-w_0\lambda)$ where $w_0\in W$ is the longest element.
+	\end{enumerate}
+\end{example}
+
+\subsection{Characters}
+If $V\in \Repf(G)$ then the action of $T$ determines a grading $V=\bigoplus_{\lambda\in \XX}V_\lambda$ with
+\[
+V_\lambda = \left\{ v\in V \middle| \forall t\in T,tv = \lambda(t)v \right\} .
+\] 
+We set
+\[
+	\ch(V) = \sum_{\lambda\in \XX}\dim(V_\lambda)e^{\lambda}\in \Z[\XX].
+\] 
+It's easy to check that:
+\begin{itemize}
+	\item $\ch$ factors through $K^{0}(\Repf(G))\to \Z[\XX]$.
+	\item $\ch(V\otimes V') = \ch(V)\ch(V')$, so the map above is a \emph{ring morphism}.
+	\item $\ch$ takes values in $\Z[\XX]^{W}$.
+\end{itemize}
+\begin{proposition}
+	$\ch$ induces an isomorphism
+	\[
+		K^{0}(\Repf(G)) \simto \Z[\XX]^{W}.
+	\] 
+\end{proposition}
+\begin{proof}[Proof idea]
+	Show that
+	\[
+	\left\{ \ch(L(\lambda)) \middle| \lambda\in \XX_+ \right\} 
+	\] 
+	is a basis of $\Z[\XX]^{W}$.
+\end{proof}
 
 \end{document}
