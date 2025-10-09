@@ -6,6 +6,18 @@
 \def\A{\mathbb{A}}
 \def\R{\bb{R}}
 \def\GSp{\bb{GSp}}
+\def\gl{\mathfrak{gl}}
+\def\sp{\mathfrak{sp}}
+\def\Sch{\cat{Sch}}
+\def\Ab{\cat{Ab}}
+\def\Gal{\operatorname{Gal}}
+\def\tr{\operatorname{tr}}
+\def\Frob{\operatorname{Frob}}
+\def\S{\mathbb{S}}
+\def\Res{\operatorname{Res}}
+\def\kz{\mathfrak{z}}
+\def\Rep{\cat{Rep}}
+\def\Ad{\operatorname{Ad}}
 
 \title{Introduction to Shimura Varieties and Their Cohomology}
 \author{Lecturer: Olivier Taibi,\quad Typesetter: Micha{\l} Mruga{\l}a}
@@ -401,5 +413,181 @@ has an action of $\GSp_{2n}(\R)$ and
 \[
 	K(M) \defeq \ker \left( \GSp_{2n}(\wh{\Z}) \to \GSp_{2n}(\Z /M) \right) .
 \] 
+
+From now on we write $G$ for $\GSp_{2n}$.
+\marginpar{Lecture 3}
+We have a tower $(\CA_m(M)(\bb{C}))_{M\ge 1}$ (a $\GSp_2(\wh{\Z})$-torsor over $\CA_m(\bb{C})$ with a right action of $G(\A_f)$ and
+\[
+	\CA_m(M)(\bb{C}) \isoto G(\Q) \setminus \left( \H_n^{\pm} \times G(\A_f) /K(M) \right) .
+\] 
+For $g\in G(\A_f)$ and $M,M'$ satisfying $K(M')\subset gK(M)g^{-1}$ define
+\begin{align*}
+	T_g: \CA_m(M')(\bb{C}) &\longrightarrow \CA_m(M)(\bb{C}) \\
+	[\tau, h] &\longmapsto [\tau, hg].
+\end{align*}
+
+There is also an action on Siegel modular forms. Note that $T_g^{*}\CE_m\isoto \CE_m$ and on $\CA_m(M)(\bb{C})$, $\CE_m=T_1^{*}\CE_m$. Hence  for $\rho:\GL_m(\bb{C})\to \GL(W)$ there is an acton of $G(\A_f)$ on 
+\[
+M_\rho \defeq \varinjlim_M M_\rho(K(M))
+\] 
+where
+\[
+M_\rho(K(M)) \defeq H^{0}(\CA(M)(\bb{C}), ^{\rho}\CE_m)) + \text{holomorphy at }\infty\text{ if }m=1.
+\] 
+$M_\rho$ contains cusp forms $S_\rho$ and by unitarity
+\[
+S_\rho \simeq \bigoplus_{\pi_f\text{ irrep of }G(\A_f)}\pi_f^{\oplus m(\pi_f)}
+\] 
+(note that $\pi_f$ are infinite-dimensional).
+
+We recover 
+\[
+	\CH_B^{k}(\CA_m(M)(\bb{C}),\Q) \isoto (\CH_B^{k})^{K(M)}
+\] 
+where the right hand side admits an action of Hecke operators $H(G(\A_f),K(M))$. (Trace map?)
+
+\begin{theorem}[Franke, Generalization of Matsushima's formula]
+	We have
+	\begin{align*}
+		\bb{C}\otimes_\Q \CH^{\bullet}_B &\xrightarrow[G(\A_f)\text{-equiv.}]{\sim} \CH^{\bullet}( \sp_{2m}, U(m); \overbrace{\CA(G(\Q) \setminus G(\A) / \bb{R}_{>0}}^{\CA(G)} )  \\
+						 &\defeq \CH^{\bullet} \left( \Hom_{U(m)}\left( \bigwedge^{\bullet}\sp_{2n} / \gl_m \right) , \CA(G) \right) .
+	\end{align*}
+\end{theorem}
+\begin{remark}\leavevmode
+	\begin{enumerate}[1)]
+		\setcounter{enumi}{-1}
+		\item It's ``easy'' if we replace $\CA(G)$ by $C^{\infty}$ and use de Rham cohomology for the LHS.
+		\item If $\Gamma_m\setminus \H_m^{+}$ was compact, this would be obtained from the Hodge decomposition for Riemannian manifolds.
+		\item $\CA(G)$ is not semi-simple at all.
+		\item If $m=1$ we can use this to recover the Eichler-Shimura isomorphism. Let $\CH^{1}_{B,\text{cusp}}$ be the subspace of $\CH^{1}_B$ defined by ``vanishing at cusps''. Then
+			\[
+				\bb{C}\otimes_\Q \CH^{1}_{B,\text{cusp}} \xrightarrow[\GL_2(\A_f)]{\sim} S_2 \oplus \overline{S}_2.
+			\] 
+			If $\Gamma_1\setminus\H_1^{+}$ was compact (thus a projective curve over $\bb{C}$) this would follow from the Hodge decomposition because $\CE_1^{\otimes 2}\isoto \Omega^{1}$ on $\CA_1(\bb{C})$.
+	\end{enumerate}
+\end{remark}
+\subsection{Siegel modular varieties, algebraically}
+\begin{definition}
+	Let $S$ be a scheme. An \defn{abelian scheme} over $S$ is an $S$-group scheme $X\to S$ which is smooth, proper with connected geometric fibers. If $S=\Spec k$ we call abelian schemes \defn{abelian varieties}.
+\end{definition}
+\begin{proposition}
+	Automatically commutative.
+\end{proposition}
+\begin{definition}
+	Let $X\to S$ be an abelian scheme and $e:S\to X$ be the identity section we define a functor
+	\begin{align*}
+		\Pic_{X /S,e}: \Sch_{S} &\longrightarrow \Ab \\
+		T &\longmapsto \left\{ (L,\alpha): L\in \Pic(X\times_S T)\text{ and }\alpha \text{ trivializes }e^{*}L \right\} .
+	\end{align*}
+	There is a subfunctor $\Pic_{X /S,e}^{0}$ defined by the data such that for all $t\in T$ and all smooth projective curves $C$ over $K(t)$, for all $f:C\to X\times_S K(t)$, $f^{*}L$ has degree 0.
+\end{definition}
+\begin{theorem}[Artin, Raynaud]
+	$\Pic^{0}_{X /S,e}$ is represented by an abelian scheme over $S$.
+\end{theorem}
+We write $\wh{X}$ for this scheme.
+\begin{definition}
+	For $L\in \Pic(X)$, we have 
+	\begin{align*}
+		\phi_L: X &\longrightarrow \wh{X} \\
+		x\in X(T) &\longmapsto T_x^{*}L\otimes L^{-1}.
+	\end{align*}
+	A \defn{polarization} is an isogeny (i.e. finite, faithfully flat) $\phi:X\to \wh{X}$ such that for all geometric points $p:\Spec k\to S$, $\phi_p=\phi_L$ for some ample $L$. A polarization is \defn{principal} if it is an isomorphism. A \defn{principally polarized abelian variety} (PPAV) is the data $(X,\phi)$ of an abelian variety $X$ and a principal polarization $\phi$.
+\end{definition}
+\begin{proposition}
+	If $M\ge 1$ is invertible on $S$ then $X[M]$ (defined to be the kernel of $[M]_X$) is \'etale locally isomorphic to $\ul{(\Z /M)^{2m}}$.
+\end{proposition}
+\begin{definition}
+	Let $M\ge 1$, we define a functor
+	\begin{align*}
+		\CA_m(M): \Sch_{\Z\left[ \frac{1}{M} \right] } &\longrightarrow \Set \\
+		S &\longmapsto \{\text{PPAV }(X,\phi)\text{ with a level }M\text{ structure}\} /\sim
+	\end{align*}
+\end{definition}
+(Groupoid when $M\le 2$?)
+\begin{theorem}[Mumford]
+	For $M\ge 3$, $\CA_m(M)$ is represented by a smooth quasiprojective scheme over $\Z\left[ \frac{1}{M} \right] $ of relative dimension $\frac{m(m+1)}{2}$.
+\end{theorem}
+By the previous proposition, for all $M \mid M'$ with $M\ge 3$ there is a map
+\[
+\CA_m(M') \to \CA_m(M) \times_{\Z\left[ \frac{1}{M} \right] }\Z\left[ \frac{1}{M'} \right] 
+\] 
+which is finite \'etale and a $\ker(G(\Z /M')\to G(\Z /M))$-torsor.
+
+We stil have an action of $G(\A_f)$ on the tower $(\CA_m(M)\times \Q)_{M\ge 1}$ using the same interpretation of the moduli problem as in the analytic case (quasi-isogenies).
+
+\emph{Variant:} Let $p$ be a prime and consider the tower $(\CA_m(M)\times \Z_{(p)})_{(M,p)=1}$. It admits an actioon of $G(\A_f^{(p)})$, where $\A_f^{(p)}$ are finite adeles with $\Q_p$ omitted.
+
+\emph{Applications:}
+\begin{enumerate}[1)]
+	\item We have a $\Q$-structure on modular forms.
+	\item \'Etale cohomology: the comparison theorem tells us that
+		\[
+			\CH_{\text{\'et}}^{\bullet}(\CA_m(M)_{\overline{\Q}}, \Q_l) \isoto \Q_l \otimes_{\Q}\CH^{\bullet}_B\left( \CA_m(M)(\bb{C}), \Q \right) .
+		\] 
+		The LHS has an action of $G(\Aff)\times \Gal_\Q$ where
+		\[
+		\Gal_\Q \defeq \Gal(\overline{\Q} /\Q).
+		\] 
+\end{enumerate}
+\begin{example}
+	Take $m=1$. Eichler-Shimura and Deligne associated Galois representations to eigenforms of weight $\ge 2$. There eigenforms correspond to automorphic representations
+	\[
+	\pi = \pi_{\infty}\otimes \bigotimes_p' \pi_{p} \injto S_k
+	\] 
+	(such that $\pi_{\infty}\isoto D_k$, an irreducible $(\gl_2,U(1))$-module). For almost all $p$, $\pi_p$ is unramified: 
+	\[
+		\underbrace{\pi^{\GL_2(\Z_p)}}_{\dim 1} \neq 0
+	\] 
+	with an action of $\mathcal{H}(\GL_2(\Q_p),\GL_2(\Z_p))$ which is commutative. There correspond to $c(\pi_p)$ which are semi-simple conjugacy classes in $\GL_2(\bb{C})$.
+
+	Suitably normalized, there exists a number field $F\subset \bb{C}$ such that for almost any $p$,
+	\[
+	\tr c(\pi_p)\in F,\quad \det c(\pi_p)\in F.
+	\] 
+\end{example}
+\begin{theorem}
+	For all $\iota:F\to \overline{\Q_l}$ there is a continuous irreducible representation $\rho_{\pi,\iota}:\Gal_\Q\to \GL_2(\overline{\Q_l})$ such that for almost any $p$, $\rho_{\pi,\iota}$ is unramified at $p$ and
+	\[
+	\tr \rho_{\pi,\iota}(\Frob_p) = \iota(\tr(c(\pi_p)))
+	\] 
+	where the Frobenius on the right is geometric. (??)
+\end{theorem}
+
+\section{General Shimura varieties}
+\begin{definition}
+	Let $\S = \Res_{\bb{C} /\R}(\GL_{1,\bb{C}})$, so
+	\[
+		\S(A) = (A\otimes_\R\bb{C})^{\times }
+	\] 
+	for an $\R$-algebra $A$.
+\end{definition}
+$\Rep(\S)$ correspond to real Hodge structures, i.e. finite dimensional real vector spaces $V$ with a decomposition
+\[
+	V_{\bb{C}}=\bb{C}\otimes_\R V = \bigoplus_{p,q\in \Z}V^{p,q}
+\] 
+such that $\overline{V^{p,q}} = V^{q,p}$ and there is an action of $\kz\in \S(\R)=\bb{C}^{\times }$ via $\kz^{-p}\overline{\kz}^{-q}$.
+
+\begin{definition}
+	A \defn{Shimura datum} is a pair $(G,X)$ of a commutative reductive group $G$ over $\Q$ and a $G(\R)$-orbit $X$ of morphisms $h:\S\to G_{\R}$ such that
+	\begin{enumerate}[1)]
+		\item $\S$ acs via $\Ad(h)$ on
+			\[
+				\kg \defeq \bb{C}\otimes_\Q \Lie G = \bigoplus_{p,q}\kg^{p,q}
+			\] 
+			has kernel of type $\{(-1,1), (0,0), (1,-1)\} $, i.e. $\kg^{p,q}=0$ unless $(p,q)$ lies in this set. (This implies that $\GL_{1,\R}\injto \S$ maps to $Z(G)$.)
+		\item $\Ad(h(i))$ is a Cartan involution of $G_{\text{ad},\R} = (G /Z(G))_{\R}$, i.e. an ivolution $\theta$ of $H = G_{\text{ad},\R}$ such that
+			\[
+				\{g\in H(\bb{C}) | \theta(g)=g\} 
+			\] 
+			is compact.
+		\item $G_{\text{ad}}\isoto\prod_i G_{\text{ad},i}$ (with $G_{\text{ad},i}$ simple over $\Q$) has no factor $G_{\text{ad},i}$ such that $G_{\text{ad},i}(\R)$ is compact.
+	\end{enumerate}
+\end{definition}
+\begin{example}
+	Let $G=\GSp_{2n}$ and
+	\[
+		h(a+ib) = \begin{pmatrix} aI_n & bI_n \\ -bI_n & aI_n \end{pmatrix} .
+	\] 
+\end{example}
 
 \end{document}

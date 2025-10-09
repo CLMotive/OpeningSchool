@@ -4,6 +4,9 @@
 \def\CS{\mathcal S}
 \def\CT{\mathcal T}
 \def\Sing{\operatorname{Sing}}
+\def\map{\operatorname{map}}
+\def\Mor{\operatorname{Mor}}
+\def\1b{\mathbb{1}}
 
 \title{Infinity Categories}
 \author{Lecturer: Pramod Achar,\quad Typesetter: Micha{\l} Mruga{\l}a}
@@ -42,7 +45,7 @@ Every object in $\bb{\Delta}$ is (uniquely) isomorphic to some $[n]$.
 	This is called a \defn{discrete simplicial set}.
 \end{example}
 \begin{definition}
-	Let $\CS$ be a simplicial set. Given $\alpha:[n]\to [n-1]$ we get $\CS(\alpha):\CS_{n-1}\to \CS_n$. The $n$-simplices in the eimage are called \defn{degenerate} simplices, i.e. $\sigma$ is degenerate if there is an $\alpha$ such that $\sigma\in \img(\CS(\alpha))$.
+	Let $\CS$ be a simplicial set. Given $\alpha:[n]\to [n-1]$ we get $\CS(\alpha):\CS_{n-1}\to \CS_n$. The $n$-simplices in the image are called \defn{degenerate} simplices, i.e. $\sigma$ is degenerate if there is an $\alpha$ such that $\sigma\in \img(\CS(\alpha))$.
 \end{definition}
 \begin{lemma}
 	A simplicial set is discrete if and only if for all $n\ge 1$ all $n$-simplices are degenerate.
@@ -260,6 +263,347 @@ A source of $\infty$-categories are
 \begin{itemize}
 	\item ordinary categories with an equivalence relation on morphisms,
 	\item ordinary categories with inverting some morphisms.
+\end{itemize}
+\marginpar{Lecture 2}
+\begin{definition} \leavevmode
+\begin{enumerate}[1.]
+	\item Let $\C$ be an $\infty$-category and $f:X\to Y$ be a morphism in $\C$. $f$ is called an \defn{isomorphism} if there exists $g:Y\to X$ and two 2-simplices
+		\[
+		\begin{tikzcd}
+			 & Y \ar[dr,"g"] & & & X \ar[dr,"f"] \\
+			X \ar[ur,"f"] \ar[rr,"\id_X"] & & X & Y \ar[ur,"g"] \ar[rr,"\id_Y"] & & Y
+		\end{tikzcd}
+		\] 
+	\item An $\infty$-category is called an \defn{$\infty$-groupoid} if \emph{every} morphism is an isomorphism.
+\end{enumerate}
+\end{definition}
+\begin{theorem}[Joyal]
+	An $\infty$-category is an $\infty$-groupoid if and only if it is a Kan complex.
+\end{theorem}
+\begin{proof}
+	The forward direction is hard, the converse is an exercise.
+\end{proof}
+\begin{definition}\leavevmode
+	\begin{enumerate}[1.]
+		\setcounter{enumi}{2}
+		\item Say $f,g:\C\to \cat{D}$ are functors (morphisms of simiplicial sets) of $\infty$-categories. A \defn{natural transformation} from $f$ to $g$ is a functor $T:\C\times \Delta^{1}\to \cat{D}$ such that $T|_{\C\times \{0\} }=f$ and $T|_{\C\times \{1\}}=g$.
+
+			A special case: the identity natural transformation $\id_f:f\to F$ is the map
+			\[
+			\begin{tikzcd}
+				\C\times \Delta^{1} \ar[r,"\text{proj}"] & \C \ar[r,"f"] & \cat{D}.
+			\end{tikzcd}
+			\] 
+
+			$T:f\to g$ is a \defn{natural isomorphism} if there exists $T':g\to f$ and two maps $H:\C\times \Delta^2\to \cat{D},H':\C\times \Delta^2\to \cat{D}$ such that
+			\[
+			\begin{tikzcd}
+				& g \ar[dr,"T'"] & & & f \ar[dr,"T"] \\
+				f \ar[ur,"T"] \ar[rr,"\id_f"] & & f & g \ar[ur,"T'"] \ar[rr,"\id_g"] & & g
+			\end{tikzcd}
+			\] 
+	\end{enumerate}
+\end{definition}
+In ordinary category theory a natural transformation assigns objects in $\C$ to morphisms in $\cat{D}$ and morphisms in $\C$ to commutative squares in $\cat{D}$. For $\infty$-categories a natural transformation takes objects to morphisms, morphisms to diagrams of shape $\Delta^{1}\times \Delta^{1}$ and generally an $n$-simplex to a diagram of shape $\Delta^{n}\times \Delta^{1}$.
+
+\begin{theorem}[Pointwise criterion for natural isomorphism]
+	Let $f,g:\C\to \cat{D}$ be functors of $\infty$-categories and $T:f\to g$ be a natural transformation. $T$ is a natural isomorphism if and only if for all objects $x$ in $\C$, $T(\{x\}\times \Delta^{1})$ is an isomorphism in $\cat{D}$.
+\end{theorem}
+This is a consequence of Joyal's theorem.
+\begin{definition}
+	Define $\cat{Cat}_\infty$ as follows:
+	\begin{itemize}
+		\item Objects are $\infty$-categories.
+		\item Morphisms are functors.
+		\item 2-simplices are diagrams
+			\[
+			\begin{tikzcd}
+				& X_1 \ar[dr,"g"] \\
+				X_0 \ar[ur,"f"] \ar[rr,"h"] & & X_2
+			\end{tikzcd}
+			\] 
+			and a natural isomorphism $T:g\circ f\simto h$.
+		\item 3-simplices and higher: copy the data of $\cat{Top}$ and replace $[0,1]^{n}$ by $(\Delta^{1})^{n}$.
+	\end{itemize}
+\end{definition}
+This is similar to $\cat{Top}$ and $\cat{Cat}_1$.
+\begin{definition}
+	Define $\cat{Spc}$ same as above, except objects are $\infty$-groupoids.
+\end{definition}
+In literature: $\infty$-groupoids, Kan complexes, spaces and anima are synonyms.
+\begin{definition}
+	A functor $f:\C\to \cat{D}$ is called a \defn{categorical equivalence} if there exists $g:\cat{D}\to \C$ such that $f\circ g\isoto \id_{\cat{D}}$ and $g\circ f\isoto \id_{\C}$.
+\end{definition}
+\begin{theorem}[Fundamental Theorem of Category Theory]
+	A functor $f:\C\to \cat{D}$ is a categorical equivalence if and only it it's essentially surjective and fully faithful.
+\end{theorem}
+Note that we haven't defined essentially surjective or fully faithful. Let's pre-warm up first before we define them.
+
+\begin{lemma}
+	Let $X$ be a Kan complex. $X$ is \defn{contractible} (i.e., categorically equivalent to $\Delta^{0}$) if and only if every lifting problem
+	\[
+	\begin{tikzcd}
+		\partial \Delta^{n} \ar[r] \ar[d] & X \ar[d] \\
+		\Delta^{n} \ar[ur,dashed] \ar[r] & \Delta^{0}
+	\end{tikzcd}
+	\] 
+	admits a solution.
+\end{lemma}
+Now we're warm enough to warm up, so lets do that. Let $f:X\to Y$ be a map of Kan complexes. Suppose every lifting problem
+\[
+\begin{tikzcd}
+	\partial \Delta^{n} \ar[r] \ar[r] & X \ar[d,"f"] \\
+	\Delta^{n} \ar[ur,dashed] \ar[r] & Y
+\end{tikzcd}
+\] 
+has a solution. Then $f$ \emph{is} a categorical equivalence (think: homotopy equivalence of topological spaces). But this condition is too strong for the converse. A simple counter-example is to take $X$ contractible.
+
+\begin{definition}
+	Let $f:\C\to \cat{D}$ be a functor of $\infty$-categories. Given
+	\begin{equation}\label{eq:star}
+	\begin{tikzcd}
+		\partial \Delta^{n} \ar[r,"r"] \ar[d] & \C \ar[d,"f"] \\
+		\Delta^{n} \ar[r,"s"] & \cat{D}
+	\end{tikzcd}
+	\end{equation}
+	we say it admits a \defn{solution up to isomorphism} if
+	\begin{enumerate}[(i)]
+		\item there exists $u:\Delta^{n}\to \C$ such that
+			\[
+			\begin{tikzcd}
+				\partial \Delta^{n} \ar[r,"r"] \ar[d] & \C \\
+				\Delta^{n} \ar[ur,"u"]
+			\end{tikzcd}
+			\] 
+		\item $f\circ u:\Delta^{n}\to \cat{D}$ is naturally isomorphic to $s:\Delta^{n}\to \cat{D}$ \emph{relative} (of relative homotopy) to $\partial \Delta^{n}$.
+	\end{enumerate}
+\end{definition}
+\begin{definition}
+	Let $f:\C\to \cat{D}$ be a functor of $\infty$-categories. 
+	\begin{itemize}
+		\item It's \defn{essentially surjective} if every diagram \eqref{eq:star} with $n=0$ admits a solution up to isomorphism. 
+		\item It's \defn{full} if every diagram \eqref{eq:star} with $n=1$ admits a solution up to isomorphism.
+		\item It's \defn{fully faithful} if every diagram \eqref{eq:star} with $n\ge 1$ admits a solution up to isomorphism.
+	\end{itemize}
+\end{definition}
+So a functor of $\infty$-categories is fully faithfull and essentially surjective if all \eqref{eq:star} admit a solution up to isomorphism.
+\begin{remark}
+	These definitions of fully and full faithful are \emph{nonstandard}. 
+\end{remark}
+Now the Fundamental Theorem makes sense.
+\begin{proof}[Proof idea]
+	The forward direction is easy. Conversely, we factor through
+	\[
+	\begin{tikzcd}
+		\C \ar[r] & \C^{\text{enhanced}} \ar[r] & \cat{D}
+	\end{tikzcd}
+	\] 
+	where an $n$-simplex in $\C^{\text{enhanced}}$ is the data of
+	\begin{itemize}
+		\item $n$-simplex in $\C$,
+		\item a diagram of shape $\Delta^{n}\times \Delta^{1}$ in $\cat{D}$ satisfying some conditions.
+	\end{itemize}
+	The inverses of the intermediate maps are easy to construct.
+\end{proof}
+What is missing so far is \emph{mapping spaces}. Given objects $X,Y$ in an $\infty$-category $\C$ we expect to find a space (Kan complex) $\map_\C(X,Y)$ such that the objects of $\map_\C(X,Y)$ are morphisms $X\to Y$ \emph{and} it should extend to a functor 
+\[
+	\map_\C : \C\op\times \C\to \cat{Spc}.
+\] 
+For 1-categories this is usually called $\Hom$ or $\Mor$. Lurie uses $\Hom$ for a non-functorial, but easier, version of $\map$.
+
+Here is one non-functorial approach to mapping spaces. Let $\C^{\Delta^{1}}$ be the simplicial set such that $(\C^{\Delta^{1}})_k$ is the sest of maps $\Delta^{1}\times \Delta^{k}\to \C$. By restricting to $\{0\} \times \Delta^{k}$ and $\{1\} \times \Delta^{k}$ we get a map $\C^{\Delta^{1}}\to \C\times \C$. Define $\map_\C(X,Y)$ as the fiber product (of simplicial sets)
+\[
+\begin{tikzcd}
+	\map_\C(X,Y) \ar[r] \ar[d] & \C^{\Delta^{1}} \ar[d] \\
+	\Delta^{0} \ar[r,"{(x,y)}"] & \C\times \C.
+\end{tikzcd}
+\] 
+\begin{theorem}
+	Let $f:\C\to \cat{D}$ be a functor of $\infty$-categories. Then $f$ is fully faithful if and only if for all objects $X,Y$, the induced map
+	\[
+		\map_\C(X,Y)\to \map_{\cat{D}}(f(x),f(y))
+	\] 
+	is a categorical equivalence of Kan complexes.
+\end{theorem}
+This theorem is actually the usual definition in the literature.
+
+Somewhere along the way:
+\begin{theorem}[Whitehead's Theorem]
+	A map $f:X\to Y$ of Kan complexes is a categorical equivalence if and only if 
+	\[
+	\pi_n(X,x_0) \to  \pi_n(Y,f(x_0)
+	\] 
+	are bijections for all $n$ and all $x_0$.
+\end{theorem}
+\marginpar{Lecture 3}
+A monoidal category in ordinary category theory consists of:
+\begin{itemize}
+	\item A category $\C$.
+	\item A functor $\otimes:\C\times \C\to \C$.
+	\item An object $\1b\in \C$.
+	\item 3 natural transformations: the associator, left and right unitors.
+\end{itemize}
+We ask them to satisfy 3 axioms:
+\begin{itemize}
+	\item Triangle axioms (they say $\1b\otimes x = x = x\otimes\1b$.
+	\item Pentagon axiom (various ways to group 4 objects).
+\end{itemize}
+Mac Lane's Coherence Theorem tells us that every ``reasonable'' diagram made from the 3 natural transformations commutes.
+
+Let's try to mimic this for $\infty$-categories. The naive approach is to start with:
+\begin{itemize}
+	\item an $\infty$-category $\C$;
+	\item a functor $\otimes:\C\times \C\to \C$;
+	\item an object $\1b:\Delta^{0}\to \C$;
+	\item an associator
+		\[
+		\begin{tikzcd}
+			\C\times \C\times \C \ar[r,"\id\times \otimes"] \ar[d,"\otimes\times \id"] \ar[dr] & \C \times \C \ar[d,"\otimes"] \\
+			\C\times \C \ar[r,"\otimes"] & \C
+		\end{tikzcd}
+		\] 
+		a diagram of shape $\Delta^{1}\times \Delta^{1}$ in $\cat{Cat}_\infty$;
+	\item a left unitor
+		\[
+		\begin{tikzcd}
+			\Delta^{0}\times \C \ar[rr,"\1b\times \id"] \ar[dr,"\sim"] & & \C\times \C \ar[dl,"\otimes"] \\
+										   & \C
+		\end{tikzcd}
+		\] 
+		a 2-simplex in $\cat{Cat}_\infty$ and similarly a right unitor;
+\end{itemize}
+and ask it to satisfy
+\begin{itemize}
+	\item the triangle identity
+		\[
+		\begin{tikzcd}
+			\C\times \Delta^{0}\times \C \ar[d,"\id\times \1b\times \id"'] \ar[ddr] \ar[ddrr] \ar[drr] \\
+			\C\times \C\times \C \ar[dr] \ar[rr] \ar[drr] & & \C\times \C \ar[d] \\
+								      & \C\times \C \ar[r] & \C
+		\end{tikzcd}
+		\] 
+		two 3-simplices attached along a face.
+\end{itemize}
+We model these diagrams with totally ordered finite sets:
+\begin{itemize}
+	\item Associator
+		\[
+		\begin{tikzcd}
+			0123 & 013 \ar[l] \\
+			023 \ar[u] & 03 \ar[l] \ar[u] \ar[lu]
+		\end{tikzcd}
+		\] 
+	\item Left unitor
+		\[
+		\begin{tikzcd}
+			\frac{1}{2}2 & & 012 \ar[ll, "{(01, 2)\mapsto (\frac{1}{2}, 2)}"] \\
+				     & 02 \ar[lu, "\sim"] \ar[ur,hook]
+		\end{tikzcd}
+		\] 
+	\item Triangle identity
+		\[
+		\begin{tikzcd}
+			0 \frac{3}{2}3 \\
+			0123 \ar[u] & & 013 \ar[ull,"\sim"] \ar[ll] \\
+				    & 023 \ar[ul] \ar[uul,"\sim"] & 013 \ar[l] \ar[u] \ar[uull]
+		\end{tikzcd}
+		\] 
+\end{itemize}
+The data for the naive approach is modeled by
+\[
+	N\left( \left( \begin{array}{c}
+		\text{nonempty, finite, totally ordered} \\
+		\text{sets of size} \le 4
+\end{array}\right) \op \right) \to \cat{Cat}_{\infty}
+\] 
+We are still missing the pentagon axiom and Mac Lane's Coherence Theorem.
+
+\begin{definition}
+	Let $\C$ be an $\infty$-category. A \defn{monoidal structure} on $\C$ is a functor $F:N(\bb{\Delta}\op)\to \cat{Cat}_\infty$ such that
+	\begin{enumerate}[1)]
+		\item $F\left( [1] \right) = \C$,
+		\item for all $n $
+			\[
+				[n] \leftarrow \{0,1\} , \{1,2\} , \dots, \{n-1, n\} 
+			\] 
+			induces
+			\[
+				F([n]) \to \C\times \C\times \dots\times \C = \C^{n}
+			\] 
+			which we require to be an equivalence of categories.
+	\end{enumerate}
+\end{definition}
+Note that $F([0]) \simto \Delta^{0}$. \emph{The idea} is that the pentagon axiom and all ``higher coherences'' are encoded in $\bb{\Delta}\op$.
+
+The problem with this definition is unusable. Actually writing down a functor $N(\bb{\Delta}\op)\to \cat{Cat}_\infty$ is too complicated. What do we do? Lurie will rescue us. 
+
+Let's warm up. Suppose you have a $\Lambda^2_0$ horn
+\[
+\begin{tikzcd}[row sep=tiny]
+	& 1 \ar[dd,dashed,"\exists ?"] \\
+	0 \ar[ur,"f"] \ar[dr,"h"] \\
+	& 2
+\end{tikzcd}
+\] 
+so we are asking: given
+\[
+\begin{tikzcd}
+	\Lambda_0^{2} \ar[r] \ar[d,hook] & \C \\
+	\Delta^2 \ar[ur,dashed]
+\end{tikzcd}
+\] 
+when does a solution exist? It exists if $f$ has a right inverse.
+
+\begin{definition}
+	Let $p:\C\to \cat{D}$ be a functor of $\infty$-categories, $f:x\to y$ be a morphism in $\C$.  We say $f$ is \defn{$p$-cocartesian} if
+	\[
+	\begin{tikzcd}
+		\{0,1\} = \Delta^{1} \ar[r,hook] \ar[rr,bend left=20, "f"] & \Lambda_0^{n} \ar[r] \ar[d, hook] & \C \ar[d,"p"] \\
+									   & \Delta^{n} \ar[r] \ar[ur,dashed] & \cat{D}
+	\end{tikzcd}
+	\] 
+	has a solution.
+\end{definition}
+\begin{definition}
+	$p:\C\to \cat{D}$ is called a \defn{cocartesian fibration} if lifting problems
+	\[
+	\begin{tikzcd}
+		\Lambda_j^{n} \ar[r,"r"] \ar[d,hook] & \C \ar[d,"p"] \\
+		\Delta^{n} \ar[r] \ar[ur,dashed] & \cat{D}
+	\end{tikzcd}
+	\] 
+	have a solution when
+	\begin{enumerate}[(1)]
+		\item $0<j<n$,
+		\item $j=0$ and $n\ge 2$ \emph{if} $r$ sends $\{0,1\} $ to a $p$-cocartesian edge,
+		\item $j=0,n=1$; in this case we also \emph{require} the solution $u:\Delta^{1}\to \C$ to be a $p$-cocartesian edge.
+	\end{enumerate}
+\end{definition}
+\emph{The idea} is that a cocartesian fibration $p:\C\to \cat{D}$ should be thought of as a ``functorial family of $\infty$-categories indexed by $\cat{D}$''. More precisely:
+\begin{itemize}
+	\item For each object $x$ in $\cat{D}$ let $\C_x = \{x\}\times_{\cat{D}}\C$. This is an $\infty$-category.
+	\item For each edge $\gamma:x\to y$ in $\cat{D}$ and each $n$-simplex $\sigma:\Delta^{n}\to \C_x$ we can construct a map that under
+		\[
+			\wt{\sigma}: \Delta^{n}\times \Delta^{1} \to \C
+		\] 
+		sends $\{j\} \times \Delta^{1}$ to a $p$-cocartesian edge.
+	\item Moreover, we get a \emph{functor}
+		\begin{align*}
+			\C_x &\longrightarrow \C_y \\
+			\sigma &\longmapsto \wt{\sigma}_{\Delta^{n}\times \{1\} }
+		\end{align*}
+		(this is slightly sloppy).
+\end{itemize}
+The definition is precisely set up so you can carry this out. Let's keep going:
+\begin{itemize}
+	\item A 2-simplex in $\cat{D}$ gives a 2-simplex in $\cat{Cat}_\infty$ 
+		\[
+		\begin{tikzcd}[row sep=tiny]
+			& C_y \ar[dd] \\
+			C_x \ar[ur] \ar[dr] \\
+			& C_z
+		\end{tikzcd}
+		\] 
 \end{itemize}
 
 \end{document}
