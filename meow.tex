@@ -7,6 +7,11 @@
 \def\map{\operatorname{map}}
 \def\Mor{\operatorname{Mor}}
 \def\1b{\mathbb{1}}
+\def\R{\bb{R}}
+\def\Ch{\cat{Ch}}
+\def\Cone{\operatorname{Cone}}
+\def\S{\mathbb{S}}
+\def\smap{\operatorname{smap}}
 
 \title{Infinity Categories}
 \author{Lecturer: Pramod Achar,\quad Typesetter: Micha{\l} Mruga{\l}a}
@@ -663,7 +668,7 @@ By adjunction (1-categorical), we get
 	\begin{table}[h]
 		\centering
 		\label{tab:themes}
-		\begin{tabular}{c|c}
+		\begin{tabular}{p{0.45\linewidth} | p{0.45\linewidth}}
 		1-categories & $\infty$-categories \\ \hline
 		Sets & Spaces \\
 		existence and uniqueness & existence for $\partial \Delta^{n}\to \Delta^{n}$ and $\forall n$ uniqueness up to a contractible Kan complex
@@ -702,7 +707,230 @@ it also might be $\partial \Delta^{n+1}*\Lambda_2^2$ but Pramod wasn't sure.
 (Pictures of $P_i$ and $P_i^{0}$.)
 
 \begin{definition}
-	Let $\C$ be an $\infty$-category. A diagram of shape $\Delta^{1}\times \Delta^{1}$, say (Picture) is called a \defn{pullback} if every extension problem.
+	Let $\C$ be an $\infty$-category. A diagram of shape $\Delta^{1}\times \Delta^{1}$, say (Picture) is called a \defn{pullback} if every extension problem (Diagram) admits a solution.
 \end{definition}
+For $n=0$ this should remind you of 1-categories. The moral is to think of filling in a sphere.
+
+WARNING: Suppose
+\[
+\begin{tikzcd}
+	& A \ar[d] \\
+	A' \ar[r] & B
+\end{tikzcd}
+\] 
+is a diagram of topological spaces, or $\infty$-categories, or Kan complexes. The 1-categorical and $\infty$-categorical pullbacks exist, but they \textbf{\emph{don't agree}} in general. There is a map from the 1-limit to the $\infty$-limit.
+
+In $\cat{Cat}_\infty$ the $\infty$-categorical pullback
+\[
+\begin{tikzcd}
+	L \ar[r] \ar[d] \ar[dr] & A \ar[d] \\ A' \ar[r] & B
+\end{tikzcd}
+\] 
+is given by
+\[
+	L_n = \left\{ (\sigma,\sigma',J) \middle| \begin{array}{c}
+		\sigma\in A_n, \sigma'\in A_n', J:\Delta^{n}\times \Delta^{1}\to B \\
+		J\text{ a natural isomorphism from }f\circ\sigma\text{ to }f'\circ\sigma'
+	\end{array}\right\} .
+\] 
+
+In $\cat{Top}$ consider the diagram
+\[
+\begin{tikzcd}
+	& \text{pt} \ar[d,"x_0"] \\
+	\text{pt} \ar[r,"x_0"] & X
+\end{tikzcd}
+\] 
+The 1-categorical pullback is a point. The $\infty$-categorical pullback is $\Omega(X,x_0)$, the space of loops in $X$ based at $x_0$.
+
+1-categorical limits are unique up to unique isomorphism, but $\infty$-categorical limits it's unique up to a contractible Kan complex of ($\infty$-categorical) isomorphisms.
+
+\begin{example}
+	The following diagram is an $\infty$-categorical pullback
+	\[
+	\begin{tikzcd}
+		\Z \ar[r] \ar[d] \ar[dr] & \text{pt} \ar[d] \\
+		\text{pt} \ar[r] & S^{1}
+	\end{tikzcd}
+	\] 
+	where $\Z$ is the space of continuous maps $\gamma:[0,1]\to \R$ such that $\gamma(0)=0$ and $\gamma(1)\in \Z$.
+\end{example}
+
+Recall that an \defn{abelian category} is a category such that:
+\begin{itemize}
+	\item There is a zero (initial and final) object.
+	\item All pullbacks and pushouts exist.
+	\item If $f:x\to y$ is a monomorphism then the pushout
+		\[
+		\begin{tikzcd}
+			x \ar[r,"f"] \ar[d] & y \ar[d] \\
+			0 \ar[r] & z
+		\end{tikzcd}
+		\] 
+		is also a pullback.
+	\item If $g:y\to z$ is an epimorphism then the pullback
+		\[
+		\begin{tikzcd}
+			x \ar[r] \ar[d] & y \ar[d,"g"] \\
+			0 \ar[r] & z
+		\end{tikzcd}
+		\] 
+		is also a pushout.
+\end{itemize}
+\begin{remark}
+	You can actually recover the abelian group structure on hom sets from only this!
+\end{remark}
+\begin{definition}
+	An $\infty$-category is called \defn{stable} if:
+	\begin{itemize}
+		\item There is a zero object (defining this is an exercise).
+		\item All pullbacks and pushouts exist.
+		\item Any diagram of shape $\Delta^{1}\times \Delta^{1}$ 
+			\[
+			\begin{tikzcd}
+				x \ar[r] \ar[dr] \ar[d] & y \ar[d] \\
+				0 \ar[r] & z
+			\end{tikzcd}
+			\] 
+			is a pullback if an donly if it's a pushout.
+	\end{itemize}
+\end{definition}
+\begin{remark}
+	0 is the zero object and is actually an optional entry, we can ask this for all squares, the conditions are equivalent.
+\end{remark}
+\begin{example}
+	Start with an ordinary additive category $\cat{A}$. Defne an $\infty$-category $\Ch(A)$ as follows:
+	\begin{itemize}
+		\item objects are chain complexes of objects in $A$,
+		\item morphisms are chain maps,
+		\item 2-simplices are diagrams
+			\[
+			\begin{tikzcd}[row sep=tiny]
+			& B^{\bullet} \ar[dd,"g"] \\
+			A^{\bullet} \ar[ur,"f"] \ar[dr,"g"] \\
+			& C^{\bullet}
+			\end{tikzcd}
+			\] 
+			and a chain homotopy $s:A^{\bullet}\to C^{\bullet-1}$ such that
+			\[
+			ds + sd = gf-h.
+			\] 
+		\item 3 and higher and higher chain homotopies.
+	\end{itemize}
+\end{example}
+This category is explicitly written out by Lurie. Look up the ``dg nerve''.
+\begin{lemma}
+	$\Ch(A)$ is stable.
+\end{lemma}
+\begin{proof}[Proof idea]
+	The main step is:
+	\begin{itemize}
+		\item Take a chain map $f:A^{\bullet}\to B^{\bullet}$.
+		\item Prove by hand that
+			\[
+			\begin{tikzcd}
+				A^{\bullet} \ar[r,"f"] \ar[d] \ar[dr] & B^{\bullet} \ar[d] \\
+				0 \ar[r] & \Cone(f)
+			\end{tikzcd}
+			\] 
+			is a pullback and a pushout.
+	\end{itemize}	
+\end{proof}
+\begin{lemma}
+	In any stable $\infty$-category $\C$ the functors that take $X$ to the pullback/pushout of the diagram
+	\[
+	\begin{tikzcd}
+		& 0 \ar[d] & X \ar[r] \ar[d] & 0 \\
+		0 \ar[r] & X & 0
+	\end{tikzcd}
+	\] 
+	respectively.
+\end{lemma}
+The first functor is denoted $\Omega$ or $[-1]$ and called the \defn{loop space} functor. The second functor is denoted $\Sigma$ or $[1]$ and called the \defn{suspension} functor.
+\begin{remark}
+	This is pretty closed to $\C$ being a stable $\infty$-cateogry implying that $h\C$ is triangulated. The octahedral axiom is similar to the third isomorphism theorem.
+\end{remark}
+Also we get derived categories of abelian categories: take $\Ch(A)$ and invert quasi-isomorphisms.
+
+In ordinary category theory:
+\begin{itemize}
+	\item There is a canonical example of an abelian category, which is the category of abelian groups.
+	\item \emph{Every} abelian category is enriched over abelian groups.
+\end{itemize}
+Let's go back to $\infty$-categories.
+\begin{definition}
+	The $\infty$-category of \defn{spectra} $\cat{Sptr}$ is
+	\[
+		\cat{Sptr} = \varprojlim \left( \dots\xrightarrow{\Omega} \cat{Spc}_* \xrightarrow{\Omega} \cat{Spc}_*\xrightarrow{\Omega} \cat{Spc}_* \right) 
+	\] 
+	where $\cat{Spc}_*$ are pointed spaces and we take the $\infty$-categorical limit in $\cat{Cat}_\infty$.
+\end{definition}
+An object of $\cat{Sptr}$ is (roughly) a sequence of pointed spaces $\dots,X_3,X_3,X_1,X_0$ and isomorphisms $\Omega X_3\isoto X_2, \Omega X_2\isoto X_2, \Omega X_1\isoto X_0$, etc.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c|c}
+	1-land & $\infty$-land \\ \hline
+	Canonical example: $\cat{Ab}$ & Canonical example: $\cat{Sptr}$ \\
+	Most important abelian group: $\Z$ & Most important spectrum: $\S$ with $\pi_0(\S)=\Z$ \\
+	symmetric monoidal with $\otimes$ & symmetric monoidal with smash product $\wedge$ \\
+	Any: hom-sets are abelian groups & \\
+	Any: modules over $\cat{Ab}$, can $\otimes$ by fg ab grp
+	\end{tabular}
+\end{table}
+
+We define the \defn{sphere spectrum}: Start with
+\[
+	\dots, \cat{Sing}(S^2), \cat{Sing}(S^{1}), \cat{Sing}(S^{0})
+\] 
+with isomorphisms $S^2=\Sigma S^{1}, S^{1}=\Sigma S^{0}$ etc. This is not quite an object of $\cat{Sptr}$. By adjunction we get maps $S_1\to \Omega S^2, S^0\to \Omega S^{1}$ etc. We fix the failure to be isomorphisms universally (``spectrification'') which gives us the sphere spectrum $\S$. It is also classically called the $\Omega$-spectrum.
+
+We have homotopy groups of spectra
+\[
+\pi_n (X_\bullet) = \pi_{n+k}(X_k)
+\] 
+for $n\in \Z$ and $k\ge 0$. In particular
+\[
+\pi_0(\S) = \Z,\quad \pi_n(\S) = \text{stable homotopy groups of spheres}.
+\] 
+
+\begin{theorem}
+	Every stable $\infty$-category is a module over $\cat{Sptr}^{\text{fin}}$.
+\end{theorem}
+\begin{theorem}[Lurie]
+	Let $\C$ be a stable $\infty$-category. There is a functor
+	\[
+		\smap_\C : \C\op\times \C\to \cat{Sptr}
+	\] 
+	such that for all spectra $z$ and objects $x,y$ in $\C$ 
+	\[
+		\map_{\cat{Sptr}}(z,\smap_(x,y)) \isoto \map_\C(z\wedge x, y).
+	\] 
+\end{theorem}
+Let $\C$ be a stable $\infty$-category and $h\C$ be triangulated. Let $x,y$ be objects in $\C$ then
+\[
+	\pi_n\smap(x,y) \isoto \Hom_{h\C}(x,y[-n]).
+\] 
+If $n\ge 0$, we have
+\[
+\pi_n(\smap(x,y)) = \pi_n(\map(x,y)).
+\] 
+Think that $\smap $ corresponds to $\RD\Hom$ and $\map$ corresponds to $\tau^{\le 0}\RD\Hom$.
+
+Recall a construction of the tensor product of abelian groups $A,B$. Start with functions 
+\[
+F:A\times B\to \Z
+\] 
+with finite support. Take a quotient to enforce functions to be linear in both variables.
+
+The Lurie tensor product of stable $\infty$-categories $A,B$ is constructed as follows:
+\begin{itemize}
+	\item Start with functors
+		\[
+			A\times B\to \cat{Sptr}.
+		\] 
+	\item Take a quotient (or localization) to enforce that the functors preserve direct sums and pushouts in both variables.
+\end{itemize}
+
 
 \end{document}

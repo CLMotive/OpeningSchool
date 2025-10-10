@@ -26,6 +26,9 @@
 \def\Sym{\operatorname{Sym}}
 \def\kg{\mathfrak{g}}
 \def\PrL{\operatorname{Pr}^L}
+\def\1b{\mathbb{1}}
+\def\car{\operatorname{char}}
+\def\Repf{\cat{Rep}^{\text{f.d.}}}
 
 \title{Motivic Sheaves}
 \author{Lecturer: Simon Pepin Lehalleur,\quad Typesetter: Micha{\l} Mruga{\l}a}
@@ -934,6 +937,270 @@ j_! \isoto p_!j_! \isoto p_*j_!.
 			\] 
 	\end{enumerate}
 \end{theorem}
+\begin{exercise}[Zariski separation]
+	Let $\{j_i:U_i\to X\} $ be a Zariski/\'etale covering then $\{j_i^{*}=j_i^{!}\} $ is jointly conservative.
+\end{exercise}
+\begin{proof}[Proof sketch]
+	\'Etale separation reduces 2) to $f:\Aff^{n}\times X\to X$ (?). 3) is a corollary of 2).
+\end{proof}
+\begin{proposition}
+	Let $\pi:X\to \Spec(\bb{C})$ be separated, then
+	\begin{align*}
+		\CH_{\text{sing}}^{*}(X\an,\Lambda) &\isoto \CH^{*}(\pi_*\overbrace{\pi^{*}\Lambda}^{\Lambda}) \\
+		\CH_c^{*}(X\an, \Lambda) &\isoto H^{*}(\pi_!\pi^{*}\Lambda) \\
+		\CH_*(X\an, \Lambda) &\isoto \CH_*(\pi_!\pi^{!}\Lambda) \\
+		\CH_*^{\text{BM}}(X\an,\Lambda) &\simto \CH(\pi_*\pi^{!}\Lambda).
+	\end{align*}
+\end{proposition}
+\begin{remark}
+	Let $q$ be smooth, then $q_\sharp\Lambda\isoto q_!q^{!}\Lambda$.
+\end{remark}
+For a quasiprojective morphism $f$ we get two factorizations
+\[
+\begin{cases}
+	f = pj & f_! = p_!j_! \\
+	f = qi & f^! = i^!q^!
+\end{cases}
+\] 
+where $p$ is proper, $j$ is an open immersion, $q$ is smooth and $i$ is a closed immersion.
+
+\begin{proposition}[Localization/gluing]
+	Let $i:Z\injto X$ be a closed immersion and $j:X\setminus Z=U\to X$ 
+	\[
+	\left\{ 
+	\begin{tikzcd}
+		j_{*}j^{*} \ar[r] & \id \ar[r] & i_!i^{!} \ar[r,"+"] & {} \\
+		j_!j^{!} \ar[r] & \id \ar[r] & i_* i^{*} \ar[r,"+"] & {}
+	\end{tikzcd}
+	\right.
+	\] 
+	(note that $i_! = i_*$).
+\end{proposition}
+\begin{proposition}[Absolute purity]
+	Let $i:Z\injto X$ be a regular closed immersion of codimension $c$, then
+	\[
+	i^{!}(\Lambda_X) \isoto \Lambda_Z \left<-c \right>.
+	\] 
+\end{proposition}
+So we get $i^{!}\Lambda_X$ for $i:D\injto X$ a SNCD.
+
+\subsection{What are six functor formalisms?}
+(Lurie, Gaitsgory-Rozenblyum, Liu-Zhang, Mann, \dots)
+
+\begin{definition}[Fake]
+	Let $\C$ be an $\infty$-category with finite limits and $E$ be a class of morphisms stable under composition and pullbacks. $\cat{Span}(\C,E)$ is the $\infty$-category of \defn{spans}:
+	\begin{itemize}
+		\item Objects are the objects of $\C$.
+		\item 1-morphisms are diagrams
+			\[
+			\begin{tikzcd}
+				& Z \ar[dl,"g"] \ar[dr,"f\in E"] \\
+				X & & Y
+			\end{tikzcd}
+			\] 
+		\item 2-morphisms are diagrams
+			\[
+			\begin{tikzcd}
+				& Z \ar[dl] \ar[dr,"\in E"] \\
+				X & & Y \\
+				  & Z' \ar[lu] \ar[uu,"\sim"] \ar[ur,"\in E"]
+			\end{tikzcd}
+			\] 
+		\item composition is given by pullbacks
+			\[
+			\begin{tikzcd}
+				& & Z'' \ar[ddll, bend right=40] \ar[dl] \ar[dr,"\in E"] \ar[ddrr,bend left=40,"\in E"] \\
+				& Z \ar[dl] \ar[dr] & & Z' \ar[dl] \ar[dr,"\in E"] \\
+				X & & X' & & X''
+			\end{tikzcd}
+			\] 
+	\end{itemize}
+\end{definition}
+$\cat{Span}(\C,E)$ has a symmetric monoidal structure
+\[
+	(\C\op,\times )\to (\cat{Span}(\C,E),\otimes)
+\] 
+which maps $g:Z\to X$ to the diagram
+\[
+\begin{tikzcd}
+	& Z \ar[dl,"g"] \ar[dr,equals,"\id"] \\
+	X & & Z.
+\end{tikzcd}
+\] 
+\begin{definition}[Mann]
+	A \defn{3-functor formalism} is a $\infty$-symmetric monoidal functor
+	\[
+		\wt{D}:\cat{Span}(\C,E) \to \cat{Cat}_\infty.
+	\] 
+	A \defn{6-functor formalism} is a 3-functor formalism where ``right adjoints exist''.
+\end{definition}
+\begin{fact}
+	$D_B(-)$ extends to a 3-functor formalism
+	\[
+		\wt{D}_B:\cat{Span}(\cat{Sch}_\C^{?},\text{ft,sep})\to \cat{Cat}_\infty.
+	\] 
+\end{fact}
+$\wt{D}_B$ takes the diagram
+\[
+\begin{tikzcd}
+	 & Z \ar[dl,"g"] \ar[dr,"f"] \\
+	X & & X
+\end{tikzcd}
+\] 
+to $f_!g^{*}$. It's lax symmetric monoidal, we have $\boxtimes_X$ and we can apply $\Delta_X^{*}$ to get $\otimes_X$. We have functoriality for composition of spans which gives us
+\[
+	BC:f_!g^{*} = \wt{g}^{*}\wt{f}_!.
+\] 
+\begin{theorem}[Fake]
+	Let $P,J\subseteq E$ such that $E=P\circ J$ and consider
+	\[
+		D:\C\op \to \cat{CAlg}(\cat{Cat}_\infty).
+	\] 
+	\begin{enumerate}[1)]
+		\item For all $p\in P$ we have an adjoint pair $(p^{*},p_*)$ and PBC and PProj.
+		\item For all $j\in J$ we have an adjoint pair $(j_!,j^{*})$ and OBC and OProj.
+		\item Let
+			\[
+			\begin{tikzcd}
+				\bullet \ar[r,"\wt{p}"] \ar[d,"\wt{j}"] & \bullet \ar[d,"j"] \\
+				\bullet \ar[r,"p"] & \bullet
+			\end{tikzcd}
+		\]
+		then
+		\[
+			j!\wt{p}_* \simto p_*\wt{j}_!
+		\] 
+		(Supp).
+	\end{enumerate}
+	Then $D$ extends to a 3-functor formalism.
+\end{theorem}
+\subsection{Six functor formalism for motivic sheaves}
+Let $f:T\to S$ be a morphism, we have the functor
+\begin{align*}
+	f^{-1}: \Sm_S &\longrightarrow \Sm_T \\
+	X &\longmapsto X\times_S T
+\end{align*}
+which gives us $\DAet(-,\Lambda)$ and $\SH(-)$ sheaf theories. We already have $\otimes, f^{*}$ and $\iHom,f_*$.
+\begin{theorem}
+	$\DAet(-,\Lambda), \SH(-)$ extend to six-functor formalisms.
+\end{theorem}
+This is a hard theorem, much harder than the Betti and \'etale cases. The main difficulty is that proper base change is hard!
+
+\begin{remark}\leavevmode
+	\begin{itemize}
+		\item This also holds for other variants: $\cat{DM}(-,\Lambda)$, $KGL$-modules which are ``$KH$-motives'',  $MGL$-modules,\dots 
+		\item At the end of the day there are still major differences:
+			\begin{enumerate}[1)]
+				\item Let $q$ be smooth of relative dimension $d$. In $\DAet(-,\Lambda), \cat{DM}(-,\Lambda), KGL, MGL$ we have $q^{!}\1b_X \isoto \1b_Y \left<d \right>$ (the $GL$-oriented theories/complex oriented cohomology theories in $\SH^{\text{top}}$ with Chern classes for vector bundles). In $\SH(-)$, $q^{!}\1b_X\isoto \operatorname{Th}_Y(\Omega_q)$ which is the Thom space/spectrum.
+				\item $\DAet(-,\Lambda)$ has much stronger descent properties, it satisfies $h$-descent.  The $h$-topology is defined by \'etale coverings and proper surjective morphisms.
+			\end{enumerate}
+	\end{itemize}
+\end{remark}
+If $q$ is smooth, then $q^{-1}$ has a left adjoint given by a very silly formula
+\begin{align*}
+	q_\sharp: \Sm_T &\longrightarrow \Sm_S \\
+	X &\longmapsto X.
+\end{align*}
+This induces a left adjoint to $q^{*}:D(S)\to D(T)$ for $D=\DAet(-,\Lambda),\SH(-)$.
+
+\begin{theorem}[Voevodsky, Ayoub]
+	A sheaf theory that satisfies:
+	\begin{itemize}
+		\item for $q$-smooth there is an adjoint pair $(q_\sharp,q^{*})$ with base change and the projection formula,
+		\item (Gluing) for all closed embeddings $i:Z\injto X$ and open embeddings $j:X\setminus Z\injto X$ the pair $(i^{*},j^{*})$ is conservative and $i_*$ is fully faithful,
+		\item $\Aff^{1}$-invariance and $\P^{1}$-stability
+	\end{itemize}
+	satisfies proper base change.
+\end{theorem}
+Note that the gluing axiom is a gluing theorem of Morel-Voevodsky, it uses smooth sites and at least Nisnevich descent. This type of sheaf theory is called a \defn{motivic sheaf theory} or a \defn{coefficient system}.
+\begin{theorem}[Drew-Gallaver]
+	$\SH(-)$ is the initial motivic sheaf theory. $\DAet(-,\Lambda)$ is initial among those satisfing \'etale descent and (?)
+\end{theorem}
+(Something about the Drew-Tubach mixed module realization?)
+
+There are also good theories of:
+\begin{itemize}
+	\item constructibility and Verdier duality,
+	\item nearby and vanishing cycles.
+\end{itemize}
+
+\subsection{Motivic \texorpdfstring{$t$}{t}-structure conjecture and algebraic cycles}
+Let $D = \DAet(-,\Q) = \cat{DM}(-,\Q)$.
+\begin{definition}
+	Let $D$ be a triangulated category. A \defn{$t$-structure} is a pair $(D_{\ge 0}, D_{\le 0}$ of full subcategories with
+	\begin{enumerate}[1)]
+		\item $D_{\ge 0}, D_{\le 0}$  are replete (stable under isomorphisms),
+		\item $D_{\ge_0}[1]\subseteq D_{\ge 0}, D_{\le 0}[-1]\subseteq D_{\le 0}$,
+		\item $\Hom(D_{\ge 0}, D_{\le 0}[-1]) = 0$,
+		\item for all $X\in D$, there exists a distinguished triangle
+			\[
+			\begin{tikzcd}
+				\tau_{\ge 0}X \ar[r] & X \ar[r] & \tau_{<0}X \ar[r,"+"] & {}
+			\end{tikzcd}
+			\] 
+			where $\tau_{\ge 0}X\in D_{\ge 0}$ and $\tau_{<0}X\in D_{\le 0}[-1]$.
+	\end{enumerate}
+	Taking $D_{=0} = D_{\ge 0}\cap D_{\le 0}$ gives us the \defn{heart} which is an abelian category.
+\end{definition}
+\begin{example}
+	Let
+	\[
+	D(A)_{\ge 0} = \left\{ K_\bullet \middle| \forall n<0, H_n(K_\bullet)=0 \right\} 
+	\] 
+	and similarly for $\le 0$. The heart is $A$.
+\end{example}
+\begin{example}
+	Let
+	\[
+		\cat{hSptr}_{\ge 0} = \left\{ K_\bullet \middle| \forall n<0, \pi_n(K_\bullet)=0 \right\} 
+	\] 
+	similarly for $\le 0$ and the heart is $\cat{Ab}$.
+\end{example}
+\begin{conjecture}[$T_k$]
+	Let $k$ be a field. There exists a $t$-structure on $\cat{DM}(k,\Q)$ such that
+	\begin{enumerate}[1)]
+		\item for all $l\neq \car(k)$, $R_l:\cat{DM}(k,\Q)\to D(\Q_l)$ is $t$-exact.
+		\item The $t$-structure restricts to $\cat{DM}_{\text{ct}}(k,\Q)$, define $\cat{MM}_{(d)}(k,\Q)$ to be the heart of $\cat{DM}_{(d)}(k,\Q)$.
+		\item $\cat{DM}_{\text{ct}}(k,\Q) \isoto D^{b}(\cat{MM}_{\text{ct}}(k,\Q))$.
+	\end{enumerate}
+\end{conjecture}
+\begin{lemma}
+	($T_k$) implies $\cat{MM}_{\text{ct}}$ is a Tannakian category.
+\end{lemma}
+So $\cat{MM}_{\text{ct}}(k,\Q)$ is approximately isomorphic to $\Repf(G_\text{mot}(k))$, were $G_{\text{mot}}(k)$ is a pro-algebraic group over $\Q$, the ``motivic Galois group''.
+
+\begin{proposition}
+	Let $\sigma:k\injto \bb{C}$ be a field embedding. Then ($T_k$) is equivalent to the Nori realization functor
+	\[
+	R_{?} : ??
+	\] 
+\end{proposition}
+\begin{theorem}
+	($T_k$) implies
+	\begin{enumerate}[a)]
+		\item (Conservativity): $R_l:\cat{DM}_{\text{ct}}(k,\Q)\to D(\Q_l)$ is conservative.
+		\item ($\car k$) standard conjectures of Grothendieck on algebraic cycles up to homological equivalence on smooth projective varieties.
+		\item Bloch-Beilinson-Murre conjecture on filtrations of Chow groups of smooth projective varieties.
+		\item Beilinson-Soul\'e conjecture: Fix $X\in \Sm_k$, then
+			\[
+			\CH_{\text{mot}}^{q}(X,\Q(p)) = 0
+			\] 
+			for $q<0$. Call this statement ($BS_X$).
+	\end{enumerate}
+\end{theorem}
+\begin{theorem}[Levine]
+	If $X\in \Sm_k$, then ($BS_X$) implies the existence of a motivic $t$-structure on $\cat{DMT}_{\text{ct}}(X,k)$ (not satisfying property 3) in general.
+\end{theorem}
+\begin{theorem}
+	($BS_X$) is a known when
+	\begin{enumerate}[1)]
+		\item $k$ is a number field, function field, finite field. The number field case is a difficult theorem of Borel, the function field was proven by Harder, and the finite field case by Quillen.
+		\item $M(X)\in \cat{DMT}(k)$ for $X=\Gm^{m}\times \Aff^{n}\times \P^{n}$.
+	\end{enumerate}
+\end{theorem}
+\begin{definition}
+	Let $i:Z\injto X$ be a closed embedding and $j:\injto X\setminus Z$ be the complementary open embedding. We say it is \defn{Whitney-Tate} if $i^{*}j_*\cat{DMT}(X\setminus Z)\subset \cat{DMT}(Z)$.
+\end{definition}
 
 \end{document}
 
