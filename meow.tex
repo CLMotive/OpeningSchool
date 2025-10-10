@@ -575,7 +575,7 @@ when does a solution exist? It exists if $f$ has a right inverse.
 	have a solution when
 	\begin{enumerate}[(1)]
 		\item $0<j<n$,
-		\item $j=0$ and $n\ge 2$ \emph{if} $r$ sends $\{0,1\} $ to a $p$-cocartesian edge,
+		\item $j=0$ and $n\ge 2$ \emph{if} $r$ sends $\{0,1\} $ to a $p$-cocartesian edge (this is actually automatic),
 		\item $j=0,n=1$; in this case we also \emph{require} the solution $u:\Delta^{1}\to \C$ to be a $p$-cocartesian edge.
 	\end{enumerate}
 \end{definition}
@@ -605,5 +605,104 @@ The definition is precisely set up so you can carry this out. Let's keep going:
 		\end{tikzcd}
 		\] 
 \end{itemize}
+\begin{theorem}[Straightening-Unstraightening Theorem]
+	There is an equivalence of $\infty$-categories
+	\[
+		\cat{Cocart}(\cat{D}) \simto \cat{Fun}(\cat{D},\cat{Cat}_\infty)
+	\] 
+	between the $\infty$-category of cocartesian fibrations over $\cat{D}$ and the $\infty$-category of functors $\cat{D}\to \cat{CaT}_\infty$. The forward map is called \defn{straightening} and the inverse is called \defn{unstraightening}.
+\end{theorem}
+The left hand side is easier for humans:
+\begin{itemize}
+	\item Writing down a functor $\cat{D}\to \cat{Cat}_\infty$ involves making millions of choices and checking that they're compatible.
+	\item Writing down a cocartesian fibration is \emph{easier}: you write down \emph{all} possible choices and don't bother with compatibility.
+\end{itemize}
+\begin{definition}
+	Let $\C$ be an $\infty$-category. A \defn{monoidal structure} on $\C$ is a cocartesian fibration
+	\[
+		\C^{\otimes} \to N(\bb{\Delta}\op)
+	\] 
+	such that
+	\begin{align*}
+		\C_{[1]}^{\otimes} &= \C \\
+		\C_{[n]}^{\otimes} &\simto \C_{\{0,1\} }^{\otimes}\times \C_{\{1,2\} }^{\otimes}\times \dots\times \C_{\{n-1,n\} }^{\otimes}.
+	\end{align*}
+\end{definition}
+
+Let's go back to mapping spaces. We want a functor
+\begin{align*}
+	\C\op\times \C &\longrightarrow \cat{Spc} \subset \cat{Cat}_\infty \\
+	(x,y) &\longmapsto \map_\C(x,y).
+\end{align*}
+This is impossible for humans.
+
+Let's introduce the \defn{twisted arrow category} $\cat{Tw}(\C)$ for an $\infty$-category $\C$. We define
+\[
+	\cat{Tw}(\C)_k = \left\{ \text{maps }N(k'<(k-1)'<\dots<1'<0'<0<1<\dots<k)\to \C \right\} .
+\] 
+Of course that poset is isomorphic to $\Delta^{2k+1}$ but we want it to have this notation. We make the unprimed indices correspond to $\C$ and the primed indices to correspond to $\C\op$, so we get a map
+\[
+	\cat{Tw}(\C) \to  \C^{\op}\times \C.
+\] 
+\begin{lemma}
+	This is a cocartesian fibration whose fibers are Kan complexes.
+\end{lemma}
+So by Straightening-Unstraightening we get a functor
+\[
+	\map_\C : \C\op\times \C \to \cat{Spc} \subset \cat{Cat}_\infty.
+\] 
+By adjunction (1-categorical), we get
+\[
+	h:\C \to \cat{Fun}(\cat{C}\op\to \cat{Spc}).
+\] 
+\begin{theorem}[$\infty$-categorical Yoneda's Lemma]
+	$h$ is fully faithful.
+\end{theorem}
+\begin{remark}
+	Straightening-Unstraightening gives you a framework for generalizing 1-categorical notions to $\infty$-categories. Some themes for going between ordinary and $\infty$-categories:
+	\begin{table}[h]
+		\centering
+		\label{tab:themes}
+		\begin{tabular}{c|c}
+		1-categories & $\infty$-categories \\ \hline
+		Sets & Spaces \\
+		existence and uniqueness & existence for $\partial \Delta^{n}\to \Delta^{n}$ and $\forall n$ uniqueness up to a contractible Kan complex
+		\end{tabular}
+	\end{table}
+\end{remark}
+
+\subsection{Pullbacks}
+In an ordinary category 
+\[
+\begin{tikzcd}
+	X \ar[dr,dashed] \ar[drr] \ar[ddr] \\
+	& L \ar[r] \ar[d] & A \ar[d] \\
+	& A' \ar[r] & B
+\end{tikzcd}
+\] 
+$L$ is the pullback of
+\[
+\begin{tikzcd}
+	& A \ar[d] \\
+	A' \ar[r] & B
+\end{tikzcd}
+\] 
+if given solid arrows there exists a unique dashed arrow. 
+
+Now for the $\infty$-categorical verson we need auxiliary simplicial sets
+\[
+P_n = N(??)
+\] 
+(I need to think about how to write this, it's a poset $0< \dots< n+1$ with a square made at the and with $a,a',b$.) The standard notation for this simplicial set is $\Delta^{n+1}*\Lambda_2^2$, where $*$ stands for the join operation, which we won't define. Also define $P_n^{0}$ to be the subsimplicial set of $P_n$ where we take chains that omit one of $0,1,\dots,n+1$. The standard notation is
+\[
+\Delta^{n} * \Lambda^2_2 \coprod_{\partial\Delta^{n}*\Lambda_2^2}\partial\Delta^{n} * (\Delta^{1}\times \Delta^{1})
+\] 
+it also might be $\partial \Delta^{n+1}*\Lambda_2^2$ but Pramod wasn't sure.
+
+(Pictures of $P_i$ and $P_i^{0}$.)
+
+\begin{definition}
+	Let $\C$ be an $\infty$-category. A diagram of shape $\Delta^{1}\times \Delta^{1}$, say (Picture) is called a \defn{pullback} if every extension problem.
+\end{definition}
 
 \end{document}

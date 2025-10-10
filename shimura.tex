@@ -18,6 +18,15 @@
 \def\kz{\mathfrak{z}}
 \def\Rep{\cat{Rep}}
 \def\Ad{\operatorname{Ad}}
+\def\C{\bb{C}}
+\def\SU{\bb{SU}}
+\def\Sh{\operatorname{Sh}}
+\def\der{_{\mathrm{der}}}
+\def\et{_{\text{\'et}}}
+\def\real{\operatorname{real}}
+\def\PGL{\bb{PGL}}
+\def\SO{\bb{SO}}
+\def\GSpin{\bb{GSpin}}
 
 \title{Introduction to Shimura Varieties and Their Cohomology}
 \author{Lecturer: Olivier Taibi,\quad Typesetter: Micha{\l} Mruga{\l}a}
@@ -35,21 +44,21 @@
 The main reference are Sophie Morel's notes from the IHES '22 summer school.
 
 \section{Siegel Modular Varieties}
-Analytically: we want to parametrize complex tori. This is fairly simple. Let $V$ be a $\bb{C}$-vector space of dimension $m\ge 1$, $\Lambda\subset V$ a lattice (a discrete subgroup such that $V /\Lambda$ is compact), then $X=V /\Lambda$ is a complex Lie group, which is a complex torus. 
+Analytically: we want to parametrize complex tori. This is fairly simple. Let $V$ be a $\C$-vector space of dimension $m\ge 1$, $\Lambda\subset V$ a lattice (a discrete subgroup such that $V /\Lambda$ is compact), then $X=V /\Lambda$ is a complex Lie group, which is a complex torus. 
 
 \begin{exercise}
-	A morphism $f:X=V /\Lambda \to X' = V' /\Lambda'$ of complex Lie groups is given by a $\bb{C}$-linear map $V\to V'$ mapping $\Lambda$ to $\Lambda'$.
+	A morphism $f:X=V /\Lambda \to X' = V' /\Lambda'$ of complex Lie groups is given by a $\C$-linear map $V\to V'$ mapping $\Lambda$ to $\Lambda'$.
 \end{exercise}
 
-\emph{Question:} Which complex tori are algebraizable, i.e. $X\injto \P^{n}(\bb{C})$ (equivalent to $X\isoto \ul{X}\an$ for some projective $\ul{X}$ by Chow). Can we find a parametrization?
+\emph{Question:} Which complex tori are algebraizable, i.e. $X\injto \P^{n}(\C)$ (equivalent to $X\isoto \ul{X}\an$ for some projective $\ul{X}$ by Chow). Can we find a parametrization?
 
 \begin{example}
 	Let $n=1$ complex tori are always algebraic. There is the Weierstrass $\wp$-function
 	\begin{align*}
-		\wp: V /\Lambda &\longrightarrow \P^{1}(\bb{C}) \\
+		\wp: V /\Lambda &\longrightarrow \P^{1}(\C) \\
 		v &\longmapsto \wp(v) = \frac{1}{v^2} + \sum_{\lambda\in \Lambda-0}\frac{1}{(\lambda+v)^2}-\frac{1}{\lambda^2}
 	.\end{align*}
-	It embeds $V /\Lambda$ in $\P^2(\mathbb{C})$ via $[\wp:\wp':1]$ with image $y^2=P_\Lambda(x)$ where $P_\Lambda\in \bb{C}[X]$ has degree 3. The coefficients of $P_\Lambda$ are Eisenstein series (modular forms).
+	It embeds $V /\Lambda$ in $\P^2(\C)$ via $[\wp:\wp':1]$ with image $y^2=P_\Lambda(x)$ where $P_\Lambda\in \C[X]$ has degree 3. The coefficients of $P_\Lambda$ are Eisenstein series (modular forms).
 
 	For $n>1$, $X$ is ``almost never'' algebraic.
 \end{example}
@@ -61,7 +70,7 @@ Recall that $X$ is algebraizable if and only if there exists $\CL\in \Pic(X)$ wh
 \end{equation}
 so we get a long exact sequence. The map
 \[
-	H^{0}(X,\OO_X) \isoto \bb{C} \to \bb{C}^{\times}\isoto H^{0}(X,\OO_X^{\times})
+	H^{0}(X,\OO_X) \isoto \C \to \C^{\times}\isoto H^{0}(X,\OO_X^{\times})
 \]
 is surjective so we get
 \begin{equation}
@@ -69,17 +78,17 @@ is surjective so we get
 	H^{1}(X,\Z) \ar[r,hook] \ar[d,"\isoto"] & H^{1}(X,\OO_X) \ar[d,"\isoto"',"Dolbeaut"] \ar[r] & H^{1}(X,\OO_X) \ar[d,"\isoto"] \ar[r,"\delta"] & \ker (H^2(X,\Z)\to H^2(X,\OO_X)) \ar[d,"\isoto"] \\
 	H^{1}(\Lambda,\Z) \ar[d,equal] & \overline{T} & H^{1}(\Lambda,\OO(X)^{\times}) & \Hom\left( \bigwedge^2\Lambda,\Z \right)  \\
 	\Hom(\Lambda,\Z) \ar[dr,hook] & T \oplus \overline{T} \ar[u,"\pr_2"] \\
-				      & \Hom_{\R}(V,\bb{C}) \ar[u,"\isoto"]
+				      & \Hom_{\R}(V,\C) \ar[u,"\isoto"]
 \end{tikzcd}
 \end{equation}
-We have $H^{i}(V,\Z)=0$ for all $i>0$ and $H^{i}(V,\OO_V)=0$ for all $i>0$ so $\Pic(V)=0$. $\overline{T}$ are the antilinear maps $V\to \bb{C}$ and $T=\Hom_{\bb{C}}(V,\bb{C})$. Observe that
+We have $H^{i}(V,\Z)=0$ for all $i>0$ and $H^{i}(V,\OO_V)=0$ for all $i>0$ so $\Pic(V)=0$. $\overline{T}$ are the antilinear maps $V\to \C$ and $T=\Hom_{\C}(V,\C)$. Observe that
 \[
 \Pic^{0}(X) = \ker\delta \isoto \frac{\overline{T}}{\pr_2(\Hom(\Lambda,\Z))}
 \]
 is also a complex torus. The last term is the Neron-Severi group
 \begin{align*}
 	NS(X) &\isoto \{E:\Lambda\times \Lambda\to \Z\text{ alt.}: E(iv_1,iv_2)=E(v_1,v_2), \forall v_1,v_2\in V\} \\
-	      &= \left\{ \Im H:\, H:V\times V\to \bb{C}\text{ Hermitian such that }(\Im H)(\Lambda\times \Lambda)\subset \Z \right\} 
+	      &= \left\{ \Im H:\, H:V\times V\to \C\text{ Hermitian such that }(\Im H)(\Lambda\times \Lambda)\subset \Z \right\} 
 .\end{align*}
 The Appel-Humbert theorem completely describes $\Pic(X)$ as $\{L(H,\alpha)\} $ with $H$ as above and $\alpha$ an extra datum.
 
@@ -116,21 +125,21 @@ is a morphism of Lie groups (here $T_x$ is translation by $x$).
 \end{remark}
 We can define the moduli space
 \[
-	\CA_n(\bb{C}) = \left\{ (X,\phi):X = V /\Lambda\text{ of dimension }n,  \phi:X\to \wh{X}\text{ a principal polarization} \right\} 
+	\CA_n(\C) = \left\{ (X,\phi):X = V /\Lambda\text{ of dimension }n,  \phi:X\to \wh{X}\text{ a principal polarization} \right\} 
 .\] 
 Let $(V,\Lambda,H)$ be a principally polarized complex torus. Choose a symplectic basis $(e_1,\dots,e_{2n})$ of $\Lambda$, i.e.
 \[
 	(E(e_i,e_j))_{i,j} = J_n = \begin{pmatrix} 0 & I_n \\ -I_n & 0 \end{pmatrix} 
 .\] 
 \begin{exercise}
-	$L=L(H,\alpha)$ is ample if and only if $e_{n+1},\dots,e_{2n}$ is a basis of $V$ over $\bb{C}$ such that
+	$L=L(H,\alpha)$ is ample if and only if $e_{n+1},\dots,e_{2n}$ is a basis of $V$ over $\C$ such that
 	\[
 	\tau = \Mat_{e_{n+1},\dots,e_{2n}}(e_1,\dots,e_n)
 	\] 
 	satisfies $\tau = ^{t}\tau$ and $\Im(\tau)$ is positive definite.
 \end{exercise}
 \begin{definition}
-	$\H_n^{+}$ is the set of such $\tau\in M_n(\bb{C})$. There is an algebraic group
+	$\H_n^{+}$ is the set of such $\tau\in M_n(\C)$. There is an algebraic group
 	\[
 	\Sp_{2n,\Z}:R \mapsto \left\{ g\in M_{2n}(R) : ^{t}gJ_ng = J_n \right\} 
 	.\] 
@@ -156,14 +165,14 @@ This extends to an action of $\Sp_{2n}(\R)$ on $\H_n^{+}$. This action is transi
 \end{align*}
 is an isomorphism (this is a maximal compact subgroup).
 
-So $\CA_n(\bb{C})\isoto \Gamma_n\setminus \H_n^{+}$ where $\Gamma_n\isoto \Sp_{2n}(\Z)$.
+So $\CA_n(\C)\isoto \Gamma_n\setminus \H_n^{+}$ where $\Gamma_n\isoto \Sp_{2n}(\Z)$.
 \begin{remark}
 	There exists $\gamma\in \Gamma_n\setminus \{\pm 1\} $and $\tau\in \H_n^{+}$ such that $\gamma\tau=\tau$.
 \end{remark}
 
 There is a universal object
 \[
-	\CX_n(\bb{C}) = \Z^{2n}\rtimes \Gamma_n\setminus\bb{C}^{n}\times \H_n^{+}
+	\CX_n(\C) = \Z^{2n}\rtimes \Gamma_n\setminus\C^{n}\times \H_n^{+}
 \] 
 where
 \[
@@ -175,18 +184,18 @@ and
 \]
 for $\lambda_i\in \Z^{n}$.
 
-There is a morphism $\pi:\CX(\bb{C})\to \CA_n(\bb{C})$ which admits a section $e$. The fiber of $\tau$ is $[\tau]\isoto\bb{C}^{n} /\Lambda_\tau$ where $\Lambda_\tau = \Z^{n}\oplus\tau \Z^{n}$. We get the \defn{Hodge bundle}: take $\Omega^{1}(V /\Lambda)$ which are translaton invariant 1-forms, which is isomorphic to $V^{*}$ via $e^{*}$, then the Hodge bundle is
+There is a morphism $\pi:\CX(\C)\to \CA_n(\C)$ which admits a section $e$. The fiber of $\tau$ is $[\tau]\isoto\C^{n} /\Lambda_\tau$ where $\Lambda_\tau = \Z^{n}\oplus\tau \Z^{n}$. We get the \defn{Hodge bundle}: take $\Omega^{1}(V /\Lambda)$ which are translaton invariant 1-forms, which is isomorphic to $V^{*}$ via $e^{*}$, then the Hodge bundle is
 \[
-	\CE_n = e^{*}\Omega^{1}_{\CX(\bb{C}) / \CA_n(\bb{C})} \isoto \Gamma_n\setminus\bb{C}^{n}\times \H_n^{+}
+	\CE_n = e^{*}\Omega^{1}_{\CX(\C) / \CA_n(\C)} \isoto \Gamma_n\setminus\C^{n}\times \H_n^{+}
 \]
 for action (??).
 
-We can apply Schur functors (use the action of $\mathfrak{S}_k$ on on $\CE_n^{\otimes k}$ to act on subbundles, e.g. $\bigwedge^{k}\CE_n$ for $0\le k\le n$ ). (Equivalently see $\CE_n$ as a $\GL_n(\bb{C})$-bundle on $\CA_n(\bb{C})$ and apply a holomorphic representation $\rho:(\GL_n(\bb{C})\to \GL(W)$.)
-Sections of such vector bundles on $\CA_k(\bb{C})$ are (level $\Gamma_n$, weight $\rho$) Siegel modular forms on $\CA_n(\bb{C})$.
+We can apply Schur functors (use the action of $\mathfrak{S}_k$ on on $\CE_n^{\otimes k}$ to act on subbundles, e.g. $\bigwedge^{k}\CE_n$ for $0\le k\le n$ ). (Equivalently see $\CE_n$ as a $\GL_n(\C)$-bundle on $\CA_n(\C)$ and apply a holomorphic representation $\rho:(\GL_n(\C)\to \GL(W)$.)
+Sections of such vector bundles on $\CA_k(\C)$ are (level $\Gamma_n$, weight $\rho$) Siegel modular forms on $\CA_n(\C)$.
 
 \emph{Notation:} Write
 \[
-	M_\rho(\Gamma_n) = \left\{ f\in \Gamma(A_n(\bb{C}),\rho(\CE_n):f\text{ is holomorphic at }\infty \right\} 
+	M_\rho(\Gamma_n) = \left\{ f\in \Gamma(A_n(\C),\rho(\CE_n):f\text{ is holomorphic at }\infty \right\} 
 \]
 (the last condition is automatic if $n>1$). We write
 \[
@@ -194,42 +203,42 @@ S_\rho(\Gamma_n) = \{f:\text{vanish at }\infty\} \subset M_\rho(\Gamma_n)
 \]
 for the set of \defn{cusp forms}.
 
-We want a group theoretic description of the complex structure on $\CA_n(\bb{C})$ and these vector bundles on $\CA_m(\bb{C})$.
+We want a group theoretic description of the complex structure on $\CA_n(\C)$ and these vector bundles on $\CA_m(\C)$.
 
 We have $Z(U(n))\isoto U(1)$ and its centralizer in $\Sp_{2n}(\R)$ is $U(n)=K(\R)$ where $K\injto \Sp_{2n,\R}$ is an algebraic subgroup.
 
-Over $\bb{C}$ we have
+Over $\C$ we have
 \[
-	Z(K_{\bb{C}}) \isoto \GL_{1,\bb{C}} \injto \Sp_{2n,\bb{C}}.
+	Z(K_{\C}) \isoto \GL_{1,\C} \injto \Sp_{2n,\C}.
 \] 
-This determines two opposite parabolic subgroups $Q_+=K_{\bb{C}}N_+$, $Q_{-}K_{\bb{C}}N_-$.
+This determines two opposite parabolic subgroups $Q_+=K_{\C}N_+$, $Q_{-}K_{\C}N_-$.
 
 \subsection{Siegel modular forms as automorphic forms}
-Let $\rho:\GL_n(\bb{C})\to \GL(W)$ be a holomorphic (equivalently algebraic) representation. \defn{Siegel modular forms} are
+Let $\rho:\GL_n(\C)\to \GL(W)$ be a holomorphic (equivalently algebraic) representation. \defn{Siegel modular forms} are
 \begin{align*}
 	M_\rho(\Gamma_n) &= \left\{ \begin{array}{c} f:\H_n^{+}\to W \\ \text{holomorphic} \end{array} \middle| \begin{array}{c}
 		\forall \gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \Gamma_n,\forall \tau\in \H_n^{+}, f(\gamma \tau) = \rho(c\tau+d)f(\tau)\\
 		\text{and }f\text{ holomorphic at }\infty
 	\end{array} \right\} \\
-			 &\subset H^{0}(\CA_n(\bb{C}),^{\rho}\CE_n).
+			 &\subset H^{0}(\CA_n(\C),^{\rho}\CE_n).
 \end{align*}
 $^{\rho}\CE_m$ comes from a $\Sp_{2n}(\R)$-equivariant vector bundle on 
 \[
 \begin{tikzcd}
-	& \H_n^{+} \ar[r,hook] & \Sp_{2n}(\bb{C}) /Q_-(\bb{C}) \\
+	& \H_n^{+} \ar[r,hook] & \Sp_{2n}(\C) /Q_-(\C) \\
 	\Sp_{2n}(\R) \ar[r] & \Sp_{2n}(\R) /U(n) \ar[u,"\isoto"]
 \end{tikzcd}
 \] 
 Define
 \begin{align*}
-	j: \Sp_{2n}(\R)\times \H_n^{+} &\longrightarrow \GL_n(\bb{C}) \\
+	j: \Sp_{2n}(\R)\times \H_n^{+} &\longrightarrow \GL_n(\C) \\
 	\begin{pmatrix} a & b \\ c & d \end{pmatrix} , \tau &\longmapsto c\tau + d
 .\end{align*}
 This is a cocycle
 \[
 	j(gg',\tau) = j(g,g'\tau)j(g',\tau)
 \] 
-(so $j(-,i)|_{U(n)}:U(n)\to \GL_n(\bb{C})$ is a morphism). To $f\in M_\rho(\Gamma_n)$ associate
+(so $j(-,i)|_{U(n)}:U(n)\to \GL_n(\C)$ is a morphism). To $f\in M_\rho(\Gamma_n)$ associate
 \begin{align*}
 	\phi_f: \Gamma_n \setminus \Sp_{2n}(\R) &\longrightarrow W \\
 	g &\longmapsto \phi_f(g) = \rho(j(g,i))^{-1}f(gi)
@@ -238,11 +247,11 @@ a smooth function. Let $g\in \Sp_2n(\R)$ and $k\in U(n)$, then
 \[
 \phi_f(gk) = \rho(j(k,i))^{-1}f(gi).
 \]
-Assume $W=\bb{C}$ for simplicity, e.g. $^{\rho}\CE_n = \left( \bigwedge^{n}\CE_n \right) ^{\otimes k}$. Then 
+Assume $W=\C$ for simplicity, e.g. $^{\rho}\CE_n = \left( \bigwedge^{n}\CE_n \right) ^{\otimes k}$. Then 
 \[
-	\phi_f\in \CA(\Gamma_n\setminus \Sp_{2n}(\R)) \subset C^{\infty}(\Gamma_n\setminus \Sp_{2n}(\R, \bb{C})	
+	\phi_f\in \CA(\Gamma_n\setminus \Sp_{2n}(\R)) \subset C^{\infty}(\Gamma_n\setminus \Sp_{2n}(\R, \C)	
 \]
-(? details). This space has actions by $\kg$ and $U(n)$. By the Cauchy-Riemann equations $f$ is holomorphic if and only if $\phi_f$ is killed by $\Lie N_-\subset \kg=\bb{C}\otimes_{\R}\Lie \Sp_{2n}(\R)$. Note that $\Lie(\Sp_{2n}(\R))$ acts on $C^{\infty}(\Gamma_n\setminus \Sp_{2n}(\R))$ by
+(? details). This space has actions by $\kg$ and $U(n)$. By the Cauchy-Riemann equations $f$ is holomorphic if and only if $\phi_f$ is killed by $\Lie N_-\subset \kg=\C\otimes_{\R}\Lie \Sp_{2n}(\R)$. Note that $\Lie(\Sp_{2n}(\R))$ acts on $C^{\infty}(\Gamma_n\setminus \Sp_{2n}(\R))$ by
 \[
 \left( X\cdot \phi \right) (g) = \left.\frac{d}{dt}\right|_{t=0}\phi(ge^{tX}).
 \] 
@@ -267,7 +276,7 @@ Let $X = V /\Lambda$ be a complex torus with a principal polarization $phi:X\sim
 \] 
 The map $[M]_X:X\to X$ is an isogeny (i.e. surjective with finite kernel). For all isogenenies $f:X\to Y$ inducing $\wh{f}=f^{*}:\wh{Y}\to \wh{X}$, also an isogeny. We get the Weil pairing
 \begin{align*}
-	\ker f\times \ker\wh{f} &\longrightarrow \bb{C}^{\times} \\
+	\ker f\times \ker\wh{f} &\longrightarrow \C^{\times} \\
 	(x,[L]) &\longmapsto \left<x,[L] \right>
 .\end{align*}
 Choose $t:f^{*}L\simto \OO_X$ we have
@@ -277,9 +286,9 @@ Choose $t:f^{*}L\simto \OO_X$ we have
 	f^{*}L \ar[r,"{t\times \left<x,[L] \right>}"] & \OO_X.
 \end{tikzcd}
 \] 
-$f=[M]_X$ is a special case, then we get $X[M]\times \wh{X}[M]\to \mu_M(\bb{C})$ and usaing a polarization we get
+$f=[M]_X$ is a special case, then we get $X[M]\times \wh{X}[M]\to \mu_M(\C)$ and usaing a polarization we get
 \[
-	\left<\cdot ,\cdot  \right>_\phi:X[M]\times X[M]\to \mu_M(\bb{C}).
+	\left<\cdot ,\cdot  \right>_\phi:X[M]\times X[M]\to \mu_M(\C).
 \] 
 \begin{proposition}
 	$\left<\cdot ,\cdot  \right>_\phi$ is alternating and non-degenerate.
@@ -288,7 +297,7 @@ $f=[M]_X$ is a special case, then we get $X[M]\times \wh{X}[M]\to \mu_M(\bb{C})$
 	Recall that $\phi$ is $\phi_L$ for some $L=L(H,\alpha)$, let $E=\Im H:\Lambda\times \Lambda\to \Z$. Then
 	\[
 	\begin{tikzcd}
-		X[M] \times X[M] \ar[r,"{\left<\cdot ,\cdot  \right>_\phi}"] \ar[d,"\isoto"] & \mu_M(\bb{C}) \\
+		X[M] \times X[M] \ar[r,"{\left<\cdot ,\cdot  \right>_\phi}"] \ar[d,"\isoto"] & \mu_M(\C) \\
 		\left( \frac{1}{M}\Lambda /\Lambda \right) ^2 \ar[r,"{ME(\cdot ,\cdot )}"] & \frac{1}{M}\Z /\Z \ar[u,"{\exp(2\pi i -)}"']
 	\end{tikzcd}
 	\] 
@@ -306,13 +315,13 @@ $f=[M]_X$ is a special case, then we get $X[M]\times \wh{X}[M]\to \mu_M(\bb{C})$
 \begin{corollary}
 	There is a bijection
 	\[
-		\left\{ (X,\phi,\eta) \middle| \text{PPAV with a level }M\text{ structure} \right\} / \sim \isoto \Gamma_n(M) \setminus \H_n^{+} = \CA_n'(M)(\bb{C}).
+		\left\{ (X,\phi,\eta) \middle| \text{PPAV with a level }M\text{ structure} \right\} / \sim \isoto \Gamma_n(M) \setminus \H_n^{+} = \CA_n'(M)(\C).
 	\] 
 \end{corollary}
 \begin{exercise}
 	For $M\ge 3$, for all $\tau\in \H_n^{+}$ show that $\Stab_{\Gamma_n(M)}(\tau) = \{1\}$. (?)
 \end{exercise}
-We get a tower $(\CA'_n(M)(\bb{C}))_{M\ge 1}$ ordered by divisibility. For $M \mid |M'$ we get $\CA_n'(M')(\bb{C})\to \CA_n'(M)(\bb{C})$.
+We get a tower $(\CA'_n(M)(\C))_{M\ge 1}$ ordered by divisibility. For $M \mid |M'$ we get $\CA_n'(M')(\C)\to \CA_n'(M)(\C)$.
 
 Given $(X,\phi)$ 
 \[
@@ -326,7 +335,7 @@ on this tower.
 
 Also
 \[
-	\CA_n'(M)(\bb{C}) \isoto \CA'_n(M')(\bb{C}) /\left( K(M) /K(M') \right) 
+	\CA_n'(M)(\C) \isoto \CA'_n(M')(\C) /\left( K(M) /K(M') \right) 
 \] 
 where 
 \[
@@ -335,7 +344,7 @@ where
 The quotient $K(M) /K(M')$ is a finite group.
 
 \subsection{Hecke operators (adelically)}
-The goal is to define more natural maps between $\CA_n'(M)(\bb{C})$. The basic idea is that given $(X,\phi,\eta)$, we should also consider isogeneus complex tori (i.e. quotients of $X$ by finite subgroups). But there are some problems: this is not strictly compatible with principal polarizations. Let $f:X\to Y$be an isogeny, $\phi$ be a principal polarization for $Y$, then $f^{*}\phi\defeq \wh{f}\circ \phi \circ f$ has degree $(\deg f)^2$, so it is not principal unless $f$ is an isomorphism.
+The goal is to define more natural maps between $\CA_n'(M)(\C)$. The basic idea is that given $(X,\phi,\eta)$, we should also consider isogeneus complex tori (i.e. quotients of $X$ by finite subgroups). But there are some problems: this is not strictly compatible with principal polarizations. Let $f:X\to Y$be an isogeny, $\phi$ be a principal polarization for $Y$, then $f^{*}\phi\defeq \wh{f}\circ \phi \circ f$ has degree $(\deg f)^2$, so it is not principal unless $f$ is an isomorphism.
 
 There are two solutions:
 \begin{enumerate}[1)]
@@ -397,11 +406,11 @@ Here $\GSp_{2n}$ is the $\Z$-group scheme
 \] 
 
 \begin{definition}
-	A \defn{level structure} for $(X,\phi)$ is an isomorphism $(\Z /M)^{2n}\simto X[M]$. $\Z /M\simto \mu_M(\bb{C})$ such that the obvious diagram commutes.
+	A \defn{level structure} for $(X,\phi)$ is an isomorphism $(\Z /M)^{2n}\simto X[M]$. $\Z /M\simto \mu_M(\C)$ such that the obvious diagram commutes.
 \end{definition}
 We have
 \begin{align*}
-	\CA_n(M)(\bb{C}) &\isoto \left\{ (X,\phi,\eta) \middle| \text{PPAV with level }M\text{ structure} \right\} / \sim \\
+	\CA_n(M)(\C) &\isoto \left\{ (X,\phi,\eta) \middle| \text{PPAV with level }M\text{ structure} \right\} / \sim \\
 			 &\isoto \left\{ (X',\phi') \middle| K(M)\text{-orbit of trivalization of }\Q\otimes \prod_p T_pX' \right\} / \text{quasi-isogeny} \\
 			 &\isoto \GSp_{2n}(\Q) \setminus \left( \H_n^{\pm}\times \GSp_{2n}(\A_f) /K(M) \right) 
 \end{align*}
@@ -416,23 +425,23 @@ has an action of $\GSp_{2n}(\R)$ and
 
 From now on we write $G$ for $\GSp_{2n}$.
 \marginpar{Lecture 3}
-We have a tower $(\CA_m(M)(\bb{C}))_{M\ge 1}$ (a $\GSp_2(\wh{\Z})$-torsor over $\CA_m(\bb{C})$ with a right action of $G(\A_f)$ and
+We have a tower $(\CA_m(M)(\C))_{M\ge 1}$ (a $\GSp_2(\wh{\Z})$-torsor over $\CA_m(\C)$ with a right action of $G(\A_f)$ and
 \[
-	\CA_m(M)(\bb{C}) \isoto G(\Q) \setminus \left( \H_n^{\pm} \times G(\A_f) /K(M) \right) .
+	\CA_m(M)(\C) \isoto G(\Q) \setminus \left( \H_n^{\pm} \times G(\A_f) /K(M) \right) .
 \] 
 For $g\in G(\A_f)$ and $M,M'$ satisfying $K(M')\subset gK(M)g^{-1}$ define
 \begin{align*}
-	T_g: \CA_m(M')(\bb{C}) &\longrightarrow \CA_m(M)(\bb{C}) \\
+	T_g: \CA_m(M')(\C) &\longrightarrow \CA_m(M)(\C) \\
 	[\tau, h] &\longmapsto [\tau, hg].
 \end{align*}
 
-There is also an action on Siegel modular forms. Note that $T_g^{*}\CE_m\isoto \CE_m$ and on $\CA_m(M)(\bb{C})$, $\CE_m=T_1^{*}\CE_m$. Hence  for $\rho:\GL_m(\bb{C})\to \GL(W)$ there is an acton of $G(\A_f)$ on 
+There is also an action on Siegel modular forms. Note that $T_g^{*}\CE_m\isoto \CE_m$ and on $\CA_m(M)(\C)$, $\CE_m=T_1^{*}\CE_m$. Hence  for $\rho:\GL_m(\C)\to \GL(W)$ there is an acton of $G(\A_f)$ on 
 \[
 M_\rho \defeq \varinjlim_M M_\rho(K(M))
 \] 
 where
 \[
-M_\rho(K(M)) \defeq H^{0}(\CA(M)(\bb{C}), ^{\rho}\CE_m)) + \text{holomorphy at }\infty\text{ if }m=1.
+M_\rho(K(M)) \defeq H^{0}(\CA(M)(\C), ^{\rho}\CE_m)) + \text{holomorphy at }\infty\text{ if }m=1.
 \] 
 $M_\rho$ contains cusp forms $S_\rho$ and by unitarity
 \[
@@ -442,14 +451,14 @@ S_\rho \simeq \bigoplus_{\pi_f\text{ irrep of }G(\A_f)}\pi_f^{\oplus m(\pi_f)}
 
 We recover 
 \[
-	\CH_B^{k}(\CA_m(M)(\bb{C}),\Q) \isoto (\CH_B^{k})^{K(M)}
+	\CH_B^{k}(\CA_m(M)(\C),\Q) \isoto (\CH_B^{k})^{K(M)}
 \] 
 where the right hand side admits an action of Hecke operators $H(G(\A_f),K(M))$. (Trace map?)
 
 \begin{theorem}[Franke, Generalization of Matsushima's formula]
 	We have
 	\begin{align*}
-		\bb{C}\otimes_\Q \CH^{\bullet}_B &\xrightarrow[G(\A_f)\text{-equiv.}]{\sim} \CH^{\bullet}( \sp_{2m}, U(m); \overbrace{\CA(G(\Q) \setminus G(\A) / \bb{R}_{>0}}^{\CA(G)} )  \\
+		\C\otimes_\Q \CH^{\bullet}_B &\xrightarrow[G(\A_f)\text{-equiv.}]{\sim} \CH^{\bullet}( \sp_{2m}, U(m); \overbrace{\CA(G(\Q) \setminus G(\A) / \bb{R}_{>0}}^{\CA(G)} )  \\
 						 &\defeq \CH^{\bullet} \left( \Hom_{U(m)}\left( \bigwedge^{\bullet}\sp_{2n} / \gl_m \right) , \CA(G) \right) .
 	\end{align*}
 \end{theorem}
@@ -461,9 +470,9 @@ where the right hand side admits an action of Hecke operators $H(G(\A_f),K(M))$.
 		\item $\CA(G)$ is not semi-simple at all.
 		\item If $m=1$ we can use this to recover the Eichler-Shimura isomorphism. Let $\CH^{1}_{B,\text{cusp}}$ be the subspace of $\CH^{1}_B$ defined by ``vanishing at cusps''. Then
 			\[
-				\bb{C}\otimes_\Q \CH^{1}_{B,\text{cusp}} \xrightarrow[\GL_2(\A_f)]{\sim} S_2 \oplus \overline{S}_2.
+				\C\otimes_\Q \CH^{1}_{B,\text{cusp}} \xrightarrow[\GL_2(\A_f)]{\sim} S_2 \oplus \overline{S}_2.
 			\] 
-			If $\Gamma_1\setminus\H_1^{+}$ was compact (thus a projective curve over $\bb{C}$) this would follow from the Hodge decomposition because $\CE_1^{\otimes 2}\isoto \Omega^{1}$ on $\CA_1(\bb{C})$.
+			If $\Gamma_1\setminus\H_1^{+}$ was compact (thus a projective curve over $\C$) this would follow from the Hodge decomposition because $\CE_1^{\otimes 2}\isoto \Omega^{1}$ on $\CA_1(\C)$.
 	\end{enumerate}
 \end{remark}
 \subsection{Siegel modular varieties, algebraically}
@@ -522,7 +531,7 @@ We stil have an action of $G(\A_f)$ on the tower $(\CA_m(M)\times \Q)_{M\ge 1}$ 
 	\item We have a $\Q$-structure on modular forms.
 	\item \'Etale cohomology: the comparison theorem tells us that
 		\[
-			\CH_{\text{\'et}}^{\bullet}(\CA_m(M)_{\overline{\Q}}, \Q_l) \isoto \Q_l \otimes_{\Q}\CH^{\bullet}_B\left( \CA_m(M)(\bb{C}), \Q \right) .
+			\CH_{\text{\'et}}^{\bullet}(\CA_m(M)_{\overline{\Q}}, \Q_l) \isoto \Q_l \otimes_{\Q}\CH^{\bullet}_B\left( \CA_m(M)(\C), \Q \right) .
 		\] 
 		The LHS has an action of $G(\Aff)\times \Gal_\Q$ where
 		\[
@@ -538,9 +547,9 @@ We stil have an action of $G(\A_f)$ on the tower $(\CA_m(M)\times \Q)_{M\ge 1}$ 
 	\[
 		\underbrace{\pi^{\GL_2(\Z_p)}}_{\dim 1} \neq 0
 	\] 
-	with an action of $\mathcal{H}(\GL_2(\Q_p),\GL_2(\Z_p))$ which is commutative. There correspond to $c(\pi_p)$ which are semi-simple conjugacy classes in $\GL_2(\bb{C})$.
+	with an action of $\mathcal{H}(\GL_2(\Q_p),\GL_2(\Z_p))$ which is commutative. There correspond to $c(\pi_p)$ which are semi-simple conjugacy classes in $\GL_2(\C)$.
 
-	Suitably normalized, there exists a number field $F\subset \bb{C}$ such that for almost any $p$,
+	Suitably normalized, there exists a number field $F\subset \C$ such that for almost any $p$,
 	\[
 	\tr c(\pi_p)\in F,\quad \det c(\pi_p)\in F.
 	\] 
@@ -555,29 +564,29 @@ We stil have an action of $G(\A_f)$ on the tower $(\CA_m(M)\times \Q)_{M\ge 1}$ 
 
 \section{General Shimura varieties}
 \begin{definition}
-	Let $\S = \Res_{\bb{C} /\R}(\GL_{1,\bb{C}})$, so
+	Let $\S = \Res_{\C /\R}(\GL_{1,\C})$, so
 	\[
-		\S(A) = (A\otimes_\R\bb{C})^{\times }
+		\S(A) = (A\otimes_\R\C)^{\times }
 	\] 
 	for an $\R$-algebra $A$.
 \end{definition}
 $\Rep(\S)$ correspond to real Hodge structures, i.e. finite dimensional real vector spaces $V$ with a decomposition
 \[
-	V_{\bb{C}}=\bb{C}\otimes_\R V = \bigoplus_{p,q\in \Z}V^{p,q}
+	V_{\C}=\C\otimes_\R V = \bigoplus_{p,q\in \Z}V^{p,q}
 \] 
-such that $\overline{V^{p,q}} = V^{q,p}$ and there is an action of $\kz\in \S(\R)=\bb{C}^{\times }$ via $\kz^{-p}\overline{\kz}^{-q}$.
+such that $\overline{V^{p,q}} = V^{q,p}$ and there is an action of $\kz\in \S(\R)=\C^{\times }$ via $\kz^{-p}\overline{\kz}^{-q}$.
 
 \begin{definition}
 	A \defn{Shimura datum} is a pair $(G,X)$ of a commutative reductive group $G$ over $\Q$ and a $G(\R)$-orbit $X$ of morphisms $h:\S\to G_{\R}$ such that
 	\begin{enumerate}[1)]
 		\item $\S$ acs via $\Ad(h)$ on
 			\[
-				\kg \defeq \bb{C}\otimes_\Q \Lie G = \bigoplus_{p,q}\kg^{p,q}
+				\kg \defeq \C\otimes_\Q \Lie G = \bigoplus_{p,q}\kg^{p,q}
 			\] 
 			has kernel of type $\{(-1,1), (0,0), (1,-1)\} $, i.e. $\kg^{p,q}=0$ unless $(p,q)$ lies in this set. (This implies that $\GL_{1,\R}\injto \S$ maps to $Z(G)$.)
 		\item $\Ad(h(i))$ is a Cartan involution of $G_{\text{ad},\R} = (G /Z(G))_{\R}$, i.e. an ivolution $\theta$ of $H = G_{\text{ad},\R}$ such that
 			\[
-				\{g\in H(\bb{C}) | \theta(g)=g\} 
+				\{g\in H(\C) | \theta(g)=g\} 
 			\] 
 			is compact.
 		\item $G_{\text{ad}}\isoto\prod_i G_{\text{ad},i}$ (with $G_{\text{ad},i}$ simple over $\Q$) has no factor $G_{\text{ad},i}$ such that $G_{\text{ad},i}(\R)$ is compact.
@@ -589,5 +598,210 @@ such that $\overline{V^{p,q}} = V^{q,p}$ and there is an action of $\kz\in \S(\R
 		h(a+ib) = \begin{pmatrix} aI_n & bI_n \\ -bI_n & aI_n \end{pmatrix} .
 	\] 
 \end{example}
+\begin{proposition}
+	$X$ (a priori a real manifold) is a finite disjoint unon of Hermitian symmetric spaces (of non-compact type).
+\end{proposition}
+A symmetric space is a quotient $H /K_H$ where $H$ is a commutative semisimple Lie group (real) and $K_H\subset H$ is a maximal compact subgroup, with an $H$-invariant Riemannian structure. The Hermitian part requires a complex structure. These were classified by Cartan (Harish-Chandra, Borel).
+
+Complex structure as in the Siegel case:
+\begin{definition}
+	Let $h\in X$, define
+	\begin{align*}
+		h_{\C}: \S_{\C} &\longrightarrow G_{\C} \\
+		(\kz_1,\kz_2) &\longmapsto \mu_h(\kz_1)\mu_h'(\kz_2)
+	\end{align*}
+\end{definition}
+From $\mu_h$ we get two opposite parabolic subgroups $Q_{\mu_h}^{+},Q_{\mu_h}^{-}$. Embed $X\injto G(\C) / Q_{\mu_h}^{-}(\C)$ which endows $X$ with a complex structure. 
+
+Now comes a definition motivated by variations of Hodge structure, e.g. if $G\to \GL(V)$ is some representation (over $\Q)$ we get a rational Hodge structure on $V$ for all $h\in X$. There exists a classification (see Deligne in Corvallis), $G_{\C}$ can only have a Dynkin diagram of type $A,B,C,D,E_6,E_7$. In the $A$ case $G_{\R}$ is isogeneous to $\prod \SU(p,q)$ (no $\SL_{n,\R}$!).
+
+\begin{definition}
+	Let $K\subset G(\A_f)$ be a compact open subgroup, define
+	\[
+	\Sh(G,X,K)(\C) \defeq G(\Q) \setminus \left( X\times G(\A_f) / K \right) .
+	\] 
+	Choose a commutative compact subgroup $X_0$ of $X$ and define
+	\[
+	G(\Q)^{+} \defeq \Stab_{G(\Q)}(X_0).
+	\] 
+\end{definition}
+Then
+\[
+	\Sh(G,X,K)(\C) \isoto \coprod_{[g]\in G(\Q)\setminus G(\A_f) / K}G(\Q)^{+}\cap gKg^{-1}\setminus X_0.
+\] 
+If $K$ is small enough (``neat'') then for all $h\in X_0$ 
+\[
+\Stab_{?}(h) = \{1\} 
+\] 
+so $\Sh(G,X,K)(\C)$ is a complex manifold. We still have the maps $T_g$ (right multiplication by $g$).
+\begin{theorem}[Baily-Borel, Borel]
+	For $K$ neat, $\Sh(G,X,K)(\C)$ has a canonical structure of a smooth group scheme over $\C$. 
+\end{theorem}
+We still have finite \'etale maps between them.
+\begin{definition}
+	A \defn{morphism of Shimura data} $(G_1,X_1)\to (G_2,X_2)$ is a morphism $f:G_1\to G_2$ such that $f_\R$ maps $X_1$ to $X_2$.
+\end{definition}
+In this case, Borel's uniqueness theorem implies that for all $K_1,K_2$ in $G_1(\A_f), G_2(\A_f)$ respectively such that $f(K_1)\subset K_2$ we get
+\[
+\Sh(G_1,X_1,K_1)(\C) \to \Sh(G_2,X_2,K_2)(\C)
+\] 
+(``obviously'' ?) is algebraic.
+
+\subsection{Canonical model}
+\begin{definition}
+	A \defn{model} of $(\Sh(G,X,K))_{K\text{ neat}}$ over some number field $E$ are $(S_K)_{K\text{ neat}}$ of smooth quasiprojective schemes and isomorphisms $S_K\times_E \C\isoto \Sh(G,X,K)$ such that all $T_g$ are defined over $E$ (so finite \'etale).
+\end{definition}
+\begin{definition}
+	Let $(G,X)$ be a Shimura datum. The \defn{reflex field} $E(G,X)$ is the smallest field $E\subset \C$ over which the conjugacy class of $\mu_h$ (any $h$) is defined.
+\end{definition}
+This is always a number field.
+
+In the case of tori: if $G$ is a torus, each $\Sh(G,X,\C)$ is finite. From global class field theory we get a model of $(\Sh(G,X,K))_K$ over $E(G,X)$.
+
+\begin{definition}
+	Let $(G,X)$ be a Shimura datum. A \defn{canonical model} of $(\Sh(G,X,K))_K$ is a model over $E(G,X)$ such that for all  $T\subset G$ (over $\Q$) all $h\in X$ factor through $T_\R$.
+\end{definition}
+So $(T,\{h\} )$ is a Shimura datum $E(G,X)\subset E(T,\{h\} )$. For all $K$ 
+\[
+\Sh(T,\{h\} , K\cap T(\A_f))(\C) \to \Sh(G,X,K)(\C)
+\] 
+are defined over $E(T,\{h\} )$.
+
+\begin{proposition}[Shimura, Deligne]
+	Such models are unique.
+\end{proposition}
+\begin{theorem}[Shimura, Deligne, Tamigawa]
+	In the Siegel case, the moduli space $(\CA_m(M)\times \Q)_{M\ge 1}$ is a canonical model.
+\end{theorem}
+Note that $(K(M))_{M\ge 1}$ is cofial in all compact open subgroups. This is equivalent to the main theorem of complex multiplication.
+
+\begin{theorem}[Shimura, Deligne, ?, Milne, Shih, Moonen]
+	For every Shimura datum $(G,X)$ there exists a canonical model.
+\end{theorem}
+In some cases, proved by reduction to the Siegel case:
+\begin{itemize}
+	\item Hodge type Shimura varieties: $(G,X) \injto (\GSp_{2n}, \H_n^{\pm})$.
+	\item Abelian type Shimura varieties: ``isogeneous'' to Hodge type.
+	\item PEL type Shimura varieties which are included in Hodge type Shimura varieties. P stands for polarizations, E stands for endomorphism, L stands for level. These are moduli spaces of polarized abelian varieties with an ``endomorphism''. Canonical models come from the moduli interpretation (follows from Mumford's representability theorem). There are also integral models over $\OO_{E,S}$.
+\end{itemize}
+
+\section{The Kottwitz conjecture}
+Let $(G,X)$ be a Shimura datum and $E=E(G,X)$ be the reflex field. Assume $G\der$ is anisotropic (i.e. no non-trivial $\GL_{1,\Q}\to G\der$), by reduction theory this is equivalent to $\Sh(G,X,K)$ being projective. Let $l$ be a prime and define
+\[
+\CH^{k}\et \defeq \varinjlim_K \CH^{k}\et\left( \Sh(G,X,K)_{\overline{E}}, \overline{\Q_l} \right) 
+\] 
+which admits an action of $G(\A_f)\times \Gal_E$ (where $\Gal_E\defeq \Gal(\overline{E} /E)$). Recall the comparison theorem
+\[
+\CH^{k}\et \isoto \overline{\Q_l} \otimes_\Q \CH_B^{k}.
+\] 
+$\CH_B^{k}$ is computed using de Rham cohomology (real) and Hodge decomposition. This gives us $(\kg,K_{\infty})$-cohomology of automorphic forms ($\CA=\CA_{\text{cusp}}$ is semisimple).
+
+\subsection{Conjectural picture}
+The Langlands group of $E$ is a topological group $L_E$ extending the Weil group $W_E$ that fits into an sequence
+\[
+\begin{tikzcd}
+	L_E \ar[dr,"|\cdot |"] \ar[r] & W_E \ar[d,"|\cdot |"] \ar[r,twoheadrightarrow] & \Gal_E \\
+	 & \R_{>0}
+\end{tikzcd}
+\] 
+and $\ker(L_E\to \R_{>0})$ should be compact. For all places $v$ of $E$ we should have
+\[
+\begin{tikzcd}
+	L_{E_v} \ar[r] \ar[d] & L_E \ar[d] \\
+	W_{E_v} \ar[r] \ar[d,hook] & W_E \ar[d,twoheadrightarrow] \\
+	\Gal_{E_v} \ar[r,hook] & \Gal_E
+\end{tikzcd}
+\]  
+Also $E$ is functorial in $E$. If $v$ is archimedean:
+\begin{itemize}
+	\item If $E_v\isoto \C$ we have $L_{E_v}=E_v^{\times }$ ($=W_{E_v}$).
+	\item If $E_v\isoto \R$ we have a short exact sequence
+		\[
+		\begin{tikzcd}
+			1 \ar[r] & \C^{\times } \ar[r] & W_\R \ar[r] & \Gal(\C /\R) \ar[r] & 1
+		\end{tikzcd}
+		\] 
+\end{itemize}
+There is a relation to (pure) motives (over $E$).
+\begin{definition}
+	A continuous and semisimple representation $\rho:L_E\to \GL(W)$ is \defn{algebraic} if for all archimedean places $v$ of $E$ 
+	\[
+		(\rho|_{L_{E_v}})|_{\C^{\times }} \isoto \left( \kz \mapsto \begin{pmatrix} \kz^{a_1}\overline{\kz}^{b_1} \\ & \ddots \\ & & \kz^{a_n}\overline{\kz}^{b_n} \end{pmatrix}  \right) 
+	\] 
+	for $a_i,b_i\in \Z$.
+\end{definition}
+\begin{conjecture}
+	There exists $L_E\to \cat{GMot}_E(\C)$ ($\cat{GMot}_E$ are pro-reductive groups over $\Q$ whose representations are pure motives over $E$) such that $\rho$ is continuous and semisimple. $\rho$ is algebraic if and only if it factors through $L_E\to \cat{GMot}_E(\C)$. In particular, for all algebraic $\rho$ and all $\iota:\C\isoto \overline{\Q_l}$ (only $\iota_{\overline{\Q}}$ matters) we have
+	\[
+	\real_L(\rho):\Gal_E \to \GL_n(\overline{\Q_l})
+	\] 
+	continuous, semisimple with $n=\dim_\C W$ which is ``geometric'' such that for almost all non-archimedeal places $v$ of $E$, both $\rho$ and $\real_L(\rho)$ are unramified at $v$ and 
+	\[
+	\real_L(\rho)(\Frob_V) \sim \iota(\rho(\Frob_V))
+	\] 
+	(by Chebotarev this characterizes $\real_L(\rho)$).
+\end{conjecture}
+
+\subsection{Langlands dual group}
+The isomorphism class of $G_{\overline{\Q}}$ is parametrized by a root datum $(X,R,X^{\vee},R^{\vee})$. Choose a maximal torus $T\subset G_{\overline{\Q}}$. The dual root datum $(X^{\vee},R^{\vee},X,R)$ corresponds to a dual group $\hat{G}_{\overline{\Q}}$ with a Galois action of $\Gal(E' /E)$ for some finite $E'$. Define
+\[
+	^{L}G \defeq \wh{G}(\C)\rtimes \Gal_\Q.
+\] 
+For example
+\[
+\begin{array}{c|c}
+	G & \wh{G} \\ \hline
+	\GL_m / U(n) & \GL_m \\
+	\SL_m & \PGL_m \\
+	\Sp_{2n} & \SO_{2n+1} \\
+	\GSp_{2n} & \GSpin_{2n+1}
+\end{array}
+\] 
+\begin{definition}
+	A \defn{Langlands parameter} is a continuous semisimple
+	\[
+	\begin{tikzcd}
+		L_\Q \ar[rr,"\phi"] \ar[dr] & & L_G \ar[dl] \\
+					    & \Gal_\Q.
+	\end{tikzcd}
+	\] 
+	$\phi$ is \defn{discrete} if $\operatorname{Cont}(\phi,\wt{G}(\C)) /Z(\wh{G}(\C))^{\Gal_\Q}$ is finite.
+\end{definition}
+If $G=\GL_n$, $\phi$ is irreducible.
+
+\subsection{\'Etale cohomology}
+Let $d=\dim \Sh(G,X,K)$. Define
+\[
+P^{d}\et \defeq \text{primitive part of }\CH^{d}\et
+\] 
+(hard Lefschetz, ``not coming from cohomology of a lower dimensional variety''). Recall $\mu=\mu_h:\Gal_{1,\C}\to G_{\C}$ (up to conjugation). We can see $\mu$ as a character of a maximal torus $T\subset \wh{G}$. This gives an irreducible (algebraic and finite dimensional) representation $V_\mu$ of $\wh{G}(\C)$ extends to
+\[
+	^{L}(G_E) \xrightarrow{r_\mu} \GL(V_\mu).
+\] 
+A discrete Langlands parameter $\phi:L_\Q\to L_G$ induces an action of $L_E$ on $V_\mu(\phi)\defeq V_\mu$ by $|\cdot |^{-d /2}(r_{\mu}\circ\phi|_{L_E}$. The group
+\[
+	C_\phi \defeq \operatorname{Cont}(\phi,\wh{G}(\C))
+\] 
+also acts on $V_\mu(\phi)$ 
+\[
+V_\mu(\phi) = \bigoplus_{\chi\in X^{*}(C_\phi)}V_\mu(\phi)_\chi
+\] 
+(in our case $C_\phi$ is abelian insider the maximal torus of $\wh{G}$).
+
+Now only consider $\phi$ such that
+\[
+	(\phi|_{W_\R})|_{\C^{\times }} \sim \kz \mapsto (\kz / |\kz|)^{2\rho}
+\] 
+where $\rho = \frac{1}{2}\sum_{\alpha > 0}\alpha$.
+\begin{lemma}
+	Each $V_\mu(\phi)_\chi$ is algebraic.
+\end{lemma}
+\begin{conjecture}[Kottwitz, simplified and vague]
+	We have
+	\[
+		P^{d}\et \isoto \bigoplus_{\text{these }\phi}\bigoplus_{\substack{\pi_f = \bigotimes_p'\pi_p \\ (\pi_f)_p\in \prod'\prod(\phi|_{L_{\Q_p}})}} \bigoplus_{\chi}\real_L(V_\mu(\phi)_\chi)^{\oplus m(\phi,p_f,\chi)}
+	\] 
+\end{conjecture}
+where $m(\phi,\pi_f,\chi)$ are ``explicit'' integers.
 
 \end{document}
