@@ -38,13 +38,16 @@ Recall that an \defn{affine $k$-group scheme} is one of the following data:
 \begin{enumerate}[(1)]
 	\item An affine scheme $G$ over $k$ endowed with morphisms of $k$-schemes
 		\begin{itemize}
-			\item $m:G\times G\to G$; 
+			\item $m:G\times G\to G$;
 			\item $e:\Spec(k)\to G$ ;
 			\item $\i:G\to G$;
 		\end{itemize}
-		which satisfy the usual axioms of groups (with $m$ multiplication, $e$ the unit, $\i$ the inverse).
-	\item A functor $\Alg_k = \{k\text{-algebras}\} \xrightarrow{F} \Grp$ such that the composition $\Alg_k \xrightarrow{F}\Grp\to \Set$ is representable.
-	\item A commutative Hopf algebra over $k$, i.e. a commutative algebra $A$ with morphisms of $k$-algebras
+		which satisfy the usual axioms of groups (with $m$ multiplication, $e$ the unit, $\i$
+		the inverse).
+	\item A functor $\Alg_k = \{k\text{-algebras}\} \xrightarrow{F} \Grp$ such that the
+		composition $\Alg_k \xrightarrow{F}\Grp\to \Set$ is representable.
+	\item A commutative Hopf algebra over $k$, i.e. a commutative algebra $A$ with morphisms
+		of $k$-algebras
 		\begin{itemize}
 			\item $\Delta:A \to A\otimes A$ ;
 			\item $\eps:A\to k$ ;
@@ -58,35 +61,41 @@ Recall that an \defn{affine $k$-group scheme} is one of the following data:
 		\end{align*}
 \end{enumerate}
 \begin{notation}
-\begin{align*}
-	A &\to \Spec(A) \\
-	G &\to \OO(G), \Delta_G.
-\end{align*}
+	\begin{align*}
+		A &\to \Spec(A) \\
+		G &\to \OO(G), \Delta_G.
+	\end{align*}
 \end{notation}
 \begin{example} \leavevmode
 	\begin{enumerate}[(1)]
-		\item \emph{Diagonalizable groups:} If $\Lambda$ is an abstract commutative group we have the affine $k$-group scheme $\Diag(\Lambda)\defeq\Spec(k[\Lambda])$ with
+		\item \emph{Diagonalizable groups:} If $\Lambda$ is an abstract commutative group we
+			have the affine $k$-group scheme $\Diag(\Lambda)\defeq\Spec(k[\Lambda])$ with
 			\[
-			\Delta(\lambda) = \lambda \otimes \lambda,\quad \eps(\lambda)=1,\quad S(\lambda)=\lambda^{-1}\quad (\forall \lambda\in \Lambda).
-			\] 
-			In particular for $\Lambda=\Z$, $k[\Lambda]=k[x,x^{-1}]$ and $\Diag(\Lambda)=\Gm$ (the \defn{multiplicative group}).
+				\Delta(\lambda) = \lambda \otimes \lambda,\quad \eps(\lambda)=1,\quad
+				S(\lambda)=\lambda^{-1}\quad (\forall \lambda\in \Lambda).
+			\]
+			In particular for $\Lambda=\Z$, $k[\Lambda]=k[x,x^{-1}]$ and $\Diag(\Lambda)=\Gm$ (the
+			\defn{multiplicative group}).
 
-			A \defn{(split) torus} is a group scheme of the form $\Diag(\Lambda)$ with $\Lambda$ a finitely generated free abelian group.
+			A \defn{(split) torus} is a group scheme of the form $\Diag(\Lambda)$ with $\Lambda$ a
+			finitely generated free abelian group.
 		\item \emph{Additive group:} $\Ga\defeq\Spec(k[x])$ with
 			\[
-			\Delta(x) = x\otimes 1 + 1\otimes x,\quad \eps(x)=0,\quad S(x)=-x.
+				\Delta(x) = x\otimes 1 + 1\otimes x,\quad \eps(x)=0,\quad S(x)=-x.
 			\]
-			More generally for $V$ a $k$-vector space we have the functor $V_{a}:R\mapsto (R\otimes V,-)$ which is an affine $k$-group scheme if $V$ is finite dimensional.
-		\item If $V$ is a $k$-vector space, $\GL(V)$ is the functor $R\mapsto \Aut_R(R\otimes V)$. If $V$ is finite dimensional this is an affine $k$-group scheme.
+			More generally for $V$ a $k$-vector space we have the functor $V_{a}:R\mapsto
+			(R\otimes V,-)$ which is an affine $k$-group scheme if $V$ is finite dimensional.
+		\item If $V$ is a $k$-vector space, $\GL(V)$ is the functor $R\mapsto \Aut_R(R\otimes
+			V)$. If $V$ is finite dimensional this is an affine $k$-group scheme.
 
-			In particular, if $V=k^{n}$ we get 
+			In particular, if $V=k^{n}$ we get
 			\[
 				\GL_n = \Spec(k[x_{ij},1\le i,j\le n][\det^{-1}])
-			\] 
+			\]
 			with
 			\[
-			\Delta(x_{ij}) = \sum_l x_{il}\otimes x_{lj},\quad \eps(x_{ij}) = \delta_{ij}
-			.\] 
+				\Delta(x_{ij}) = \sum_l x_{il}\otimes x_{lj},\quad \eps(x_{ij}) = \delta_{ij}
+			.\]
 			Similarly we have $\SL(V), \SL_n$.
 		\item For any abstract group $\Gamma$ we have the functor (??)
 	\end{enumerate}
@@ -94,803 +103,933 @@ Recall that an \defn{affine $k$-group scheme} is one of the following data:
 
 \subsection{Representations}
 
-If $G$ is an affine $k$-group scheme, a \defn{representation} of $G$ is the datum of a $k$-vector space $V$ and a morphism of group valued functors $G\to \GL(V)$. [Equivalently, an action of $G$ on $V_{a}$ such that $G(R)$ acts $R$-linearly on $R\otimes V$.]
+If $G$ is an affine $k$-group scheme, a \defn{representation} of $G$ is the datum of a
+$k$-vector space $V$ and a morphism of group valued functors $G\to \GL(V)$.
+[Equivalently, an action of $G$ on $V_{a}$ such that $G(R)$ acts $R$-linearly on $R\otimes V$.]
 
-This datum is equivalent ot that of a \defn{comodule} for $\OO(G)$, i.e. a $k$-vector space $V$ and a $k$-linear map $\Delta_V:V\to V\otimes \OO(G)$ such that
+This datum is equivalent ot that of a \defn{comodule} for $\OO(G)$, i.e. a $k$-vector
+space $V$ and a $k$-linear map $\Delta_V:V\to V\otimes \OO(G)$ such that
 \begin{align*}
-	(\Delta_V\otimes\id_{\OO(G)}\circ \Delta_V = (\id_V\otimes \Delta_G)\circ \Delta_V &:V\to V\otimes\OO(G)\otimes\OO(G) \\
-	(\id_V\otimes \eps)\otimes \Delta_V = \id_V &:V\to V.
-\end{align*}
-[$\Delta_V$ corresponds to the image of $\id_{\OO(G)}\in G(\OO(G))=\End_{k\text{-alg}}(\OO(G))$ in $\End_{\OO(G)}(\OO(G)\otimes V)$.]
-\begin{example} \leavevmode
-	\begin{enumerate}[(1)]
-		\item \emph{(Right) Regular representation:} $V=\OO(G)$ with $\Delta_V=\Delta_G$. More generally, given an action of $G$ on an affine scheme $X$ we get a representation with underlying vector space $\OO(X)$.
-		\item If $V$ is a finite dimensional vector space, $V$ is a representation of $\GL(V)$.
-		\item For any $G$ we have the trivial representation $k$.
-	\end{enumerate}
-\end{example}
-\begin{notation}
-	$\Rep(G)$ is the abelian category of representations of $G$. $\Repf(G)$ is the full subcategory of finite dimensional representations.
-\end{notation}
+	(\Delta_V\otimes\id_{\OO(G)}\circ \Delta_V = (\id_V\otimes \Delta_G)\circ \Delta_V
+		&:V\to V\otimes\OO(G)\otimes\OO(G) \\
+		(\id_V\otimes \eps)\otimes \Delta_V = \id_V &:V\to V.
+	\end{align*}
+	[$\Delta_V$ corresponds to the image of $\id_{\OO(G)}\in
+	G(\OO(G))=\End_{k\text{-alg}}(\OO(G))$ in $\End_{\OO(G)}(\OO(G)\otimes V)$.]
+	\begin{example} \leavevmode
+		\begin{enumerate}[(1)]
+			\item \emph{(Right) Regular representation:} $V=\OO(G)$ with $\Delta_V=\Delta_G$. More
+				generally, given an action of $G$ on an affine scheme $X$ we get a representation
+				with underlying vector space $\OO(X)$.
+			\item If $V$ is a finite dimensional vector space, $V$ is a representation of $\GL(V)$.
+			\item For any $G$ we have the trivial representation $k$.
+		\end{enumerate}
+	\end{example}
+	\begin{notation}
+		$\Rep(G)$ is the abelian category of representations of $G$. $\Repf(G)$ is the full
+		subcategory of finite dimensional representations.
+	\end{notation}
 
-If $V\in \Rep(G)$ then $V$ is the union of its finite dimensional subrepresentations.
+	If $V\in \Rep(G)$ then $V$ is the union of its finite dimensional subrepresentations.
 
-\begin{example}[Representations of diagonalizable group schemes]
-	Let $\Lambda$ be a commutative group, $G=\Diag(\Lambda)$. If $V\in \Rep(G)$ we have
-	\[
-	\Lambda_V:V\to V\otimes\OO(G) = \bigoplus_{\lambda\in \Lambda}V\otimes\lambda
-	.\] 
-	Hence there are morphisms ($\rho_\lambda:\lambda\in \Lambda$) in $\End(V)$ such that
-	\[
-	\Delta_V(v) = \sum_{\lambda\in \Lambda} \rho_\lambda(v)\otimes\lambda,\qquad \forall v\in V.
-	\] 
-	(Here $\rho_\lambda(v)=0$ for all but finitely many $\lambda$s.)
-
-	It is easy to see that
-	\[
-	\rho_\lambda\circ\rho_\mu = \begin{cases}
-		\rho_\lambda & \text{if }\lambda=\mu \\
-		0 & \text{otherwise}
-	\end{cases}
-	\]
-	and $\id = \sum_{\lambda_\Lambda}\rho_\lambda$.
-
-	Hence $V=\bigoplus_{\lambda\in \Lambda}\rho_\lambda(V)$ with
-	\[
-	\rho_\lambda(V) = \{v\in V : \Delta_V(v) = v\otimes \lambda\} = V_\lambda
-	.\] 
-	Hence $\Rep(G)$ is isomorphic to the category of $\Lambda$-graded vector spaces (correct?).
-\end{example}
-\subsection{Induction} Let $G$ be an affine $k$-group scheme.
-
-A \defn{subgroup} of $G$ is a closed subscheme $H\subset G$ such that $e,\i|_{H},m|_{H\times H}$ factor through $H$. Then $H$ is an affine $k$-group scheme. In this setting we have the restriction functor $\Res_{H}^{G}:\Rep(G)\to \Rep(H)$.
-
-\begin{proposition}
-	The functor $\Res_{H}^{G}$ has a right adjoint $\Ind_{H}^{G}:\Rep(H)\to \Rep(G)$.
-\end{proposition}
-Explicitly, we have
-\[
-\Ind_{H}^{G}(V) = (V\otimes\OO(G))^H
-\] 
-with $H$ acting diagonally via the right-regular representation on $\OO(G)$ and $G$ acting on the fixed points via the left regular representation
-\[
-	\Ind_{H}^{G}(V) = \left\{ \begin{array}{c} 
-		\text{morphisms of functors} \\ 
-	f :G\to V_{a}
-	\end{array} \middle| \begin{array}{c} 
-		f(gh)=h^{-1}f(g) \\
-		\forall g\in G(R), h\in H(R), R\in \cat{Alg}_k 
-	\end{array} \right\} 
-.\] 
-The canonical isomorphism
-\[
-\Hom_{\Rep(G)}(V,\Ind_{H}^{G}(V')) \isoto \Hom_{\Rep(H)}(V,V')
-\] 
-is called \defn{Frobenius reciprocity}.
-
-\begin{properties} \leavevmode
-\begin{itemize}
-	\item \emph{Transitivity:} Given subgroups $H_1\subset H_2\subset G$ we have
+	\begin{example}[Representations of diagonalizable group schemes]
+		Let $\Lambda$ be a commutative group, $G=\Diag(\Lambda)$. If $V\in \Rep(G)$ we have
 		\[
-		\Ind_{H_1}^{G} \isoto \Ind_{H_2}^{G}\circ \Ind_{H_1}^{H_2}.
-		\] 
-	\item \emph{Tensor identity:} For $V_1\in \Rep(H),V_2\in \Rep(G)$ 
+			\Lambda_V:V\to V\otimes\OO(G) = \bigoplus_{\lambda\in \Lambda}V\otimes\lambda
+		.\]
+		Hence there are morphisms ($\rho_\lambda:\lambda\in \Lambda$) in $\End(V)$ such that
 		\[
-		\Ind_{H}^{G}(V_1\otimes\Res_{H}^{G}(V_2)) \isoto \Ind_{H}^{G}(V_1) \otimes V_2.
-		\] 
-	\item $\Ind_H^{G}$ sends injective objects of $\Rep(H)$ to injective objects of $\Rep(G)$. In particular, 
-		\[
-			\Ind_H^{G}(k) = \OO(G)
+			\Delta_V(v) = \sum_{\lambda\in \Lambda} \rho_\lambda(v)\otimes\lambda,\qquad \forall v\in V.
 		\]
-		is injective.
-	\item $\Rep(G)$ has enough injectives.
-\end{itemize}
-\end{properties}
+		(Here $\rho_\lambda(v)=0$ for all but finitely many $\lambda$s.)
 
-\emph{Geometric interpretation:} We assume $G$ is an algebraic group (over $k$), i.e. an affine $k$-group scheme such that $\OO(G)$ is a finitely generated $k$-algebra. In this setting, for $H\subset G$ a subgroup we have a quotient scheme $G /H$ of finite type over $k$ with a faithfully flat quotient map $\pi:G\to G /H$. For $V\in \Rep(H)$, we have a quasicoherent sheaf $\CL_{G /H}(V)\in \QCoh(G /H)$ with
-\[
-\Gamma(V,\CL_{G /H}(V)) = \left\{ \text{morphisms } f:\pi^{-1}(V)\to V \middle| f(x,h)=h^{-1}f(x)\text{ for all }(?)  \right\} 
-.\] 
-We have $\Ind_{H}^{G}(V) = \Gamma(G /H,\CL_{G /H}(V))$. If $V$ is finite dimensional, then $\CL_{G /H}(V)$ is coherent.
+		It is easy to see that
+		\[
+			\rho_\lambda\circ\rho_\mu =
+			\begin{cases}
+				\rho_\lambda & \text{if }\lambda=\mu \\
+				0 & \text{otherwise}
+			\end{cases}
+		\]
+		and $\id = \sum_{\lambda_\Lambda}\rho_\lambda$.
 
-\begin{consequences} \leavevmode
-\begin{itemize}
-	\item If $G /H$ is affine then $\Ind_{H}^{G}$ is exact.
-	\item If $G /H$ is projective then $\Ind_{H}^{G}$ preserves finite dimensionality.
-\end{itemize}
-\end{consequences}
+		Hence $V=\bigoplus_{\lambda\in \Lambda}\rho_\lambda(V)$ with
+		\[
+			\rho_\lambda(V) = \{v\in V : \Delta_V(v) = v\otimes \lambda\} = V_\lambda
+		.\]
+		Hence $\Rep(G)$ is isomorphic to the category of $\Lambda$-graded vector spaces (correct?).
+	\end{example}
+	\subsection{Induction} Let $G$ be an affine $k$-group scheme.
 
-Since $\Rep(H)$ has enough injectives we can consider the derived functor
-\[
-	\RD\Ind_H^{G}:D^{b}\Rep(H)\to D^{b}\Rep(G).
-\]
-The functor $\CL_{G /H}:\Rep(H)\to \cat{QCoh}(G /H)$ is exact, hence we have 
-\[
-	\CL_{G /H}:D^{b}\Rep(H)\to D^{b}\cat{QCoh}(G /H).
-\]
-One can check that
-\[
-\RD\Ind_H^{G}(V) \isoto R\Gamma(G /H, \CL_{G /H}(V)).
-\] 
-(??)
+	A \defn{subgroup} of $G$ is a closed subscheme $H\subset G$ such that
+	$e,\i|_{H},m|_{H\times H}$ factor through $H$. Then $H$ is an affine $k$-group scheme.
+	In this setting we have the restriction functor $\Res_{H}^{G}:\Rep(G)\to \Rep(H)$.
 
-\begin{consequences} \leavevmode
-\begin{itemize}
-	\item We have $\RD^{n}\Ind_H^{G}(V)=0$ for all $V\in \Rep(H)$ if $n>\dim(G /H)$.
-	\item If $G /H$ is projective, then $\RD^{n}\Ind_H^{G}(V)$ is finite-dimensional for all $V\in \Repf(H), n\in \Z$.
-\end{itemize}
-\end{consequences}
-
-\newpage
-
-\section{Reductive algebraic groups}
-From now on $k$ is algebraically closed.
-
-\subsection{Definition}
-A $k$-algebraic group $G$ is called \defn{unipotent} if every non-zero representation admits a non-zero fixed vector. [Equivalent condition: $G$ is unipotent if and only if it is isomorphic to a subgroup of unipotent upper-triangular matrices in $\GL_n$ for some $n$.]
-\begin{example}
-	$\Ga$ is unipotent as
+	\begin{proposition}
+		The functor $\Res_{H}^{G}$ has a right adjoint $\Ind_{H}^{G}:\Rep(H)\to \Rep(G)$.
+	\end{proposition}
+	Explicitly, we have
 	\[
-		\Ga \isoto \begin{pmatrix} 1 & * \\ 0 & 1 \end{pmatrix} .
-	\] 
-\end{example}
-If $G$ is a smooth, connected algebraic group, the smooth, connected, unipotent, normal subgroups of $G$ there is a largest element called the \defn{unipotent radical} of $G$, denoted $R_u(G)$. An algebraic group $G$ is called \defn{reductive} if it is smooth, connected and $R_u(G)$ is trivial. 
+		\Ind_{H}^{G}(V) = (V\otimes\OO(G))^H
+	\]
+	with $H$ acting diagonally via the right-regular representation on $\OO(G)$ and $G$
+	acting on the fixed points via the left regular representation
+	\[
+		\Ind_{H}^{G}(V) = \left\{
+			\begin{array}{c}
+				\text{morphisms of functors} \\
+				f :G\to V_{a}
+			\end{array} \middle|
+			\begin{array}{c}
+				f(gh)=h^{-1}f(g) \\
+				\forall g\in G(R), h\in H(R), R\in \cat{Alg}_k
+		\end{array} \right\}
+	.\]
+	The canonical isomorphism
+	\[
+		\Hom_{\Rep(G)}(V,\Ind_{H}^{G}(V')) \isoto \Hom_{\Rep(H)}(V,V')
+	\]
+	is called \defn{Frobenius reciprocity}.
 
-One possible motivation for studying representations of reductive algebraic groups is that any simple representation of a smooth connected algebraic group $G$ factors through a simple representation of $G /R_u(G)$, which is a reductive algebraic group.
+	\begin{properties} \leavevmode
+		\begin{itemize}
+			\item \emph{Transitivity:} Given subgroups $H_1\subset H_2\subset G$ we have
+				\[
+					\Ind_{H_1}^{G} \isoto \Ind_{H_2}^{G}\circ \Ind_{H_1}^{H_2}.
+				\]
+			\item \emph{Tensor identity:} For $V_1\in \Rep(H),V_2\in \Rep(G)$
+				\[
+					\Ind_{H}^{G}(V_1\otimes\Res_{H}^{G}(V_2)) \isoto \Ind_{H}^{G}(V_1) \otimes V_2.
+				\]
+			\item $\Ind_H^{G}$ sends injective objects of $\Rep(H)$ to injective objects of
+				$\Rep(G)$. In particular,
+				\[
+					\Ind_H^{G}(k) = \OO(G)
+				\]
+				is injective.
+			\item $\Rep(G)$ has enough injectives.
+		\end{itemize}
+	\end{properties}
 
-\begin{example} \leavevmode
-	\begin{enumerate}[(1)]
-		\item \emph{Tori:} If $\Lambda$ is a finitely generated, free abelian group, then $\Diag(\Lambda)$ is a reductive algebraic group.
-		\item For any finite-dimensional $k$-vector space $V$, $\GL(V)$ and $\SL(V)$ are reductive algebraic groups.
-		\item Symplectic groups, special orthogonal groups.
-	\end{enumerate}
-\end{example}
-\subsection{Structure} From now on $G$ is a redutive algebraic group.
+	\emph{Geometric interpretation:} We assume $G$ is an algebraic group (over $k$), i.e. an
+	affine $k$-group scheme such that $\OO(G)$ is a finitely generated $k$-algebra. In this
+	setting, for $H\subset G$ a subgroup we have a quotient scheme $G /H$ of finite type
+	over $k$ with a faithfully flat quotient map $\pi:G\to G /H$. For $V\in \Rep(H)$, we
+	have a quasicoherent sheaf $\CL_{G /H}(V)\in \QCoh(G /H)$ with
+	\[
+		\Gamma(V,\CL_{G /H}(V)) = \left\{ \text{morphisms } f:\pi^{-1}(V)\to V \middle|
+		f(x,h)=h^{-1}f(x)\text{ for all }(?)  \right\}
+	.\]
+	We have $\Ind_{H}^{G}(V) = \Gamma(G /H,\CL_{G /H}(V))$. If $V$ is finite dimensional,
+	then $\CL_{G /H}(V)$ is coherent.
 
-We denote by $B$ a \defn{Borel subgroup} (a maximal, connected, smooth, solvable subgroup). Note that:
-\begin{itemize}
-	\item a Borel subgroup is unique up to conjugation;
-	\item the quotient $G /B$ is a smooth, projective variety.
-\end{itemize}
-\begin{example}[Main Example]
+	\begin{consequences} \leavevmode
+		\begin{itemize}
+			\item If $G /H$ is affine then $\Ind_{H}^{G}$ is exact.
+			\item If $G /H$ is projective then $\Ind_{H}^{G}$ preserves finite dimensionality.
+		\end{itemize}
+	\end{consequences}
+
+	Since $\Rep(H)$ has enough injectives we can consider the derived functor
+	\[
+		\RD\Ind_H^{G}:D^{b}\Rep(H)\to D^{b}\Rep(G).
+	\]
+	The functor $\CL_{G /H}:\Rep(H)\to \cat{QCoh}(G /H)$ is exact, hence we have
+	\[
+		\CL_{G /H}:D^{b}\Rep(H)\to D^{b}\cat{QCoh}(G /H).
+	\]
+	One can check that
+	\[
+		\RD\Ind_H^{G}(V) \isoto R\Gamma(G /H, \CL_{G /H}(V)).
+	\]
+	(??)
+
+	\begin{consequences} \leavevmode
+		\begin{itemize}
+			\item We have $\RD^{n}\Ind_H^{G}(V)=0$ for all $V\in \Rep(H)$ if $n>\dim(G /H)$.
+			\item If $G /H$ is projective, then $\RD^{n}\Ind_H^{G}(V)$ is finite-dimensional for
+				all $V\in \Repf(H), n\in \Z$.
+		\end{itemize}
+	\end{consequences}
+
+	\newpage
+
+	\section{Reductive algebraic groups}
+	From now on $k$ is algebraically closed.
+
+	\subsection{Definition}
+	A $k$-algebraic group $G$ is called \defn{unipotent} if every non-zero representation
+	admits a non-zero fixed vector. [Equivalent condition: $G$ is unipotent if and only if
+	it is isomorphic to a subgroup of unipotent upper-triangular matrices in $\GL_n$ for some $n$.]
+	\begin{example}
+		$\Ga$ is unipotent as
+		\[
+			\Ga \isoto
+			\begin{pmatrix} 1 & * \\ 0 & 1
+			\end{pmatrix} .
+		\]
+	\end{example}
+	If $G$ is a smooth, connected algebraic group, the smooth, connected, unipotent, normal
+	subgroups of $G$ there is a largest element called the \defn{unipotent radical} of $G$,
+	denoted $R_u(G)$. An algebraic group $G$ is called \defn{reductive} if it is smooth,
+	connected and $R_u(G)$ is trivial.
+
+	One possible motivation for studying representations of reductive algebraic groups is
+	that any simple representation of a smooth connected algebraic group $G$ factors through
+	a simple representation of $G /R_u(G)$, which is a reductive algebraic group.
+
+	\begin{example} \leavevmode
+		\begin{enumerate}[(1)]
+			\item \emph{Tori:} If $\Lambda$ is a finitely generated, free abelian group, then
+				$\Diag(\Lambda)$ is a reductive algebraic group.
+			\item For any finite-dimensional $k$-vector space $V$, $\GL(V)$ and $\SL(V)$ are
+				reductive algebraic groups.
+			\item Symplectic groups, special orthogonal groups.
+		\end{enumerate}
+	\end{example}
+	\subsection{Structure} From now on $G$ is a redutive algebraic group.
+
+	We denote by $B$ a \defn{Borel subgroup} (a maximal, connected, smooth, solvable
+	subgroup). Note that:
+	\begin{itemize}
+		\item a Borel subgroup is unique up to conjugation;
+		\item the quotient $G /B$ is a smooth, projective variety.
+	\end{itemize}
+	\begin{example}[Main Example]
 	 For $G=\GL_{n,k}$ one can take
 	 \[
-		 B = \left\{ \begin{pmatrix} * & & 0 \\ & \ddots & \\ * & & *\end{pmatrix}  \right\} .
-	 \] 
+			B = \left\{
+				\begin{pmatrix} * & & 0 \\ & \ddots & \\ * & & *
+			\end{pmatrix}  \right\} .
+	 \]
 	 In this case $G /B$ parametrizes flags in $k^{n}$, i.e. data
 	 \[
 	  \{0\} \subset V_1\subset \dots\subset V_{n-1}\subset k^{n}
 	 \]
 	 with $V_i$ a subspace of dimension $i$.
-\end{example}
-Let $T$ be a maximal torus contained in $B$. 
-\begin{example}[Main Example Continued]
-	We take
-	\[
-		T = \left\{ \begin{pmatrix} t_1 & & 0 \\ & \ddots \\ 0 & & t_n \end{pmatrix}  \right\} .
-	\] 
-\end{example}
-Note that
-\[
-T\isoto \Diag(\XX),\quad \XX = \{\text{morphisms }T\to \Gm\} 
-\] 
-we call elements of $\XX$ \defn{weights}. 
-\begin{example}[Main Example Continued]
-	We have $\XX\isoto \Z^{n}$ via
-	\[
-		(\lambda_1,\dots,\lambda_n) \leftrightarrow \begin{pmatrix} t_1 & & 0 \\ & \ddots \\ 0 & & t_n \end{pmatrix} \mapsto \prod_{i=1}^{n} t_i^{\lambda_i} .
-	\] 
-\end{example}
-The \defn{roots} $R\subset \XX$ are the non-zero weights appearing in the action of $T$ on $\kg=\Lie(G)$. \begin{example}[Main Example Continued]
-	We have
-	\[
-		R = \{\eps_i - \eps_j: 1\le i\neq j \le n\} .
-	\] 
-\end{example}
-We define the \defn{positive roots} $R_+\subset R$: the weights appearing in the action of $T$ on $\kg /\Lie(B)$, and the \defn{simple roots} $R_s\subset R_+$: positive roots that cannot be written as a sum of two positive roots.
-\begin{note}
-	$R=R_+ \coprod -R_{+}$. Any element of $R_+$ can be uniquely written as a sum of simple roots.
-\end{note}
-\begin{example}[Main Example Continued]
-	In our case
-	\begin{align*}
-		R_+ &= \{\eps_i - \eps_j:1\le i<j<n\} \\
-		R_s &= \{\eps_i - \eps_{i+1}\} .
-	\end{align*}
-\end{example}
-
-The \defn{cocharacters} of $G$ are
-\begin{align*}
-	\XX^{\vee} &= \Hom_\Z(\XX,\Z) \\
-		   &= \{\text{morphisms }\Gm\to T\} .
-\end{align*}
-We have \defn{coroots} $R^{\vee}\subset \XX^{\vee}$ and a bijection
-\begin{align*}
-	R &\longrightarrow R^{\vee} \\
-	\alpha &\longmapsto \alpha ^{\vee}.
-\end{align*}
-Then $(\XX,R,\XX^{\vee},R^{\vee})$ together with the identification $\XX^{\vee}=\Hom(\XX,\Z)$ and the bijection $R\to R^{\vee}$ is the \defn{root datum} of $G$. It determines $G$ up to isomorphism.
-
-There is an opposite Borel subgroup $B^{+}\subset G$ containing $T$ such that the non-zero weights of $T$ acting on $\Lie(B^{+})$ are $R_+$.
-
-$W=N_G(T) / T$ is a the \defn{Weyl group}, it is a constant group scheme, associated with a finite group also denoted $W$. $W$ acts faithfully on $\XX$. For $\alpha\in R$ there is an element $s_\alpha\in W$ which acts on $\XX$ via
-\[
-\lambda \mapsto \lambda - \left<\lambda,\alpha ^{\vee} \right>\alpha.
-\] 
-If we set
-\[
-S = \{s_\alpha : \alpha\in R_s\} \subset W,
-\] 
-then $(W,S)$ is a Coxeter system. In particular, we have the length function
-\begin{align*}
-	\ell: W &\longrightarrow \Z_{\ge 0} \\
-	w &\longmapsto \min \{r\ge 0 | \text{there exist }s_1,\dots,s_r\in S\text{ such that }w=s_1\cdots s_r\} .	
-\end{align*}
-\begin{example}[Main Example Continued]
-	For example, $W=\S_n$ is the symmetric group via permutation matrices. The action on $\XX=\Z^{n}$ is by permuting entries
-	\[
-		S = \{(i,i+1):1\le i<n\}
-	\] 
-	The length function counts inversions of permutations.
-\end{example}
-\begin{example}
-	Let $G=\SL_2$,
-	\begin{align*}
-		B &= \left\{ \begin{pmatrix} * & 0 \\ * & * \end{pmatrix}  \right\} \subset \SL_{2,k} \\
-		T &= T = \left\{ \begin{pmatrix} t & 0 \\ 0 & t^{-1} \end{pmatrix} \middle| t\in k^{\times } \right\} \isoto \Gm.
-	\end{align*}
-	We have $\XX\isoto \Z$ via
-	\[
-		\lambda \leftrightarrow \left[ \begin{pmatrix} t & 0 \\ 0 & t^{-1} \end{pmatrix} \mapsto t ^{\lambda} \right] .
-	\] 
-	We have $R=\{2,-2\} $, $R_+=\{2\} =R_s$ and $W=\S_2=\Z /2\Z$.
-\end{example}
-
-\subsection{Classification of simple representations}
-The Borel is a semidirect product $B=T\ltimes U$ with $U=R_u(B)$. Similarly $B^{+}=T\ltimes U^{+}$ with $U^{+}=R_u(B^{+})$. In particular, $T\simto B /U$, so any $\lambda\in \XX$ provides a morphism $B\to \Gm$, which is a one-dimensional representation $k_B(\lambda)$. Define
-\[
-\nabla(\lambda) = \Ind_B^{G}(k_B(\lambda)).
-\] 
-It's easy to see that:
-\begin{itemize}
-	\item $\dim(\nabla(\lambda))<\infty$ for all $\lambda\in \XX$ (because $G /B$ is projective).
-	\item The action of $T$ on $\nabla(\lambda)$ determines an $\XX$-grading
+	\end{example}
+	Let $T$ be a maximal torus contained in $B$.
+	\begin{example}[Main Example Continued]
+		We take
 		\[
-		\nabla(\lambda) = \bigoplus_{\mu\in \XX}\nabla(\lambda)_\mu.
-		\] 
-		Here if $\nabla(\lambda)\neq 0$, we have
-		\begin{itemize}
-			\item $\nabla(\lambda)_\lambda = \nabla(\lambda)^{U^{+}}$ and this is one-dimensional,
-			\item if $\nabla(\lambda)_\mu \neq 0$ then $\lambda-\mu\in \Z_{\ge 0}R_s$.
-		\end{itemize}
-		This follows from the open embedding
+			T = \left\{
+				\begin{pmatrix} t_1 & & 0 \\ & \ddots \\ 0 & & t_n
+			\end{pmatrix}  \right\} .
+		\]
+	\end{example}
+	Note that
+	\[
+		T\isoto \Diag(\XX),\quad \XX = \{\text{morphisms }T\to \Gm\}
+	\]
+	we call elements of $\XX$ \defn{weights}.
+	\begin{example}[Main Example Continued]
+		We have $\XX\isoto \Z^{n}$ via
 		\[
-		U^{+}\times B\injto G
-		\] 
-		induced by multiplication.
-\end{itemize}
-\begin{corollary}
-	We have a bijection 
+			(\lambda_1,\dots,\lambda_n) \leftrightarrow
+			\begin{pmatrix} t_1 & & 0 \\ & \ddots \\ 0 & & t_n
+			\end{pmatrix} \mapsto \prod_{i=1}^{n} t_i^{\lambda_i} .
+		\]
+	\end{example}
+	The \defn{roots} $R\subset \XX$ are the non-zero weights appearing in the action of $T$
+	on $\kg=\Lie(G)$.
+	\begin{example}[Main Example Continued]
+		We have
+		\[
+			R = \{\eps_i - \eps_j: 1\le i\neq j \le n\} .
+		\]
+	\end{example}
+	We define the \defn{positive roots} $R_+\subset R$: the weights appearing in the action
+	of $T$ on $\kg /\Lie(B)$, and the \defn{simple roots} $R_s\subset R_+$: positive roots
+	that cannot be written as a sum of two positive roots.
+	\begin{note}
+		$R=R_+ \coprod -R_{+}$. Any element of $R_+$ can be uniquely written as a sum of simple roots.
+	\end{note}
+	\begin{example}[Main Example Continued]
+		In our case
+		\begin{align*}
+			R_+ &= \{\eps_i - \eps_j:1\le i<j<n\} \\
+			R_s &= \{\eps_i - \eps_{i+1}\} .
+		\end{align*}
+	\end{example}
+
+	The \defn{cocharacters} of $G$ are
 	\begin{align*}
-		\left\{ \lambda\in \XX \middle| \nabla(\lambda)\neq 0 \right\} &\simto \left\{ \text{simple objects in }\Rep(G) \right\} /\isoto \\
-		\lambda &\mapsto L(\lambda) = \text{ unique simple subrepresentation in }\nabla(\lambda).
+		\XX^{\vee} &= \Hom_\Z(\XX,\Z) \\
+		&= \{\text{morphisms }\Gm\to T\} .
 	\end{align*}
-\end{corollary}
-It's less easy to show:
-\begin{proposition}
-	For $\lambda\in \XX$, we have
-	\[
-	\nabla(\lambda) \neq 0 \quad \iff\quad \forall \alpha\in R_s, \left<\lambda,\alpha ^{\vee} \right> \ge 0.
-	\] 
-\end{proposition}
-\begin{proof}[Idea of the proof]
-	The forward direction is easy using the fact that $W$ permutes
-	\[
-	\left\{ \mu\in \XX \middle| \nabla(\lambda)_\mu \neq 0 \right\} .
-	\] 
+	We have \defn{coroots} $R^{\vee}\subset \XX^{\vee}$ and a bijection
+	\begin{align*}
+		R &\longrightarrow R^{\vee} \\
+		\alpha &\longmapsto \alpha ^{\vee}.
+	\end{align*}
+	Then $(\XX,R,\XX^{\vee},R^{\vee})$ together with the identification
+	$\XX^{\vee}=\Hom(\XX,\Z)$ and the bijection $R\to R^{\vee}$ is the \defn{root datum} of
+	$G$. It determines $G$ up to isomorphism.
 
-	Conversely, one can construct a function
-	\[
-	\bigcup_{\alpha\in R_s} s_\alpha U^{+}B\to k
-	\] 
-	and then use the fact that the LHS has complement of codimension 2 in $G$, cf. Bruhat decomposition.
-\end{proof}
-We set
-\[
-\XX_+ = \left\{ \lambda\in \XX \middle| \forall \alpha\in R_s, \left<\lambda,\alpha ^{\vee} \right> \ge 0 \right\} 
-\] 
-the \defn{dominant weights}.
-\begin{example}
-	\begin{enumerate}[(1)]
-		\item $\nabla(0)=k$ is the trivial representation (because $G /B$ is connected and projective).
-		\item Let $G=\GL_{n,k}$
-			\[
-			\XX_+ = \left\{ (\lambda_1,\dots,\lambda_n) \middle| \lambda_1\ge \lambda_2\ge \dots\ge \lambda_n \right\} .
-			\] 
-			For $r\ge 0$ 
-			\begin{align*}
-				\nabla(r,0,\dots,0) \simeq S^{r}(V)
-			\end{align*}
-			with $V=k^{n}$ the natural representation, and
-			\[
-			\nabla(0,\dots,0,-r) \simeq S^{r}(V^{*})
-			\] 
-			(cf. sections of line bundles on $\P^{n}$).
+	There is an opposite Borel subgroup $B^{+}\subset G$ containing $T$ such that the
+	non-zero weights of $T$ acting on $\Lie(B^{+})$ are $R_+$.
 
-			For $s \in \left\{ 1,\dots,n \right\} $,
-			\begin{align*}
-				\nabla(\underbrace{1,\dots,1}_{s},0,\dots,0) &= \bigwedge^{s}(V) \\
-									     &= L(\underbrace{1,\dots,1}_s,0,\dots,0).
-			\end{align*}
-			For $r\in \Z$ 
+	$W=N_G(T) / T$ is a the \defn{Weyl group}, it is a constant group scheme, associated
+	with a finite group also denoted $W$. $W$ acts faithfully on $\XX$. For $\alpha\in R$
+	there is an element $s_\alpha\in W$ which acts on $\XX$ via
+	\[
+		\lambda \mapsto \lambda - \left<\lambda,\alpha ^{\vee} \right>\alpha.
+	\]
+	If we set
+	\[
+		S = \{s_\alpha : \alpha\in R_s\} \subset W,
+	\]
+	then $(W,S)$ is a Coxeter system. In particular, we have the length function
+	\begin{align*}
+		\ell: W &\longrightarrow \Z_{\ge 0} \\
+		w &\longmapsto \min \{r\ge 0 | \text{there exist }s_1,\dots,s_r\in S\text{ such that
+		}w=s_1\cdots s_r\} .	
+	\end{align*}
+	\begin{example}[Main Example Continued]
+		For example, $W=\S_n$ is the symmetric group via permutation matrices. The action on
+		$\XX=\Z^{n}$ is by permuting entries
+		\[
+			S = \{(i,i+1):1\le i<n\}
+		\]
+		The length function counts inversions of permutations.
+	\end{example}
+	\begin{example}
+		Let $G=\SL_2$,
+		\begin{align*}
+			B &= \left\{
+				\begin{pmatrix} * & 0 \\ * & *
+			\end{pmatrix}  \right\} \subset \SL_{2,k} \\
+			T &= T = \left\{
+				\begin{pmatrix} t & 0 \\ 0 & t^{-1}
+			\end{pmatrix} \middle| t\in k^{\times } \right\} \isoto \Gm.
+		\end{align*}
+		We have $\XX\isoto \Z$ via
+		\[
+			\lambda \leftrightarrow \left[
+				\begin{pmatrix} t & 0 \\ 0 & t^{-1}
+			\end{pmatrix} \mapsto t ^{\lambda} \right] .
+		\]
+		We have $R=\{2,-2\} $, $R_+=\{2\} =R_s$ and $W=\S_2=\Z /2\Z$.
+	\end{example}
+
+	\subsection{Classification of simple representations}
+	The Borel is a semidirect product $B=T\ltimes U$ with $U=R_u(B)$. Similarly
+	$B^{+}=T\ltimes U^{+}$ with $U^{+}=R_u(B^{+})$. In particular, $T\simto B /U$, so any
+	$\lambda\in \XX$ provides a morphism $B\to \Gm$, which is a one-dimensional
+	representation $k_B(\lambda)$. Define
+	\[
+		\nabla(\lambda) = \Ind_B^{G}(k_B(\lambda)).
+	\]
+	It's easy to see that:
+	\begin{itemize}
+		\item $\dim(\nabla(\lambda))<\infty$ for all $\lambda\in \XX$ (because $G /B$ is projective).
+		\item The action of $T$ on $\nabla(\lambda)$ determines an $\XX$-grading
 			\[
-			\nabla(r,\dots,r) = k_{\det ^{r}} = L(r,\dots,r).
+				\nabla(\lambda) = \bigoplus_{\mu\in \XX}\nabla(\lambda)_\mu.
 			\]
-		\item Let $G=\SL_2$, then $\XX_+ = \Z_{\ge 0}$. For $r\ge 0$ 
+			Here if $\nabla(\lambda)\neq 0$, we have
+			\begin{itemize}
+				\item $\nabla(\lambda)_\lambda = \nabla(\lambda)^{U^{+}}$ and this is one-dimensional,
+				\item if $\nabla(\lambda)_\mu \neq 0$ then $\lambda-\mu\in \Z_{\ge 0}R_s$.
+			\end{itemize}
+			This follows from the open embedding
 			\[
-			\nabla(r) = S^{r}(k^2)
-			\] 
-			(cf. sections of line bundles on $G /B=\P^{1}$). If $\car(k)=0$ then $\nabla(r)$ is simple for all $r\ge 0$. If $\car(k)=p>0$ this is not always true:
-			\[
-			\nabla(p) = kx^{p} \oplus kx^{p-1}y \oplus \dots \oplus kxy^{p-1} \oplus ky^{p}
-			\] 
-			with $x,y$ a canonical basis of $k^2$. Then $kx^{p}\oplus ky^{p}$ is a non-trivial $G$-stable subspace. In fact, $L(p) = kx^{p}\oplus ky^{p}$.
+				U^{+}\times B\injto G
+			\]
+			induced by multiplication.
+	\end{itemize}
+	\begin{corollary}
+		We have a bijection
+		\begin{align*}
+			\left\{ \lambda\in \XX \middle| \nabla(\lambda)\neq 0 \right\} &\simto \left\{
+			\text{simple objects in }\Rep(G) \right\} /\isoto \\
+			\lambda &\mapsto L(\lambda) = \text{ unique simple subrepresentation in }\nabla(\lambda).
+		\end{align*}
+	\end{corollary}
+	It's less easy to show:
+	\begin{proposition}
+		For $\lambda\in \XX$, we have
+		\[
+			\nabla(\lambda) \neq 0 \quad \iff\quad \forall \alpha\in R_s, \left<\lambda,\alpha
+			^{\vee} \right> \ge 0.
+		\]
+	\end{proposition}
+	\begin{proof}[Idea of the proof]
+		The forward direction is easy using the fact that $W$ permutes
+		\[
+			\left\{ \mu\in \XX \middle| \nabla(\lambda)_\mu \neq 0 \right\} .
+		\]
 
-			More generally, $\nabla(r)$ is simple if and only if $r\le p-1$.
-		\item For all $\lambda\in \XX_+$, $L(\lambda)^{*}\simeq L(-w_0\lambda)$ where $w_0\in W$ is the longest element.
-	\end{enumerate}
-\end{example}
-
-\subsection{Characters}
-If $V\in \Repf(G)$ then the action of $T$ determines a grading $V=\bigoplus_{\lambda\in \XX}V_\lambda$ with
-\[
-V_\lambda = \left\{ v\in V \middle| \forall t\in T,tv = \lambda(t)v \right\} .
-\] 
-We set
-\[
-	\ch(V) = \sum_{\lambda\in \XX}\dim(V_\lambda)e^{\lambda}\in \Z[\XX].
-\] 
-It's easy to check that:
-\begin{itemize}
-	\item $\ch$ factors through $K^{0}(\Repf(G))\to \Z[\XX]$.
-	\item $\ch(V\otimes V') = \ch(V)\ch(V')$, so the map above is a \emph{ring morphism}.
-	\item $\ch$ takes values in $\Z[\XX]^{W}$.
-\end{itemize}
-\begin{proposition}
-	$\ch$ induces an isomorphism
+		Conversely, one can construct a function
+		\[
+			\bigcup_{\alpha\in R_s} s_\alpha U^{+}B\to k
+		\]
+		and then use the fact that the LHS has complement of codimension 2 in $G$, cf. Bruhat
+		decomposition.
+	\end{proof}
+	We set
 	\[
-		K^{0}(\Repf(G)) \simto \Z[\XX]^{W}.
-	\] 
-\end{proposition}
-\begin{proof}[Proof idea]
-	Show that
-	\[
-	\left\{ \ch(L(\lambda)) \middle| \lambda\in \XX_+ \right\} 
-	\] 
-	is a basis of $\Z[\XX]^{W}$.
-\end{proof}
+		\XX_+ = \left\{ \lambda\in \XX \middle| \forall \alpha\in R_s, \left<\lambda,\alpha
+		^{\vee} \right> \ge 0 \right\}
+	\]
+	the \defn{dominant weights}.
+	\begin{example}
+		\begin{enumerate}[(1)]
+			\item $\nabla(0)=k$ is the trivial representation (because $G /B$ is connected and projective).
+			\item Let $G=\GL_{n,k}$
+				\[
+					\XX_+ = \left\{ (\lambda_1,\dots,\lambda_n) \middle| \lambda_1\ge \lambda_2\ge
+					\dots\ge \lambda_n \right\} .
+				\]
+				For $r\ge 0$
+				\begin{align*}
+					\nabla(r,0,\dots,0) \simeq S^{r}(V)
+				\end{align*}
+				with $V=k^{n}$ the natural representation, and
+				\[
+					\nabla(0,\dots,0,-r) \simeq S^{r}(V^{*})
+				\]
+				(cf. sections of line bundles on $\P^{n}$).
 
-\section{Some general results about ? of reductive algebraic groups}
-\subsection{Kempf's vanishing theorem}
-\begin{theorem}
-	If $\lambda\in \XX_+$ then
-	\[
-	\RD^{n}\Ind_B^{G}(k_B(\lambda)) = 0 \quad \forall n>0.
-	\] 
-\end{theorem}
-\begin{note}
-	We have
-	\[
-	\RD^{n}\Ind_B^{G}\left( k_B(\lambda) \right) = \CH^{n}(G /B, \CL_{G /B}(k_B(\lambda))),
-	\] 
-	where $\CL_{G /B}(k_B(\lambda))$ is a line bundle equal to $\OO_{G /B}(\lambda)$.
-\end{note}
-So we are in fact computing cohomology of some line bundles on $G /B$.
+				For $s \in \left\{ 1,\dots,n \right\} $,
+				\begin{align*}
+					\nabla(\underbrace{1,\dots,1}_{s},0,\dots,0) &= \bigwedge^{s}(V) \\
+					&= L(\underbrace{1,\dots,1}_s,0,\dots,0).
+				\end{align*}
+				For $r\in \Z$
+				\[
+					\nabla(r,\dots,r) = k_{\det ^{r}} = L(r,\dots,r).
+				\]
+			\item Let $G=\SL_2$, then $\XX_+ = \Z_{\ge 0}$. For $r\ge 0$
+				\[
+					\nabla(r) = S^{r}(k^2)
+				\]
+				(cf. sections of line bundles on $G /B=\P^{1}$). If $\car(k)=0$ then $\nabla(r)$ is
+				simple for all $r\ge 0$. If $\car(k)=p>0$ this is not always true:
+				\[
+					\nabla(p) = kx^{p} \oplus kx^{p-1}y \oplus \dots \oplus kxy^{p-1} \oplus ky^{p}
+				\]
+				with $x,y$ a canonical basis of $k^2$. Then $kx^{p}\oplus ky^{p}$ is a non-trivial
+				$G$-stable subspace. In fact, $L(p) = kx^{p}\oplus ky^{p}$.
 
-\emph{Closely related fact:} (??)
+				More generally, $\nabla(r)$ is simple if and only if $r\le p-1$.
+			\item For all $\lambda\in \XX_+$, $L(\lambda)^{*}\simeq L(-w_0\lambda)$ where $w_0\in
+				W$ is the longest element.
+		\end{enumerate}
+	\end{example}
 
-In fact, in case $p=0$, we get Kempf's vanishing theorem from this proposition using the \emph{Kodaira vanishing theorem}.
-\begin{example}\leavevmode
-	\begin{enumerate}[(1)]
-		\item $\CH^{n}(G /B,\OO_{G /B})=0$ for $n>0$, this is the $\lambda=0$ case.
-		\item For $G=\SL_{2,k}, \XX=\Z, G /B=\P^{1}$ and $\OO_{G /B}(\lambda)=\OO_{\P^{1}}(\lambda)$. So we recover the fact that
-			\[
+	\subsection{Characters}
+	If $V\in \Repf(G)$ then the action of $T$ determines a grading $V=\bigoplus_{\lambda\in
+	\XX}V_\lambda$ with
+	\[
+		V_\lambda = \left\{ v\in V \middle| \forall t\in T,tv = \lambda(t)v \right\} .
+	\]
+	We set
+	\[
+		\ch(V) = \sum_{\lambda\in \XX}\dim(V_\lambda)e^{\lambda}\in \Z[\XX].
+	\]
+	It's easy to check that:
+	\begin{itemize}
+		\item $\ch$ factors through $K^{0}(\Repf(G))\to \Z[\XX]$.
+		\item $\ch(V\otimes V') = \ch(V)\ch(V')$, so the map above is a \emph{ring morphism}.
+		\item $\ch$ takes values in $\Z[\XX]^{W}$.
+	\end{itemize}
+	\begin{proposition}
+		$\ch$ induces an isomorphism
+		\[
+			K^{0}(\Repf(G)) \simto \Z[\XX]^{W}.
+		\]
+	\end{proposition}
+	\begin{proof}[Proof idea]
+		Show that
+		\[
+			\left\{ \ch(L(\lambda)) \middle| \lambda\in \XX_+ \right\}
+		\]
+		is a basis of $\Z[\XX]^{W}$.
+	\end{proof}
+
+	\section{Some general results about ? of reductive algebraic groups}
+	\subsection{Kempf's vanishing theorem}
+	\begin{theorem}
+		If $\lambda\in \XX_+$ then
+		\[
+			\RD^{n}\Ind_B^{G}(k_B(\lambda)) = 0 \quad \forall n>0.
+		\]
+	\end{theorem}
+	\begin{note}
+		We have
+		\[
+			\RD^{n}\Ind_B^{G}\left( k_B(\lambda) \right) = \CH^{n}(G /B, \CL_{G /B}(k_B(\lambda))),
+		\]
+		where $\CL_{G /B}(k_B(\lambda))$ is a line bundle equal to $\OO_{G /B}(\lambda)$.
+	\end{note}
+	So we are in fact computing cohomology of some line bundles on $G /B$.
+
+	\emph{Closely related fact:} (??)
+
+	In fact, in case $p=0$, we get Kempf's vanishing theorem from this proposition using the
+	\emph{Kodaira vanishing theorem}.
+	\begin{example}\leavevmode
+		\begin{enumerate}[(1)]
+			\item $\CH^{n}(G /B,\OO_{G /B})=0$ for $n>0$, this is the $\lambda=0$ case.
+			\item For $G=\SL_{2,k}, \XX=\Z, G /B=\P^{1}$ and $\OO_{G
+				/B}(\lambda)=\OO_{\P^{1}}(\lambda)$. So we recover the fact that
+				\[
+					\CH^{n}(\P^{1},\OO_{\P^{1}}(m)) = 0
+				\]
+				if $n>0$ and $m\ge 0$.
+		\end{enumerate}
+	\end{example}
+	\begin{remark}
+		Serre duality for $G /B$:  $\omega_{G /B}\isoto \OO_{G /B}(-\rho)$ where
+		\[
+			\rho = \frac{1}{2}\sum_{\alpha\in R_+}\alpha
+		\]
+		implies that for $\lambda\in \XX$ we have
+		\[
+			\RD^{n}\Ind_{B}^{G}(k_B(\lambda)) \isoto \left( \RD^{|R^{+}|-n}\Ind_B^{G}\left(
+			-(\lambda+2\rho) \right)  \right) ^{*}
+		\]
+		(note that $|R_+| = \dim(G /B)$). So if $\lambda\in -2\rho-\XX_+$ then
+		$\RD^{n}\Ind_B^{G}(k_B(\lambda))=0$ if $n\neq |R_+|$.
+
+		For $\SL_2$, this says
+		\[
 			\CH^{n}(\P^{1},\OO_{\P^{1}}(m)) = 0
-			\] 
-			if $n>0$ and $m\ge 0$.
-	\end{enumerate}
-\end{example}
-\begin{remark}
-	Serre duality for $G /B$:  $\omega_{G /B}\isoto \OO_{G /B}(-\rho)$ where
+		\]
+		for $n\neq 1$ if $m\le -2$.
+	\end{remark}
+
+	Here is an interesting application. For $\lambda\in \XX_+$ we set
 	\[
-	\rho = \frac{1}{2}\sum_{\alpha\in R_+}\alpha
-	\] 
-	implies that for $\lambda\in \XX$ we have
+		\Delta(\lambda) = \left( \nabla (-w_0\lambda \right) )^{*} =
+		\RD^{|R|_+}\Ind_B^{G}\left( k_B(w_0\lambda-2\rho) \right)
+	\]
+	($w_0$ is longest length in $W$). These modules are called \defn{Weyl modules}. We have
 	\[
-	\RD^{n}\Ind_{B}^{G}(k_B(\lambda)) \isoto \left( \RD^{|R^{+}|-n}\Ind_B^{G}\left( -(\lambda+2\rho) \right)  \right) ^{*}
-	\] 
-	(note that $|R_+| = \dim(G /B)$). So if $\lambda\in -2\rho-\XX_+$ then $\RD^{n}\Ind_B^{G}(k_B(\lambda))=0$ if $n\neq |R_+|$.
+		\Delta(\lambda) \surjto L(\lambda).
+	\]
 
-	For $\SL_2$, this says
-	\[
-	\CH^{n}(\P^{1},\OO_{\P^{1}}(m)) = 0
-	\] 
-	for $n\neq 1$ if $m\le -2$.
-\end{remark}
-
-Here is an interesting application. For $\lambda\in \XX_+$ we set
-\[
-\Delta(\lambda) = \left( \nabla (-w_0\lambda \right) )^{*} = \RD^{|R|_+}\Ind_B^{G}\left( k_B(w_0\lambda-2\rho) \right) 
-\] 
-($w_0$ is longest length in $W$). These modules are called \defn{Weyl modules}. We have
-\[
-\Delta(\lambda) \surjto L(\lambda).
-\] 
-
-\begin{proposition}
-	For $\lambda,\mu\in \XX_+$ we have
-	\[
-	\Ext_{\Rep(G)}^{n}\left( \Delta(\lambda),\nabla(\mu) \right) = \begin{cases}
-		k & \text{if }\lambda=\mu, n=0 \\
-		0 & \text{otherwise}.
-	\end{cases}
-	\] 
-\end{proposition}
-The unique (up to scalar) non-zero morphism for $\lambda=\mu$ and $n=0$ is the composition
-\[
-\Delta(\lambda) \surjto L(\lambda) \injto \nabla(\lambda).
-\] 
-This statement says that $\Rep(G)$ is a ``highest weight category''.
-
-\subsection{Borel-Bott-Weil theorem}
-We consider the action of $W$ on $X$ given by 
-\[
-w\cdot \lambda = w(\lambda+\rho) - \rho.
-\] 
-More precisely, this defines an action on $\Q\otimes_\Z\XX$, which stabilizes $\XX$ since $w\rho-\rho\in \Z R$ for all $w\in W$.
-
-Set
-\[
-\overline{C} = \begin{cases}
-	\left\{ \lambda\in \XX \middle| \forall \beta\in R_+, \left<\lambda+\rho,\beta^{\vee} \right> \ge 0 \right\} & \text{if }p=0 \\
-	\left\{ \lambda\in \XX \middle| \forall \beta\in R_+, 0\le \left<\lambda+\rho,\beta^{\vee} \right> \right\} & \text{if }p>0.
-\end{cases}
-\] 
-\begin{example}\leavevmode
-	\begin{enumerate}[(1)]
-		\item Let $G=\SL_2, \XX=\Z$, then
-			\[
-			\overline{C} = \begin{cases}
-				\{ -1,0,1,\dots \} & \text{if }p=0 \\
-				\{ -1,0,\dots,p-1 \} & \text{if }p>0.
-			\end{cases}
-			\] 
-		\item Let $G=\SL_3$, then (picture).
-	\end{enumerate}
-\end{example}
-\begin{theorem}[Borel-Bott-Weil]\leavevmode
-	\begin{enumerate}[(1)]
-		\item If $\lambda\in \overline{C}\setminus \XX_+$ then
-			\[
-			\RD^{n}\Ind_B^{G}\left( k_B(w\cdot \lambda) \right) = 0
-			\] 
-			for all $w\in W, n\in \Z$.
-		\item If $\lambda\in \overline{C}\cap \XX_+$, then for $n\in \Z, w\in W$, we have
-			\[
-			\RD^{n}\Ind_B^{G}\left( k_B(w\cdot \lambda) \right) = \begin{cases}
-				\nabla(\lambda) & \text{if }n=\ell(w) \\
+	\begin{proposition}
+		For $\lambda,\mu\in \XX_+$ we have
+		\[
+			\Ext_{\Rep(G)}^{n}\left( \Delta(\lambda),\nabla(\mu) \right) =
+			\begin{cases}
+				k & \text{if }\lambda=\mu, n=0 \\
 				0 & \text{otherwise}.
 			\end{cases}
-			\] 
-	\end{enumerate}
-\end{theorem}
-The proof is by induction on $\ell(w)$, the case $\ell(w)=0$ follows from Kempf's vanishing theorem. This uses a decomposition of $\RD^{n}\Ind_B^{P(\alpha)}(k_B(\lambda))$ for $\alpha\in R_+$, which is a $\SL_2$ computation (?)
-
-\begin{remark}
-	If $p=0$ then $W\cdot C=\XX$, so we understand all $\RD^{n}\Ind_B^{G}(k_B(\lambda))$. For $p>0$, this then only describes a small number of such spaces. In particular, in this case there can exist $\lambda\in \XX$ such that $\RD^{n}\Ind_B^{G}(k_B(\lambda))\neq 0$ for several $n$'s.
-\end{remark}
-\begin{corollary}\leavevmode
-	\begin{enumerate}[(1)]
-		\item If $\lambda\in \overline{C}\cap \XX_+$ then $\nabla(\lambda)=L(\lambda)$.
-		\item If $\lambda,\mu\in \overline{C}\cap \XX_+$ then
-			\[
-			\Ext_{\Rep(G)}^{1}(L(\lambda),L(\mu)) = 0.
-			\] 
-			In particular, if $p=0$ the category $\Rep(G)$ is semisimple.
-	\end{enumerate}
-\end{corollary}
-\begin{proof}\leavevmode
-	\begin{enumerate}[(1)]
-		\item By BBW and Serre duality
-			\[
-			\nabla(\lambda)^{*} \isoto \nabla(-w_0\lambda).
-			\] 
-			Hence $\nabla(\lambda)$ has a unique simple quotient isomorphic to $L(\lambda)$. Since $L(\lambda)$ is also the unique simple submodule of $\nabla(\lambda)$ and has multiplicity 1 as a composition factor (because $\dim \nabla(\lambda)_\lambda=1$) we must have $\nabla(\lambda)\isoto L(\lambda)$.
-		\item We have
-			\[
-			\Ext ^{1}(L(\lambda),L(\mu)) \isoto \Ext ^{1}(\Delta(\lambda), \nabla(\mu)) \isoto 0.
-			\] 
-			Then we use local finiteness of representations.
-	\end{enumerate}
-\end{proof}
-\begin{remark}\leavevmode
-	\begin{enumerate}[(1)]
-		\item In Milne's book (§22.C) there is a different proof of semisimplicity using the action of $\kg$ and Casimir operators.
-		\item For a connected algebraic group $H$ over $k$ of characteristic 0 one proves that $H$ is reductive if and only if every finite dimensional representation is semisimple. [Thoerem 22.42 in Milne's book.]
-	\end{enumerate}
-\end{remark}
-\begin{example}
-	For $G=\SL_2$, write $V=k^2$ for the natural representation. One recovers that $S^{r}(V)$ is simple if $p=0$ or $p>0$ and $r<p$.
-\end{example}
-
-\subsection{Weyl's character formula}
-For $\lambda\in \XX$ we set
-\[
-\chi(\lambda) = \sum_{n\ge 0}(-1)^{n}\ch\left( \RD^{n}\Ind_B^{G}(k_B(\lambda)) \right) 
-\] 
-\begin{note}
-	If $\lambda\in \XX_+$, by Kempf's vanishing theorem we have
+		\]
+	\end{proposition}
+	The unique (up to scalar) non-zero morphism for $\lambda=\mu$ and $n=0$ is the composition
 	\[
-	\chi(\lambda) = \ch(\nabla(\lambda)).
-	\] 
-\end{note}
-\begin{theorem}
-	For $\lambda\in \XX$ we have
+		\Delta(\lambda) \surjto L(\lambda) \injto \nabla(\lambda).
+	\]
+	This statement says that $\Rep(G)$ is a ``highest weight category''.
+
+	\subsection{Borel-Bott-Weil theorem}
+	We consider the action of $W$ on $X$ given by
 	\[
-		\chi\left( \lambda \right) = \frac{\sum_{w\in W}(-1)^{\ell(w)}e^{w\cdot \lambda}}{\sum_{w\in W}(-1)^{\ell(w)}e^{w\cdot 0}} \in \Frac(\Z[X])
-	\] 
-\end{theorem}
-In particular, this gives a formula for $\ch\left( \nabla(\lambda) \right) $ (this formula does not depend on $p$!). Along the way to prove this theorem, one proves that $\ch(\Lambda(\lambda)) = \ch(\nabla(\lambda))$.
+		w\cdot \lambda = w(\lambda+\rho) - \rho.
+	\]
+	More precisely, this defines an action on $\Q\otimes_\Z\XX$, which stabilizes $\XX$
+	since $w\rho-\rho\in \Z R$ for all $w\in W$.
 
-\begin{remark}
-	The proof in general follows from an analysis of $\ch\RD^{1}\Ind_B^{P(\alpha)}(k_B(\lambda))$ for $\alpha\in R_+$ already used for the BBW theorem.
-
-	When $p=0$, there is an alternative proof using a Lefschetz-type fixed point formula [cf. reference in Milne's book or §6.1.16 in Chriss-Ginzburg \emph{Representation theory and complex geometry}].
-\end{remark}
-
-\section{The case of positive characteristic}
-We assume that $p>0$.
-\subsection{Frobenius morphism and Frobenius kernel}
-Set
-\[
-G^{(1)} = \Spec(k)\times_{\Spec(k)} G
-\] 
-where $\Spec(k)\to \Spec(k)$ corresponds to
-\begin{align*}
-	k &\longrightarrow k \\
-	x &\longmapsto x^{p}.
-\end{align*}
-In other words, $\OO(G^{(1)}=\OO(G)$ with $k$ acting by $\lambda\cdot f = \lambda^{1 /p}f$ for $\lambda\in k, f\in \OO(G)$.
-
-We have a Frobenius morphism $\Fr:G\to G^{(1)}$ associated with
-\begin{align*}
-	\OO(G^{(1)}) &\longrightarrow O(G) \\
-	f &\longmapsto f^{p}.
-\end{align*}
-Here $G^{(1)}$ is an affine $k$-group scheme and $\Fr_G$ is a morphism of $k$-group schemes.
-
-We have
-\[
-T^{(1)} \subset B^{(1)}\subset G^{(1)}
-\] 
-a maximal torus and Borel subgroup and $G^{(1)}$ is again reductive. 
-
-We have
-\begin{align*}
-	\phi: X^{*}(T^{(1)}) &\longrightarrow \XX \\
-	\lambda &\longmapsto \lambda\circ\Fr_T.
-\end{align*}
-This morphism is injective, with image $p\XX$. The roots of $G^{(1)}$ with respect to $T^{(1)}$ are $pR$.
-\begin{remark}
-	$G\isoto G^{(1)}$ as $k$-group schemes. A choice of such isomorphism amounts to choosing a ``lift'' of $G$ to an $\F_p$-group scheme.
-\end{remark}
-The \defn{Frobenius kernel} is $G_1=\ker(\Fr_G)$ (scheme-theoretic kernel). Here $\OO(G_1)$ is a finite-dimensional Hopf-algebra and
-\[
-	\OO(G_1)^{*} \isoto U\kg / \left<x^{p} - x^{[p]} \right>
-\] 
-where $(-)^{[p]}:\kg\to \kg$ is the restricted $p$-th power operation. The Frobenius morphism induces an isomorphism $G /G_1\simto G^{(1)}$.
-
-\subsection{Curtis' and Steinberg's theorems}
-Let
-\[
-\XX_+\res = \left\{ \lambda\in \XX \middle| \forall \alpha \in R_s, 0\le \left<\lambda,\alpha ^{\vee} \right>\le p-1 \right\} .	
-\] 
-\begin{theorem}[Curtis]\leavevmode
-	\begin{enumerate}[(1)]
-		\item For $\lambda\in \XX_+\res$, teh representation $\Res_{G_1}^{G}(L(\lambda))$ is a simple $G_1$-representation.
-		\item If $G$ is semisimple and simply connected, then
-			 \[
-			\lambda\mapsto \Res_{G_1}^{G}(L(\lambda))
-			\] 
-			induces a bijection
-			\[
-			\XX_+\res\simto \{\text{simple }G_1\text{-modules}\} /\sim.
-			\] 
-	\end{enumerate}
-\end{theorem}
-\begin{remark}
-	If $G$ is semisimple and simply connected, $\XX_+\res\simto \XX /p\XX$. For general $G$, simple $G_1$-modules are parametrized by $\XX /p\XX$.
-\end{remark}
-A closely related statement is:
-\begin{theorem}[Steinberg]
-	If $\lambda\in \XX_+\res, \mu\in X^{*}(T^{(1)})_+$ we have
+	Set
 	\[
-	L(\lambda)\otimes \Fr_G^{*}(L^{(1)}(\mu)) \isoto L(\lambda+\phi(\mu)).
-	\] 	
-\end{theorem}
-If $G,B,T$ are obtained from similar data over $\F_p$ we have 
-\[
-\begin{tikzcd}
-	T \ar[r,hook] \ar[d,"\isoto"] & B \ar[r,hook] \ar[d,"\isoto"] & G \ar[d,"\isoto"] \\
-	T^{(1)} \ar[r,hook] & B^{(1)} \ar[r,hook] & G^{(1)}
-\end{tikzcd}
-\]
-The formula becomes
-\[
-L(\lambda) \otimes \Fr_G^{*}(L(\mu)) \isoto L(\lambda+\rho\mu)
-\] 
-for $\lambda\in \XX_+\res, \mu\in\XX_{+}$.
+		\overline{C} =
+		\begin{cases}
+			\left\{ \lambda\in \XX \middle| \forall \beta\in R_+, \left<\lambda+\rho,\beta^{\vee}
+			\right> \ge 0 \right\} & \text{if }p=0 \\
+			\left\{ \lambda\in \XX \middle| \forall \beta\in R_+, 0\le
+			\left<\lambda+\rho,\beta^{\vee} \right> \right\} & \text{if }p>0.
+		\end{cases}
+	\]
+	\begin{example}\leavevmode
+		\begin{enumerate}[(1)]
+			\item Let $G=\SL_2, \XX=\Z$, then
+				\[
+					\overline{C} =
+					\begin{cases}
+						\{ -1,0,1,\dots \} & \text{if }p=0 \\
+						\{ -1,0,\dots,p-1 \} & \text{if }p>0.
+					\end{cases}
+				\]
+			\item Let $G=\SL_3$, then (picture).
+		\end{enumerate}
+	\end{example}
+	\begin{theorem}[Borel-Bott-Weil]\leavevmode
+		\begin{enumerate}[(1)]
+			\item If $\lambda\in \overline{C}\setminus \XX_+$ then
+				\[
+					\RD^{n}\Ind_B^{G}\left( k_B(w\cdot \lambda) \right) = 0
+				\]
+				for all $w\in W, n\in \Z$.
+			\item If $\lambda\in \overline{C}\cap \XX_+$, then for $n\in \Z, w\in W$, we have
+				\[
+					\RD^{n}\Ind_B^{G}\left( k_B(w\cdot \lambda) \right) =
+					\begin{cases}
+						\nabla(\lambda) & \text{if }n=\ell(w) \\
+						0 & \text{otherwise}.
+					\end{cases}
+				\]
+		\end{enumerate}
+	\end{theorem}
+	The proof is by induction on $\ell(w)$, the case $\ell(w)=0$ follows from Kempf's
+	vanishing theorem. This uses a decomposition of
+	$\RD^{n}\Ind_B^{P(\alpha)}(k_B(\lambda))$ for $\alpha\in R_+$, which is a $\SL_2$ computation (?)
 
-More generally, for $\lambda_0,\dots,\lambda_r\in \XX_+\res,\mu\in \XX_+$.
-\[
-L(\lambda_0+p\lambda_1+p^2\lambda_2+\dots+p^{r}\lambda_r + p^{r+1}\mu) \isoto L(\lambda_0)\otimes \Fr_G^{*}L(\lambda_1) \otimes\dots\otimes (\Fr_G^{r})^{*}L(\lambda_r)\otimes(\Fr_G^{r+1})^{*}(\mu).
-\] 
-Note that $L(p\lambda)\isoto \Fr_G^{*}L(\lambda)$ for all $\lambda\in \XX_+$.
+	\begin{remark}
+		If $p=0$ then $W\cdot C=\XX$, so we understand all $\RD^{n}\Ind_B^{G}(k_B(\lambda))$.
+		For $p>0$, this then only describes a small number of such spaces. In particular, in
+		this case there can exist $\lambda\in \XX$ such that
+		$\RD^{n}\Ind_B^{G}(k_B(\lambda))\neq 0$ for several $n$'s.
+	\end{remark}
+	\begin{corollary}\leavevmode
+		\begin{enumerate}[(1)]
+			\item If $\lambda\in \overline{C}\cap \XX_+$ then $\nabla(\lambda)=L(\lambda)$.
+			\item If $\lambda,\mu\in \overline{C}\cap \XX_+$ then
+				\[
+					\Ext_{\Rep(G)}^{1}(L(\lambda),L(\mu)) = 0.
+				\]
+				In particular, if $p=0$ the category $\Rep(G)$ is semisimple.
+		\end{enumerate}
+	\end{corollary}
+	\begin{proof}\leavevmode
+		\begin{enumerate}[(1)]
+			\item By BBW and Serre duality
+				\[
+					\nabla(\lambda)^{*} \isoto \nabla(-w_0\lambda).
+				\]
+				Hence $\nabla(\lambda)$ has a unique simple quotient isomorphic to $L(\lambda)$.
+				Since $L(\lambda)$ is also the unique simple submodule of $\nabla(\lambda)$ and has
+				multiplicity 1 as a composition factor (because $\dim \nabla(\lambda)_\lambda=1$) we
+				must have $\nabla(\lambda)\isoto L(\lambda)$.
+			\item We have
+				\[
+					\Ext ^{1}(L(\lambda),L(\mu)) \isoto \Ext ^{1}(\Delta(\lambda), \nabla(\mu)) \isoto 0.
+				\]
+				Then we use local finiteness of representations.
+		\end{enumerate}
+	\end{proof}
+	\begin{remark}\leavevmode
+		\begin{enumerate}[(1)]
+			\item In Milne's book (§22.C) there is a different proof of semisimplicity using the
+				action of $\kg$ and Casimir operators.
+			\item For a connected algebraic group $H$ over $k$ of characteristic 0 one proves that
+				$H$ is reductive if and only if every finite dimensional representation is
+				semisimple. [Thoerem 22.42 in Milne's book.]
+		\end{enumerate}
+	\end{remark}
+	\begin{example}
+		For $G=\SL_2$, write $V=k^2$ for the natural representation. One recovers that
+		$S^{r}(V)$ is simple if $p=0$ or $p>0$ and $r<p$.
+	\end{example}
 
-\begin{remark}
-	If $G$ is semisimple and simply connected any $\lambda\in \XX_+$ can be written uniquely as
+	\subsection{Weyl's character formula}
+	For $\lambda\in \XX$ we set
 	\[
-		\lambda_0+p\lambda_1+\dots+p^{r}\lambda_r
-	\] 
-	with $\lambda_0,\dots,\lambda_r\in \XX_+\res$. This reduces the description of all simple representations to those corresponding to elements in $\XX_+\res$.
-\end{remark}
-\subsection{Linkage principle}
-\subsubsection{Affine Weyl group}
-Define
-\[
-	W\aff \defeq W\ltimes \Z R
-\] 
-which acts (affinely, not linearly) on $\R\otimes_\Z \XX$. A fundamental domain is
-\[
-	\overline{A_0} = \left\{ v\in V \middle| \forall \alpha\in R_+, 0\le \left<v,\alpha ^{\vee} \right>\le 1 \right\} .
-\] 
-Set
-\[
-S\aff\defeq \left\{ w\in W\aff \middle| V^{W}\cap \overline{A_0}\text{ has codimension 1 in }V \right\}. 
-\] 
-\begin{fact}
-	The pair $(W\aff,S\aff)$ is a Coxeter system.
-\end{fact}
-\begin{example}\leavevmode
-	\begin{enumerate}[(1)]
-		\item Take $G=\SL_2, V=\R$, then $S\aff=\{s,s_0\} , S=\{s\} $. (Picture) $W\aff$ is the infinite dihedral group generated by $s,s_0$.
-		\item Take $G=\SL_3$ and $\dim V=2$ (Picture).
-	\end{enumerate}
-\end{example}
-What is relevant for the study of $\Rep(G)$ is the \defn{dot-action} of $W\aff$ on $\XX$ 
-\[
-	(w,\lambda)\bullet \mu = w(\mu + p\lambda + \rho) - \rho.
-\] 
-\begin{theorem}[Linkage principle]
-	For $\lambda,\mu\in \XX_+$ we have
+		\chi(\lambda) = \sum_{n\ge 0}(-1)^{n}\ch\left( \RD^{n}\Ind_B^{G}(k_B(\lambda)) \right)
+	\]
+	\begin{note}
+		If $\lambda\in \XX_+$, by Kempf's vanishing theorem we have
+		\[
+			\chi(\lambda) = \ch(\nabla(\lambda)).
+		\]
+	\end{note}
+	\begin{theorem}
+		For $\lambda\in \XX$ we have
+		\[
+			\chi\left( \lambda \right) = \frac{\sum_{w\in W}(-1)^{\ell(w)}e^{w\cdot
+			\lambda}}{\sum_{w\in W}(-1)^{\ell(w)}e^{w\cdot 0}} \in \Frac(\Z[X])
+		\]
+	\end{theorem}
+	In particular, this gives a formula for $\ch\left( \nabla(\lambda) \right) $ (this
+	formula does not depend on $p$!). Along the way to prove this theorem, one proves that
+	$\ch(\Lambda(\lambda)) = \ch(\nabla(\lambda))$.
+
+	\begin{remark}
+		The proof in general follows from an analysis of
+		$\ch\RD^{1}\Ind_B^{P(\alpha)}(k_B(\lambda))$ for $\alpha\in R_+$ already used for the BBW theorem.
+
+		When $p=0$, there is an alternative proof using a Lefschetz-type fixed point formula
+		[cf. reference in Milne's book or §6.1.16 in Chriss-Ginzburg \emph{Representation
+		theory and complex geometry}].
+	\end{remark}
+
+	\section{The case of positive characteristic}
+	We assume that $p>0$.
+	\subsection{Frobenius morphism and Frobenius kernel}
+	Set
 	\[
-	\Ext_{\Rep(G)}^{1}(L(\lambda), L(\mu)) \neq 0 \implies W\aff\bullet \lambda = W\aff\bullet \mu.
-	\] 
-\end{theorem}
-For $c\in \XX(W\aff,\bullet)$ we set
-\[
-	\Rep_c(G) = \left\{ M\in \Rep(G) \middle| \begin{array}{c}
-		\text{all composition factors of }M \\
-		\text{are of the form }L(\lambda)\text{ with }\lambda\in \XX_+\cap c
-	\end{array}\right\} 
-\] 
-a full subcategory of $\Rep(G)$.
-\begin{corollary}
-	We have
-	\[
-	\Rep(G) = \prod_{c\in \XX / (W\aff,\bullet)}\Rep_c(G).
-	\] 
-\end{corollary}
-\begin{remark}\leavevmode
-	\begin{enumerate}[(1)]
-		\item The linkage principle was conjectured by Verma. Proved by Humphreys, Carter-Lusztig, Jatzen, Andersen.
-		\item Under mild assumptions on $p$, the linkage principle follows from a ``central character'' argument and the description of the center of $G$ and of $U\kg$.
-		\item In fact, what Andersen proves is a ``strong linkage principle'': if $\lambda\in \XX$ satisfies 
-			\[
-			\left<\lambda, \alpha ^{\vee} \right> \ge -1
-			\] 
-			for all $\alpha\in R_s, w\in W$, if $L(\mu)$ is a composition factor of $\RD^{i}\Ind_B^{G}(k_B(w\bullet\lambda))$ then $\mu\in W\aff\bullet \lambda$.
-	\end{enumerate}
-\end{remark}
-\begin{example}
-	Let $G=\SL_2$, then
-	\[
-	\begin{tikzcd}
-		0 \ar[r] & L(p) \ar[r] \ar[d,equals] & \nabla(p) \ar[r] \ar[d,equals] & L(p-2) \ar[r] & 0 \\
-			 & k\left<x^{p},y^{p} \right> & k\left<x^{p},x^{p-1}y,\dots,xy^{p-1},y^{p} \right>
-	\end{tikzcd}
-	\] 
-	(Picture)
-\end{example}
-\subsection{Translation functors}
-Recall
-\[
-\overline{C} = \left\{ \lambda\in \XX \middle| \forall \alpha\in R_+,0\le \left<\lambda+\rho,\beta^{\vee} \right>\le p \right\} .
-\] 
-Then $\overline{C}$ is a fundamental domain for $W\aff$ acting on $\XX$. For $\lambda\in \overline{C}$ we consider the projection
-\[
-\pr_\lambda:\Rep(G) = \prod_{\mu\in \overline{C}}\Rep_{W\aff\bullet\mu}(G) \to \Rep_{W\aff\bullet\lambda}(G).
-\]
-Given $\lambda,\mu\in \overline{C}$, denote by $\nu$ the unique element in $W(\mu-\lambda)\cap \XX_+$ and set
-\begin{align*}
-	T_\lambda^{\mu}: \Rep(G) &\longrightarrow \Rep(G) \\
-	M &\longmapsto \pr_\mu\left( L(\nu)\otimes\pr_\lambda M \right) .
-\end{align*}
-\begin{fact}\leavevmode
-	\begin{enumerate}[(1)]
-		\item $T_\lambda^{\mu}$ is exact.
-		\item $T_\lambda^{\mu}$ is left and right adjoint to $T_\mu^{\lambda}$.
-	\end{enumerate}
-\end{fact}
-A subset $I\subset S\aff$ is called \defn{finitary} if $\left<I \right>\subset W\aff$ is finite. Then
-\[
-	\overline{C} = \coprod_{\substack{I\subset S\aff \\ \text{finitary}}} \overline{C}_I
-\] 
-where
-\[
-\overline{C}_I = \left\{ \lambda\in \overline{C} \middle| \Stab_{(W\aff\bullet)}(\lambda)=\left<I \right> \right\} .
-\] 
-\begin{example}
-	Let $G=\SL_3$ (Picture)
-\end{example}
-\begin{theorem}
-	If $\lambda,\mu\in \overline{C}_I$with $I$ finitary, then $T_\lambda^{\mu}$ and $T_\mu^{\lambda}$ restrict to quasi-inverse equivalences
-	\[
-	\Rep_{W\aff\bullet\lambda}(G)\simto \Rep_{W\aff\bullet\mu}(G).
-	\] 
-\end{theorem}
-For $I\subset S\aff$ finitary we set
-\[
-W\aff^{I} = \left\{ w\in W\aff \middle| \forall x\in W,y\in \left<I \right>, \ell(xwy) = \ell(x)+\ell(w)+\ell(y) \right\} .
-\] 
-\begin{fact}
-	For $\lambda\in \overline{C}_I$ we have an isomorphism
+		G^{(1)} = \Spec(k)\times_{\Spec(k)} G
+	\]
+	where $\Spec(k)\to \Spec(k)$ corresponds to
 	\begin{align*}
-		W\aff^{I} &\longrightarrow (W\aff\bullet\lambda)\cap \XX_+ \\
-		w &\longmapsto w\bullet\lambda.
+		k &\longrightarrow k \\
+		x &\longmapsto x^{p}.
 	\end{align*}
-\end{fact}
-So $W\aff^{I}$ induces the simples/induced modules in $\Rep_{W\aff\bullet\lambda}(G)$. For $\lambda,\mu$ as in the theorem
-\begin{align*}
-	T_{\lambda}^{\mu}L(w\bullet\lambda) &\isoto L(w\bullet\mu) \\
-	T_{\lambda}^{\mu}\nabla(w\bullet\lambda) &\isoto \nabla(w\bullet\mu).
-\end{align*}
-We have $C_{\emptyset}\neq \emptyset$ if and only if $p\ge h$ (Coxeter number of $G$). In this case, $0\in \overline{C}_{\emptyset}$. For $\lambda\in \overline{C}_I$, consider
-\[
-T_0^{\lambda}:\Rep_{W\aff\bullet 0}(G) \to \Rep_{W\aff\bullet\lambda}(G).
-\] 
-\begin{proposition}\leavevmode
-	\begin{enumerate}[(1)]
-		\item For $W\aff^{\emptyset}$ we have
-			\[
-			T_0^{\lambda}\nabla(w\bullet 0) = \begin{cases}
-				\nabla(w\bullet\lambda) & \text{if }w\bullet\lambda\in \XX_+ \\
-				0 & \text{otherwise}.
-			\end{cases}
-			\] 
-		\item For $y\in W\aff^{I}$, $T_\lambda^{0}$ has a filtration with subquotients
-			\[
-			\{\nabla(yx\bullet 0)| x\in ?\} .
-			\] 
-		\item For $w\in W\aff^{\emptyset}$ we have
-			\[
-			T_0^{\lambda}L(w\bullet 0) = \begin{cases}
-				L(w\bullet 0) & \text{if }w\in W\aff^{I} \\
-				0 & \text{otherwise}.
-			\end{cases}
-			\] 
-	\end{enumerate}
-\end{proposition}
-This reduces the study of $\Rep(G)$ to that of $\Rep_{W\aff\bullet 0}(G)$.
+	In other words, $\OO(G^{(1)}=\OO(G)$ with $k$ acting by $\lambda\cdot f = \lambda^{1
+		/p}f$ for $\lambda\in k, f\in \OO(G)$.
 
-\end{document}
+		We have a Frobenius morphism $\Fr:G\to G^{(1)}$ associated with
+		\begin{align*}
+			\OO(G^{(1)}) &\longrightarrow O(G) \\
+			f &\longmapsto f^{p}.
+		\end{align*}
+		Here $G^{(1)}$ is an affine $k$-group scheme and $\Fr_G$ is a morphism of $k$-group schemes.
+
+		We have
+		\[
+			T^{(1)} \subset B^{(1)}\subset G^{(1)}
+		\]
+		a maximal torus and Borel subgroup and $G^{(1)}$ is again reductive.
+
+		We have
+		\begin{align*}
+			\phi: X^{*}(T^{(1)}) &\longrightarrow \XX \\
+			\lambda &\longmapsto \lambda\circ\Fr_T.
+		\end{align*}
+		This morphism is injective, with image $p\XX$. The roots of $G^{(1)}$ with respect to
+		$T^{(1)}$ are $pR$.
+		\begin{remark}
+			$G\isoto G^{(1)}$ as $k$-group schemes. A choice of such isomorphism amounts to
+			choosing a ``lift'' of $G$ to an $\F_p$-group scheme.
+		\end{remark}
+		The \defn{Frobenius kernel} is $G_1=\ker(\Fr_G)$ (scheme-theoretic kernel). Here
+		$\OO(G_1)$ is a finite-dimensional Hopf-algebra and
+		\[
+			\OO(G_1)^{*} \isoto U\kg / \left<x^{p} - x^{[p]} \right>
+		\]
+		where $(-)^{[p]}:\kg\to \kg$ is the restricted $p$-th power operation. The Frobenius
+		morphism induces an isomorphism $G /G_1\simto G^{(1)}$.
+
+		\subsection{Curtis' and Steinberg's theorems}
+		Let
+		\[
+			\XX_+\res = \left\{ \lambda\in \XX \middle| \forall \alpha \in R_s, 0\le
+			\left<\lambda,\alpha ^{\vee} \right>\le p-1 \right\} .	
+		\]
+		\begin{theorem}[Curtis]\leavevmode
+			\begin{enumerate}[(1)]
+				\item For $\lambda\in \XX_+\res$, teh representation $\Res_{G_1}^{G}(L(\lambda))$ is
+					a simple $G_1$-representation.
+				\item If $G$ is semisimple and simply connected, then
+					\[
+						\lambda\mapsto \Res_{G_1}^{G}(L(\lambda))
+					\]
+					induces a bijection
+					\[
+						\XX_+\res\simto \{\text{simple }G_1\text{-modules}\} /\sim.
+					\]
+			\end{enumerate}
+		\end{theorem}
+		\begin{remark}
+			If $G$ is semisimple and simply connected, $\XX_+\res\simto \XX /p\XX$. For general
+			$G$, simple $G_1$-modules are parametrized by $\XX /p\XX$.
+		\end{remark}
+		A closely related statement is:
+		\begin{theorem}[Steinberg]
+			If $\lambda\in \XX_+\res, \mu\in X^{*}(T^{(1)})_+$ we have
+			\[
+				L(\lambda)\otimes \Fr_G^{*}(L^{(1)}(\mu)) \isoto L(\lambda+\phi(\mu)).
+			\] 	
+		\end{theorem}
+		If $G,B,T$ are obtained from similar data over $\F_p$ we have
+		\[
+			\begin{tikzcd}
+				T \ar[r,hook] \ar[d,"\isoto"] & B \ar[r,hook] \ar[d,"\isoto"] & G \ar[d,"\isoto"] \\
+				T^{(1)} \ar[r,hook] & B^{(1)} \ar[r,hook] & G^{(1)}
+			\end{tikzcd}
+		\]
+		The formula becomes
+		\[
+			L(\lambda) \otimes \Fr_G^{*}(L(\mu)) \isoto L(\lambda+\rho\mu)
+		\]
+		for $\lambda\in \XX_+\res, \mu\in\XX_{+}$.
+
+		More generally, for $\lambda_0,\dots,\lambda_r\in \XX_+\res,\mu\in \XX_+$.
+		\[
+			L(\lambda_0+p\lambda_1+p^2\lambda_2+\dots+p^{r}\lambda_r + p^{r+1}\mu) \isoto
+			L(\lambda_0)\otimes \Fr_G^{*}L(\lambda_1) \otimes\dots\otimes
+			(\Fr_G^{r})^{*}L(\lambda_r)\otimes(\Fr_G^{r+1})^{*}(\mu).
+		\]
+		Note that $L(p\lambda)\isoto \Fr_G^{*}L(\lambda)$ for all $\lambda\in \XX_+$.
+
+		\begin{remark}
+			If $G$ is semisimple and simply connected any $\lambda\in \XX_+$ can be written uniquely as
+			\[
+				\lambda_0+p\lambda_1+\dots+p^{r}\lambda_r
+			\]
+			with $\lambda_0,\dots,\lambda_r\in \XX_+\res$. This reduces the description of all
+			simple representations to those corresponding to elements in $\XX_+\res$.
+		\end{remark}
+		\subsection{Linkage principle}
+		\subsubsection{Affine Weyl group}
+		Define
+		\[
+			W\aff \defeq W\ltimes \Z R
+		\]
+		which acts (affinely, not linearly) on $\R\otimes_\Z \XX$. A fundamental domain is
+		\[
+			\overline{A_0} = \left\{ v\in V \middle| \forall \alpha\in R_+, 0\le \left<v,\alpha
+			^{\vee} \right>\le 1 \right\} .
+		\]
+		Set
+		\[
+			S\aff\defeq \left\{ w\in W\aff \middle| V^{W}\cap \overline{A_0}\text{ has codimension
+			1 in }V \right\}.
+		\]
+		\begin{fact}
+			The pair $(W\aff,S\aff)$ is a Coxeter system.
+		\end{fact}
+		\begin{example}\leavevmode
+			\begin{enumerate}[(1)]
+				\item Take $G=\SL_2, V=\R$, then $S\aff=\{s,s_0\} , S=\{s\} $. (Picture) $W\aff$ is
+					the infinite dihedral group generated by $s,s_0$.
+				\item Take $G=\SL_3$ and $\dim V=2$ (Picture).
+			\end{enumerate}
+		\end{example}
+		What is relevant for the study of $\Rep(G)$ is the \defn{dot-action} of $W\aff$ on $\XX$
+		\[
+			(w,\lambda)\bullet \mu = w(\mu + p\lambda + \rho) - \rho.
+		\]
+		\begin{theorem}[Linkage principle]
+			For $\lambda,\mu\in \XX_+$ we have
+			\[
+				\Ext_{\Rep(G)}^{1}(L(\lambda), L(\mu)) \neq 0 \implies W\aff\bullet \lambda = W\aff\bullet \mu.
+			\]
+		\end{theorem}
+		For $c\in \XX(W\aff,\bullet)$ we set
+		\[
+			\Rep_c(G) = \left\{ M\in \Rep(G) \middle|
+				\begin{array}{c}
+					\text{all composition factors of }M \\
+					\text{are of the form }L(\lambda)\text{ with }\lambda\in \XX_+\cap c
+			\end{array}\right\}
+		\]
+		a full subcategory of $\Rep(G)$.
+		\begin{corollary}
+			We have
+			\[
+				\Rep(G) = \prod_{c\in \XX / (W\aff,\bullet)}\Rep_c(G).
+			\]
+		\end{corollary}
+		\begin{remark}\leavevmode
+			\begin{enumerate}[(1)]
+				\item The linkage principle was conjectured by Verma. Proved by Humphreys,
+					Carter-Lusztig, Jatzen, Andersen.
+				\item Under mild assumptions on $p$, the linkage principle follows from a ``central
+					character'' argument and the description of the center of $G$ and of $U\kg$.
+				\item In fact, what Andersen proves is a ``strong linkage principle'': if $\lambda\in
+					\XX$ satisfies
+					\[
+						\left<\lambda, \alpha ^{\vee} \right> \ge -1
+					\]
+					for all $\alpha\in R_s, w\in W$, if $L(\mu)$ is a composition factor of
+					$\RD^{i}\Ind_B^{G}(k_B(w\bullet\lambda))$ then $\mu\in W\aff\bullet \lambda$.
+			\end{enumerate}
+		\end{remark}
+		\begin{example}
+			Let $G=\SL_2$, then
+			\[
+				\begin{tikzcd}
+					0 \ar[r] & L(p) \ar[r] \ar[d,equals] & \nabla(p) \ar[r] \ar[d,equals] & L(p-2) \ar[r] & 0 \\
+					& k\left<x^{p},y^{p} \right> & k\left<x^{p},x^{p-1}y,\dots,xy^{p-1},y^{p} \right>
+				\end{tikzcd}
+			\]
+			(Picture)
+		\end{example}
+		\subsection{Translation functors}
+		Recall
+		\[
+			\overline{C} = \left\{ \lambda\in \XX \middle| \forall \alpha\in R_+,0\le
+			\left<\lambda+\rho,\beta^{\vee} \right>\le p \right\} .
+		\]
+		Then $\overline{C}$ is a fundamental domain for $W\aff$ acting on $\XX$. For
+		$\lambda\in \overline{C}$ we consider the projection
+		\[
+			\pr_\lambda:\Rep(G) = \prod_{\mu\in \overline{C}}\Rep_{W\aff\bullet\mu}(G) \to
+			\Rep_{W\aff\bullet\lambda}(G).
+		\]
+		Given $\lambda,\mu\in \overline{C}$, denote by $\nu$ the unique element in
+		$W(\mu-\lambda)\cap \XX_+$ and set
+		\begin{align*}
+			T_\lambda^{\mu}: \Rep(G) &\longrightarrow \Rep(G) \\
+			M &\longmapsto \pr_\mu\left( L(\nu)\otimes\pr_\lambda M \right) .
+		\end{align*}
+		\begin{fact}\leavevmode
+			\begin{enumerate}[(1)]
+				\item $T_\lambda^{\mu}$ is exact.
+				\item $T_\lambda^{\mu}$ is left and right adjoint to $T_\mu^{\lambda}$.
+			\end{enumerate}
+		\end{fact}
+		A subset $I\subset S\aff$ is called \defn{finitary} if $\left<I \right>\subset W\aff$
+		is finite. Then
+		\[
+			\overline{C} = \coprod_{\substack{I\subset S\aff \\ \text{finitary}}} \overline{C}_I
+		\]
+		where
+		\[
+			\overline{C}_I = \left\{ \lambda\in \overline{C} \middle|
+			\Stab_{(W\aff\bullet)}(\lambda)=\left<I \right> \right\} .
+		\]
+		\begin{example}
+			Let $G=\SL_3$ (Picture)
+		\end{example}
+		\begin{theorem}
+			If $\lambda,\mu\in \overline{C}_I$with $I$ finitary, then $T_\lambda^{\mu}$ and
+			$T_\mu^{\lambda}$ restrict to quasi-inverse equivalences
+			\[
+				\Rep_{W\aff\bullet\lambda}(G)\simto \Rep_{W\aff\bullet\mu}(G).
+			\]
+		\end{theorem}
+		For $I\subset S\aff$ finitary we set
+		\[
+			W\aff^{I} = \left\{ w\in W\aff \middle| \forall x\in W,y\in \left<I \right>, \ell(xwy)
+			= \ell(x)+\ell(w)+\ell(y) \right\} .
+		\]
+		\begin{fact}
+			For $\lambda\in \overline{C}_I$ we have an isomorphism
+			\begin{align*}
+				W\aff^{I} &\longrightarrow (W\aff\bullet\lambda)\cap \XX_+ \\
+				w &\longmapsto w\bullet\lambda.
+			\end{align*}
+		\end{fact}
+		So $W\aff^{I}$ induces the simples/induced modules in $\Rep_{W\aff\bullet\lambda}(G)$.
+		For $\lambda,\mu$ as in the theorem
+		\begin{align*}
+			T_{\lambda}^{\mu}L(w\bullet\lambda) &\isoto L(w\bullet\mu) \\
+			T_{\lambda}^{\mu}\nabla(w\bullet\lambda) &\isoto \nabla(w\bullet\mu).
+		\end{align*}
+		We have $C_{\emptyset}\neq \emptyset$ if and only if $p\ge h$ (Coxeter number of $G$).
+		In this case, $0\in \overline{C}_{\emptyset}$. For $\lambda\in \overline{C}_I$, consider
+		\[
+			T_0^{\lambda}:\Rep_{W\aff\bullet 0}(G) \to \Rep_{W\aff\bullet\lambda}(G).
+		\]
+		\begin{proposition}\leavevmode
+			\begin{enumerate}[(1)]
+				\item For $W\aff^{\emptyset}$ we have
+					\[
+						T_0^{\lambda}\nabla(w\bullet 0) =
+						\begin{cases}
+							\nabla(w\bullet\lambda) & \text{if }w\bullet\lambda\in \XX_+ \\
+							0 & \text{otherwise}.
+						\end{cases}
+					\]
+				\item For $y\in W\aff^{I}$, $T_\lambda^{0}$ has a filtration with subquotients
+					\[
+						\{\nabla(yx\bullet 0)| x\in ?\} .
+					\]
+				\item For $w\in W\aff^{\emptyset}$ we have
+					\[
+						T_0^{\lambda}L(w\bullet 0) =
+						\begin{cases}
+							L(w\bullet 0) & \text{if }w\in W\aff^{I} \\
+							0 & \text{otherwise}.
+						\end{cases}
+					\]
+			\end{enumerate}
+		\end{proposition}
+		This reduces the study of $\Rep(G)$ to that of $\Rep_{W\aff\bullet 0}(G)$.
+
+		\end{document}

@@ -51,936 +51,1012 @@
 
 \emph{Answer:}
 \begin{enumerate}[1)]
-	\item Find interesting actions.
-	\item Linearlize them.
+\item Find interesting actions.
+\item Linearlize them.
 \end{enumerate}
 
 \begin{example}
-	Let $K$ be a compact Lie group. The action of $K$ on itself gives us an action of $K$ on $L^2(K)$ with respect to a Haar measure. The Peter-Weyl theorem says that
-	\[
+Let $K$ be a compact Lie group. The action of $K$ on itself gives us an action of $K$ on
+$L^2(K)$ with respect to a Haar measure. The Peter-Weyl theorem says that
+\[
 	L^2(K) \isoto \cbigoplus_{\pi\text{ unitary}}\pi^{\oplus dim(\pi)}.
-	\]
-	``Lie theory $\subset $ algebraic geometry''. Reductive groups are algebraic groups with many associated varieties with group actions: flag varieties\dots
+\]
+``Lie theory $\subset $ algebraic geometry''. Reductive groups are algebraic groups with
+many associated varieties with group actions: flag varieties\dots
 \end{example}
 The linearizations we consider in this course are the many types of cohomology theories.
 
 \begin{example}[Borel-Weil-Bott]
-	Let $T\subset B\subset G$ be a reductive group over $\bb{C}$. Let $\lambda\in X^{\vee}(T)$ such that there exists $w\in W$ with $w*\lambda = w(\lambda+\rho)-\rho>0$ (where $\rho = (1 /2)\sum_{\alpha\in \Phi^{+}}\alpha$). Then
-	\[
-		\RD\Gamma(G /B,L_\lambda) \isoto \pi_{w*\lambda}[-\ell(w)]
-	\] 
-	where $\ell(w)$ is the length of $w$.
-\end{example}
-Cohomology fits in the wider context of sheaf theory. If $T$ is a locally contractible topological space, then
+Let $T\subset B\subset G$ be a reductive group over $\bb{C}$. Let $\lambda\in
+X^{\vee}(T)$ such that there exists $w\in W$ with $w*\lambda = w(\lambda+\rho)-\rho>0$
+(where $\rho = (1 /2)\sum_{\alpha\in \Phi^{+}}\alpha$). Then
 \[
-	\CH^{n}_{\text{sing}}(T,\Z) \isoto \CH^{n}(T,\Zc_T) \isoto \RD^{n}(\pi_T)_*(\Zc_T)	
+	\RD\Gamma(G /B,L_\lambda) \isoto \pi_{w*\lambda}[-\ell(w)]
+\]
+where $\ell(w)$ is the length of $w$.
+\end{example}
+Cohomology fits in the wider context of sheaf theory. If $T$ is a locally contractible
+topological space, then
+\[
+\CH^{n}_{\text{sing}}(T,\Z) \isoto \CH^{n}(T,\Zc_T) \isoto \RD^{n}(\pi_T)_*(\Zc_T)	
 \]
 where $\pi_T$ is the morphism $\pi_T:T\to \text{pt}$ with
 \[
 \RD\pi_{T*}:D(T,\Z) \to D(\Z) \isoto D(*,\Z)
-.\] 
+.\]
 
-Cohomology (singular with $\Q$-coefficients) of algebraic varieties over $\bb{C}$ is \emph{\textbf{very}} special.
+Cohomology (singular with $\Q$-coefficients) of algebraic varieties over $\bb{C}$ is
+\emph{\textbf{very}} special.
 \begin{itemize}
-	\item There is a weight filtration.
-	\item There is a mixed hodge structure.
+\item There is a weight filtration.
+\item There is a mixed hodge structure.
 \end{itemize}
 Sheaves on complex algebraic varieties are also very special:
 \begin{itemize}
-	\item Perverse sheaves;
-	\item Decomposition theorem;
-	\item Mixed Hodge modules.
+\item Perverse sheaves;
+\item Decomposition theorem;
+\item Mixed Hodge modules.
 \end{itemize}
 This leads to great success stories in GRT:
 \begin{itemize}
-	\item Springer theory;
-	\item Kazdhan-Lustig theory;
-	\item geometric Satake\dots
+\item Springer theory;
+\item Kazdhan-Lustig theory;
+\item geometric Satake\dots
 \end{itemize}
 
 \subsection{From sheaves to motivic sheaves}
 There are situations which can't be directly studied using these tools:
 \begin{itemize}
-	\item Representation theory of reductive groups over other fields/rings/schemes.
-	\item Modular/integral representation theory.
-	\item $q$-deformations, quantum groups, canonical bases.
+\item Representation theory of reductive groups over other fields/rings/schemes.
+\item Modular/integral representation theory.
+\item $q$-deformations, quantum groups, canonical bases.
 \end{itemize}
 These can be attacked using:
 \begin{itemize}
-	\item $l$-adic sheaves,
-	\item sheaves cohomology with $\Z$-coefficients,
-	\item $K$-theory.
+\item $l$-adic sheaves,
+\item sheaves cohomology with $\Z$-coefficients,
+\item $K$-theory.
 \end{itemize}
 Motivic sheaves will give us a unified perspective.
 
 \emph{Motivic dream:} There should exist universal cohomology/sheaf theories such that
 \begin{enumerate}[1)]
-	\item they unify and ``explain'' the special stracture in cohomology/sheaves;
-	\item they are of algebro-geometric nature;
-	\item they ``explain'' the realization of algebraic cycles and algebraic $K$-theory.
+\item they unify and ``explain'' the special stracture in cohomology/sheaves;
+\item they are of algebro-geometric nature;
+\item they ``explain'' the realization of algebraic cycles and algebraic $K$-theory.
 \end{enumerate}
 
-\section{Construction of \texorpdfstring{$\DAet$}{DA\'et} and \texorpdfstring{$\SH$}{SH} (Morel-Voevodsky)}
+\section{Construction of \texorpdfstring{$\DAet$}{DA\'et} and \texorpdfstring{$\SH$}{SH}
+(Morel-Voevodsky)}
 \subsection{Triangulated categories and localization}
 \begin{definition}
-	A \defn{triangulated category} is the data:
-	\begin{itemize}
-		\item an additive category $\C$,
-		\item an automorphism $\Sigma=(-)[1]:\C\simto \C$,
-		\item a collection of distinguished triangles
-			\[
-				A \to B \to C \to A[1]
-			.\] 
-	\end{itemize}
-	The data satisfies the following conditions:
-	\begin{itemize}
-		\item shifted distinguished triangles are distinguished up to isomorphism,
-		\item for all $f:A\to B$ there exists
-			\[
-				A \xrightarrow{f} B \to \Cone(f) \xrightarrow{+}
-			\] 
-			unique up to isomorphism and functorial,
-		\item 
-			\begin{equation*}
-			\begin{tikzcd}
-				A \ar[r] \ar[d,"f","\simeq"'] & B \ar[r] \ar[d,"g","\simeq"'] & C \ar[d,dashed] \ar[r] & A[1] \ar[d,"{f[1]}","\simeq"'] \\
-				A' \ar[r] & B' \ar[r] & C' \ar[r] & A'[1]
-			\end{tikzcd}
-			\end{equation*}	
-		\item (??)
-	\end{itemize}
+A \defn{triangulated category} is the data:
+\begin{itemize}
+\item an additive category $\C$,
+\item an automorphism $\Sigma=(-)[1]:\C\simto \C$,
+\item a collection of distinguished triangles
+	\[
+		A \to B \to C \to A[1]
+	.\]
+\end{itemize}
+The data satisfies the following conditions:
+\begin{itemize}
+\item shifted distinguished triangles are distinguished up to isomorphism,
+\item for all $f:A\to B$ there exists
+	\[
+		A \xrightarrow{f} B \to \Cone(f) \xrightarrow{+}
+	\]
+	unique up to isomorphism and functorial,
+\item
+	\begin{equation*}
+		\begin{tikzcd}
+			A \ar[r] \ar[d,"f","\simeq"'] & B \ar[r] \ar[d,"g","\simeq"'] & C \ar[d,dashed] \ar[r]
+			& A[1] \ar[d,"{f[1]}","\simeq"'] \\
+			A' \ar[r] & B' \ar[r] & C' \ar[r] & A'[1]
+		\end{tikzcd}
+	\end{equation*}	
+\item (??)
+\end{itemize}
 \end{definition}
 
 \begin{example}
-	Let $\A$ be an abelian category, $\Ch(\A)$ be the abelian category of chain complexes in $\A$. We define $(A[1])_n = A_{n-1}$. Given $f:A_\bullet\to B_\bullet$ the maping cone is given by
-	\[
-		\Cone(f)_n = A_{n-1} \oplus B_n,\qquad d_n = \begin{pmatrix} -d_{n-1}^{A} & 0 \\ f & d_n^{B} \end{pmatrix} 
-	.\] 
+Let $\A$ be an abelian category, $\Ch(\A)$ be the abelian category of chain complexes in
+$\A$. We define $(A[1])_n = A_{n-1}$. Given $f:A_\bullet\to B_\bullet$ the maping cone is given by
+\[
+\Cone(f)_n = A_{n-1} \oplus B_n,\qquad d_n =
+\begin{pmatrix} -d_{n-1}^{A} & 0 \\ f & d_n^{B}
+\end{pmatrix}
+.\]
 \end{example}
 \begin{definition}
-	$f:A_\bullet\to B_\bullet$ is a \defn{quasi-isomorphism} if for all $n\in \Z$, the map $H_n(A_\bullet)\simeq H_n(B_\bullet)$ is an isomorphism.
+$f:A_\bullet\to B_\bullet$ is a \defn{quasi-isomorphism} if for all $n\in \Z$, the map
+$H_n(A_\bullet)\simeq H_n(B_\bullet)$ is an isomorphism.
 \end{definition}
 \begin{definition}
-	$D(\A)$ is defined as the localization of $\Ch(\A)$ by quasi-isomorphisms.
+$D(\A)$ is defined as the localization of $\Ch(\A)$ by quasi-isomorphisms.
 \end{definition}
 
-Now we consider reflexive localizations (1-categorical ones lead to triangulated and $\infty$-categorical ones).
+Now we consider reflexive localizations (1-categorical ones lead to triangulated and
+$\infty$-categorical ones).
 \begin{definition}
-	Let $\C$ be a 1-category.
-	\begin{enumerate}[1)]
-		\item $\C'\subset \C$ is \defn{reflexive} if $\iota:\C'\to \C$ has a left adjoint.
-		\item $L_W:\C\to \C[W^{-1}]$ is \defn{reflexive} if $L_W$ has a right adjoint.
-	\end{enumerate}
+Let $\C$ be a 1-category.
+\begin{enumerate}[1)]
+\item $\C'\subset \C$ is \defn{reflexive} if $\iota:\C'\to \C$ has a left adjoint.
+\item $L_W:\C\to \C[W^{-1}]$ is \defn{reflexive} if $L_W$ has a right adjoint.
+\end{enumerate}
 \end{definition}
 
 \begin{lemma}[Reflexive subcategories are the same thing as reflexive localizations] \leavevmode
-	\begin{enumerate}[a)]
-		\item Let $\C'\subset \C$ be reflexive, $L:\C\to \C'$ be the left adjoint to $\iota$. Define 
-			\[
-				W_L=\{f:L(f)\text{ is an isomorphism}\}.
-			\]
-			Then $\C'\simeq \C[W_L^{-1}]$ and $L\simeq L_{W_L}$.
-		\item If $L$ is a reflexive localization, then its right adjoint $\iota$ is fully faithful and $\iota:\C[W^{-1}] \simto \EssIm(\iota)\subset \C$.
-	\end{enumerate}
+\begin{enumerate}[a)]
+\item Let $\C'\subset \C$ be reflexive, $L:\C\to \C'$ be the left adjoint to $\iota$. Define
+\[
+W_L=\{f:L(f)\text{ is an isomorphism}\}.
+\]
+Then $\C'\simeq \C[W_L^{-1}]$ and $L\simeq L_{W_L}$.
+\item If $L$ is a reflexive localization, then its right adjoint $\iota$ is fully
+faithful and $\iota:\C[W^{-1}] \simto \EssIm(\iota)\subset \C$.
+\end{enumerate}
 \end{lemma}
 
 \begin{definition}
-	Let $S\subset \C$ be a collection of morphisms.
-	\begin{enumerate}[a)]
-		\item $A\in \C$ is \defn{$S$-local} if for all $f:B\to C$ in $S$ 
-			\[
-			\Hom_\C(C,A) \simto \Hom_\C(B,A).
-			\] 
-		\item $f:B\to C$ is an \defn{$S$-equivalence} if for all $S$-local $A$ 
-			\[
-			\Hom_{\C}(C,A) \simto \Hom_\C(B,A).
-			\] 
-	\end{enumerate}
+Let $S\subset \C$ be a collection of morphisms.
+\begin{enumerate}[a)]
+\item $A\in \C$ is \defn{$S$-local} if for all $f:B\to C$ in $S$
+\[
+\Hom_\C(C,A) \simto \Hom_\C(B,A).
+\]
+\item $f:B\to C$ is an \defn{$S$-equivalence} if for all $S$-local $A$
+\[
+\Hom_{\C}(C,A) \simto \Hom_\C(B,A).
+\]
+\end{enumerate}
 \end{definition}
 \begin{lemma}
-	If $L:\C \rightleftarrows \C':\iota$ is a reflexive localizaton, $W_L$ as before, then
-	\begin{itemize}
-		\item $\iota$ gives an isomorphism between $\C'$ and $W_L$-local objects.
-		\item $W_L$ are the $W_L$-equivalences.
-	\end{itemize}
+If $L:\C \rightleftarrows \C':\iota$ is a reflexive localizaton, $W_L$ as before, then
+\begin{itemize}
+\item $\iota$ gives an isomorphism between $\C'$ and $W_L$-local objects.
+\item $W_L$ are the $W_L$-equivalences.
+\end{itemize}
 \end{lemma}
 \begin{definition}
-	Let $\cat{D}$ be a triangulated category with all small products.
-	\begin{itemize}
-		\item Let $\kappa$ be a regular cardinal (for example $\kappa=\aleph_0$). Then $A\in \cat{D}$ is \defn{$\kappa$-small}/\defn{$\kappa$-compact} if and only if
-			\[
-				\colim_{\substack{I' \subset I \\ |I'|<\kappa}} \Hom\left( A,\bigoplus_{I'}B_i \right) \simto \Hom\left( A, \bigoplus_I B_i \right) 
-			.\] 
-		\item \defn{Compact} means $\aleph_0$-small. $A$ is compact if and only if
-			\[
-			\bigoplus_I \Hom(A,B_i) \simto \Hom \left( A,\bigoplus_{I}B_i \right) 
-			.\] 
-		\item $\cat{D}$ is \defn{presentable}/\defn{well-generated} if and only if there exist $\kappa$ and a set $S\subset \cat{D}$ of $\kappa$-small objects which generate $\cat{D}$:
-			\[
-				\forall B\in \cat{D},\left( \forall A\in S, \Hom(A,B)=0 \right) \implies B = 0
-			.\] 
-		\item $\cat{D}$ is \defn{compactly generated} if it is $\aleph_0$-presentable.
-	\end{itemize}
+Let $\cat{D}$ be a triangulated category with all small products.
+\begin{itemize}
+\item Let $\kappa$ be a regular cardinal (for example $\kappa=\aleph_0$). Then $A\in
+\cat{D}$ is \defn{$\kappa$-small}/\defn{$\kappa$-compact} if and only if
+\[
+\colim_{\substack{I' \subset I \\ |I'|<\kappa}} \Hom\left( A,\bigoplus_{I'}B_i \right)
+\simto \Hom\left( A, \bigoplus_I B_i \right)
+.\]
+\item \defn{Compact} means $\aleph_0$-small. $A$ is compact if and only if
+\[
+\bigoplus_I \Hom(A,B_i) \simto \Hom \left( A,\bigoplus_{I}B_i \right)
+.\]
+\item $\cat{D}$ is \defn{presentable}/\defn{well-generated} if and only if there exist
+$\kappa$ and a set $S\subset \cat{D}$ of $\kappa$-small objects which generate $\cat{D}$:
+\[
+\forall B\in \cat{D},\left( \forall A\in S, \Hom(A,B)=0 \right) \implies B = 0
+.\]
+\item $\cat{D}$ is \defn{compactly generated} if it is $\aleph_0$-presentable.
+\end{itemize}
 \end{definition}
 
 \begin{definition}
-	$\cat{E}\subset \cat{D}$ is \defn{localizing} if it is
-	\begin{itemize}
-		\item triangulated,
-		\item stable under coproducts,
-		\item thick (stable under subobjects and subquotients).
-	\end{itemize}
+$\cat{E}\subset \cat{D}$ is \defn{localizing} if it is
+\begin{itemize}
+\item triangulated,
+\item stable under coproducts,
+\item thick (stable under subobjects and subquotients).
+\end{itemize}
 \end{definition}
 
 \begin{theorem}[Adjoint Functor Theorem]
-	Let $\cat{D},\cat{D}'$ be triangulated categories with all coproducts, $F:\cat{D}\to \cat{D}'$ be a triangulated functor and $\cat{D}$ be presentable. Then $F$ admits a right adjoint if and only if $F$ preserves all coproducts.
+Let $\cat{D},\cat{D}'$ be triangulated categories with all coproducts, $F:\cat{D}\to
+\cat{D}'$ be a triangulated functor and $\cat{D}$ be presentable. Then $F$ admits a right
+adjoint if and only if $F$ preserves all coproducts.
 \end{theorem}
 \begin{corollary}[Verdier Localization]
-	Let $\cat{D}$ be a presentable category and $\cat{E}$ be a localizing subcategory. Define
-	\[
-		\cat{D} / \cat{E} = D[W_{\cat{E}}^{-1}],\quad W_{\cat{E}} = \{f:\Cone(f)\in \cat{E}\} 
-	.\] 
-	Then $\cat{D} \to \cat{D} /\cat{E}$ is a reflexive localization.
-\end{corollary}
-Let $S\subset \cat{D}$ be a subset of objects, then $\gen{S}$ is the smallest subcategory containing $S$ such that $\cat{D} /\gen{S}$ is a reflexive localization.
-
-Let's get some inspiration from Betti homology, i.e. singular homology on complex algebraic varieties. Let $X\in \cat{Var}_{\bb{C}}\ft$, then we get
+Let $\cat{D}$ be a presentable category and $\cat{E}$ be a localizing subcategory. Define
 \[
-	C_*^{\text{sing}}(X(\bb{C}),\Z)\in D(\Z)
+\cat{D} / \cat{E} = D[W_{\cat{E}}^{-1}],\quad W_{\cat{E}} = \{f:\Cone(f)\in \cat{E}\}
+.\]
+Then $\cat{D} \to \cat{D} /\cat{E}$ is a reflexive localization.
+\end{corollary}
+Let $S\subset \cat{D}$ be a subset of objects, then $\gen{S}$ is the smallest subcategory
+containing $S$ such that $\cat{D} /\gen{S}$ is a reflexive localization.
+
+Let's get some inspiration from Betti homology, i.e. singular homology on complex
+algebraic varieties. Let $X\in \cat{Var}_{\bb{C}}\ft$, then we get
+\[
+C_*^{\text{sing}}(X(\bb{C}),\Z)\in D(\Z)
 .\]
 This comes with some data:
 \begin{enumerate}[(a)]
-	\item 
-		\begin{itemize}
-			\item $D(\Z)$ has a symmetric monoidal structure: $\otimes^{\Z}$,
-			\item (K\"unneth) $C_*(X\times Y) \simeq C_*(X)\otimes^{\Z}C_*(Y)$.
-		\end{itemize}
+\item
+\begin{itemize}
+\item $D(\Z)$ has a symmetric monoidal structure: $\otimes^{\Z}$,
+\item (K\"unneth) $C_*(X\times Y) \simeq C_*(X)\otimes^{\Z}C_*(Y)$.
+\end{itemize}
 \end{enumerate}
 which satisfies sproperties:
 \begin{enumerate}[(a)]
-	\setcounter{enumi}{1}
-	\item ($\Aff^{1}$-homotopy invariance) $C_*(X\times \Aff^{1})\simto C_*(X)$ ($(\Aff^{1})\an=\bb{C}$ is contractible).
-	\item[(c')] (Mayer-Vietoris sequence) Let $X=U \cup V$ be a Zariski cover, then
-		\[
-			C_*(U\cap V) \to C_*(U) \oplus C_*(V) \to C_*(X) \xrightarrow{\partial} C_*(U \cap  V)[1]
-		.\] 
-	\item (\'Etale descent) Let $U\to X$ be \'etale surjective. Define
-		\[
-			\check{C}_n(U /X) = U^{n+1}
-		.\] 
-		Then $\check{C}_\bullet(U /X)$ is a simplicial scheme, so $C_*(\check{C}_\bullet(U /X))$ is a simplicial complex of abelian groups and $C(C_*(\check{C}_\bullet(U /X)))$ is a double complex. (??)
+\setcounter{enumi}{1}
+\item ($\Aff^{1}$-homotopy invariance) $C_*(X\times \Aff^{1})\simto C_*(X)$
+($(\Aff^{1})\an=\bb{C}$ is contractible).
+\item[(c')] (Mayer-Vietoris sequence) Let $X=U \cup V$ be a Zariski cover, then
+\[
+C_*(U\cap V) \to C_*(U) \oplus C_*(V) \to C_*(X) \xrightarrow{\partial} C_*(U \cap  V)[1]
+.\]
+\item (\'Etale descent) Let $U\to X$ be \'etale surjective. Define
+\[
+\check{C}_n(U /X) = U^{n+1}
+.\]
+Then $\check{C}_\bullet(U /X)$ is a simplicial scheme, so $C_*(\check{C}_\bullet(U /X))$
+is a simplicial complex of abelian groups and $C(C_*(\check{C}_\bullet(U /X)))$ is a
+double complex. (??)
 
-		Concretely we have a descent spectral sequence which gives us ($U=U \cup V$) Mayer Vietoris.
-	\item ($\P^{1}$-stabilization)
-		\begin{align*}
-			C_*(\P_{\bb{C}}^{1}) &\simeq C_*(\text{pt}) \oplus \wt{C}_*(\P_{\bb{C}}^{1}) \\
-					     &\simeq \Z[0] \oplus \Z(1)[2]
-		.\end{align*}
-		$\Z(1)$ is $\oplus$-invertible.
+Concretely we have a descent spectral sequence which gives us ($U=U \cup V$) Mayer Vietoris.
+\item ($\P^{1}$-stabilization)
+\begin{align*}
+C_*(\P_{\bb{C}}^{1}) &\simeq C_*(\text{pt}) \oplus \wt{C}_*(\P_{\bb{C}}^{1}) \\
+&\simeq \Z[0] \oplus \Z(1)[2]
+.
+\end{align*}
+$\Z(1)$ is $\oplus$-invertible.
 \end{enumerate}
 Smooth varieties play a special role:
 \begin{itemize}
-	\item Poincar\'e duality
-	\item Gysin sequences
-	\item $C_*(-)$ also satisfies ``$h$-descent'', so $C_*(-)$ is ``determined'' by $C_*(-)_{|(?)}$.
+\item Poincar\'e duality
+\item Gysin sequences
+\item $C_*(-)$ also satisfies ``$h$-descent'', so $C_*(-)$ is ``determined'' by $C_*(-)_{|(?)}$.
 \end{itemize}
 There is an associated sheaf theory:
 \[
-	D_B(-):\cat{Var}_{\bb{C}}\to \cat{TriCat}^{\otimes},\quad X\mapsto D_B(X) = D(\Sh(X\an,\Z))
-.\] 
+D_B(-):\cat{Var}_{\bb{C}}\to \cat{TriCat}^{\otimes},\quad X\mapsto D_B(X) = D(\Sh(X\an,\Z))
+.\]
 
 \emph{Sketch of $\DAet$:} Let $S$ be a base scheme.
 \begin{itemize}
-	\item Start with
-		\[
-		\begin{cases}
-			D(\PSh(\Sm_S, \Z)) = D_{\PSh}(S) \\
-			\Z[-]: \Sm_S \to D_{\PSh}(S)
-		\end{cases}
-		.\] 
-	\item Impose $\Aff^{1}$-invariance, \'etale descent, and $\P^{1}$-stability. This will give us $\DAet(S,\Z)$ and $M_S(-):\Sm_S\to \DAet(S,\Z)$.
+\item Start with
+\[
+\begin{cases}
+D(\PSh(\Sm_S, \Z)) = D_{\PSh}(S) \\
+\Z[-]: \Sm_S \to D_{\PSh}(S)
+\end{cases}
+.\]
+\item Impose $\Aff^{1}$-invariance, \'etale descent, and $\P^{1}$-stability. This will
+give us $\DAet(S,\Z)$ and $M_S(-):\Sm_S\to \DAet(S,\Z)$.
 \end{itemize}
-The surprise is that the result satisfies many \emph{other} properties of singular (co)homology and derived categories of sheaves on complex varieties which can largely be packaged into the six-functor formalism. The result is closely related to algebraic cycles/higher Chow groups and algebraic $K$-theory.
+The surprise is that the result satisfies many \emph{other} properties of singular
+(co)homology and derived categories of sheaves on complex varieties which can largely be
+packaged into the six-functor formalism. The result is closely related to algebraic
+cycles/higher Chow groups and algebraic $K$-theory.
 
 \marginpar{Lecture 2}
 (Fill in $H_*$ frmo the recall part)
 
 Let $S$ be a qcqs scheme, $\Lambda$ be a coefficient ring. Define
 \[
-	\begin{cases}
-		D_{\PSh}(S) \defeq D(\PSh(\Sm_S,\Lambda)) \text{a presentable, symmetric monoidal, triangulated category}\\
-		\Lambda[\cdot ]:\Sm_S \to D_{\PSh}(S)
-	\end{cases}
-\] 
+\begin{cases}
+D_{\PSh}(S) \defeq D(\PSh(\Sm_S,\Lambda)) \text{a presentable, symmetric monoidal,
+triangulated category}\\
+\Lambda[\cdot ]:\Sm_S \to D_{\PSh}(S)
+\end{cases}
+\]
 \emph{\'Etale descent:}
 \begin{align*}
-	D_{\text{\'et}}(S) &\defeq D(\Sh_{\text{\'et}}(\Sm_S,\Lambda)) \\
-			   &= D_{\PSh}(S)[W_{\text{\'et}}^{-1}]
+D_{\text{\'et}}(S) &\defeq D(\Sh_{\text{\'et}}(\Sm_S,\Lambda)) \\
+&= D_{\PSh}(S)[W_{\text{\'et}}^{-1}]
 \end{align*}
-where $W_{\text{\'et}}$ are \'etale-local weak equivalences, i.e. $(f:K_\bullet\to L_\bullet)\in W_{\text{\'et}}$ if for all $n$ we have
+where $W_{\text{\'et}}$ are \'etale-local weak equivalences, i.e. $(f:K_\bullet\to
+L_\bullet)\in W_{\text{\'et}}$ if for all $n$ we have
 \[
-	(?)_{\text{\'et}}\CH_n(K_\bullet) \simto (?)_{\text{\'et}}\CH_n(L_\bullet).
-\] 
+(?)_{\text{\'et}}\CH_n(K_\bullet) \simto (?)_{\text{\'et}}\CH_n(L_\bullet).
+\]
 
 \emph{$\Aff^{1}$-invariance}
 Let
 \[
-	I_{\Aff^{1},(\text{\'et})} = \{\dots\to 0\to \Lambda_{(\text{\'et})}[X\times \Aff^{1}]\to \Lambda_{(\text{\'et})}[X]\to 0\to \dots | X\in \Sm_S\} .
-\] 
+I_{\Aff^{1},(\text{\'et})} = \{\dots\to 0\to \Lambda_{(\text{\'et})}[X\times \Aff^{1}]\to
+\Lambda_{(\text{\'et})}[X]\to 0\to \dots | X\in \Sm_S\} .
+\]
 Define
 \[
-	D_{\Aff^{1}}(S) \defeq D_{\PSh}(S) / \gen{I_{\Aff^{1}}} = D_{\PSh}(S)[W_{\Aff^{1}}^{-1}].
-\] 
+D_{\Aff^{1}}(S) \defeq D_{\PSh}(S) / \gen{I_{\Aff^{1}}} = D_{\PSh}(S)[W_{\Aff^{1}}^{-1}].
+\]
 We have
 \[
 L_{\Aff^{1}}: D_{\PSh}(S) \to D_{\PSh}(S)^{\Aff^{1}-\text{loc}} \injto D_{\PSh}(S).?
-\] 
+\]
 with the middle term isomorphic to $D_{\Aff^{1}}(S)$.
 
 \begin{definition}
-	Define
-	\[
-		\bb{\Delta}^{n}_{\text{alg},S} \defeq \Spec_S\left( \OO_S[X_0,\dots,X_n] / \left( \sum x_i-1 \right)  \right) \simeq \Aff_S^{n}
-	\] 
-	then $\bb{\Delta}_{\text{alg},S}^{\bullet}$ is a cosimplicial scheme over $S$.
+Define
+\[
+\bb{\Delta}^{n}_{\text{alg},S} \defeq \Spec_S\left( \OO_S[X_0,\dots,X_n] / \left( \sum
+x_i-1 \right)  \right) \simeq \Aff_S^{n}
+\]
+then $\bb{\Delta}_{\text{alg},S}^{\bullet}$ is a cosimplicial scheme over $S$.
 \end{definition}
 \begin{definition}[Suslin-Voevodsky]
-	Define
-	\[
-		\Sing^{\Aff^{1}}(K_\bullet) = \hocolim_{\bb{\Delta}\op} K_\bullet(\bb{\Delta}_{\text{alg},S}^{\bullet}\times_S X)
-	\] 
+Define
+\[
+\Sing^{\Aff^{1}}(K_\bullet) = \hocolim_{\bb{\Delta}\op}
+K_\bullet(\bb{\Delta}_{\text{alg},S}^{\bullet}\times_S X)
+\]
 \end{definition}
 \begin{example}
-	Let $F\in \PSh$ then
-	\[
-		\Sing^{\Aff^{1}}(F)(U) = \left[ \dots \to  F(\bb{\Delta}^2\times U)\to F(\Aff^{(?)}\times U) \xrightarrow{i_0^{*}-i_1^{*}}  F(U) \to 0 \right] .
-	\] 	
+Let $F\in \PSh$ then
+\[
+\Sing^{\Aff^{1}}(F)(U) = \left[ \dots \to  F(\bb{\Delta}^2\times U)\to F(\Aff^{(?)}\times
+U) \xrightarrow{i_0^{*}-i_1^{*}}  F(U) \to 0 \right] .
+\] 	
 \end{example}
 \begin{proposition}
-	$L_{\Aff^{1}}\simeq \Sing^{\Aff^{1}}$.
+$L_{\Aff^{1}}\simeq \Sing^{\Aff^{1}}$.
 \end{proposition}
 \begin{proof}
-	The idea is to use
-	\begin{align*}
-		m: \Aff^{1}\times \Aff^{1} &\longrightarrow \Aff^{1} \\
-		(x,y) &\longmapsto xy
-	\end{align*}
-	to prove
-	\begin{enumerate}[a)]
-		\item $\Sing^{\Aff^{1}}(K_\bullet)$ is $\Aff^{1}$-local.
-		\item $\Sing^{\Aff^{1}}(K_\bullet)\to K_\bullet$ is $\Aff^{1}$-weak equivalence.
-	\end{enumerate}
+The idea is to use
+\begin{align*}
+m: \Aff^{1}\times \Aff^{1} &\longrightarrow \Aff^{1} \\
+(x,y) &\longmapsto xy
+\end{align*}
+to prove
+\begin{enumerate}[a)]
+\item $\Sing^{\Aff^{1}}(K_\bullet)$ is $\Aff^{1}$-local.
+\item $\Sing^{\Aff^{1}}(K_\bullet)\to K_\bullet$ is $\Aff^{1}$-weak equivalence.
+\end{enumerate}
 \end{proof}
 \begin{definition}
-	The category of \defn{effective \'etale motivic sheaves} on $S$ is
-	\[
-		\cat{DA}^{\text{\'et},\text{eff}}(S,\Lambda) \defeq D_{\text{\'et}}(S) / \gen{I_{\Aff^{1},\text{\'et}}}.
-	\] 
-	Write $L_{\text{mot}}^{\text{eff}}$ for the associated localization functor.
+The category of \defn{effective \'etale motivic sheaves} on $S$ is
+\[
+\cat{DA}^{\text{\'et},\text{eff}}(S,\Lambda) \defeq D_{\text{\'et}}(S) /
+\gen{I_{\Aff^{1},\text{\'et}}}.
+\]
+Write $L_{\text{mot}}^{\text{eff}}$ for the associated localization functor.
 \end{definition}
 \begin{lemma}
-	We have
-	\[
-		L_{\text{mot}}^{\text{eff}} = \underbrace{\dots \Sing^{\Aff^{1}}L_{\text{\'et}}\Sing^{\Aff^{1}}}_{\text{transfinie composition\dots}}
-	\] 
+We have
+\[
+L_{\text{mot}}^{\text{eff}} = \underbrace{\dots
+\Sing^{\Aff^{1}}L_{\text{\'et}}\Sing^{\Aff^{1}}}_{\text{transfinie composition\dots}}
+\]
 \end{lemma}
 \begin{definition}
-	Let $X\in \Sm_S$. Define
-	\[
-		M_S^{\text{\'et},\text{eff}}(X) \defeq L_{\text{mot}}^{\text{eff}}\Lambda_{\text{\'et}}[X]\in \cat{DA}^{\text{eff},\text{\'et}}(S,\Lambda)
-	\] 
-	(effecive \'etale (? homological) motive/motivic sheaf of ?).
+Let $X\in \Sm_S$. Define
+\[
+M_S^{\text{\'et},\text{eff}}(X) \defeq
+L_{\text{mot}}^{\text{eff}}\Lambda_{\text{\'et}}[X]\in \cat{DA}^{\text{eff},\text{\'et}}(S,\Lambda)
+\]
+(effecive \'etale (? homological) motive/motivic sheaf of ?).
 \end{definition}
 We have
 \[
-M_S^{\text{\'et},\text{eff}}(X\times_S Y) \isoto M_S^{\text{\'et},\text{eff}}(X) \otimes M_S^{\text{\'et},\text{eff}}(Y).
-\] 
+M_S^{\text{\'et},\text{eff}}(X\times_S Y) \isoto M_S^{\text{\'et},\text{eff}}(X) \otimes
+M_S^{\text{\'et},\text{eff}}(Y).
+\]
 \begin{proposition}[Artin-Shreier ${+\Lambda\left[ \frac{1}{p} \right] }$]
-	Let $S$ be a $\F_p$-scheme, then
-	\[
-		\cat{DA}^{\text{\'et},\text{eff}}(S,\Lambda) \simto \cat{DA}^{\text{\'et},\text{eff}}\left( S,\Lambda\left[ \tfrac{1}{p} \right]  \right) .
-	\] 
+Let $S$ be a $\F_p$-scheme, then
+\[
+\cat{DA}^{\text{\'et},\text{eff}}(S,\Lambda) \simto
+\cat{DA}^{\text{\'et},\text{eff}}\left( S,\Lambda\left[ \tfrac{1}{p} \right]  \right) .
+\]
 \end{proposition}
 \begin{proof}
-	We have the short-exact sequence
-	\[
-	\begin{tikzcd}
-		0 \ar[r] & \Lambda / p\Lambda \ar[r] & \Ga \otimes \Lambda \ar[r,"\Fr-\id"] & \Ga \ar[r] & 0
-	\end{tikzcd}
-	\] 
-	and hence an exact sequence
-	\[
-	\begin{tikzcd}
-		\Lambda_{\text{\'et}}[\Ga] \otimes(\Ga\otimes \Lambda) \ar[r,"a_{\Ga}\otimes \id"] & \Ga\otimes \Ga\otimes \Lambda \ar[r,"m"] & \Ga\otimes \Lambda.
-	\end{tikzcd}
-	\] 
-	(Some remark??) Thus
-	\[
-	L_{\Aff^{1}}(\Ga\otimes\Lambda) \isoto \Lambda(0)
-	\] 
-	and so
-	\[
-	L_{\text{mot}}^{\text{eff}}(\Gamma /p\Gamma) = 0.
-	\]
+We have the short-exact sequence
+\[
+\begin{tikzcd}
+0 \ar[r] & \Lambda / p\Lambda \ar[r] & \Ga \otimes \Lambda \ar[r,"\Fr-\id"] & \Ga \ar[r] & 0
+\end{tikzcd}
+\]
+and hence an exact sequence
+\[
+\begin{tikzcd}
+\Lambda_{\text{\'et}}[\Ga] \otimes(\Ga\otimes \Lambda) \ar[r,"a_{\Ga}\otimes \id"] &
+\Ga\otimes \Ga\otimes \Lambda \ar[r,"m"] & \Ga\otimes \Lambda.
+\end{tikzcd}
+\]
+(Some remark??) Thus
+\[
+L_{\Aff^{1}}(\Ga\otimes\Lambda) \isoto \Lambda(0)
+\]
+and so
+\[
+L_{\text{mot}}^{\text{eff}}(\Gamma /p\Gamma) = 0.
+\]
 \end{proof}
 
 \emph{$\P^{1}$-stabilization:} Let $x\in X(S)$, we have
 \[
 M_S^{\text{eff}}(X) = \Lambda_S(0) \oplus M_{S}^{\text{eff}}(X,x).
-\] 
+\]
 \begin{definition}
-	We define
-	\[
-		T \defeq M_S^{\text{eff}}(\P^{1},1)[-2]
-	\] 
-	which is equal to $\Lambda(?).$
+We define
+\[
+T \defeq M_S^{\text{eff}}(\P^{1},1)[-2]
+\]
+which is equal to $\Lambda(?).$
 \end{definition}
 \begin{exercise}
-	Any $x\in \P^{1}_S(S)$ gives the same decomposition.
+Any $x\in \P^{1}_S(S)$ gives the same decomposition.
 \end{exercise}
 We have a problem: $T$ is not $\oplus$-invertible.
 
 \begin{definition}
-	The category of \'etale motivic sheaves over $S$ is
-	\[
-		\DAet(S,\Lambda) \defeq \cat{DA}^{\text{\'et},\text{eff}}(S,\Lambda)[T^{\otimes -1}].
-	\] 
+The category of \'etale motivic sheaves over $S$ is
+\[
+\DAet(S,\Lambda) \defeq \cat{DA}^{\text{\'et},\text{eff}}(S,\Lambda)[T^{\otimes -1}].
+\]
 \end{definition}
-This is not a proper definition since we have not explained the construction. It's not clear what this means!
+This is not a proper definition since we have not explained the construction. It's not
+clear what this means!
 
 \emph{Spectra:}
 \begin{definition}
-	Let $\C$ be a closed, symmetric monoidal 1-category and $T$ be an object of $\C$. A \defn{$T$-prespectrum} is
-	\[
-	A = \left\{ (A_n,\sigma_n)_{n\in \N} | A_n\in \C, \sigma_n:T\otimes A_n\to A_{n+1} \right\} .
-	\] 
-	$A$ is a \defn{$T$-spectrum} if for all $n\in N$ 
-	\[
-	A_n \simto \iHom(T,A_{n+1}).
-	\] 
-	We write $\PSp_T(\C)$ and $\Sp_T(\C)$ for the $T$-prespectrum and $T$-spectrum respectively.
+Let $\C$ be a closed, symmetric monoidal 1-category and $T$ be an object of $\C$. A
+\defn{$T$-prespectrum} is
+\[
+A = \left\{ (A_n,\sigma_n)_{n\in \N} | A_n\in \C, \sigma_n:T\otimes A_n\to A_{n+1} \right\} .
+\]
+$A$ is a \defn{$T$-spectrum} if for all $n\in N$
+\[
+A_n \simto \iHom(T,A_{n+1}).
+\]
+We write $\PSp_T(\C)$ and $\Sp_T(\C)$ for the $T$-prespectrum and $T$-spectrum respectively.
 \end{definition}
 The evaluation map
 \[
 \Ev_n(A) = A_n
-\] 
+\]
 has a left adjoint. We define
 \[
-\Sus^{n}(A)_m = \begin{cases}
-	\emptyset & \text{if }m<n \\
-	T^{\otimes (m-n)}\otimes A & \text{if }m>n
+\Sus^{n}(A)_m =
+\begin{cases}
+\emptyset & \text{if }m<n \\
+T^{\otimes (m-n)}\otimes A & \text{if }m>n
 \end{cases}
-\] 
+\]
 and $\Sigma_T^{\infty}\defeq \Sus^{0}$ is the $\infty$-suspension functor.
 
 \begin{proposition}
-	Assume $\C$ is presentably, symmetrical monoidal. Then $\Sp_T(\C)\subset \PSp_T(\C)$ is a reflexive subcategory. $W_{\text{st}}$ is generated by
-	\[
-	\left\{ \Sus^{n+1}(T\otimes A) \to \Sus^{n}(A):n\in \N,A\in \C \right\} .
-	\] 
+Assume $\C$ is presentably, symmetrical monoidal. Then $\Sp_T(\C)\subset \PSp_T(\C)$ is a
+reflexive subcategory. $W_{\text{st}}$ is generated by
+\[
+\left\{ \Sus^{n+1}(T\otimes A) \to \Sus^{n}(A):n\in \N,A\in \C \right\} .
+\]
 \end{proposition}
 \begin{definition}
-	We define
-	\[
-		\DAet(S,\Lambda) \defeq \Sp_T\cat{DA}^{\text{eff},\text{\'et}}(S,\Lambda).
-	\] 	
+We define
+\[
+\DAet(S,\Lambda) \defeq \Sp_T\cat{DA}^{\text{eff},\text{\'et}}(S,\Lambda).
+\] 	
 \end{definition}
 (This definition is correct ``with $\infty$-categories''.)
 We have
 \begin{align*}
-	M_S: \Sm_S &\longrightarrow \DAet(S,\Lambda) \\
-	X &\longmapsto L_{(\Aff^{1},\text{\'et},?}\Sigma_T^{\infty}M_S^{\text{\'et},\text{eff}}(X)
-.\end{align*}
+M_S: \Sm_S &\longrightarrow \DAet(S,\Lambda) \\
+X &\longmapsto L_{(\Aff^{1},\text{\'et},?}\Sigma_T^{\infty}M_S^{\text{\'et},\text{eff}}(X)
+.
+\end{align*}
 \begin{remark}
-	$M\in \DAet(S,\Lambda)$ is isomotphic to a stable $(\Aff^{1},\text{\'et})$-local (??)
-	\[
-		K_n\in \Ch(\Sh_{\text{\'et}}(\Sm_S,\Lambda)) + \sigma_n = \Lambda_{\text{\'et}}[\P^{1},1]\otimes K_n\to K_{n+1}
-	\] 
-	such that for all $X\in \Sm_S,i \in \Z$
-	\begin{itemize}
-		\item $\CH_{\text{\'et}}^{i}(X,K_n)\simto \CH_{\text{\'et}}^{i}(X\times_S\Aff^{1},K_n)$ 
-		\item $\CH_{\text{\'et}}^{i}(X,K_n) \simto \CH_{\text{\'et}}^{i+2}(X\times_S(\P^{1},1),K_{n+1})$.
-	\end{itemize}
+$M\in \DAet(S,\Lambda)$ is isomotphic to a stable $(\Aff^{1},\text{\'et})$-local (??)
+\[
+K_n\in \Ch(\Sh_{\text{\'et}}(\Sm_S,\Lambda)) + \sigma_n =
+\Lambda_{\text{\'et}}[\P^{1},1]\otimes K_n\to K_{n+1}
+\]
+such that for all $X\in \Sm_S,i \in \Z$
+\begin{itemize}
+\item $\CH_{\text{\'et}}^{i}(X,K_n)\simto \CH_{\text{\'et}}^{i}(X\times_S\Aff^{1},K_n)$
+\item $\CH_{\text{\'et}}^{i}(X,K_n) \simto \CH_{\text{\'et}}^{i+2}(X\times_S(\P^{1},1),K_{n+1})$.
+\end{itemize}
 \end{remark}
 
 \subsection{Constructible motivic sheaves}
 \begin{definition}
-	We define \defn{constructible motivic sheaves}
-	\begin{align*}
-		\DAet_{\text{ct}} &= \left<M_S(X)(-n)|X\in \Sm_S,n\in \N \right>^{\text{d.f.}} \\
-				  &\subset \DAet(S,\Lambda).
-	\end{align*}
-	and \defn{locally constructible motivic sheaves}
-	\[
-		\DAet_{\text{lct}}(S,\Lambda) \defeq \{M|\exists e:U\surjto S, e^{*}M\in \cat{DA}_{\text{ct}}\} .
-	\] 
+We define \defn{constructible motivic sheaves}
+\begin{align*}
+\DAet_{\text{ct}} &= \left<M_S(X)(-n)|X\in \Sm_S,n\in \N \right>^{\text{d.f.}} \\
+&\subset \DAet(S,\Lambda).
+\end{align*}
+and \defn{locally constructible motivic sheaves}
+\[
+\DAet_{\text{lct}}(S,\Lambda) \defeq \{M|\exists e:U\surjto S, e^{*}M\in \cat{DA}_{\text{ct}}\} .
+\]
 \end{definition}
-There is a Betti realization for $S$ finite type over $\bb{C}$ 
+There is a Betti realization for $S$ finite type over $\bb{C}$
 \[
 R_B: \DAet(S,\Lambda) \to D(S\an,\Lambda)
-\] 
-by the existence of relative homology and the universal property. If $X\in \Sm_S$ 
+\]
+by the existence of relative homology and the universal property. If $X\in \Sm_S$
 \[
 R_B(M_S(X)) \isoto \CH_*^{\text{sing}}(X /S)
-\] 
+\]
 and
 \[
 R_B(\DAet_{\text{lct}}(S,\Lambda) \subset D^{b}_{\text{ct}}(S\an,\Lambda).
-\] 
+\]
 
 Another deep property is the \emph{rigidity theorem}. Define
 \[
 D_{\text{\'et}}(S,\Lambda) = D(\Sh_{\text{\'et}}(S,\Lambda))
-\] 
+\]
 and write
 \[
 \iota : (\Et_S, \text{\'et})\injto (\Sm_S,\text{\'et})
-\] 
+\]
 for the inclusion, then we get
 \[
 \iota_S^{*}:D_{\text{\'et}}(S,\Lambda) \to \DAet(S,\Lambda).
-\] 
+\]
 \begin{theorem}[Ayoub]
-	Let $S$ be an excellent, Noetherian, finite dimensional, $\Lambda$-finite, with any prime invertible in $\Lambda$ or $\OO_S$. Then $\iota_S^{*}$ is an equivalence.
+Let $S$ be an excellent, Noetherian, finite dimensional, $\Lambda$-finite, with any prime
+invertible in $\Lambda$ or $\OO_S$. Then $\iota_S^{*}$ is an equivalence.
 \end{theorem}
 
 This procedure is very flexible and admits many \emph{variants}.
 \begin{itemize}
-	\item We can change the input. Instead of complexes we can work with presheaves of simplicial sets or $\infty$-groupoids.
-	\item We can change the topology. Instead of \'etale use Nisnevich or use presheaves with transfers.
-	\item Change the geometric context. For example, to rigid analytic motivic sheaves.
+\item We can change the input. Instead of complexes we can work with presheaves of
+simplicial sets or $\infty$-groupoids.
+\item We can change the topology. Instead of \'etale use Nisnevich or use presheaves with transfers.
+\item Change the geometric context. For example, to rigid analytic motivic sheaves.
 \end{itemize}
 
 \begin{definition}
-	The \defn{stable motivic homotopy category} over $S$ is
-	\[
-		\SH(S) \defeq \PSp_T(\PSh(\Sm_S,\cat{sSet}))[W^{-1}_{(\Aff^{1},\text{Nis},\P^{1})}].
-	\] 
+The \defn{stable motivic homotopy category} over $S$ is
+\[
+\SH(S) \defeq \PSp_T(\PSh(\Sm_S,\cat{sSet}))[W^{-1}_{(\Aff^{1},\text{Nis},\P^{1})}].
+\]
 \end{definition}
-Recall that the Nisnevich topology is between the Zariski and \'etale topologies. $\DAet(S)$ is the motivic version of $D(S\an,\Z)$ and $\SH(S)$ is the motivic version of sheaves of $S^{?}$-spectra on $S\an$. There is also $\cat{DM}(S,\Lambda)$ which are the Nisnevich-local motivic sheaves. Many important invariants of varieties only satisfy Nisnevich descent, but not \'etale descent; for example, $K$-theory or higher chow groups.
+Recall that the Nisnevich topology is between the Zariski and \'etale topologies.
+$\DAet(S)$ is the motivic version of $D(S\an,\Z)$ and $\SH(S)$ is the motivic version of
+sheaves of $S^{?}$-spectra on $S\an$. There is also $\cat{DM}(S,\Lambda)$ which are the
+Nisnevich-local motivic sheaves. Many important invariants of varieties only satisfy
+Nisnevich descent, but not \'etale descent; for example, $K$-theory or higher chow groups.
 
 \section{Motives over a field}
 Let $S=\Spec(k)$ and $\Lambda=\Q$. Define
 \[
-	\cat{DM}(k,\Q) \defeq \DAet(k,\Q).
-\] 
+\cat{DM}(k,\Q) \defeq \DAet(k,\Q).
+\]
 The analogies you should have in mind are
 \begin{itemize}
-	\item $D(\Ind \cat{MHS}_{\Q})$,
-	\item $D(\Ind \cat{Rep}_{\Q_l}^{\text{f.d.}}G_k)$.
+\item $D(\Ind \cat{MHS}_{\Q})$,
+\item $D(\Ind \cat{Rep}_{\Q_l}^{\text{f.d.}}G_k)$.
 \end{itemize}
 Even though the construction was very formal there are some surprises. Define
 \[
-	\Q\left<i \right> \defeq \Q(i)[2i]
-\] 
+\Q\left<i \right> \defeq \Q(i)[2i]
+\]
 be pure Tate twists and $M\left<i \right>\defeq M\otimes \Q\left<i \right>$.
 \begin{itemize}
-	\item \emph{Projective bundle formula:} Let $E\to X$ be a vector bundle, then
-		\begin{gather*}
-			M(\P(E)) \isoto \bigoplus_{i=0}^{\rank E-1}M(X)\left<i \right> \\
-			M(\P^{n}_l) = \Lambda(0)\oplus \Lambda\left<1 \right>\oplus \dots\oplus \Lambda\left<n \right>.
-		\end{gather*}
-	\item \emph{Gysin triangle:} Let $(c:Z\not\injto X)\in \Sm_k$, then we have
-		\[
-		\begin{tikzcd}
-			M(X\setminus Z) \ar[r] & M(X) \ar[r] & M(Z)\left<c \right> \ar[r,"+"] & { }
-		\end{tikzcd}
-		\] 
-	\item \emph{Smooth blow-up formula:}
-		\[
-		M(\Bl_Z(X)) \isoto M(X)\oplus \bigoplus_{i=1}^{c-1}M(Z)\left<i \right>.
-		\] 
-	\item \emph{Poincar\'e duality 1}: Let $X$ be smooth and projective over $k$, then $M(X)$ is \emph{dualizable} with
-		\[
-		M(X)^{\vee}\isoto M(X)\left<-\dim(X) \right>.
-		\] 
+\item \emph{Projective bundle formula:} Let $E\to X$ be a vector bundle, then
+\begin{gather*}
+M(\P(E)) \isoto \bigoplus_{i=0}^{\rank E-1}M(X)\left<i \right> \\
+M(\P^{n}_l) = \Lambda(0)\oplus \Lambda\left<1 \right>\oplus \dots\oplus \Lambda\left<n \right>.
+\end{gather*}
+\item \emph{Gysin triangle:} Let $(c:Z\not\injto X)\in \Sm_k$, then we have
+\[
+\begin{tikzcd}
+M(X\setminus Z) \ar[r] & M(X) \ar[r] & M(Z)\left<c \right> \ar[r,"+"] & { }
+\end{tikzcd}
+\]
+\item \emph{Smooth blow-up formula:}
+\[
+M(\Bl_Z(X)) \isoto M(X)\oplus \bigoplus_{i=1}^{c-1}M(Z)\left<i \right>.
+\]
+\item \emph{Poincar\'e duality 1}: Let $X$ be smooth and projective over $k$, then $M(X)$
+is \emph{dualizable} with
+\[
+M(X)^{\vee}\isoto M(X)\left<-\dim(X) \right>.
+\]
 \end{itemize}
 We have $\cat{DM}(k,\Q)\isoto \Ind\cat{DM}_{\text{ct}}$.
 
 From here on out
 \[
-	\cat{DM}(k,\Lambda) = \begin{cases}
-		\DAet(k,\Lambda) & \Lambda\text{ a }\Q\text{-algebra} \\
-		\cat{DM}(k,\Lambda) & \Lambda\text{ a }\Z\left[ \frac{1}{p} \right] \text{-algebra}.
-	\end{cases}
-\] 
-For singular varieties $X\in \Sch_R^{\text{ft,sep}}$ we get $M(X)\in \cat{DM}(k,\Lambda)$. There are four theories
+\cat{DM}(k,\Lambda) =
+\begin{cases}
+\DAet(k,\Lambda) & \Lambda\text{ a }\Q\text{-algebra} \\
+\cat{DM}(k,\Lambda) & \Lambda\text{ a }\Z\left[ \frac{1}{p} \right] \text{-algebra}.
+\end{cases}
+\]
+For singular varieties $X\in \Sch_R^{\text{ft,sep}}$ we get $M(X)\in
+\cat{DM}(k,\Lambda)$. There are four theories
 \begin{enumerate}[(i)]
-	\item $M(X)$,
-	\item Borel-Moore cohomoloy $M_{\mathrm{BM}}(X)$ (also denoted $M^{c}(X)$ in the literature),
-	\item $M^{\text{coh}}(X)$,
-	\item $M_{\text{c}}^{\text{coh}}(X)$.
+\item $M(X)$,
+\item Borel-Moore cohomoloy $M_{\mathrm{BM}}(X)$ (also denoted $M^{c}(X)$ in the literature),
+\item $M^{\text{coh}}(X)$,
+\item $M_{\text{c}}^{\text{coh}}(X)$.
 \end{enumerate}
 
-\emph{Localization:} Consider a closed immersion $Z\injto X$ and the open immersion $X\setminus Z\injto X$. We have
+\emph{Localization:} Consider a closed immersion $Z\injto X$ and the open immersion
+$X\setminus Z\injto X$. We have
 \[
 \begin{tikzcd}
-	M_{\text{BM}}(Z) \ar[r] & M_{\text{BM}}(X) \ar[r] & M_{\text{BM}}(?) \ar[r,"+"] & {} \\
-	M^{\text{coh}}_{\text{c}}(X\setminus Z) \ar[r] & M^{\text{coh}}_{\text{c}}(X) \ar[r] & M^{\text{coh}}_{\text{c}}(Z) \ar[r,"+"] & {}
+M_{\text{BM}}(Z) \ar[r] & M_{\text{BM}}(X) \ar[r] & M_{\text{BM}}(?) \ar[r,"+"] & {} \\
+M^{\text{coh}}_{\text{c}}(X\setminus Z) \ar[r] & M^{\text{coh}}_{\text{c}}(X) \ar[r] &
+M^{\text{coh}}_{\text{c}}(Z) \ar[r,"+"] & {}
 \end{tikzcd}
 \]
 
 \emph{Poincar\'e duality 2:} For $X\in \Sm_k$
 \[
 \begin{cases}
-	M(X)^{\vee} \isoto M_{\text{BM}}(X)\left<-d \right> \\
-	M^{\text{coh}}(X)^{\vee} \isoto M^{\text{coh}}(X)\left<d \right>.
+M(X)^{\vee} \isoto M_{\text{BM}}(X)\left<-d \right> \\
+M^{\text{coh}}(X)^{\vee} \isoto M^{\text{coh}}(X)\left<d \right>.
 \end{cases}
-\] 
+\]
 (??)
 
 \subsection{Motivic cohomology and algebraic cycles}
 \begin{definition}
-	Let $X\in \Sm_k$, we define the \defn{Motivic cohomology groups}
-	\begin{align*}
-		\CH_{\text{mot}}^{p,q}(X) = \CH_{\text{mot}}^{p}(X,\Lambda(q)) &\defeq \Hom_{\cat{DM}(k,\Lambda)}(M(X), \Lambda(q)[p]) \\
-									       &\isoto \Hom_{\cat{DM}(X,\Lambda)}(\Lambda_X(0), \Lambda_X(q)[p]).
-	\end{align*}
-	For $X\in \Sch_k^{\text{ft,sep}}$ define
-	\[
-		\CH_{p,q}^{\text{BM}} \defeq \Hom(\Lambda(q)[p], M_{\text{BM}}(X)).
-	\] 
+Let $X\in \Sm_k$, we define the \defn{Motivic cohomology groups}
+\begin{align*}
+\CH_{\text{mot}}^{p,q}(X) = \CH_{\text{mot}}^{p}(X,\Lambda(q)) &\defeq
+\Hom_{\cat{DM}(k,\Lambda)}(M(X), \Lambda(q)[p]) \\
+&\isoto \Hom_{\cat{DM}(X,\Lambda)}(\Lambda_X(0), \Lambda_X(q)[p]).
+\end{align*}
+For $X\in \Sch_k^{\text{ft,sep}}$ define
+\[
+\CH_{p,q}^{\text{BM}} \defeq \Hom(\Lambda(q)[p], M_{\text{BM}}(X)).
+\]
 \end{definition}
 \subsubsection{Weight 1 motivic cohomology}
 \begin{lemma}
-	We have
-	\[
-		M_S^{\text{eff}}(\Gm) \isoto \Lambda(0) \oplus \Lambda(1)[1].?
-	\] 
+We have
+\[
+M_S^{\text{eff}}(\Gm) \isoto \Lambda(0) \oplus \Lambda(1)[1].?
+\]
 \end{lemma}
 \begin{proof}
-	$\P^{1}=\Aff^{1}\cup \Aff^{1}$, so by Mayer-Vietoris we get
-	\[
-	\begin{tikzcd}
-		M(\Gm) \ar[r] & M(\Aff)^{\oplus 2} \ar[r] & M(\P^{1}) \ar[r,"+"] & {}
-	\end{tikzcd}
-	\] 
-	hence by $\Aff^{1}$-invariance
-	\[
-		M(\Gm,1) \isoto M(\P^{1},1)[-1].
-	\] 
+$\P^{1}=\Aff^{1}\cup \Aff^{1}$, so by Mayer-Vietoris we get
+\[
+\begin{tikzcd}
+M(\Gm) \ar[r] & M(\Aff)^{\oplus 2} \ar[r] & M(\P^{1}) \ar[r,"+"] & {}
+\end{tikzcd}
+\]
+hence by $\Aff^{1}$-invariance
+\[
+M(\Gm,1) \isoto M(\P^{1},1)[-1].
+\]
 \end{proof}
 The map $\alpha_{\Gm}:\Lambda_{\text{\'et}}[\Gm]\to \Gm\otimes \Lambda$ induces
 \[
-	\Lambda(1)[1] \xrightarrow{(*)} \Sigma_{T}^{\infty} (\Gm\otimes\Lambda).
-\] 
+\Lambda(1)[1] \xrightarrow{(*)} \Sigma_{T}^{\infty} (\Gm\otimes\Lambda).
+\]
 \begin{theorem}\leavevmode
-	\begin{enumerate}[1)]
-		\item (*) is an isomorphism, so
-			\[
-				\Pic(s)\otimes \Lambda \xrightarrow{c_1} \CH_{\text{mot}}^{2,1}(S)
-			\] 
-		\item For $S$ regular
-			\[
-			\CH_{\text{mot}}^{n,1}(S) = \begin{cases}
-				\OO_S^{\times }\otimes\Lambda & n=1 \\
-				\Pic(S)\otimes\Lambda & n=2 \\
-				0 & \text{otherwise}.
-			\end{cases}
-			\] 
-	\end{enumerate}
+\begin{enumerate}[1)]
+\item (*) is an isomorphism, so
+\[
+\Pic(s)\otimes \Lambda \xrightarrow{c_1} \CH_{\text{mot}}^{2,1}(S)
+\]
+\item For $S$ regular
+\[
+\CH_{\text{mot}}^{n,1}(S) =
+\begin{cases}
+\OO_S^{\times }\otimes\Lambda & n=1 \\
+\Pic(S)\otimes\Lambda & n=2 \\
+0 & \text{otherwise}.
+\end{cases}
+\]
+\end{enumerate}
 \end{theorem}
 \subsubsection{Higher Chow groups}
 Let $\bb{\Delta}_{\text{alg},k}^{\bullet}\in (\Sm_k)^{\bb{\Delta}}$.
 \begin{definition}
-	Let $X\in \Sch_k^{\text{ft}}$ define
-	\[
-	\kz_n(X,r) \subseteq Z_n(X\times \bb{\Delta}_{\text{alg}}^{r})\otimes\Lambda
-	\] 
-	generated by integral subvarieties of dimension $n$ which intersect all faces properly.
+Let $X\in \Sch_k^{\text{ft}}$ define
+\[
+\kz_n(X,r) \subseteq Z_n(X\times \bb{\Delta}_{\text{alg}}^{r})\otimes\Lambda
+\]
+generated by integral subvarieties of dimension $n$ which intersect all faces properly.
 \end{definition}
-(Picture) We get $d:\kz_n(X,r)\to \kz_{n-1}(X,r-1)$ so $\kz_n(X,\bullet)$ is a \emph{Bloch cycle complex}.
+(Picture) We get $d:\kz_n(X,r)\to \kz_{n-1}(X,r-1)$ so $\kz_n(X,\bullet)$ is a
+\emph{Bloch cycle complex}.
 (??)
 
 \begin{theorem}[Voevodsky+\dots]
-	Let $k$ be perfect, $X\in \Sch_k^{\text{ft,sep}}$ then
-	\[
-	\CH_{p,q}^{\text{BM}}(X)\isoto \Chow_q(X,p-2q,\Lambda).
-	\] 
-	If $X\in \Sm_k$ then
-	\begin{align*}
-		\CH^{p,q}_{\text{mot}}(X) &\isoto \Chow^{q}(X,2q-p,\Lambda) \\
-		\CH_{\text{mot}}^{2n,n}(X) &\isoto \Chow^{n}(X,\Lambda).
-	\end{align*}
+Let $k$ be perfect, $X\in \Sch_k^{\text{ft,sep}}$ then
+\[
+\CH_{p,q}^{\text{BM}}(X)\isoto \Chow_q(X,p-2q,\Lambda).
+\]
+If $X\in \Sm_k$ then
+\begin{align*}
+\CH^{p,q}_{\text{mot}}(X) &\isoto \Chow^{q}(X,2q-p,\Lambda) \\
+\CH_{\text{mot}}^{2n,n}(X) &\isoto \Chow^{n}(X,\Lambda).
+\end{align*}
 \end{theorem}
 (??)
 
 \subsection{Examples (Tate)}
 \begin{definition}
-	Define
-	\[
-		\cat{DMT}(k,\Lambda) = \left<\Lambda(n) | n\in \Z \right>^{\text{df}}
-	\] 
-	the \defn{mixed Tate motives}. It constains $\bigoplus \Lambda\left<i \right>^{\oplus n_i}$ the \defn{pure Tate motives}.
+Define
+\[
+\cat{DMT}(k,\Lambda) = \left<\Lambda(n) | n\in \Z \right>^{\text{df}}
+\]
+the \defn{mixed Tate motives}. It constains $\bigoplus \Lambda\left<i \right>^{\oplus
+n_i}$ the \defn{pure Tate motives}.
 \end{definition}
 We have $M(\Aff^{n})=\Lambda(0)$ and $M_{\text{BM}}(\Aff^{n}) = \Lambda\left<n \right>$.
 \begin{exercise}
-	Show that
-	\[
-		M(\Aff^{n}\setminus \{0\}) \isoto \Lambda(0) \oplus \Lambda(n)[2n-1].
-	\] 
+Show that
+\[
+M(\Aff^{n}\setminus \{0\}) \isoto \Lambda(0) \oplus \Lambda(n)[2n-1].
+\]
 \end{exercise}
 \subsubsection{Cellular varieties}
 \begin{definition}
-	$X\in \Sch_k^{\text{ft}}$ is \defn{cellular} if there exists a closed subscheme $Z\injto X$ such that $X\setminus Z\simto \Aff_k^{i}$ and $Z$ is cellular.
+$X\in \Sch_k^{\text{ft}}$ is \defn{cellular} if there exists a closed subscheme $Z\injto
+X$ such that $X\setminus Z\simto \Aff_k^{i}$ and $Z$ is cellular.
 \end{definition}
 \begin{proposition}
-	Suppose $X$ is cellular:
-	\begin{enumerate}[a)]
-		\item We have
-			\[
-			M_{\text{BM}}(X) \isoto \bigoplus_{i=0}^{d}\Lambda\left<i \right>^{n_i},
-			\] 
-			where $n_i$ is the number of cells of dimension $i$.
-		\item If $X$ is also smooth
-			\[
-			M(X) \isoto \bigoplus_{j=0}^{d}\Lambda\left<j \right>^{m_j},
-			\] 
-			where $m_j$ is the number of cells of codimension $j$.
-	\end{enumerate}
+Suppose $X$ is cellular:
+\begin{enumerate}[a)]
+\item We have
+\[
+M_{\text{BM}}(X) \isoto \bigoplus_{i=0}^{d}\Lambda\left<i \right>^{n_i},
+\]
+where $n_i$ is the number of cells of dimension $i$.
+\item If $X$ is also smooth
+\[
+M(X) \isoto \bigoplus_{j=0}^{d}\Lambda\left<j \right>^{m_j},
+\]
+where $m_j$ is the number of cells of codimension $j$.
+\end{enumerate}
 \end{proposition}
 \begin{example}\leavevmode
-	\begin{enumerate}[1)]
-		\item Let $G$ be split reductive, $B\subset G$ be a Borel, then $G /B$ is cellular (Bruhat decomposition) and
-			\[
-			M(G /B) \isoto \bigoplus_{i\ge 0}\Lambda\left<i \right>^{n_i}
-			\] 
-			where $n_i$ is the number of $w\in W$ of length $i$.
-		\item Let $X$ be quasiprojective and smooth (??)
-	\end{enumerate}
+\begin{enumerate}[1)]
+\item Let $G$ be split reductive, $B\subset G$ be a Borel, then $G /B$ is cellular
+(Bruhat decomposition) and
+\[
+M(G /B) \isoto \bigoplus_{i\ge 0}\Lambda\left<i \right>^{n_i}
+\]
+where $n_i$ is the number of $w\in W$ of length $i$.
+\item Let $X$ be quasiprojective and smooth (??)
+\end{enumerate}
 \end{example}
 \subsubsection{Reductive groups}
 \begin{theorem}[Biglami]
-	 If $G$ is split reductive, then
-	 \[
-		 M(G) \isoto \Sym^{*}\left( \bigoplus_{i\ge 1}\Lambda(i)[2?-i]^{\oplus n_i} \right) 
-	 \] 
-	 so by Chevalley
-	 \[
-		 R[\kg]^{G} = k[q_1,\dots,q_{?}]
-	 \] 
-	 where $\deg q_j = d_j$ and $n_i$ is the number of $j$ such that $d_j=i$.
+If $G$ is split reductive, then
+\[
+M(G) \isoto \Sym^{*}\left( \bigoplus_{i\ge 1}\Lambda(i)[2?-i]^{\oplus n_i} \right)
+\]
+so by Chevalley
+\[
+R[\kg]^{G} = k[q_1,\dots,q_{?}]
+\]
+where $\deg q_j = d_j$ and $n_i$ is the number of $j$ such that $d_j=i$.
 \end{theorem}
 \begin{example}
-	We have
-	\begin{align*}
-		M(\GL_n) &= \Sym^{*}\left( \Lambda(1)[1] \oplus \Lambda(2)[3]\oplus \dots\oplus \Lambda(n)[2n-1] \right)  \\
-		M(\SL_n) &= \times  (??)
-	\end{align*}
+We have
+\begin{align*}
+M(\GL_n) &= \Sym^{*}\left( \Lambda(1)[1] \oplus \Lambda(2)[3]\oplus \dots\oplus
+\Lambda(n)[2n-1] \right)  \\
+M(\SL_n) &= \times  (??)
+\end{align*}
 \end{example}
 \begin{exercise}
-	What is $M(\Sp_{2n})$?
+What is $M(\Sp_{2n})$?
 \end{exercise}
 \subsection{Examples (non-Tate)}
 \subsubsection{Curves}
 \begin{proposition}
-	Let $C$ be a smooth projective curve with a 0-cycle (with $\Lambda$-coefficients) of degree 1 (or if $\Lambda$ is a $\Q$-algebra)
-	\[
-		M(C) \isoto \Lambda(0) \oplus M_1(C) \oplus \Lambda \left<1 \right>.
-	\] 
-	If $g(C)>0$ then $M_n(C)\not\in \cat{DMT}(k,\Lambda)$.
+Let $C$ be a smooth projective curve with a 0-cycle (with $\Lambda$-coefficients) of
+degree 1 (or if $\Lambda$ is a $\Q$-algebra)
+\[
+M(C) \isoto \Lambda(0) \oplus M_1(C) \oplus \Lambda \left<1 \right>.
+\]
+If $g(C)>0$ then $M_n(C)\not\in \cat{DMT}(k,\Lambda)$.
 \end{proposition}
 \subsubsection{Commutative algebraic groups}
 \begin{theorem}[?]
-	We take $\Lambda=\Q$ and $G /k$ a smooth commutative group (e.g. a (semi-)abelian variety). Define
-	\[
-		M_1(G) \defeq \Sigma_T^{\infty}(G\otimes \Q) \in \cat{DM}(k,G).
-	\] 
-	Then
-	\[
-	M(G) \isoto \left( \bigoplus_{i=0}^{?}\Sym_i(M_1(G)) \right) \otimes M(?).
-	\] 
+We take $\Lambda=\Q$ and $G /k$ a smooth commutative group (e.g. a (semi-)abelian variety). Define
+\[
+M_1(G) \defeq \Sigma_T^{\infty}(G\otimes \Q) \in \cat{DM}(k,G).
+\]
+Then
+\[
+M(G) \isoto \left( \bigoplus_{i=0}^{?}\Sym_i(M_1(G)) \right) \otimes M(?).
+\]
 \end{theorem}
 
 \section{Six functor formalism}
 \subsection{Betti sheaves}
 \begin{definition}
-	Define
-	\begin{align*}
-		D_B(-): \cat{Var}_{\bb{C}}\op &\longrightarrow \cat{TriCat}^{\otimes}\quad (\text{better }\cat{CAlg}(\PrL)) \\
-		X &\longmapsto D\left( \Sh(X\an,\Lambda) \right) \\
-		f &\longmapsto f^{*} = \LD f^{*}\quad \text{pullback}
-	\end{align*}
+Define
+\begin{align*}
+D_B(-): \cat{Var}_{\bb{C}}\op &\longrightarrow \cat{TriCat}^{\otimes}\quad (\text{better
+}\cat{CAlg}(\PrL)) \\
+X &\longmapsto D\left( \Sh(X\an,\Lambda) \right) \\
+f &\longmapsto f^{*} = \LD f^{*}\quad \text{pullback}
+\end{align*}
 \end{definition}
 $D_B$ is symmetric monoidal
 \[
 f^{*}(F\otimes G) \isoto f^{*}(F)\otimes f^{*}(G) + \dots
-\] 
+\]
 (note that we write $\otimes = \otimes^{\mathbb{L}}$).
 \begin{proposition}
-	$(f^{*},f_*=\RD f_*)$ is an adjoint pair. And $D_B(X)$ is closed, i.e. there exists $\iHom(F,G)$.
+$(f^{*},f_*=\RD f_*)$ is an adjoint pair. And $D_B(X)$ is closed, i.e. there exists $\iHom(F,G)$.
 \end{proposition}
 \begin{definition}
-	A \defn{sheaf theory} is a symmetric monoidal functor
-	\[
-		D(-):(\Sch_S^{\text{ft}})\op \to \cat{TriCat}^{\otimes} / \cat{CAlg}(\PrL)
-	\] 
+A \defn{sheaf theory} is a symmetric monoidal functor
+\[
+D(-):(\Sch_S^{\text{ft}})\op \to \cat{TriCat}^{\otimes} / \cat{CAlg}(\PrL)
+\]
 \end{definition}
 So we have four functors $(\otimes,\iHom)$ and $(f^{*},f_*)$ which form adjoint pairs.
 \begin{example}\leavevmode
-	\begin{itemize}
-		\item Derived categories of \'etale/$l$-adic sheaves.
-		\item Dervied categories of (holonomic) $D$-modules.
-		\item Derived categories of mixed Hodge modules.
-		\item ??
-		\item $D(\cat{QCoh}(-))$.
-	\end{itemize}
+\begin{itemize}
+\item Derived categories of \'etale/$l$-adic sheaves.
+\item Dervied categories of (holonomic) $D$-modules.
+\item Derived categories of mixed Hodge modules.
+\item ??
+\item $D(\cat{QCoh}(-))$.
+\end{itemize}
 \end{example}
-Let $f:Y\to X$ be separated of finite type, then we have two functors $f_!:D_B(Y)\leftrightarrows D_B(Y):f^{!}$ and $f_!$ gives us relative cohomology with compact support.
+Let $f:Y\to X$ be separated of finite type, then we have two functors
+$f_!:D_B(Y)\leftrightarrows D_B(Y):f^{!}$ and $f_!$ gives us relative cohomology with
+compact support.
 
 These satisfy a bunch of natural transformations:
 \begin{itemize}
-	\item \emph{Base change:} Let
-		\[
-		\begin{tikzcd}
-			Y' \ar[r,"\wt{f}"] \ar[d,"\wt{g}"] & X' \ar[d,"g"] \\ Y \ar[r,"f"] & X
-		\end{tikzcd}
-		\] 
-		be Cartesian, then we get a natural transformaton $f^{*}g_*(-)\to \wt{g}_*\wt{f}^{*}(-)$.
-	\item \emph{Projection:} We have a natural transformation
-		\[
-		f_*(-)\otimes - \to f_*(-\otimes f^{*}(-)).
-		\] 
-	\item \emph{K\"unneth:} We have the natural transformation
-		\[
-		f_*(-)\otimes g_*(-) \to (f\times g)_*(-\boxtimes_X -)
-		\] 
-		where $\boxtimes_X\defeq \pr_1^{*}(-)\otimes \pr_2^{*}(-)$.
+\item \emph{Base change:} Let
+\[
+\begin{tikzcd}
+Y' \ar[r,"\wt{f}"] \ar[d,"\wt{g}"] & X' \ar[d,"g"] \\ Y \ar[r,"f"] & X
+\end{tikzcd}
+\]
+be Cartesian, then we get a natural transformaton $f^{*}g_*(-)\to \wt{g}_*\wt{f}^{*}(-)$.
+\item \emph{Projection:} We have a natural transformation
+\[
+f_*(-)\otimes - \to f_*(-\otimes f^{*}(-)).
+\]
+\item \emph{K\"unneth:} We have the natural transformation
+\[
+f_*(-)\otimes g_*(-) \to (f\times g)_*(-\boxtimes_X -)
+\]
+where $\boxtimes_X\defeq \pr_1^{*}(-)\otimes \pr_2^{*}(-)$.
 \end{itemize}
 \begin{theorem}
-	Let $D=D_B$. Assume $g$ is proper the (BC) and (Proj) are isomorphisms. If $f$ is also proper then (K\"u) is also an isomorphism.
+Let $D=D_B$. Assume $g$ is proper the (BC) and (Proj) are isomorphisms. If $f$ is also
+proper then (K\"u) is also an isomorphism.
 \end{theorem}
 \begin{proposition}[Open base change]
-	Assume $f$ is an open immersion. Then (BC) is an isomorphism.
+Assume $f$ is an open immersion. Then (BC) is an isomorphism.
 \end{proposition}
 \begin{definition}
-	Let $f:Y\to X$ be separated of finite type and $F\in \Sh(X\an,\Lambda)$. Define
-	\[
-		(f_!F)(U) \defeq \left\{ s\in F(f^{-1}(U)) \middle| f|_{\Supp(s)}\text{ is proper} \right\} \subset (f_*F)(U)
-	\] 
-	is the \defn{pushforward with compact support}. We also write
-	\[
-	f_! \defeq \RD f_!:D(Y)\to D(X).
-	\] 
+Let $f:Y\to X$ be separated of finite type and $F\in \Sh(X\an,\Lambda)$. Define
+\[
+(f_!F)(U) \defeq \left\{ s\in F(f^{-1}(U)) \middle| f|_{\Supp(s)}\text{ is proper}
+\right\} \subset (f_*F)(U)
+\]
+is the \defn{pushforward with compact support}. We also write
+\[
+f_! \defeq \RD f_!:D(Y)\to D(X).
+\]
 \end{definition}
 $f_!\to f_*$ is an isomorphism for $f$ proper (??).
 \begin{lemma}
-	Suppose $j:U\injto X$ is an open immersion.
-	\begin{enumerate}[1)]
-		\item $j_!:\Sh(U\an)\to \Sh(X\an)$ is ``extension by zero''
-			\[
-				(j_!F)_x = \begin{cases}
-					F_x  & x\in U \\
-					0 & \text{otherwise}.
-				\end{cases}
-			\] 
-		\item $j_!$ is left adjoint to $j^{*}$.
-		\item We have open BC: $f^{*}j_!\isoto \wt{j}_!\wt{f}^{*}$ and open Proj
-			\[
-			j_!(-\otimes j^{*}(-)) \isoto j_!(-) \otimes -.
-			\] 
-	\end{enumerate}
-\end{lemma}
-Let $f:Y\to X$ be a separated morphism of finite type, then there exists a Nagata compactification where $f$ factors as
+Suppose $j:U\injto X$ is an open immersion.
+\begin{enumerate}[1)]
+\item $j_!:\Sh(U\an)\to \Sh(X\an)$ is ``extension by zero''
 \[
-	Y \xhookrightarrow{j} \overline{Y} \xrightarrow{p} X
-\] 
+(j_!F)_x =
+\begin{cases}
+F_x  & x\in U \\
+0 & \text{otherwise}.
+\end{cases}
+\]
+\item $j_!$ is left adjoint to $j^{*}$.
+\item We have open BC: $f^{*}j_!\isoto \wt{j}_!\wt{f}^{*}$ and open Proj
+\[
+j_!(-\otimes j^{*}(-)) \isoto j_!(-) \otimes -.
+\]
+\end{enumerate}
+\end{lemma}
+Let $f:Y\to X$ be a separated morphism of finite type, then there exists a Nagata
+compactification where $f$ factors as
+\[
+Y \xhookrightarrow{j} \overline{Y} \xrightarrow{p} X
+\]
 where $j$ is an open immersion and $p$ is proper. Then
 \[
 j_! \isoto p_!j_! \isoto p_*j_!.
-\] 
+\]
 \begin{theorem}
-	(BC) We have $g^{*}f_! \simto \wt{f}_!\wt{g}^{*}$.
+(BC) We have $g^{*}f_! \simto \wt{f}_!\wt{g}^{*}$.
 
-	(Proj) $f_!(-\otimes f^{*}(-)) \simto f_!(-)\otimes -$.
-	
-	(K\"u) $f_!(-)\otimes g_!(-) \simto (f\times g)_!(-\boxtimes -)$.
+(Proj) $f_!(-\otimes f^{*}(-)) \simto f_!(-)\otimes -$.
+
+(K\"u) $f_!(-)\otimes g_!(-) \simto (f\times g)_!(-\boxtimes -)$.
 \end{theorem}
 \begin{proposition}
-	Let $f$ be a separated morphism of finite type. The functor $f_!:D_B(Y)\to D_B(X)$ commutes with all coproducts. So by the Adjoint Functor Theorem, $f_!$ has a right adjoint $f^!:D_B(X)\to D_B(Y)$ called the \defn{exceptional pullback}.
+Let $f$ be a separated morphism of finite type. The functor $f_!:D_B(Y)\to D_B(X)$
+commutes with all coproducts. So by the Adjoint Functor Theorem, $f_!$ has a right
+adjoint $f^!:D_B(X)\to D_B(Y)$ called the \defn{exceptional pullback}.
 \end{proposition}
 \begin{example}
-	If $j$ is an open immersion (\'etale) then $j^{!}\isoto j^{*}$.
+If $j$ is an open immersion (\'etale) then $j^{!}\isoto j^{*}$.
 \end{example}
 \begin{proposition}[Formal local duality]
-	There is an isomorphism
-	\[
-	\iHom(f_!F,G_) \simto f_*\iHom(F,f^{!}G).
-	\] 	
+There is an isomorphism
+\[
+\iHom(f_!F,G_) \simto f_*\iHom(F,f^{!}G).
+\] 	
 \end{proposition}
 \begin{exercise}
-	Prove this!	
+Prove this!	
 \end{exercise}
 \begin{example}
-	Let $\pi:X\to \Spec(\bb{C})$, then
-	\[
-	\CH_c^{*}(X,\Q)^{\vee} \isoto \CH^{*}(X,\pi^{!}\Q).
-	\] 
-	To recover Poincar\'e duality, we need to compute $\pi^{!}\Q$ for $X$ smooth.
+Let $\pi:X\to \Spec(\bb{C})$, then
+\[
+\CH_c^{*}(X,\Q)^{\vee} \isoto \CH^{*}(X,\pi^{!}\Q).
+\]
+To recover Poincar\'e duality, we need to compute $\pi^{!}\Q$ for $X$ smooth.
 \end{example}
 \begin{theorem}[Duality for smooth morphisms]
-	Let $q:Y\to X$ be a separated morphism of finite type.
-	\begin{enumerate}[1)]
-		\item There is a canonical natural transformation
-			\[
-			\alpha_f:f^{!}\Lambda\otimes f^{*}(-) \to f^{!}(-).
-			\] 
-		\item Let $f$ be smooth separated of relative dimension $d$, then
-			\begin{itemize}
-				\item $\alpha_f$ is an isomorphism,
-				\item $f^{!}\Lambda\isoto \Lambda\left<d \right>$.
-			\end{itemize}
-			(Better $\Lambda(1)\isoto\Lambda$.)
-		\item If $f$ is smooth then $f^{*}$ has a left adjoint 
-			\[
-			f_\sharp = f_!\left<d \right>.
-			\] 
-	\end{enumerate}
+Let $q:Y\to X$ be a separated morphism of finite type.
+\begin{enumerate}[1)]
+\item There is a canonical natural transformation
+\[
+\alpha_f:f^{!}\Lambda\otimes f^{*}(-) \to f^{!}(-).
+\]
+\item Let $f$ be smooth separated of relative dimension $d$, then
+\begin{itemize}
+\item $\alpha_f$ is an isomorphism,
+\item $f^{!}\Lambda\isoto \Lambda\left<d \right>$.
+\end{itemize}
+(Better $\Lambda(1)\isoto\Lambda$.)
+\item If $f$ is smooth then $f^{*}$ has a left adjoint
+\[
+f_\sharp = f_!\left<d \right>.
+\]
+\end{enumerate}
 \end{theorem}
 \begin{exercise}[Zariski separation]
-	Let $\{j_i:U_i\to X\} $ be a Zariski/\'etale covering then $\{j_i^{*}=j_i^{!}\} $ is jointly conservative.
+Let $\{j_i:U_i\to X\} $ be a Zariski/\'etale covering then $\{j_i^{*}=j_i^{!}\} $ is
+jointly conservative.
 \end{exercise}
 \begin{proof}[Proof sketch]
-	\'Etale separation reduces 2) to $f:\Aff^{n}\times X\to X$ (?). 3) is a corollary of 2).
+\'Etale separation reduces 2) to $f:\Aff^{n}\times X\to X$ (?). 3) is a corollary of 2).
 \end{proof}
 \begin{proposition}
-	Let $\pi:X\to \Spec(\bb{C})$ be separated, then
-	\begin{align*}
-		\CH_{\text{sing}}^{*}(X\an,\Lambda) &\isoto \CH^{*}(\pi_*\overbrace{\pi^{*}\Lambda}^{\Lambda}) \\
-		\CH_c^{*}(X\an, \Lambda) &\isoto H^{*}(\pi_!\pi^{*}\Lambda) \\
-		\CH_*(X\an, \Lambda) &\isoto \CH_*(\pi_!\pi^{!}\Lambda) \\
-		\CH_*^{\text{BM}}(X\an,\Lambda) &\simto \CH(\pi_*\pi^{!}\Lambda).
-	\end{align*}
+Let $\pi:X\to \Spec(\bb{C})$ be separated, then
+\begin{align*}
+\CH_{\text{sing}}^{*}(X\an,\Lambda) &\isoto \CH^{*}(\pi_*\overbrace{\pi^{*}\Lambda}^{\Lambda}) \\
+\CH_c^{*}(X\an, \Lambda) &\isoto H^{*}(\pi_!\pi^{*}\Lambda) \\
+\CH_*(X\an, \Lambda) &\isoto \CH_*(\pi_!\pi^{!}\Lambda) \\
+\CH_*^{\text{BM}}(X\an,\Lambda) &\simto \CH(\pi_*\pi^{!}\Lambda).
+\end{align*}
 \end{proposition}
 \begin{remark}
-	Let $q$ be smooth, then $q_\sharp\Lambda\isoto q_!q^{!}\Lambda$.
+Let $q$ be smooth, then $q_\sharp\Lambda\isoto q_!q^{!}\Lambda$.
 \end{remark}
 For a quasiprojective morphism $f$ we get two factorizations
 \[
 \begin{cases}
-	f = pj & f_! = p_!j_! \\
-	f = qi & f^! = i^!q^!
+f = pj & f_! = p_!j_! \\
+f = qi & f^! = i^!q^!
 \end{cases}
-\] 
+\]
 where $p$ is proper, $j$ is an open immersion, $q$ is smooth and $i$ is a closed immersion.
 
 \begin{proposition}[Localization/gluing]
-	Let $i:Z\injto X$ be a closed immersion and $j:X\setminus Z=U\to X$ 
-	\[
-	\left\{ 
-	\begin{tikzcd}
-		j_{*}j^{*} \ar[r] & \id \ar[r] & i_!i^{!} \ar[r,"+"] & {} \\
-		j_!j^{!} \ar[r] & \id \ar[r] & i_* i^{*} \ar[r,"+"] & {}
-	\end{tikzcd}
-	\right.
-	\] 
-	(note that $i_! = i_*$).
+Let $i:Z\injto X$ be a closed immersion and $j:X\setminus Z=U\to X$
+\[
+\left\{
+\begin{tikzcd}
+j_{*}j^{*} \ar[r] & \id \ar[r] & i_!i^{!} \ar[r,"+"] & {} \\
+j_!j^{!} \ar[r] & \id \ar[r] & i_* i^{*} \ar[r,"+"] & {}
+\end{tikzcd}
+\right.
+\]
+(note that $i_! = i_*$).
 \end{proposition}
 \begin{proposition}[Absolute purity]
-	Let $i:Z\injto X$ be a regular closed immersion of codimension $c$, then
-	\[
-	i^{!}(\Lambda_X) \isoto \Lambda_Z \left<-c \right>.
-	\] 
+Let $i:Z\injto X$ be a regular closed immersion of codimension $c$, then
+\[
+i^{!}(\Lambda_X) \isoto \Lambda_Z \left<-c \right>.
+\]
 \end{proposition}
 So we get $i^{!}\Lambda_X$ for $i:D\injto X$ a SNCD.
 
@@ -988,219 +1064,243 @@ So we get $i^{!}\Lambda_X$ for $i:D\injto X$ a SNCD.
 (Lurie, Gaitsgory-Rozenblyum, Liu-Zhang, Mann, \dots)
 
 \begin{definition}[Fake]
-	Let $\C$ be an $\infty$-category with finite limits and $E$ be a class of morphisms stable under composition and pullbacks. $\cat{Span}(\C,E)$ is the $\infty$-category of \defn{spans}:
-	\begin{itemize}
-		\item Objects are the objects of $\C$.
-		\item 1-morphisms are diagrams
-			\[
-			\begin{tikzcd}
-				& Z \ar[dl,"g"] \ar[dr,"f\in E"] \\
-				X & & Y
-			\end{tikzcd}
-			\] 
-		\item 2-morphisms are diagrams
-			\[
-			\begin{tikzcd}
-				& Z \ar[dl] \ar[dr,"\in E"] \\
-				X & & Y \\
-				  & Z' \ar[lu] \ar[uu,"\sim"] \ar[ur,"\in E"]
-			\end{tikzcd}
-			\] 
-		\item composition is given by pullbacks
-			\[
-			\begin{tikzcd}
-				& & Z'' \ar[ddll, bend right=40] \ar[dl] \ar[dr,"\in E"] \ar[ddrr,bend left=40,"\in E"] \\
-				& Z \ar[dl] \ar[dr] & & Z' \ar[dl] \ar[dr,"\in E"] \\
-				X & & X' & & X''
-			\end{tikzcd}
-			\] 
-	\end{itemize}
+Let $\C$ be an $\infty$-category with finite limits and $E$ be a class of morphisms
+stable under composition and pullbacks. $\cat{Span}(\C,E)$ is the $\infty$-category of \defn{spans}:
+\begin{itemize}
+\item Objects are the objects of $\C$.
+\item 1-morphisms are diagrams
+\[
+\begin{tikzcd}
+& Z \ar[dl,"g"] \ar[dr,"f\in E"] \\
+X & & Y
+\end{tikzcd}
+\]
+\item 2-morphisms are diagrams
+\[
+\begin{tikzcd}
+& Z \ar[dl] \ar[dr,"\in E"] \\
+X & & Y \\
+& Z' \ar[lu] \ar[uu,"\sim"] \ar[ur,"\in E"]
+\end{tikzcd}
+\]
+\item composition is given by pullbacks
+\[
+\begin{tikzcd}
+& & Z'' \ar[ddll, bend right=40] \ar[dl] \ar[dr,"\in E"] \ar[ddrr,bend left=40,"\in E"] \\
+& Z \ar[dl] \ar[dr] & & Z' \ar[dl] \ar[dr,"\in E"] \\
+X & & X' & & X''
+\end{tikzcd}
+\]
+\end{itemize}
 \end{definition}
 $\cat{Span}(\C,E)$ has a symmetric monoidal structure
 \[
-	(\C\op,\times )\to (\cat{Span}(\C,E),\otimes)
-\] 
+(\C\op,\times )\to (\cat{Span}(\C,E),\otimes)
+\]
 which maps $g:Z\to X$ to the diagram
 \[
 \begin{tikzcd}
-	& Z \ar[dl,"g"] \ar[dr,equals,"\id"] \\
-	X & & Z.
+& Z \ar[dl,"g"] \ar[dr,equals,"\id"] \\
+X & & Z.
 \end{tikzcd}
-\] 
+\]
 \begin{definition}[Mann]
-	A \defn{3-functor formalism} is a $\infty$-symmetric monoidal functor
-	\[
-		\wt{D}:\cat{Span}(\C,E) \to \cat{Cat}_\infty.
-	\] 
-	A \defn{6-functor formalism} is a 3-functor formalism where ``right adjoints exist''.
+A \defn{3-functor formalism} is a $\infty$-symmetric monoidal functor
+\[
+\wt{D}:\cat{Span}(\C,E) \to \cat{Cat}_\infty.
+\]
+A \defn{6-functor formalism} is a 3-functor formalism where ``right adjoints exist''.
 \end{definition}
 \begin{fact}
-	$D_B(-)$ extends to a 3-functor formalism
-	\[
-		\wt{D}_B:\cat{Span}(\cat{Sch}_\C^{?},\text{ft,sep})\to \cat{Cat}_\infty.
-	\] 
+$D_B(-)$ extends to a 3-functor formalism
+\[
+\wt{D}_B:\cat{Span}(\cat{Sch}_\C^{?},\text{ft,sep})\to \cat{Cat}_\infty.
+\]
 \end{fact}
 $\wt{D}_B$ takes the diagram
 \[
 \begin{tikzcd}
-	 & Z \ar[dl,"g"] \ar[dr,"f"] \\
-	X & & X
+& Z \ar[dl,"g"] \ar[dr,"f"] \\
+X & & X
 \end{tikzcd}
-\] 
-to $f_!g^{*}$. It's lax symmetric monoidal, we have $\boxtimes_X$ and we can apply $\Delta_X^{*}$ to get $\otimes_X$. We have functoriality for composition of spans which gives us
+\]
+to $f_!g^{*}$. It's lax symmetric monoidal, we have $\boxtimes_X$ and we can apply
+$\Delta_X^{*}$ to get $\otimes_X$. We have functoriality for composition of spans which gives us
 \[
-	BC:f_!g^{*} = \wt{g}^{*}\wt{f}_!.
-\] 
+BC:f_!g^{*} = \wt{g}^{*}\wt{f}_!.
+\]
 \begin{theorem}[Fake]
-	Let $P,J\subseteq E$ such that $E=P\circ J$ and consider
-	\[
-		D:\C\op \to \cat{CAlg}(\cat{Cat}_\infty).
-	\] 
-	\begin{enumerate}[1)]
-		\item For all $p\in P$ we have an adjoint pair $(p^{*},p_*)$ and PBC and PProj.
-		\item For all $j\in J$ we have an adjoint pair $(j_!,j^{*})$ and OBC and OProj.
-		\item Let
-			\[
-			\begin{tikzcd}
-				\bullet \ar[r,"\wt{p}"] \ar[d,"\wt{j}"] & \bullet \ar[d,"j"] \\
-				\bullet \ar[r,"p"] & \bullet
-			\end{tikzcd}
-		\]
-		then
-		\[
-			j!\wt{p}_* \simto p_*\wt{j}_!
-		\] 
-		(Supp).
-	\end{enumerate}
-	Then $D$ extends to a 3-functor formalism.
+Let $P,J\subseteq E$ such that $E=P\circ J$ and consider
+\[
+D:\C\op \to \cat{CAlg}(\cat{Cat}_\infty).
+\]
+\begin{enumerate}[1)]
+\item For all $p\in P$ we have an adjoint pair $(p^{*},p_*)$ and PBC and PProj.
+\item For all $j\in J$ we have an adjoint pair $(j_!,j^{*})$ and OBC and OProj.
+\item Let
+\[
+\begin{tikzcd}
+\bullet \ar[r,"\wt{p}"] \ar[d,"\wt{j}"] & \bullet \ar[d,"j"] \\
+\bullet \ar[r,"p"] & \bullet
+\end{tikzcd}
+\]
+then
+\[
+j!\wt{p}_* \simto p_*\wt{j}_!
+\]
+(Supp).
+\end{enumerate}
+Then $D$ extends to a 3-functor formalism.
 \end{theorem}
 \subsection{Six functor formalism for motivic sheaves}
 Let $f:T\to S$ be a morphism, we have the functor
 \begin{align*}
-	f^{-1}: \Sm_S &\longrightarrow \Sm_T \\
-	X &\longmapsto X\times_S T
+f^{-1}: \Sm_S &\longrightarrow \Sm_T \\
+X &\longmapsto X\times_S T
 \end{align*}
-which gives us $\DAet(-,\Lambda)$ and $\SH(-)$ sheaf theories. We already have $\otimes, f^{*}$ and $\iHom,f_*$.
+which gives us $\DAet(-,\Lambda)$ and $\SH(-)$ sheaf theories. We already have $\otimes,
+f^{*}$ and $\iHom,f_*$.
 \begin{theorem}
-	$\DAet(-,\Lambda), \SH(-)$ extend to six-functor formalisms.
+$\DAet(-,\Lambda), \SH(-)$ extend to six-functor formalisms.
 \end{theorem}
-This is a hard theorem, much harder than the Betti and \'etale cases. The main difficulty is that proper base change is hard!
+This is a hard theorem, much harder than the Betti and \'etale cases. The main difficulty
+is that proper base change is hard!
 
 \begin{remark}\leavevmode
-	\begin{itemize}
-		\item This also holds for other variants: $\cat{DM}(-,\Lambda)$, $KGL$-modules which are ``$KH$-motives'',  $MGL$-modules,\dots 
-		\item At the end of the day there are still major differences:
-			\begin{enumerate}[1)]
-				\item Let $q$ be smooth of relative dimension $d$. In $\DAet(-,\Lambda), \cat{DM}(-,\Lambda), KGL, MGL$ we have $q^{!}\1b_X \isoto \1b_Y \left<d \right>$ (the $GL$-oriented theories/complex oriented cohomology theories in $\SH^{\text{top}}$ with Chern classes for vector bundles). In $\SH(-)$, $q^{!}\1b_X\isoto \operatorname{Th}_Y(\Omega_q)$ which is the Thom space/spectrum.
-				\item $\DAet(-,\Lambda)$ has much stronger descent properties, it satisfies $h$-descent.  The $h$-topology is defined by \'etale coverings and proper surjective morphisms.
-			\end{enumerate}
-	\end{itemize}
+\begin{itemize}
+\item This also holds for other variants: $\cat{DM}(-,\Lambda)$, $KGL$-modules which are
+``$KH$-motives'',  $MGL$-modules,\dots
+\item At the end of the day there are still major differences:
+\begin{enumerate}[1)]
+\item Let $q$ be smooth of relative dimension $d$. In $\DAet(-,\Lambda),
+\cat{DM}(-,\Lambda), KGL, MGL$ we have $q^{!}\1b_X \isoto \1b_Y \left<d \right>$ (the
+$GL$-oriented theories/complex oriented cohomology theories in $\SH^{\text{top}}$ with
+Chern classes for vector bundles). In $\SH(-)$, $q^{!}\1b_X\isoto
+\operatorname{Th}_Y(\Omega_q)$ which is the Thom space/spectrum.
+\item $\DAet(-,\Lambda)$ has much stronger descent properties, it satisfies $h$-descent.
+The $h$-topology is defined by \'etale coverings and proper surjective morphisms.
+\end{enumerate}
+\end{itemize}
 \end{remark}
 If $q$ is smooth, then $q^{-1}$ has a left adjoint given by a very silly formula
 \begin{align*}
-	q_\sharp: \Sm_T &\longrightarrow \Sm_S \\
-	X &\longmapsto X.
+q_\sharp: \Sm_T &\longrightarrow \Sm_S \\
+X &\longmapsto X.
 \end{align*}
 This induces a left adjoint to $q^{*}:D(S)\to D(T)$ for $D=\DAet(-,\Lambda),\SH(-)$.
 
 \begin{theorem}[Voevodsky, Ayoub]
-	A sheaf theory that satisfies:
-	\begin{itemize}
-		\item for $q$-smooth there is an adjoint pair $(q_\sharp,q^{*})$ with base change and the projection formula,
-		\item (Gluing) for all closed embeddings $i:Z\injto X$ and open embeddings $j:X\setminus Z\injto X$ the pair $(i^{*},j^{*})$ is conservative and $i_*$ is fully faithful,
-		\item $\Aff^{1}$-invariance and $\P^{1}$-stability
-	\end{itemize}
-	satisfies proper base change.
+A sheaf theory that satisfies:
+\begin{itemize}
+\item for $q$-smooth there is an adjoint pair $(q_\sharp,q^{*})$ with base change and the
+projection formula,
+\item (Gluing) for all closed embeddings $i:Z\injto X$ and open embeddings $j:X\setminus
+Z\injto X$ the pair $(i^{*},j^{*})$ is conservative and $i_*$ is fully faithful,
+\item $\Aff^{1}$-invariance and $\P^{1}$-stability
+\end{itemize}
+satisfies proper base change.
 \end{theorem}
-Note that the gluing axiom is a gluing theorem of Morel-Voevodsky, it uses smooth sites and at least Nisnevich descent. This type of sheaf theory is called a \defn{motivic sheaf theory} or a \defn{coefficient system}.
+Note that the gluing axiom is a gluing theorem of Morel-Voevodsky, it uses smooth sites
+and at least Nisnevich descent. This type of sheaf theory is called a \defn{motivic sheaf
+theory} or a \defn{coefficient system}.
 \begin{theorem}[Drew-Gallaver]
-	$\SH(-)$ is the initial motivic sheaf theory. $\DAet(-,\Lambda)$ is initial among those satisfing \'etale descent and (?)
+$\SH(-)$ is the initial motivic sheaf theory. $\DAet(-,\Lambda)$ is initial among those
+satisfing \'etale descent and (?)
 \end{theorem}
 (Something about the Drew-Tubach mixed module realization?)
 
 There are also good theories of:
 \begin{itemize}
-	\item constructibility and Verdier duality,
-	\item nearby and vanishing cycles.
+\item constructibility and Verdier duality,
+\item nearby and vanishing cycles.
 \end{itemize}
 
 \subsection{Motivic \texorpdfstring{$t$}{t}-structure conjecture and algebraic cycles}
 Let $D = \DAet(-,\Q) = \cat{DM}(-,\Q)$.
 \begin{definition}
-	Let $D$ be a triangulated category. A \defn{$t$-structure} is a pair $(D_{\ge 0}, D_{\le 0}$ of full subcategories with
-	\begin{enumerate}[1)]
-		\item $D_{\ge 0}, D_{\le 0}$  are replete (stable under isomorphisms),
-		\item $D_{\ge_0}[1]\subseteq D_{\ge 0}, D_{\le 0}[-1]\subseteq D_{\le 0}$,
-		\item $\Hom(D_{\ge 0}, D_{\le 0}[-1]) = 0$,
-		\item for all $X\in D$, there exists a distinguished triangle
-			\[
-			\begin{tikzcd}
-				\tau_{\ge 0}X \ar[r] & X \ar[r] & \tau_{<0}X \ar[r,"+"] & {}
-			\end{tikzcd}
-			\] 
-			where $\tau_{\ge 0}X\in D_{\ge 0}$ and $\tau_{<0}X\in D_{\le 0}[-1]$.
-	\end{enumerate}
-	Taking $D_{=0} = D_{\ge 0}\cap D_{\le 0}$ gives us the \defn{heart} which is an abelian category.
+Let $D$ be a triangulated category. A \defn{$t$-structure} is a pair $(D_{\ge 0}, D_{\le
+0}$ of full subcategories with
+\begin{enumerate}[1)]
+\item $D_{\ge 0}, D_{\le 0}$  are replete (stable under isomorphisms),
+\item $D_{\ge_0}[1]\subseteq D_{\ge 0}, D_{\le 0}[-1]\subseteq D_{\le 0}$,
+\item $\Hom(D_{\ge 0}, D_{\le 0}[-1]) = 0$,
+\item for all $X\in D$, there exists a distinguished triangle
+\[
+\begin{tikzcd}
+\tau_{\ge 0}X \ar[r] & X \ar[r] & \tau_{<0}X \ar[r,"+"] & {}
+\end{tikzcd}
+\]
+where $\tau_{\ge 0}X\in D_{\ge 0}$ and $\tau_{<0}X\in D_{\le 0}[-1]$.
+\end{enumerate}
+Taking $D_{=0} = D_{\ge 0}\cap D_{\le 0}$ gives us the \defn{heart} which is an abelian category.
 \end{definition}
 \begin{example}
-	Let
-	\[
-	D(A)_{\ge 0} = \left\{ K_\bullet \middle| \forall n<0, H_n(K_\bullet)=0 \right\} 
-	\] 
-	and similarly for $\le 0$. The heart is $A$.
+Let
+\[
+D(A)_{\ge 0} = \left\{ K_\bullet \middle| \forall n<0, H_n(K_\bullet)=0 \right\}
+\]
+and similarly for $\le 0$. The heart is $A$.
 \end{example}
 \begin{example}
-	Let
-	\[
-		\cat{hSptr}_{\ge 0} = \left\{ K_\bullet \middle| \forall n<0, \pi_n(K_\bullet)=0 \right\} 
-	\] 
-	similarly for $\le 0$ and the heart is $\cat{Ab}$.
+Let
+\[
+\cat{hSptr}_{\ge 0} = \left\{ K_\bullet \middle| \forall n<0, \pi_n(K_\bullet)=0 \right\}
+\]
+similarly for $\le 0$ and the heart is $\cat{Ab}$.
 \end{example}
 \begin{conjecture}[$T_k$]
-	Let $k$ be a field. There exists a $t$-structure on $\cat{DM}(k,\Q)$ such that
-	\begin{enumerate}[1)]
-		\item for all $l\neq \car(k)$, $R_l:\cat{DM}(k,\Q)\to D(\Q_l)$ is $t$-exact.
-		\item The $t$-structure restricts to $\cat{DM}_{\text{ct}}(k,\Q)$, define $\cat{MM}_{(d)}(k,\Q)$ to be the heart of $\cat{DM}_{(d)}(k,\Q)$.
-		\item $\cat{DM}_{\text{ct}}(k,\Q) \isoto D^{b}(\cat{MM}_{\text{ct}}(k,\Q))$.
-	\end{enumerate}
+Let $k$ be a field. There exists a $t$-structure on $\cat{DM}(k,\Q)$ such that
+\begin{enumerate}[1)]
+\item for all $l\neq \car(k)$, $R_l:\cat{DM}(k,\Q)\to D(\Q_l)$ is $t$-exact.
+\item The $t$-structure restricts to $\cat{DM}_{\text{ct}}(k,\Q)$, define
+$\cat{MM}_{(d)}(k,\Q)$ to be the heart of $\cat{DM}_{(d)}(k,\Q)$.
+\item $\cat{DM}_{\text{ct}}(k,\Q) \isoto D^{b}(\cat{MM}_{\text{ct}}(k,\Q))$.
+\end{enumerate}
 \end{conjecture}
 \begin{lemma}
-	($T_k$) implies $\cat{MM}_{\text{ct}}$ is a Tannakian category.
+($T_k$) implies $\cat{MM}_{\text{ct}}$ is a Tannakian category.
 \end{lemma}
-So $\cat{MM}_{\text{ct}}(k,\Q)$ is approximately isomorphic to $\Repf(G_\text{mot}(k))$, were $G_{\text{mot}}(k)$ is a pro-algebraic group over $\Q$, the ``motivic Galois group''.
+So $\cat{MM}_{\text{ct}}(k,\Q)$ is approximately isomorphic to $\Repf(G_\text{mot}(k))$,
+were $G_{\text{mot}}(k)$ is a pro-algebraic group over $\Q$, the ``motivic Galois group''.
 
 \begin{proposition}
-	Let $\sigma:k\injto \bb{C}$ be a field embedding. Then ($T_k$) is equivalent to the Nori realization functor
-	\[
-	R_{?} : ??
-	\] 
+Let $\sigma:k\injto \bb{C}$ be a field embedding. Then ($T_k$) is equivalent to the Nori
+realization functor
+\[
+R_{?} : ??
+\]
 \end{proposition}
 \begin{theorem}
-	($T_k$) implies
-	\begin{enumerate}[a)]
-		\item (Conservativity): $R_l:\cat{DM}_{\text{ct}}(k,\Q)\to D(\Q_l)$ is conservative.
-		\item ($\car k$) standard conjectures of Grothendieck on algebraic cycles up to homological equivalence on smooth projective varieties.
-		\item Bloch-Beilinson-Murre conjecture on filtrations of Chow groups of smooth projective varieties.
-		\item Beilinson-Soul\'e conjecture: Fix $X\in \Sm_k$, then
-			\[
-			\CH_{\text{mot}}^{q}(X,\Q(p)) = 0
-			\] 
-			for $q<0$. Call this statement ($BS_X$).
-	\end{enumerate}
+($T_k$) implies
+\begin{enumerate}[a)]
+\item (Conservativity): $R_l:\cat{DM}_{\text{ct}}(k,\Q)\to D(\Q_l)$ is conservative.
+\item ($\car k$) standard conjectures of Grothendieck on algebraic cycles up to
+homological equivalence on smooth projective varieties.
+\item Bloch-Beilinson-Murre conjecture on filtrations of Chow groups of smooth projective varieties.
+\item Beilinson-Soul\'e conjecture: Fix $X\in \Sm_k$, then
+\[
+\CH_{\text{mot}}^{q}(X,\Q(p)) = 0
+\]
+for $q<0$. Call this statement ($BS_X$).
+\end{enumerate}
 \end{theorem}
 \begin{theorem}[Levine]
-	If $X\in \Sm_k$, then ($BS_X$) implies the existence of a motivic $t$-structure on $\cat{DMT}_{\text{ct}}(X,k)$ (not satisfying property 3) in general.
+If $X\in \Sm_k$, then ($BS_X$) implies the existence of a motivic $t$-structure on
+$\cat{DMT}_{\text{ct}}(X,k)$ (not satisfying property 3) in general.
 \end{theorem}
 \begin{theorem}
-	($BS_X$) is a known when
-	\begin{enumerate}[1)]
-		\item $k$ is a number field, function field, finite field. The number field case is a difficult theorem of Borel, the function field was proven by Harder, and the finite field case by Quillen.
-		\item $M(X)\in \cat{DMT}(k)$ for $X=\Gm^{m}\times \Aff^{n}\times \P^{n}$.
-	\end{enumerate}
+($BS_X$) is a known when
+\begin{enumerate}[1)]
+\item $k$ is a number field, function field, finite field. The number field case is a
+difficult theorem of Borel, the function field was proven by Harder, and the finite field
+case by Quillen.
+\item $M(X)\in \cat{DMT}(k)$ for $X=\Gm^{m}\times \Aff^{n}\times \P^{n}$.
+\end{enumerate}
 \end{theorem}
 \begin{definition}
-	Let $i:Z\injto X$ be a closed embedding and $j:\injto X\setminus Z$ be the complementary open embedding. We say it is \defn{Whitney-Tate} if $i^{*}j_*\cat{DMT}(X\setminus Z)\subset \cat{DMT}(Z)$.
+Let $i:Z\injto X$ be a closed embedding and $j:\injto X\setminus Z$ be the complementary
+open embedding. We say it is \defn{Whitney-Tate} if $i^{*}j_*\cat{DMT}(X\setminus
+Z)\subset \cat{DMT}(Z)$.
 \end{definition}
 
 \end{document}
-
