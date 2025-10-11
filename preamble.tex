@@ -27,13 +27,13 @@
 \usepackage{microtype}
 
 \newtheoremstyle{ega-env-style}%
-  {}{}{\rmfamily}{}{\bfseries}{.}{ }{\thmnote{(#3)}}%
+{}{}{\rmfamily}{}{\bfseries}{.}{ }{\thmnote{(#3)}}%
 
 \newtheoremstyle{ega-thm-env-style}%
-  {}{}{\itshape}{}{\bfseries}{. --- }{ }{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%
+{}{}{\itshape}{}{\bfseries}{. --- }{ }{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%
 
 \newtheoremstyle{ega-defn-env-style}%
-  {}{}{\rmfamily}{}{\bfseries}{. --- }{ }{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%
+{}{}{\rmfamily}{}{\bfseries}{. --- }{ }{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%
 
 \theoremstyle{ega-env-style}
 \newtheorem*{env}{---}
@@ -63,12 +63,13 @@
 
 \makeatletter
 \def\l@subsection{\@tocline{2}{0pt}{2.5pc}{2.2pc}{}}
-\def\section{\@startsection{section}{1}%
-  \z@{.7\linespacing\@plus\linespacing}{.5\linespacing}%
-  {\normalfont\bfseries\Large\scshape\centering}}
+\def
+\section{\@startsection{section}{1}%
+	\z@{.7\linespacing\@plus\linespacing}{.5\linespacing}%
+{\normalfont\bfseries\Large\scshape\centering}}
 \renewcommand{\@seccntformat}[1]{%
-  \ifnum\pdfstrcmp{#1}{section}=0\textsection\fi%
-  \csname the#1\endcsname.~}
+	\ifnum\pdfstrcmp{#1}{section}=0\textsection\fi%
+\csname the#1\endcsname.~}
 \makeatother
 
 \def\mathcal{\mathscr}
