@@ -31,6 +31,8 @@
 \def\Repf{\cat{Rep}^{\text{f.d.}}}
 \def\hocolim{\operatorname{hocolim}}
 \def\Tot{\operatorname{Tot}}
+\def\Jac{\operatorname{Jac}}
+\def\rk{\operatorname{rk}}
 
 \usepackage[backend=biber,style=alphabetic,sorting=ynt]{biblatex}
 \addbibresource{bib.bib}
@@ -190,7 +192,7 @@ $D(\A)$ is defined as the localization of $\Ch(\A)$ by quasi-isomorphisms.
 \end{definition}
 
 Now we consider reflexive localizations\footnote{In \cite{htt} these localizations are
-simply called \textit{localizations}.}
+simply called \defn{localizations}.}
 (1-categorical ones lead to triangulated and
 $\infty$-categorical ones).
 \begin{definition}
@@ -255,7 +257,7 @@ $\kappa$ and a set $S\subset \cat{D}$ of $\kappa$-small objects which generate $
 \item $\cat{D}$ is \defn{compactly generated} if it is $\aleph_0$-presentable.
 \end{itemize}
 More generally, one defines compact objects as those whose covariant
-hom-functor commutes with \textit{filtered} colimits. When $\C$ is triangulated or
+hom-functor commutes with filtered colimits. When $\C$ is triangulated or
 stable, it is equivalent to the definition given above.
 with all filtered colimits.
 \end{definition}
@@ -308,7 +310,7 @@ which satisfies sproperties:
 C_*(U\cap V) \to C_*(U) \oplus C_*(V) \to C_*(X) \xrightarrow{\partial} C_*(U \cap  V)[1]
 .\]
 \item (\'Etale descent) Let $U\to X$ be \'etale surjective. The
-\textit{Čech nerve} $\check{C}_\bullet(U /X)$ of $U\to X$ is a simplicial scheme
+\defn{Čech nerve} $\check{C}_\bullet(U /X)$ of $U\to X$ is a simplicial scheme
 $\bb{\Delta}\op\to \Sch$ whose
 simplices are given by
 \[
@@ -317,7 +319,7 @@ simplices are given by
 and whose morphisms are induced by the universal property of fibre product.\\
 Composition with $C_*$ yields a simplicial complex of abelian groups
 \[C_*(\check{C}_\bullet(U /X))):\bb{\Delta}\op\to \Sch \xrightarrow{C_*} \Ch(\Z),\]
-and we consider the \textit{homotopy colimit}
+and we consider the \defn{homotopy colimit}
 \[ \hocolim C_*(\check{C}(U /X)). \]
 It can be explicitly constructed as follows: to the simplicial complex we can naturally
 associate a double complex of abelian groups
@@ -370,7 +372,7 @@ cycles/higher Chow groups and algebraic $K$-theory.
 Let $S$ be a qcqs scheme, $\Lambda$ be a coefficient ring. Define
 \[
 \begin{cases}
-D_{\PSh}(S) \defeq D(\PSh(\Sm_S,\Lambda)) \text{a presentable, symmetric monoidal,
+D_{\PSh}(S) \defeq D(\PSh(\Sm_S,\Lambda)) \text{ a presentable, symmetric monoidal,
 triangulated category}\\
 \Lambda[\cdot ]:\Sm_S \to D_{\PSh}(S)
 \end{cases}
@@ -383,14 +385,15 @@ D_{\text{\'et}}(S) &\defeq D(\Sh_{\text{\'et}}(\Sm_S,\Lambda)) \\
 where $W_{\text{\'et}}$ are \'etale-local weak equivalences, i.e. $(f:K_\bullet\to
 L_\bullet)\in W_{\text{\'et}}$ if for all $n$ we have
 \[
-(?)_{\text{\'et}}\CH_n(K_\bullet) \simto (?)_{\text{\'et}}\CH_n(L_\bullet).
+a_{\text{\'et}}\CH_n(K_\bullet) \simto a_{\text{\'et}}\CH_n(L_\bullet),
 \]
+and where $a_{\text{\'et}}$ is the étale sheafification functor.
 
 \emph{$\Aff^{1}$-invariance}
 Let
 \[
-I_{\Aff^{1},(\text{\'et})} = \{\dots\to 0\to \Lambda_{(\text{\'et})}[X\times \Aff^{1}]\to
-\Lambda_{(\text{\'et})}[X]\to 0\to \dots | X\in \Sm_S\} .
+I_{\Aff^{1},(\text{\'et})} = \left\{\cdots\to 0\to \Lambda_{(\text{\'et})}[X\times \Aff^{1}]\to
+\Lambda_{(\text{\'et})}[X]\to 0\to \cdots | X\in \Sm_S\right\} .
 \]
 Define
 \[
@@ -398,7 +401,7 @@ D_{\Aff^{1}}(S) \defeq D_{\PSh}(S) / \gen{I_{\Aff^{1}}} = D_{\PSh}(S)[W_{\Aff^{1
 \]
 We have
 \[
-L_{\Aff^{1}}: D_{\PSh}(S) \to D_{\PSh}(S)^{\Aff^{1}-\text{loc}} \injto D_{\PSh}(S).?
+L_{\Aff^{1}}: D_{\PSh}(S) \to D_{\PSh}(S)^{\Aff^{1}-\text{loc}} \injto D_{\PSh}(S).
 \]
 with the middle term isomorphic to $D_{\Aff^{1}}(S)$.
 
@@ -411,7 +414,7 @@ x_i-1 \right)  \right) \simeq \Aff_S^{n}
 then $\bb{\Delta}_{\text{alg},S}^{\bullet}$ is a cosimplicial scheme over $S$.
 \end{definition}
 \begin{definition}[Suslin-Voevodsky]
-Define
+Let $K_\bullet\in \Ch(\PSh(\Sm_S,\Lambda))$, we define
 \[
 \Sing^{\Aff^{1}}(K_\bullet) = \hocolim_{\bb{\Delta}\op}
 K_\bullet(\bb{\Delta}_{\text{alg},S}^{\bullet}\times_S X)
@@ -420,7 +423,7 @@ K_\bullet(\bb{\Delta}_{\text{alg},S}^{\bullet}\times_S X)
 \begin{example}
 Let $F\in \PSh$ then
 \[
-\Sing^{\Aff^{1}}(F)(U) = \left[ \dots \to  F(\bb{\Delta}^2\times U)\to F(\Aff^{(?)}\times
+\Sing^{\Aff^{1}}(F)(U) = \left[ \dots \to  F(\bb{\Delta}^2\times U)\to F(\Aff^1\times
 U) \xrightarrow{i_0^{*}-i_1^{*}}  F(U) \to 0 \right] .
 \] 	
 \end{example}
@@ -450,8 +453,8 @@ Write $L_{\text{mot}}^{\text{eff}}$ for the associated localization functor.
 \begin{lemma}
 We have
 \[
-L_{\text{mot}}^{\text{eff}} = \underbrace{\dots
-\Sing^{\Aff^{1}}L_{\text{\'et}}\Sing^{\Aff^{1}}}_{\text{transfinie composition\dots}}
+L_{\text{mot}}^{\text{eff}} = \underbrace{\cdots
+\Sing^{\Aff^{1}}L_{\text{\'et}}\Sing^{\Aff^{1}}}_{\text{transfinite composition}}
 \]
 \end{lemma}
 \begin{definition}
@@ -460,7 +463,11 @@ Let $X\in \Sm_S$. Define
 M_S^{\text{\'et},\text{eff}}(X) \defeq
 L_{\text{mot}}^{\text{eff}}\Lambda_{\text{\'et}}[X]\in \cat{DA}^{\text{eff},\text{\'et}}(S,\Lambda)
 \]
-(effecive \'etale (? homological) motive/motivic sheaf of ?).
+(effective \'etale (relative homological) motive/motivic sheaf of $X/S$).\\
+Here $\Lambda_{\text{\text{ét}}}$ is given by the composition
+\[ \Sm_S\xrightarrow{\Lambda[-]}
+\PSh(\Sm_S,\Lambda)\xrightarrow{a_{\text{ét}}}\Sh(\Sm_S,\Lambda). \]
+
 \end{definition}
 We have
 \[
@@ -481,7 +488,7 @@ We have the short-exact sequence
 0 \ar[r] & \Lambda / p\Lambda \ar[r] & \Ga \otimes \Lambda \ar[r,"\Fr-\id"] & \Ga \ar[r] & 0
 \end{tikzcd}
 \]
-and hence an exact sequence
+and hence an exact sequence % NOTE: I'm confused as to where does this come from
 \[
 \begin{tikzcd}
 \Lambda_{\text{\'et}}[\Ga] \otimes(\Ga\otimes \Lambda) \ar[r,"a_{\Ga}\otimes \id"] &
@@ -494,7 +501,7 @@ L_{\Aff^{1}}(\Ga\otimes\Lambda) \isoto \Lambda(0)
 \]
 and so
 \[
-L_{\text{mot}}^{\text{eff}}(\Gamma /p\Gamma) = 0.
+L_{\text{mot}}^{\text{eff}}(\Lambda /p\Lambda) = 0.
 \]
 \end{proof}
 
@@ -507,12 +514,12 @@ We define
 \[
 T \defeq M_S^{\text{eff}}(\P^{1},1)[-2]
 \]
-which is equal to $\Lambda(?).$
+which is equal to $\Lambda(1).$
 \end{definition}
 \begin{exercise}
 Any $x\in \P^{1}_S(S)$ gives the same decomposition.
 \end{exercise}
-We have a problem: $T$ is not $\oplus$-invertible.
+We have a problem: $T$ is not $\otimes$-invertible.
 
 \begin{definition}
 The category of \'etale motivic sheaves over $S$ is
@@ -526,11 +533,15 @@ clear what this means!
 \emph{Spectra:}
 \begin{definition}
 Let $\C$ be a closed, symmetric monoidal 1-category and $T$ be an object of $\C$. A
-\defn{$T$-prespectrum} is
+\defn{$T$-prespectrum} $A$ is given by the following datum:
 \[
 A = \left\{ (A_n,\sigma_n)_{n\in \N} | A_n\in \C, \sigma_n:T\otimes A_n\to A_{n+1} \right\} .
 \]
-$A$ is a \defn{$T$-spectrum} if for all $n\in N$
+By the adjunction $\otimes\dashv\iHom$ and the fact that for each object $A\in\C$ we have
+$A\isoto \iHom(\mathbb{1},A)$, the datum of the maps $\sigma_n$ is equivalent to the datum of maps
+\[ A_n \to \iHom(T,A_{n+1}). \]
+
+$A$ is a \defn{$T$-spectrum} if for all $n\in N$ these maps are isomorphisms:
 \[
 A_n \simto \iHom(T,A_{n+1}).
 \]
@@ -540,7 +551,7 @@ The evaluation map
 \[
 \Ev_n(A) = A_n
 \]
-has a left adjoint. We define
+has a left adjoint $\Sigma_T^\infty$. To define it, put
 \[
 \Sus^{n}(A)_m =
 \begin{cases}
@@ -551,7 +562,9 @@ T^{\otimes (m-n)}\otimes A & \text{if }m>n
 and $\Sigma_T^{\infty}\defeq \Sus^{0}$ is the $\infty$-suspension functor.
 
 \begin{proposition}
-Assume $\C$ is presentably, symmetrical monoidal. Then $\Sp_T(\C)\subset \PSp_T(\C)$ is a
+Assume $\C$ is presentably symmetrical monoidal\footnote{i.e., it is presentable
+symmetric monoidal and the tensor product bifunctor $-\otimes-:\C\times\C\to\C$ preserves
+colimits separately in each variable.}. Then $\Sp_T(\C)\subset \PSp_T(\C)$ is a
 reflexive subcategory. $W_{\text{st}}$ is generated by
 \[
 \left\{ \Sus^{n+1}(T\otimes A) \to \Sus^{n}(A):n\in \N,A\in \C \right\} .
@@ -571,10 +584,10 @@ X &\longmapsto L_{(\Aff^{1},\text{\'et},?}\Sigma_T^{\infty}M_S^{\text{\'et},\tex
 .
 \end{align*}
 \begin{remark}
-$M\in \DAet(S,\Lambda)$ is isomotphic to a stable $(\Aff^{1},\text{\'et})$-local (??)
+$M\in \DAet(S,\Lambda)$ is isomorphic to a stable $(\Aff^{1},\text{\'et})$-local $\P^1$-prespectrum
 \[
-K_n\in \Ch(\Sh_{\text{\'et}}(\Sm_S,\Lambda)) + \sigma_n =
-\Lambda_{\text{\'et}}[\P^{1},1]\otimes K_n\to K_{n+1}
+\left\{K_n\in \Ch(\Sh_{\text{\'et}}(\Sm_S,\Lambda))\ ;\ \sigma_n =
+\Lambda_{\text{\'et}}[\P^{1},1]\otimes K_n\to K_{n+1}\right\}
 \]
 such that for all $X\in \Sm_S,i \in \Z$
 \begin{itemize}
@@ -585,7 +598,8 @@ such that for all $X\in \Sm_S,i \in \Z$
 
 \subsection{Constructible motivic sheaves}
 \begin{definition}
-We define \defn{constructible motivic sheaves}
+We define \defn{constructible motivic sheaves} %NOTE: What does <>^{d.f.} mean? The full
+% subcategory of? Or the subcategory generated by colimits of the indicated objects?
 \begin{align*}
 \DAet_{\text{ct}} &= \left<M_S(X)(-n)|X\in \Sm_S,n\in \N \right>^{\text{d.f.}} \\
 &\subset \DAet(S,\Lambda).
@@ -621,7 +635,7 @@ for the inclusion, then we get
 \iota_S^{*}:D_{\text{\'et}}(S,\Lambda) \to \DAet(S,\Lambda).
 \]
 \begin{theorem}[Ayoub]
-Let $S$ be an excellent, Noetherian, finite dimensional, $\Lambda$-finite, with any prime
+Let $S$ be an excellent, Noetherian, finite dimensional, $\Lambda$-finite scheme, with any prime
 invertible in $\Lambda$ or $\OO_S$. Then $\iota_S^{*}$ is an equivalence.
 \end{theorem}
 
@@ -636,14 +650,17 @@ simplicial sets or $\infty$-groupoids.
 \begin{definition}
 The \defn{stable motivic homotopy category} over $S$ is
 \[
-\SH(S) \defeq \PSp_T(\PSh(\Sm_S,\cat{sSet}))[W^{-1}_{(\Aff^{1},\text{Nis},\P^{1})}].
+\SH(S) \defeq
+\PSp_T\left(\PSh(\Sm_S,\cat{sSet})\right)\left[W^{-1}_{(\Aff^{1},\text{Nis},\P^{1})}\right].
 \]
 \end{definition}
 Recall that the Nisnevich topology is between the Zariski and \'etale topologies.
 $\DAet(S)$ is the motivic version of $D(S\an,\Z)$ and $\SH(S)$ is the motivic version of
-sheaves of $S^{?}$-spectra on $S\an$. There is also $\cat{DM}(S,\Lambda)$ which are the
+sheaves of $S^1$-spectra on $S\an$. % NOTE: I think here is $S^1$, in the sense of the
+% topological sphere, but I'm not sure.
+There is also $\cat{DM}(S,\Lambda)$ which are the
 Nisnevich-local motivic sheaves. Many important invariants of varieties only satisfy
-Nisnevich descent, but not \'etale descent; for example, $K$-theory or higher chow groups.
+Nisnevich descent, but not \'etale descent; for example, $K$-theory or higher Chow groups.
 
 \section{Motives over a field}
 Let $S=\Spec(k)$ and $\Lambda=\Q$. Define
@@ -718,7 +735,8 @@ M(X)^{\vee} \isoto M_{\text{BM}}(X)\left<-d \right> \\
 M^{\text{coh}}(X)^{\vee} \isoto M^{\text{coh}}(X)\left<d \right>.
 \end{cases}
 \]
-(??)
+If $M\in\cat{DM}(k)$, then $M$ is dualizable if and only if it is constructible, if and
+only if it is compact.
 
 \subsection{Motivic cohomology and algebraic cycles}
 \begin{definition}
@@ -737,7 +755,7 @@ For $X\in \Sch_k^{\text{ft,sep}}$ define
 \begin{lemma}
 We have
 \[
-M_S^{\text{eff}}(\Gm) \isoto \Lambda(0) \oplus \Lambda(1)[1].?
+M_S^{\text{eff}}(\Gm) \isoto \Lambda(0) \oplus \Lambda(1)[1].
 \]
 \end{lemma}
 \begin{proof}
@@ -782,9 +800,10 @@ Let $X\in \Sch_k^{\text{ft}}$ define
 \]
 generated by integral subvarieties of dimension $n$ which intersect all faces properly.
 \end{definition}
-(Picture) We get $d:\kz_n(X,r)\to \kz_{n-1}(X,r-1)$ so $\kz_n(X,\bullet)$ is a
-\emph{Bloch cycle complex}.
-(??)
+(Picture) We get $d:\kz_n(X,r)\to \kz_{n-1}(X,r-1)$ so $\kz_n(X,\bullet)$ is a chain
+complex, called \emph{Bloch cycle complex}. We define the higher Chow groups as the
+homology of this chain complex:
+\[ \Chow_n(X,r)\defeq \CH_r(\kz_n(X,\bullet)). \]
 
 \begin{theorem}[Voevodsky+\dots]
 Let $k$ be perfect, $X\in \Sch_k^{\text{ft,sep}}$ then
@@ -797,7 +816,15 @@ If $X\in \Sm_k$ then
 \CH_{\text{mot}}^{2n,n}(X) &\isoto \Chow^{n}(X,\Lambda).
 \end{align*}
 \end{theorem}
-(??)
+
+\begin{corollary}
+\[ \CH_{\text{mot}}^{p,q}=0\quad \text{if }
+\begin{cases}
+p>2q\\
+q>\min\{p,\dim X\}
+\end{cases} \]
+
+\end{corollary}
 
 \subsection{Examples (Tate)}
 \begin{definition}
@@ -843,18 +870,19 @@ where $m_j$ is the number of cells of codimension $j$.
 M(G /B) \isoto \bigoplus_{i\ge 0}\Lambda\left<i \right>^{n_i}
 \]
 where $n_i$ is the number of $w\in W$ of length $i$.
-\item Let $X$ be quasiprojective and smooth (??)
+\item Let $X$ be quasiprojective and smooth, with a (right?) action of $G$ such that
+$\forall x\in X$, $\lim_{t\to 0} tx$ exists. Then (??) % TODO
 \end{enumerate}
 \end{example}
 \subsubsection{Reductive groups}
 \begin{theorem}[Biglami]
 If $G$ is split reductive, then
 \[
-M(G) \isoto \Sym^{*}\left( \bigoplus_{i\ge 1}\Lambda(i)[2?-i]^{\oplus n_i} \right)
+M(G) \isoto \Sym^{*}\left( \bigoplus_{i\ge 1}\Lambda(i)[2?-i]^{\oplus n_i} \right) % TODO
 \]
 so by Chevalley
 \[
-R[\kg]^{G} = k[q_1,\dots,q_{?}]
+R[\kg]^{G} = k[q_1,\dots,q_{\rk G}
 \]
 where $\deg q_j = d_j$ and $n_i$ is the number of $j$ such that $d_j=i$.
 \end{theorem}
@@ -863,7 +891,7 @@ We have
 \begin{align*}
 M(\GL_n) &= \Sym^{*}\left( \Lambda(1)[1] \oplus \Lambda(2)[3]\oplus \dots\oplus
 \Lambda(n)[2n-1] \right)  \\
-M(\SL_n) &= \times  (??)
+M(\SL_n) &= \times  (??) % TODO
 \end{align*}
 \end{example}
 \begin{exercise}
@@ -887,9 +915,13 @@ M_1(G) \defeq \Sigma_T^{\infty}(G\otimes \Q) \in \cat{DM}(k,G).
 \]
 Then
 \[
-M(G) \isoto \left( \bigoplus_{i=0}^{?}\Sym_i(M_1(G)) \right) \otimes M(?).
+M(G) \isoto \left( \bigoplus_{i=0}^{?}\Sym_i(M_1(G)) \right) \otimes M(\pi_0(G/R)]). % TODO
 \]
 \end{theorem}
+
+\begin{example}
+\[ M_1(C)=M_1(\Jac(C)) \]
+\end{example}
 
 \section{Six functor formalism}
 \subsection{Betti sheaves}
