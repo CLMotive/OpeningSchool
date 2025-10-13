@@ -29,6 +29,11 @@
 \def\1b{\mathbb{1}}
 \def\car{\operatorname{char}}
 \def\Repf{\cat{Rep}^{\text{f.d.}}}
+\def\hocolim{\operatorname{hocolim}}
+\def\Tot{\operatorname{Tot}}
+
+\usepackage[backend=biber,style=alphabetic,sorting=ynt]{biblatex}
+\addbibresource{bib.bib}
 
 \title{Motivic Sheaves}
 \author{Lecturer: Simon Pepin Lehalleur,\quad Typesetter: Micha{\l} Mruga{\l}a}
@@ -52,15 +57,16 @@
 \emph{Answer:}
 \begin{enumerate}[1)]
 \item Find interesting actions.
-\item Linearlize them.
+\item Linearize them.
 \end{enumerate}
 
 \begin{example}
 Let $K$ be a compact Lie group. The action of $K$ on itself gives us an action of $K$ on
-$L^2(K)$ with respect to a Haar measure. The Peter-Weyl theorem says that
+$L^2(K,\text{Haar})$ with respect to a Haar measure. The Peter-Weyl theorem says that
 \[
-	L^2(K) \isoto \cbigoplus_{\pi\text{ unitary}}\pi^{\oplus dim(\pi)}.
+	L^2(K,\text{Haar}) \isoto \cbigoplus_{\pi\text{ unitary}}\pi^{\oplus dim(\pi)}.
 \]
+
 ``Lie theory $\subset $ algebraic geometry''. Reductive groups are algebraic groups with
 many associated varieties with group actions: flag varieties\dots
 \end{example}
@@ -121,7 +127,7 @@ Motivic sheaves will give us a unified perspective.
 
 \emph{Motivic dream:} There should exist universal cohomology/sheaf theories such that
 \begin{enumerate}[1)]
-\item they unify and ``explain'' the special stracture in cohomology/sheaves;
+\item they unify and ``explain'' the special structure in cohomology/sheaves;
 \item they are of algebro-geometric nature;
 \item they ``explain'' the realization of algebraic cycles and algebraic $K$-theory.
 \end{enumerate}
@@ -130,7 +136,7 @@ Motivic sheaves will give us a unified perspective.
 (Morel-Voevodsky)}
 \subsection{Triangulated categories and localization}
 \begin{definition}
-A \defn{triangulated category} is the data:
+A \defn{triangulated category} is the data of:
 \begin{itemize}
 \item an additive category $\C$,
 \item an automorphism $\Sigma=(-)[1]:\C\simto \C$,
@@ -159,6 +165,13 @@ The data satisfies the following conditions:
 \end{itemize}
 \end{definition}
 
+\begin{remark}
+In modern language triangulated categories are replaced by stable $\infty$-categories. If
+$\C$ is a stable $\infty$-category, the homotopy category $h\C$ has a canonical structure
+of triangulated category. The reader who is familiar with this language can assume all
+triangulated categories to be stable $\infty$-categories with minimal changes.
+\end{remark}
+
 \begin{example}
 Let $\A$ be an abelian category, $\Ch(\A)$ be the abelian category of chain complexes in
 $\A$. We define $(A[1])_n = A_{n-1}$. Given $f:A_\bullet\to B_\bullet$ the maping cone is given by
@@ -176,12 +189,15 @@ $H_n(A_\bullet)\simeq H_n(B_\bullet)$ is an isomorphism.
 $D(\A)$ is defined as the localization of $\Ch(\A)$ by quasi-isomorphisms.
 \end{definition}
 
-Now we consider reflexive localizations (1-categorical ones lead to triangulated and
+Now we consider reflexive localizations\footnote{In \cite{htt} these localizations are
+simply called \textit{localizations}.}
+(1-categorical ones lead to triangulated and
 $\infty$-categorical ones).
 \begin{definition}
-Let $\C$ be a 1-category.
+Let $\C$ be a category (1 or $\infty$).
 \begin{enumerate}[1)]
-\item $\C'\subset \C$ is \defn{reflexive} if $\iota:\C'\to \C$ has a left adjoint.
+\item A full subcategory $\C'\subset \C$ is \defn{reflexive} if $\iota:\C'\to \C$ has a
+left adjoint.
 \item $L_W:\C\to \C[W^{-1}]$ is \defn{reflexive} if $L_W$ has a right adjoint.
 \end{enumerate}
 \end{definition}
@@ -212,7 +228,7 @@ Let $S\subset \C$ be a collection of morphisms.
 \end{enumerate}
 \end{definition}
 \begin{lemma}
-If $L:\C \rightleftarrows \C':\iota$ is a reflexive localizaton, $W_L$ as before, then
+If $L:\C \rightleftarrows \C':\iota$ is a reflexive localization, $W_L$ as before, then
 \begin{itemize}
 \item $\iota$ gives an isomorphism between $\C'$ and $W_L$-local objects.
 \item $W_L$ are the $W_L$-equivalences.
@@ -238,6 +254,10 @@ $\kappa$ and a set $S\subset \cat{D}$ of $\kappa$-small objects which generate $
 .\]
 \item $\cat{D}$ is \defn{compactly generated} if it is $\aleph_0$-presentable.
 \end{itemize}
+More generally, one defines compact objects as those whose covariant
+hom-functor commutes with \textit{filtered} colimits. When $\C$ is triangulated or
+stable, it is equivalent to the definition given above.
+with all filtered colimits.
 \end{definition}
 
 \begin{definition}
@@ -254,6 +274,7 @@ Let $\cat{D},\cat{D}'$ be triangulated categories with all coproducts, $F:\cat{D
 \cat{D}'$ be a triangulated functor and $\cat{D}$ be presentable. Then $F$ admits a right
 adjoint if and only if $F$ preserves all coproducts.
 \end{theorem}
+
 \begin{corollary}[Verdier Localization]
 Let $\cat{D}$ be a presentable category and $\cat{E}$ be a localizing subcategory. Define
 \[
@@ -286,28 +307,40 @@ which satisfies sproperties:
 \[
 C_*(U\cap V) \to C_*(U) \oplus C_*(V) \to C_*(X) \xrightarrow{\partial} C_*(U \cap  V)[1]
 .\]
-\item (\'Etale descent) Let $U\to X$ be \'etale surjective. Define
+\item (\'Etale descent) Let $U\to X$ be \'etale surjective. The
+\textit{Čech nerve} $\check{C}_\bullet(U /X)$ of $U\to X$ is a simplicial scheme
+$\bb{\Delta}\op\to \Sch$ whose
+simplices are given by
 \[
-\check{C}_n(U /X) = U^{n+1}
-.\]
-Then $\check{C}_\bullet(U /X)$ is a simplicial scheme, so $C_*(\check{C}_\bullet(U /X))$
-is a simplicial complex of abelian groups and $C(C_*(\check{C}_\bullet(U /X)))$ is a
-double complex. (??)
-
+\check{C}_n(U /X) = U^{\times_X n+1}
+\]
+and whose morphisms are induced by the universal property of fibre product.\\
+Composition with $C_*$ yields a simplicial complex of abelian groups
+\[C_*(\check{C}_\bullet(U /X))):\bb{\Delta}\op\to \Sch \xrightarrow{C_*} \Ch(\Z),\]
+and we consider the \textit{homotopy colimit}
+\[ \hocolim C_*(\check{C}(U /X)). \]
+It can be explicitly constructed as follows: to the simplicial complex we can naturally
+associate a double complex of abelian groups
+$C(C_*(\check{C}_\bullet(U /X)))$, and then we have
+\[ \hocolim C_*(\check{C}(U /X))\isoto \Tot^{\oplus} C(C_*(\check{C}_\bullet(U /X))). \]
+Then the canonical map
+\[  \hocolim C_*(\check{C}(U /X))\to C_*(U /X)  \]
+is a quasi-isomorphism of chain complexes.\\
+% NOTE: something here is missing
 Concretely we have a descent spectral sequence which gives us ($U=U \cup V$) Mayer Vietoris.
-\item ($\P^{1}$-stabilization)
+\item ($\P^{1}$-stabilization) We have
 \begin{align*}
 C_*(\P_{\bb{C}}^{1}) &\simeq C_*(\text{pt}) \oplus \wt{C}_*(\P_{\bb{C}}^{1}) \\
 &\simeq \Z[0] \oplus \Z(1)[2]
-.
+,
 \end{align*}
-$\Z(1)$ is $\oplus$-invertible.
+and $\Z(1)\isoto \Z$ is $\oplus$-invertible.
 \end{enumerate}
 Smooth varieties play a special role:
 \begin{itemize}
 \item Poincar\'e duality
 \item Gysin sequences
-\item $C_*(-)$ also satisfies ``$h$-descent'', so $C_*(-)$ is ``determined'' by $C_*(-)_{|(?)}$.
+\item $C_*(-)$ also satisfies ``$h$-descent'', so $C_*(-)$ is ``determined'' by $C_*(-)_{|\Sm}$.
 \end{itemize}
 There is an associated sheaf theory:
 \[
@@ -332,7 +365,7 @@ packaged into the six-functor formalism. The result is closely related to algebr
 cycles/higher Chow groups and algebraic $K$-theory.
 
 \marginpar{Lecture 2}
-(Fill in $H_*$ frmo the recall part)
+(Fill in $H_*$ from the recall part)
 
 Let $S$ be a qcqs scheme, $\Lambda$ be a coefficient ring. Define
 \[
@@ -1302,5 +1335,7 @@ Let $i:Z\injto X$ be a closed embedding and $j:\injto X\setminus Z$ be the compl
 open embedding. We say it is \defn{Whitney-Tate} if $i^{*}j_*\cat{DMT}(X\setminus
 Z)\subset \cat{DMT}(Z)$.
 \end{definition}
+
+\printbibliography
 
 \end{document}
