@@ -29,6 +29,14 @@
 \def\1b{\mathbb{1}}
 \def\car{\operatorname{char}}
 \def\Repf{\cat{Rep}^{\text{f.d.}}}
+\def\hocolim{\operatorname{hocolim}}
+\def\Tot{\operatorname{Tot}}
+\def\Jac{\operatorname{Jac}}
+\def\rk{\operatorname{rk}}
+\def\NM{\operatorname{NM}}
+
+\usepackage[backend=biber,style=alphabetic,sorting=ynt]{biblatex}
+\addbibresource{bib.bib}
 
 \title{Motivic Sheaves}
 \author{Lecturer: Simon Pepin Lehalleur,\quad Typesetter: Micha{\l} Mruga{\l}a}
@@ -52,15 +60,16 @@
 \emph{Answer:}
 \begin{enumerate}[1)]
 \item Find interesting actions.
-\item Linearlize them.
+\item Linearize them.
 \end{enumerate}
 
 \begin{example}
 Let $K$ be a compact Lie group. The action of $K$ on itself gives us an action of $K$ on
-$L^2(K)$ with respect to a Haar measure. The Peter-Weyl theorem says that
+$L^2(K,\text{Haar})$ with respect to a Haar measure. The Peter-Weyl theorem says that
 \[
-	L^2(K) \isoto \cbigoplus_{\pi\text{ unitary}}\pi^{\oplus dim(\pi)}.
+	L^2(K,\text{Haar}) \isoto \cbigoplus_{\pi\text{ unitary}}\pi^{\oplus dim(\pi)}.
 \]
+
 ``Lie theory $\subset $ algebraic geometry''. Reductive groups are algebraic groups with
 many associated varieties with group actions: flag varieties\dots
 \end{example}
@@ -121,7 +130,7 @@ Motivic sheaves will give us a unified perspective.
 
 \emph{Motivic dream:} There should exist universal cohomology/sheaf theories such that
 \begin{enumerate}[1)]
-\item they unify and ``explain'' the special stracture in cohomology/sheaves;
+\item they unify and ``explain'' the special structure in cohomology/sheaves;
 \item they are of algebro-geometric nature;
 \item they ``explain'' the realization of algebraic cycles and algebraic $K$-theory.
 \end{enumerate}
@@ -130,7 +139,7 @@ Motivic sheaves will give us a unified perspective.
 (Morel-Voevodsky)}
 \subsection{Triangulated categories and localization}
 \begin{definition}
-A \defn{triangulated category} is the data:
+A \defn{triangulated category} is the data of:
 \begin{itemize}
 \item an additive category $\C$,
 \item an automorphism $\Sigma=(-)[1]:\C\simto \C$,
@@ -159,6 +168,13 @@ The data satisfies the following conditions:
 \end{itemize}
 \end{definition}
 
+\begin{remark}
+In modern language triangulated categories are replaced by stable $\infty$-categories. If
+$\C$ is a stable $\infty$-category, the homotopy category $h\C$ has a canonical structure
+of triangulated category. The reader who is familiar with this language can assume all
+triangulated categories to be stable $\infty$-categories with minimal changes.
+\end{remark}
+
 \begin{example}
 Let $\A$ be an abelian category, $\Ch(\A)$ be the abelian category of chain complexes in
 $\A$. We define $(A[1])_n = A_{n-1}$. Given $f:A_\bullet\to B_\bullet$ the maping cone is given by
@@ -176,12 +192,15 @@ $H_n(A_\bullet)\simeq H_n(B_\bullet)$ is an isomorphism.
 $D(\A)$ is defined as the localization of $\Ch(\A)$ by quasi-isomorphisms.
 \end{definition}
 
-Now we consider reflexive localizations (1-categorical ones lead to triangulated and
+Now we consider reflexive localizations\footnote{In \cite{htt} these localizations are
+simply called \defn{localizations}.}
+(1-categorical ones lead to triangulated and
 $\infty$-categorical ones).
 \begin{definition}
-Let $\C$ be a 1-category.
+Let $\C$ be a category (1 or $\infty$).
 \begin{enumerate}[1)]
-\item $\C'\subset \C$ is \defn{reflexive} if $\iota:\C'\to \C$ has a left adjoint.
+\item A full subcategory $\C'\subset \C$ is \defn{reflexive} if $\iota:\C'\to \C$ has a
+left adjoint.
 \item $L_W:\C\to \C[W^{-1}]$ is \defn{reflexive} if $L_W$ has a right adjoint.
 \end{enumerate}
 \end{definition}
@@ -212,14 +231,14 @@ Let $S\subset \C$ be a collection of morphisms.
 \end{enumerate}
 \end{definition}
 \begin{lemma}
-If $L:\C \rightleftarrows \C':\iota$ is a reflexive localizaton, $W_L$ as before, then
+If $L:\C \rightleftarrows \C':\iota$ is a reflexive localization, $W_L$ as before, then
 \begin{itemize}
 \item $\iota$ gives an isomorphism between $\C'$ and $W_L$-local objects.
 \item $W_L$ are the $W_L$-equivalences.
 \end{itemize}
 \end{lemma}
 \begin{definition}
-Let $\cat{D}$ be a triangulated category with all small products.
+Let $\cat{D}$ be a triangulated category with all small coproducts.
 \begin{itemize}
 \item Let $\kappa$ be a regular cardinal (for example $\kappa=\aleph_0$). Then $A\in
 \cat{D}$ is \defn{$\kappa$-small}/\defn{$\kappa$-compact} if and only if
@@ -240,6 +259,15 @@ $\kappa$ and a set $S\subset \cat{D}$ of $\kappa$-small objects which generate $
 \end{itemize}
 \end{definition}
 
+\begin{remark}
+More generally, one defines compact objects as those whose covariant
+hom-functor commutes with filtered colimits. When $\C$ is triangulated or
+stable, it is equivalent to the definition given above.\\
+The $\infty$-category of presentable $\infty$-categories, with colimit-preserving (and
+hence left-adjoint) functors, is denoted $\PrL$; it admits a closed symmetric monoidal
+structure. See \cite[\S 5.5]{htt}.
+\end{remark}
+
 \begin{definition}
 $\cat{E}\subset \cat{D}$ is \defn{localizing} if it is
 \begin{itemize}
@@ -254,6 +282,7 @@ Let $\cat{D},\cat{D}'$ be triangulated categories with all coproducts, $F:\cat{D
 \cat{D}'$ be a triangulated functor and $\cat{D}$ be presentable. Then $F$ admits a right
 adjoint if and only if $F$ preserves all coproducts.
 \end{theorem}
+
 \begin{corollary}[Verdier Localization]
 Let $\cat{D}$ be a presentable category and $\cat{E}$ be a localizing subcategory. Define
 \[
@@ -286,28 +315,40 @@ which satisfies sproperties:
 \[
 C_*(U\cap V) \to C_*(U) \oplus C_*(V) \to C_*(X) \xrightarrow{\partial} C_*(U \cap  V)[1]
 .\]
-\item (\'Etale descent) Let $U\to X$ be \'etale surjective. Define
+\item (\'Etale descent) Let $U\to X$ be \'etale surjective. The
+\defn{Čech nerve} $\check{C}_\bullet(U /X)$ of $U\to X$ is a simplicial scheme
+$\bb{\Delta}\op\to \Sch$ whose
+simplices are given by
 \[
-\check{C}_n(U /X) = U^{n+1}
-.\]
-Then $\check{C}_\bullet(U /X)$ is a simplicial scheme, so $C_*(\check{C}_\bullet(U /X))$
-is a simplicial complex of abelian groups and $C(C_*(\check{C}_\bullet(U /X)))$ is a
-double complex. (??)
-
+\check{C}_n(U /X) = U^{\times_X n+1}
+\]
+and whose morphisms are induced by the universal property of fibre product.\\
+Composition with $C_*$ yields a simplicial complex of abelian groups
+\[C_*(\check{C}_\bullet(U /X))):\bb{\Delta}\op\to \Sch \xrightarrow{C_*} \Ch(\Z),\]
+and we consider the \defn{homotopy colimit}
+\[ \hocolim C_*(\check{C}(U /X)). \]
+It can be explicitly constructed as follows: to the simplicial complex we can naturally
+associate a double complex of abelian groups
+$C(C_*(\check{C}_\bullet(U /X)))$, and then we have
+\[ \hocolim C_*(\check{C}(U /X))\isoto \Tot^{\oplus} C(C_*(\check{C}_\bullet(U /X))). \]
+Then the canonical map
+\[  \hocolim C_*(\check{C}(U /X))\to C_*(U /X)  \]
+is a quasi-isomorphism of chain complexes.\\
+% NOTE: something here is missing
 Concretely we have a descent spectral sequence which gives us ($U=U \cup V$) Mayer Vietoris.
-\item ($\P^{1}$-stabilization)
+\item ($\P^{1}$-stabilization) We have
 \begin{align*}
 C_*(\P_{\bb{C}}^{1}) &\simeq C_*(\text{pt}) \oplus \wt{C}_*(\P_{\bb{C}}^{1}) \\
 &\simeq \Z[0] \oplus \Z(1)[2]
-.
+,
 \end{align*}
-$\Z(1)$ is $\oplus$-invertible.
+and $\Z(1)\isoto \Z$ is $\oplus$-invertible.
 \end{enumerate}
 Smooth varieties play a special role:
 \begin{itemize}
 \item Poincar\'e duality
 \item Gysin sequences
-\item $C_*(-)$ also satisfies ``$h$-descent'', so $C_*(-)$ is ``determined'' by $C_*(-)_{|(?)}$.
+\item $C_*(-)$ also satisfies ``$h$-descent'', so $C_*(-)$ is ``determined'' by $C_*(-)_{|\Sm}$.
 \end{itemize}
 There is an associated sheaf theory:
 \[
@@ -332,12 +373,12 @@ packaged into the six-functor formalism. The result is closely related to algebr
 cycles/higher Chow groups and algebraic $K$-theory.
 
 \marginpar{Lecture 2}
-(Fill in $H_*$ frmo the recall part)
+(Fill in $H_*$ from the recall part)
 
 Let $S$ be a qcqs scheme, $\Lambda$ be a coefficient ring. Define
 \[
 \begin{cases}
-D_{\PSh}(S) \defeq D(\PSh(\Sm_S,\Lambda)) \text{a presentable, symmetric monoidal,
+D_{\PSh}(S) \defeq D(\PSh(\Sm_S,\Lambda)) \text{ a presentable, symmetric monoidal,
 triangulated category}\\
 \Lambda[\cdot ]:\Sm_S \to D_{\PSh}(S)
 \end{cases}
@@ -350,14 +391,15 @@ D_{\text{\'et}}(S) &\defeq D(\Sh_{\text{\'et}}(\Sm_S,\Lambda)) \\
 where $W_{\text{\'et}}$ are \'etale-local weak equivalences, i.e. $(f:K_\bullet\to
 L_\bullet)\in W_{\text{\'et}}$ if for all $n$ we have
 \[
-(?)_{\text{\'et}}\CH_n(K_\bullet) \simto (?)_{\text{\'et}}\CH_n(L_\bullet).
+a_{\text{\'et}}\CH_n(K_\bullet) \simto a_{\text{\'et}}\CH_n(L_\bullet),
 \]
+and where $a_{\text{\'et}}$ is the étale sheafification functor.
 
 \emph{$\Aff^{1}$-invariance}
 Let
 \[
-I_{\Aff^{1},(\text{\'et})} = \{\dots\to 0\to \Lambda_{(\text{\'et})}[X\times \Aff^{1}]\to
-\Lambda_{(\text{\'et})}[X]\to 0\to \dots | X\in \Sm_S\} .
+I_{\Aff^{1},(\text{\'et})} = \left\{\cdots\to 0\to \Lambda_{(\text{\'et})}[X\times \Aff^{1}]\to
+\Lambda_{(\text{\'et})}[X]\to 0\to \cdots | X\in \Sm_S\right\} .
 \]
 Define
 \[
@@ -365,7 +407,7 @@ D_{\Aff^{1}}(S) \defeq D_{\PSh}(S) / \gen{I_{\Aff^{1}}} = D_{\PSh}(S)[W_{\Aff^{1
 \]
 We have
 \[
-L_{\Aff^{1}}: D_{\PSh}(S) \to D_{\PSh}(S)^{\Aff^{1}-\text{loc}} \injto D_{\PSh}(S).?
+L_{\Aff^{1}}: D_{\PSh}(S) \to D_{\PSh}(S)^{\Aff^{1}-\text{loc}} \injto D_{\PSh}(S).
 \]
 with the middle term isomorphic to $D_{\Aff^{1}}(S)$.
 
@@ -378,7 +420,7 @@ x_i-1 \right)  \right) \simeq \Aff_S^{n}
 then $\bb{\Delta}_{\text{alg},S}^{\bullet}$ is a cosimplicial scheme over $S$.
 \end{definition}
 \begin{definition}[Suslin-Voevodsky]
-Define
+Let $K_\bullet\in \Ch(\PSh(\Sm_S,\Lambda))$, we define
 \[
 \Sing^{\Aff^{1}}(K_\bullet) = \hocolim_{\bb{\Delta}\op}
 K_\bullet(\bb{\Delta}_{\text{alg},S}^{\bullet}\times_S X)
@@ -387,7 +429,7 @@ K_\bullet(\bb{\Delta}_{\text{alg},S}^{\bullet}\times_S X)
 \begin{example}
 Let $F\in \PSh$ then
 \[
-\Sing^{\Aff^{1}}(F)(U) = \left[ \dots \to  F(\bb{\Delta}^2\times U)\to F(\Aff^{(?)}\times
+\Sing^{\Aff^{1}}(F)(U) = \left[ \dots \to  F(\bb{\Delta}^2\times U)\to F(\Aff^1\times
 U) \xrightarrow{i_0^{*}-i_1^{*}}  F(U) \to 0 \right] .
 \] 	
 \end{example}
@@ -417,8 +459,8 @@ Write $L_{\text{mot}}^{\text{eff}}$ for the associated localization functor.
 \begin{lemma}
 We have
 \[
-L_{\text{mot}}^{\text{eff}} = \underbrace{\dots
-\Sing^{\Aff^{1}}L_{\text{\'et}}\Sing^{\Aff^{1}}}_{\text{transfinie composition\dots}}
+L_{\text{mot}}^{\text{eff}} = \underbrace{\cdots
+\Sing^{\Aff^{1}}L_{\text{\'et}}\Sing^{\Aff^{1}}}_{\text{transfinite composition}}
 \]
 \end{lemma}
 \begin{definition}
@@ -427,7 +469,11 @@ Let $X\in \Sm_S$. Define
 M_S^{\text{\'et},\text{eff}}(X) \defeq
 L_{\text{mot}}^{\text{eff}}\Lambda_{\text{\'et}}[X]\in \cat{DA}^{\text{eff},\text{\'et}}(S,\Lambda)
 \]
-(effecive \'etale (? homological) motive/motivic sheaf of ?).
+(effective \'etale (relative homological) motive/motivic sheaf of $X/S$).\\
+Here $\Lambda_{\text{\text{ét}}}$ is given by the composition
+\[ \Sm_S\xrightarrow{\Lambda[-]}
+\PSh(\Sm_S,\Lambda)\xrightarrow{a_{\text{ét}}}\Sh(\Sm_S,\Lambda). \]
+
 \end{definition}
 We have
 \[
@@ -448,7 +494,7 @@ We have the short-exact sequence
 0 \ar[r] & \Lambda / p\Lambda \ar[r] & \Ga \otimes \Lambda \ar[r,"\Fr-\id"] & \Ga \ar[r] & 0
 \end{tikzcd}
 \]
-and hence an exact sequence
+and hence an exact sequence % NOTE: I'm confused as to where does this come from
 \[
 \begin{tikzcd}
 \Lambda_{\text{\'et}}[\Ga] \otimes(\Ga\otimes \Lambda) \ar[r,"a_{\Ga}\otimes \id"] &
@@ -461,7 +507,7 @@ L_{\Aff^{1}}(\Ga\otimes\Lambda) \isoto \Lambda(0)
 \]
 and so
 \[
-L_{\text{mot}}^{\text{eff}}(\Gamma /p\Gamma) = 0.
+L_{\text{mot}}^{\text{eff}}(\Lambda /p\Lambda) = 0.
 \]
 \end{proof}
 
@@ -474,12 +520,12 @@ We define
 \[
 T \defeq M_S^{\text{eff}}(\P^{1},1)[-2]
 \]
-which is equal to $\Lambda(?).$
+which is equal to $\Lambda(1).$
 \end{definition}
 \begin{exercise}
 Any $x\in \P^{1}_S(S)$ gives the same decomposition.
 \end{exercise}
-We have a problem: $T$ is not $\oplus$-invertible.
+We have a problem: $T$ is not $\otimes$-invertible.
 
 \begin{definition}
 The category of \'etale motivic sheaves over $S$ is
@@ -493,11 +539,15 @@ clear what this means!
 \emph{Spectra:}
 \begin{definition}
 Let $\C$ be a closed, symmetric monoidal 1-category and $T$ be an object of $\C$. A
-\defn{$T$-prespectrum} is
+\defn{$T$-prespectrum} $A$ is given by the following datum:
 \[
 A = \left\{ (A_n,\sigma_n)_{n\in \N} | A_n\in \C, \sigma_n:T\otimes A_n\to A_{n+1} \right\} .
 \]
-$A$ is a \defn{$T$-spectrum} if for all $n\in N$
+By the adjunction $\otimes\dashv\iHom$ and the fact that for each object $A\in\C$ we have
+$A\isoto \iHom(\mathbb{1},A)$, the datum of the maps $\sigma_n$ is equivalent to the datum of maps
+\[ A_n \to \iHom(T,A_{n+1}). \]
+
+$A$ is a \defn{$T$-spectrum} if for all $n\in N$ these maps are isomorphisms:
 \[
 A_n \simto \iHom(T,A_{n+1}).
 \]
@@ -507,7 +557,7 @@ The evaluation map
 \[
 \Ev_n(A) = A_n
 \]
-has a left adjoint. We define
+has a left adjoint $\Sigma_T^\infty$. To define it, put
 \[
 \Sus^{n}(A)_m =
 \begin{cases}
@@ -518,7 +568,9 @@ T^{\otimes (m-n)}\otimes A & \text{if }m>n
 and $\Sigma_T^{\infty}\defeq \Sus^{0}$ is the $\infty$-suspension functor.
 
 \begin{proposition}
-Assume $\C$ is presentably, symmetrical monoidal. Then $\Sp_T(\C)\subset \PSp_T(\C)$ is a
+Assume $\C$ is presentably symmetrical monoidal\footnote{i.e., it is presentable
+symmetric monoidal and the tensor product bifunctor $-\otimes-:\C\times\C\to\C$ preserves
+colimits separately in each variable.}. Then $\Sp_T(\C)\subset \PSp_T(\C)$ is a
 reflexive subcategory. $W_{\text{st}}$ is generated by
 \[
 \left\{ \Sus^{n+1}(T\otimes A) \to \Sus^{n}(A):n\in \N,A\in \C \right\} .
@@ -538,10 +590,10 @@ X &\longmapsto L_{(\Aff^{1},\text{\'et},?}\Sigma_T^{\infty}M_S^{\text{\'et},\tex
 .
 \end{align*}
 \begin{remark}
-$M\in \DAet(S,\Lambda)$ is isomotphic to a stable $(\Aff^{1},\text{\'et})$-local (??)
+$M\in \DAet(S,\Lambda)$ is isomorphic to a stable $(\Aff^{1},\text{\'et})$-local $\P^1$-prespectrum
 \[
-K_n\in \Ch(\Sh_{\text{\'et}}(\Sm_S,\Lambda)) + \sigma_n =
-\Lambda_{\text{\'et}}[\P^{1},1]\otimes K_n\to K_{n+1}
+\left\{K_n\in \Ch(\Sh_{\text{\'et}}(\Sm_S,\Lambda))\ ;\ \sigma_n =
+\Lambda_{\text{\'et}}[\P^{1},1]\otimes K_n\to K_{n+1}\right\}
 \]
 such that for all $X\in \Sm_S,i \in \Z$
 \begin{itemize}
@@ -552,7 +604,8 @@ such that for all $X\in \Sm_S,i \in \Z$
 
 \subsection{Constructible motivic sheaves}
 \begin{definition}
-We define \defn{constructible motivic sheaves}
+We define \defn{constructible motivic sheaves} %NOTE: What does <>^{d.f.} mean? The full
+% subcategory of? Or the subcategory generated by colimits of the indicated objects?
 \begin{align*}
 \DAet_{\text{ct}} &= \left<M_S(X)(-n)|X\in \Sm_S,n\in \N \right>^{\text{d.f.}} \\
 &\subset \DAet(S,\Lambda).
@@ -588,7 +641,7 @@ for the inclusion, then we get
 \iota_S^{*}:D_{\text{\'et}}(S,\Lambda) \to \DAet(S,\Lambda).
 \]
 \begin{theorem}[Ayoub]
-Let $S$ be an excellent, Noetherian, finite dimensional, $\Lambda$-finite, with any prime
+Let $S$ be an excellent, Noetherian, finite dimensional, $\Lambda$-finite scheme, with any prime
 invertible in $\Lambda$ or $\OO_S$. Then $\iota_S^{*}$ is an equivalence.
 \end{theorem}
 
@@ -603,14 +656,17 @@ simplicial sets or $\infty$-groupoids.
 \begin{definition}
 The \defn{stable motivic homotopy category} over $S$ is
 \[
-\SH(S) \defeq \PSp_T(\PSh(\Sm_S,\cat{sSet}))[W^{-1}_{(\Aff^{1},\text{Nis},\P^{1})}].
+\SH(S) \defeq
+\PSp_T\left(\PSh(\Sm_S,\cat{sSet})\right)\left[W^{-1}_{(\Aff^{1},\text{Nis},\P^{1})}\right].
 \]
 \end{definition}
 Recall that the Nisnevich topology is between the Zariski and \'etale topologies.
 $\DAet(S)$ is the motivic version of $D(S\an,\Z)$ and $\SH(S)$ is the motivic version of
-sheaves of $S^{?}$-spectra on $S\an$. There is also $\cat{DM}(S,\Lambda)$ which are the
+sheaves of $S^1$-spectra on $S\an$. % NOTE: I think here is $S^1$, in the sense of the
+% topological sphere, but I'm not sure.
+There is also $\cat{DM}(S,\Lambda)$ which are the
 Nisnevich-local motivic sheaves. Many important invariants of varieties only satisfy
-Nisnevich descent, but not \'etale descent; for example, $K$-theory or higher chow groups.
+Nisnevich descent, but not \'etale descent; for example, $K$-theory or higher Chow groups.
 
 \section{Motives over a field}
 Let $S=\Spec(k)$ and $\Lambda=\Q$. Define
@@ -685,7 +741,8 @@ M(X)^{\vee} \isoto M_{\text{BM}}(X)\left<-d \right> \\
 M^{\text{coh}}(X)^{\vee} \isoto M^{\text{coh}}(X)\left<d \right>.
 \end{cases}
 \]
-(??)
+If $M\in\cat{DM}(k)$, then $M$ is dualizable if and only if it is constructible, if and
+only if it is compact.
 
 \subsection{Motivic cohomology and algebraic cycles}
 \begin{definition}
@@ -704,7 +761,7 @@ For $X\in \Sch_k^{\text{ft,sep}}$ define
 \begin{lemma}
 We have
 \[
-M_S^{\text{eff}}(\Gm) \isoto \Lambda(0) \oplus \Lambda(1)[1].?
+M_S^{\text{eff}}(\Gm) \isoto \Lambda(0) \oplus \Lambda(1)[1].
 \]
 \end{lemma}
 \begin{proof}
@@ -749,9 +806,10 @@ Let $X\in \Sch_k^{\text{ft}}$ define
 \]
 generated by integral subvarieties of dimension $n$ which intersect all faces properly.
 \end{definition}
-(Picture) We get $d:\kz_n(X,r)\to \kz_{n-1}(X,r-1)$ so $\kz_n(X,\bullet)$ is a
-\emph{Bloch cycle complex}.
-(??)
+(Picture) We get $d:\kz_n(X,r)\to \kz_{n-1}(X,r-1)$ so $\kz_n(X,\bullet)$ is a chain
+complex, called \emph{Bloch cycle complex}. We define the higher Chow groups as the
+homology of this chain complex:
+\[ \Chow_n(X,r)\defeq \CH_r(\kz_n(X,\bullet)). \]
 
 \begin{theorem}[Voevodsky+\dots]
 Let $k$ be perfect, $X\in \Sch_k^{\text{ft,sep}}$ then
@@ -764,7 +822,15 @@ If $X\in \Sm_k$ then
 \CH_{\text{mot}}^{2n,n}(X) &\isoto \Chow^{n}(X,\Lambda).
 \end{align*}
 \end{theorem}
-(??)
+
+\begin{corollary}
+\[ \CH_{\text{mot}}^{p,q}=0\quad \text{if }
+\begin{cases}
+p>2q\\
+q>\min\{p,\dim X\}
+\end{cases} \]
+
+\end{corollary}
 
 \subsection{Examples (Tate)}
 \begin{definition}
@@ -810,18 +876,19 @@ where $m_j$ is the number of cells of codimension $j$.
 M(G /B) \isoto \bigoplus_{i\ge 0}\Lambda\left<i \right>^{n_i}
 \]
 where $n_i$ is the number of $w\in W$ of length $i$.
-\item Let $X$ be quasiprojective and smooth (??)
+\item Let $X$ be quasiprojective and smooth, with a (right?) action of $G$ such that
+$\forall x\in X$, $\lim_{t\to 0} tx$ exists. Then (??) % TODO
 \end{enumerate}
 \end{example}
 \subsubsection{Reductive groups}
 \begin{theorem}[Biglami]
 If $G$ is split reductive, then
 \[
-M(G) \isoto \Sym^{*}\left( \bigoplus_{i\ge 1}\Lambda(i)[2?-i]^{\oplus n_i} \right)
+M(G) \isoto \Sym^{*}\left( \bigoplus_{i\ge 1}\Lambda(i)[2?-i]^{\oplus n_i} \right) % TODO
 \]
 so by Chevalley
 \[
-R[\kg]^{G} = k[q_1,\dots,q_{?}]
+R[\kg]^{G} = k[q_1,\dots,q_{\rk G}
 \]
 where $\deg q_j = d_j$ and $n_i$ is the number of $j$ such that $d_j=i$.
 \end{theorem}
@@ -830,7 +897,7 @@ We have
 \begin{align*}
 M(\GL_n) &= \Sym^{*}\left( \Lambda(1)[1] \oplus \Lambda(2)[3]\oplus \dots\oplus
 \Lambda(n)[2n-1] \right)  \\
-M(\SL_n) &= \times  (??)
+M(\SL_n) &= \times  (??) % TODO
 \end{align*}
 \end{example}
 \begin{exercise}
@@ -854,9 +921,14 @@ M_1(G) \defeq \Sigma_T^{\infty}(G\otimes \Q) \in \cat{DM}(k,G).
 \]
 Then
 \[
-M(G) \isoto \left( \bigoplus_{i=0}^{?}\Sym_i(M_1(G)) \right) \otimes M(?).
+M(G) \isoto \left( \bigoplus_{i=0}^{?}\Sym_i(M_1(G)) \right) \otimes M(\pi_0(G/R)]).
+% TODO (not sure about the \pi_0)
 \]
 \end{theorem}
+
+\begin{example}
+\[ M_1(C)=M_1(\Jac(C)) \]
+\end{example}
 
 \section{Six functor formalism}
 \subsection{Betti sheaves}
@@ -871,8 +943,8 @@ f &\longmapsto f^{*} = \LD f^{*}\quad \text{pullback}
 \end{definition}
 $D_B$ is symmetric monoidal
 \[
-f^{*}(F\otimes G) \isoto f^{*}(F)\otimes f^{*}(G) + \dots
-\]
+f^{*}(F\otimes G) \isoto f^{*}(F)\otimes f^{*}(G)
+\] % NOTE: not sure what the + \dots meant
 (note that we write $\otimes = \otimes^{\mathbb{L}}$).
 \begin{proposition}
 $(f^{*},f_*=\RD f_*)$ is an adjoint pair. And $D_B(X)$ is closed, i.e. there exists $\iHom(F,G)$.
@@ -887,9 +959,9 @@ So we have four functors $(\otimes,\iHom)$ and $(f^{*},f_*)$ which form adjoint 
 \begin{example}\leavevmode
 \begin{itemize}
 \item Derived categories of \'etale/$l$-adic sheaves.
-\item Dervied categories of (holonomic) $D$-modules.
+\item Derived categories of (holomorphic) $D$-modules.
 \item Derived categories of mixed Hodge modules.
-\item ??
+\item $\DAet(-)$, $\SH(-)$, ...
 \item $D(\cat{QCoh}(-))$.
 \end{itemize}
 \end{example}
@@ -902,23 +974,34 @@ These satisfy a bunch of natural transformations:
 \item \emph{Base change:} Let
 \[
 \begin{tikzcd}
-Y' \ar[r,"\wt{f}"] \ar[d,"\wt{g}"] & X' \ar[d,"g"] \\ Y \ar[r,"f"] & X
+Y' \ar[r,"\wt{f}"] \ar[d,"\wt{g}"] & X' \ar[d,"g"] \\ Y \ar[r,"f"] & X\\
+\arrow["\lrcorner"{anchor=center, pos=0.125},
+draw=none, from=1-1, to=2-2]
 \end{tikzcd}
 \]
-be Cartesian, then we get a natural transformaton $f^{*}g_*(-)\to \wt{g}_*\wt{f}^{*}(-)$.
+be Cartesian, then we get a natural transformation
+\[
+f^{*}g_*(-)\to \wt{g}_*\wt{f}^{*}(-).\quad\text{(BC)}
+\]
 \item \emph{Projection:} We have a natural transformation
 \[
-f_*(-)\otimes - \to f_*(-\otimes f^{*}(-)).
+f_*(-)\otimes - \to f_*(-\otimes f^{*}(-)).\quad\text{(Proj)}
 \]
 \item \emph{K\"unneth:} We have the natural transformation
 \[
-f_*(-)\otimes g_*(-) \to (f\times g)_*(-\boxtimes_X -)
+f_*(-)\otimes g_*(-) \to (f\times g)_*(-\boxtimes_X -)\quad\text{(K\"u)}
 \]
 where $\boxtimes_X\defeq \pr_1^{*}(-)\otimes \pr_2^{*}(-)$.
 \end{itemize}
+In general none of these natural transformations is an isomorphism. One goal of the six
+functor formalism is to study how much they fail to be isomorphisms.
 \begin{theorem}
-Let $D=D_B$. Assume $g$ is proper the (BC) and (Proj) are isomorphisms. If $f$ is also
-proper then (K\"u) is also an isomorphism.
+Let $D=D_B$.
+\begin{itemize}
+\item If $g$ is proper, then (BC) is an isomorphism.
+\item If $f$ is proper, then (Proj) is an isomorphism.
+\item If $f$ and $g$ are both proper, then (K\"u) is an isomorphism.
+\end{itemize}
 \end{theorem}
 \begin{proposition}[Open base change]
 Assume $f$ is an open immersion. Then (BC) is an isomorphism.
@@ -934,7 +1017,7 @@ is the \defn{pushforward with compact support}. We also write
 f_! \defeq \RD f_!:D(Y)\to D(X).
 \]
 \end{definition}
-$f_!\to f_*$ is an isomorphism for $f$ proper (??).
+$f_!\to f_*$ is an isomorphism for $f$ proper. % ??
 \begin{lemma}
 Suppose $j:U\injto X$ is an open immersion.
 \begin{enumerate}[1)]
@@ -953,14 +1036,14 @@ j_!(-\otimes j^{*}(-)) \isoto j_!(-) \otimes -.
 \]
 \end{enumerate}
 \end{lemma}
-Let $f:Y\to X$ be a separated morphism of finite type, then there exists a Nagata
-compactification where $f$ factors as
+Let $f:Y\to X$ be a separated morphism of finite type, then there exists a \textit{Nagata
+compactification}: $f$ factors as
 \[
 Y \xhookrightarrow{j} \overline{Y} \xrightarrow{p} X
 \]
 where $j$ is an open immersion and $p$ is proper. Then
 \[
-j_! \isoto p_!j_! \isoto p_*j_!.
+f_! \isoto p_!j_! \isoto p_*j_!.
 \]
 \begin{theorem}
 (BC) We have $g^{*}f_! \simto \wt{f}_!\wt{g}^{*}$.
@@ -971,7 +1054,7 @@ j_! \isoto p_!j_! \isoto p_*j_!.
 \end{theorem}
 \begin{proposition}
 Let $f$ be a separated morphism of finite type. The functor $f_!:D_B(Y)\to D_B(X)$
-commutes with all coproducts. So by the Adjoint Functor Theorem, $f_!$ has a right
+commutes with all coproducts. In particular, by the Adjoint Functor Theorem $f_!$ has a right
 adjoint $f^!:D_B(X)\to D_B(Y)$ called the \defn{exceptional pullback}.
 \end{proposition}
 \begin{example}
@@ -980,7 +1063,7 @@ If $j$ is an open immersion (\'etale) then $j^{!}\isoto j^{*}$.
 \begin{proposition}[Formal local duality]
 There is an isomorphism
 \[
-\iHom(f_!F,G_) \simto f_*\iHom(F,f^{!}G).
+\iHom(f_!F,G) \simto f_*\iHom(F,f^{!}G).
 \] 	
 \end{proposition}
 \begin{exercise}
@@ -1012,12 +1095,14 @@ f_\sharp = f_!\left<d \right>.
 \]
 \end{enumerate}
 \end{theorem}
-\begin{exercise}[Zariski separation]
+\begin{exercise}[Zariski/étale separation]
 Let $\{j_i:U_i\to X\} $ be a Zariski/\'etale covering then $\{j_i^{*}=j_i^{!}\} $ is
 jointly conservative.
 \end{exercise}
 \begin{proof}[Proof sketch]
-\'Etale separation reduces 2) to $f:\Aff^{n}\times X\to X$ (?). 3) is a corollary of 2).
+\'Etale separation reduces 2) to $f:\Aff^{n}\times X\to X$ (?).\\
+and $(?)\to \CH_c^*(\C^n)$\\
+3) is a corollary of 2).
 \end{proof}
 \begin{proposition}
 Let $\pi:X\to \Spec(\bb{C})$ be separated, then
@@ -1025,7 +1110,7 @@ Let $\pi:X\to \Spec(\bb{C})$ be separated, then
 \CH_{\text{sing}}^{*}(X\an,\Lambda) &\isoto \CH^{*}(\pi_*\overbrace{\pi^{*}\Lambda}^{\Lambda}) \\
 \CH_c^{*}(X\an, \Lambda) &\isoto H^{*}(\pi_!\pi^{*}\Lambda) \\
 \CH_*(X\an, \Lambda) &\isoto \CH_*(\pi_!\pi^{!}\Lambda) \\
-\CH_*^{\text{BM}}(X\an,\Lambda) &\simto \CH(\pi_*\pi^{!}\Lambda).
+\CH_*^{\text{BM}}(X\an,\Lambda) &\isoto \CH(\pi_*\pi^{!}\Lambda).
 \end{align*}
 \end{proposition}
 \begin{remark}
@@ -1034,12 +1119,10 @@ Let $q$ be smooth, then $q_\sharp\Lambda\isoto q_!q^{!}\Lambda$.
 For a quasiprojective morphism $f$ we get two factorizations
 \[
 \begin{cases}
-f = pj & f_! = p_!j_! \\
-f = qi & f^! = i^!q^!
+f = pj & f_! = p_!j_! \quad\text{$p$ proper, $j$ open immersion}\\
+f = qi & f^! = i^!q^! \quad\text{$q$ smooth, $i$ closed immersion}
 \end{cases}
 \]
-where $p$ is proper, $j$ is an open immersion, $q$ is smooth and $i$ is a closed immersion.
-
 \begin{proposition}[Localization/gluing]
 Let $i:Z\injto X$ be a closed immersion and $j:X\setminus Z=U\to X$
 \[
@@ -1053,7 +1136,8 @@ j_!j^{!} \ar[r] & \id \ar[r] & i_* i^{*} \ar[r,"+"] & {}
 (note that $i_! = i_*$).
 \end{proposition}
 \begin{proposition}[Absolute purity]
-Let $i:Z\injto X$ be a regular closed immersion of codimension $c$, then
+Let $i:Z\injto X$ be a regular closed immersion of codimension $c$ (for example, when
+both $X$ and $Z$ are smooth), then
 \[
 i^{!}(\Lambda_X) \isoto \Lambda_Z \left<-c \right>.
 \]
@@ -1065,7 +1149,8 @@ So we get $i^{!}\Lambda_X$ for $i:D\injto X$ a SNCD.
 
 \begin{definition}[Fake]
 Let $\C$ be an $\infty$-category with finite limits and $E$ be a class of morphisms
-stable under composition and pullbacks. $\cat{Span}(\C,E)$ is the $\infty$-category of \defn{spans}:
+stable under composition and pullbacks. $\cat{Span}(\C,E)$ is the $\infty$-category of
+\defn{spans}, which can be informally described as follows:
 \begin{itemize}
 \item Objects are the objects of $\C$.
 \item 1-morphisms are diagrams
@@ -1093,7 +1178,7 @@ X & & X' & & X''
 \]
 \end{itemize}
 \end{definition}
-$\cat{Span}(\C,E)$ has a symmetric monoidal structure
+$\cat{Span}(\C,E)$ has a symmetric monoidal structure, and there is a symmetric monoidal functor
 \[
 (\C\op,\times )\to (\cat{Span}(\C,E),\otimes)
 \]
@@ -1105,16 +1190,22 @@ X & & Z.
 \end{tikzcd}
 \]
 \begin{definition}[Mann]
-A \defn{3-functor formalism} is a $\infty$-symmetric monoidal functor
+A \defn{3-functor formalism} is a lax symmetric monoidal\footnote{A symmetric monoidal
+functor $D$ is required to strongly preserve the symmetric monoidal structure: it is
+equipped with a natural isomorphism $D(-\otimes-)\isoto D(-)\otimes D(-)$. A lax symmetric monoidal
+functor relaxes this condition, merely requiring a non-necessarily invertible natural
+transformation.} functor
 \[
-\wt{D}:\cat{Span}(\C,E) \to \cat{Cat}_\infty.
+\wt{D}:\cat{Span}(\C,E) \to \cat{Cat}_\infty,
 \]
+where $\cat{Cat}_\infty$ is equipped with the cartesian symmetric monoidal structure. %
+% TODO: give some insight on the structure this definition encodes
 A \defn{6-functor formalism} is a 3-functor formalism where ``right adjoints exist''.
 \end{definition}
 \begin{fact}
 $D_B(-)$ extends to a 3-functor formalism
 \[
-\wt{D}_B:\cat{Span}(\cat{Sch}_\C^{?},\text{ft,sep})\to \cat{Cat}_\infty.
+\wt{D}_B:\cat{Span}(\cat{Sch}_\C^{?},\text{ft,sep})\to \cat{Cat}_\infty. % TODO
 \]
 \end{fact}
 $\wt{D}_B$ takes the diagram
@@ -1132,19 +1223,22 @@ BC:f_!g^{*} = \wt{g}^{*}\wt{f}_!.
 \begin{theorem}[Fake]
 Let $P,J\subseteq E$ such that $E=P\circ J$ and consider
 \[
-D:\C\op \to \cat{CAlg}(\cat{Cat}_\infty).
+D:\C\op \to \cat{CAlg}(\cat{Cat}_\infty),
 \]
+such that the following holds.
 \begin{enumerate}[1)]
-\item For all $p\in P$ we have an adjoint pair $(p^{*},p_*)$ and PBC and PProj.
-\item For all $j\in J$ we have an adjoint pair $(j_!,j^{*})$ and OBC and OProj.
+\item For all $p\in P$ we have an adjoint pair $(p^{*},p_*)$, and PBC and PProj hold.
+\item For all $j\in J$ we have an adjoint pair $(j_!,j^{*})$, and OBC and OProj hold.
 \item Let
 \[
 \begin{tikzcd}
 \bullet \ar[r,"\wt{p}"] \ar[d,"\wt{j}"] & \bullet \ar[d,"j"] \\
-\bullet \ar[r,"p"] & \bullet
+\bullet \ar[r,"p"] & \bullet\\
+\arrow["\lrcorner"{anchor=center, pos=0.125},
+draw=none, from=1-1, to=2-2]
 \end{tikzcd}
 \]
-then
+be cartesian, then
 \[
 j!\wt{p}_* \simto p_*\wt{j}_!
 \]
@@ -1203,9 +1297,9 @@ satisfies proper base change.
 Note that the gluing axiom is a gluing theorem of Morel-Voevodsky, it uses smooth sites
 and at least Nisnevich descent. This type of sheaf theory is called a \defn{motivic sheaf
 theory} or a \defn{coefficient system}.
-\begin{theorem}[Drew-Gallaver]
+\begin{theorem}[Drew-Gallauer]
 $\SH(-)$ is the initial motivic sheaf theory. $\DAet(-,\Lambda)$ is initial among those
-satisfing \'etale descent and (?)
+satisfing \'etale descent and is $\Lambda$-linear.
 \end{theorem}
 (Something about the Drew-Tubach mixed module realization?)
 
@@ -1222,7 +1316,7 @@ Let $D$ be a triangulated category. A \defn{$t$-structure} is a pair $(D_{\ge 0}
 0}$ of full subcategories with
 \begin{enumerate}[1)]
 \item $D_{\ge 0}, D_{\le 0}$  are replete (stable under isomorphisms),
-\item $D_{\ge_0}[1]\subseteq D_{\ge 0}, D_{\le 0}[-1]\subseteq D_{\le 0}$,
+\item $D_{\ge 0}[1]\subseteq D_{\ge 0}, D_{\le 0}[-1]\subseteq D_{\le 0}$,
 \item $\Hom(D_{\ge 0}, D_{\le 0}[-1]) = 0$,
 \item for all $X\in D$, there exists a distinguished triangle
 \[
@@ -1232,7 +1326,8 @@ Let $D$ be a triangulated category. A \defn{$t$-structure} is a pair $(D_{\ge 0}
 \]
 where $\tau_{\ge 0}X\in D_{\ge 0}$ and $\tau_{<0}X\in D_{\le 0}[-1]$.
 \end{enumerate}
-Taking $D_{=0} = D_{\ge 0}\cap D_{\le 0}$ gives us the \defn{heart} which is an abelian category.
+Taking $D^\heartsuit=D_{=0} = D_{\ge 0}\cap D_{\le 0}$ gives us the \defn{heart} which is an
+abelian category.
 \end{definition}
 \begin{example}
 Let
@@ -1258,7 +1353,7 @@ $\cat{MM}_{(d)}(k,\Q)$ to be the heart of $\cat{DM}_{(d)}(k,\Q)$.
 \end{enumerate}
 \end{conjecture}
 \begin{lemma}
-($T_k$) implies $\cat{MM}_{\text{ct}}$ is a Tannakian category.
+($T_k$) implies that $\cat{MM}_{\text{ct}}$ is a Tannakian category.
 \end{lemma}
 So $\cat{MM}_{\text{ct}}(k,\Q)$ is approximately isomorphic to $\Repf(G_\text{mot}(k))$,
 were $G_{\text{mot}}(k)$ is a pro-algebraic group over $\Q$, the ``motivic Galois group''.
@@ -1267,8 +1362,9 @@ were $G_{\text{mot}}(k)$ is a pro-algebraic group over $\Q$, the ``motivic Galoi
 Let $\sigma:k\injto \bb{C}$ be a field embedding. Then ($T_k$) is equivalent to the Nori
 realization functor
 \[
-R_{?} : ??
+R_{\text{Nori}} : \cat{DM}_{\text{ct}}(k,\Q)\to D(\NM(k,\Q))
 \]
+being an equivalence. Here $\NM(k,\Q))$ is the categoru of Nori motives.
 \end{proposition}
 \begin{theorem}
 ($T_k$) implies
@@ -1292,15 +1388,19 @@ $\cat{DMT}_{\text{ct}}(X,k)$ (not satisfying property 3) in general.
 ($BS_X$) is a known when
 \begin{enumerate}[1)]
 \item $k$ is a number field, function field, finite field. The number field case is a
-difficult theorem of Borel, the function field was proven by Harder, and the finite field
+difficult theorem of Borel, the function field case was proven by Harder, and the finite field
 case by Quillen.
 \item $M(X)\in \cat{DMT}(k)$ for $X=\Gm^{m}\times \Aff^{n}\times \P^{n}$.
 \end{enumerate}
 \end{theorem}
 \begin{definition}
-Let $i:Z\injto X$ be a closed embedding and $j:\injto X\setminus Z$ be the complementary
+Let $i:Z\injto X$ be a closed embedding and $j:X\setminus Z\injto X$ be the complementary
 open embedding. We say it is \defn{Whitney-Tate} if $i^{*}j_*\cat{DMT}(X\setminus
 Z)\subset \cat{DMT}(Z)$.
+% TODO:on my notes I have "weakly Tate". We should investigate
+
 \end{definition}
+
+\printbibliography
 
 \end{document}
